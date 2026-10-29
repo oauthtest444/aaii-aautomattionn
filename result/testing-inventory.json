@@ -1,0 +1,8 @@
+{
+  "targets": ["https://console.byteplus.com"],
+  "routes": [],
+  "javascript": [],
+  "flows": [],
+  "endpoints": [],
+  "listeners": []
+}
