@@ -10,3 +10,5 @@
 | /iam | misc (3) | n/a | none | no security sink |
 
 Detail: `result/client-side/console.byteplus.com/iam/javascript/listeners.md`.
+| /datarangers | serviceWorker message (main.e9a0251e.js:299513) | n/a | static-resource cache | not sensitive |
+| /datarangers | setImmediate/MessageChannel polyfills | n/a | scheduler | not sensitive |

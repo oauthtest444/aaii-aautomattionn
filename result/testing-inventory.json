@@ -1,3083 +1,3298 @@
 {
- "targets": [
-  "https://console.byteplus.com/"
- ],
- "routes": [
-  {
-   "url": "https://console.byteplus.com/dts",
-   "finalUrl": "https://console.byteplus.com/dts/region:dts+ap-southeast-1/",
-   "status": 200,
-   "scriptCount": 211,
-   "apiCount": 45,
-   "linkCount": 5
-  },
-  {
-   "url": "https://console.byteplus.com/datarangers",
-   "finalUrl": "https://console.byteplus.com/datarangers",
-   "status": 200,
-   "scriptCount": 30,
-   "apiCount": 42,
-   "linkCount": 6
-  },
-  {
-   "url": "https://console.byteplus.com/datatester",
-   "finalUrl": "https://console.byteplus.com/datatester",
-   "status": 200,
-   "scriptCount": 49,
-   "apiCount": 47,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/ark",
-   "finalUrl": "https://console.byteplus.com/ark/region:ap-southeast-1/overview",
-   "status": 200,
-   "scriptCount": 60,
-   "apiCount": 45,
-   "linkCount": 6
-  },
-  {
-   "url": "https://console.byteplus.com/ai",
-   "finalUrl": "https://console.byteplus.com/ai",
-   "status": 200,
-   "scriptCount": 28,
-   "apiCount": 23,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/alb",
-   "finalUrl": "https://console.byteplus.com/alb/region:alb+cn-beijing",
-   "status": 200,
-   "scriptCount": 76,
-   "apiCount": 48,
-   "linkCount": 11
-  },
-  {
-   "url": "https://console.byteplus.com/arkclaw",
-   "finalUrl": "https://console.byteplus.com/arkclaw",
-   "status": 200,
-   "scriptCount": 138,
-   "apiCount": 47,
-   "linkCount": 1
-  },
-  {
-   "url": "https://console.byteplus.com/as",
-   "finalUrl": "https://console.byteplus.com/as/region:as+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 64,
-   "apiCount": 15,
-   "linkCount": 7
-  },
-  {
-   "url": "https://console.byteplus.com/bytehouse-ce",
-   "finalUrl": "https://console.byteplus.com/bytehouse-ce/region:bytehouse-ce+ap-southeast-1/data_object/databases",
-   "status": 200,
-   "scriptCount": 37,
-   "apiCount": 18,
-   "linkCount": 7
-  },
-  {
-   "url": "https://console.byteplus.com/cen",
-   "finalUrl": "https://console.byteplus.com/cen",
-   "status": 200,
-   "scriptCount": 47,
-   "apiCount": 52,
-   "linkCount": 6
-  },
-  {
-   "url": "https://console.byteplus.com/db",
-   "finalUrl": "https://res.gcloudcache.com/bp-fe/console-db/bp-db-throne/skeletons/mysql/rds-mysql-list.skeleton.html",
-   "status": 200,
-   "scriptCount": 21,
-   "apiCount": 14,
-   "linkCount": 40
-  },
-  {
-   "url": "https://console.byteplus.com/dbw",
-   "finalUrl": "https://console.byteplus.com/dbw/region:dbw+ap-southeast-1/",
-   "status": 200,
-   "scriptCount": 108,
-   "apiCount": 40,
-   "linkCount": 17
-  },
-  {
-   "url": "https://console.byteplus.com/dc",
-   "finalUrl": "https://console.byteplus.com/dc/region:dc+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 63,
-   "apiCount": 82,
-   "linkCount": 12
-  },
-  {
-   "url": "https://console.byteplus.com/aidap/",
-   "finalUrl": "https://console.byteplus.com/aidap/region:aidap+ap-southeast-1/",
-   "status": 200,
-   "scriptCount": 27,
-   "apiCount": 46,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/aisearch",
-   "finalUrl": "https://console.byteplus.com/aisearch/region:aisearch+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 67,
-   "apiCount": 50,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/bp-ask-echo/my-agent",
-   "finalUrl": "https://console.byteplus.com/bp-ask-echo/my-agent",
-   "status": 200,
-   "scriptCount": 38,
-   "apiCount": 42,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/bytehouse",
-   "finalUrl": "https://console.byteplus.com/bytehouse/region:bytehouse+ap-southeast-1/database",
-   "status": 200,
-   "scriptCount": 36,
-   "apiCount": 13,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/cdn",
-   "finalUrl": "https://console.byteplus.com/cdn",
-   "status": 200,
-   "scriptCount": 36,
-   "apiCount": 44,
-   "linkCount": 1
-  },
-  {
-   "url": "https://console.byteplus.com/certificate-center",
-   "finalUrl": "https://console.byteplus.com/certificate-center",
-   "status": 200,
-   "scriptCount": 48,
-   "apiCount": 73,
-   "linkCount": 1
-  },
-  {
-   "url": "https://console.byteplus.com/clb",
-   "finalUrl": "https://console.byteplus.com/clb/region:clb+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 72,
-   "apiCount": 89,
-   "linkCount": 12
-  },
-  {
-   "url": "https://console.byteplus.com/cloudidentity",
-   "finalUrl": "https://console.byteplus.com/cloudidentity/region:ap-southeast-1",
-   "status": 200,
-   "scriptCount": 21,
-   "apiCount": 15,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/cloudtrail",
-   "finalUrl": "https://console.byteplus.com/cloudtrail",
-   "status": 200,
-   "scriptCount": 32,
-   "apiCount": 37,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/config",
-   "finalUrl": "https://console.byteplus.com/config",
-   "status": 200,
-   "scriptCount": 30,
-   "apiCount": 46,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/context-search",
-   "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=ctxsearch",
-   "status": 200,
-   "scriptCount": 302,
-   "apiCount": 12,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/cp",
-   "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=cp",
-   "status": 200,
-   "scriptCount": 63,
-   "apiCount": 34,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/cr",
-   "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=cr",
-   "status": 200,
-   "scriptCount": 52,
-   "apiCount": 46,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/ddos-protection",
-   "finalUrl": "https://console.byteplus.com/ddos-protection/region:ddos-bp+ap-southeast-1/overview",
-   "status": 200,
-   "scriptCount": 37,
-   "apiCount": 45,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/dms",
-   "finalUrl": "https://console.byteplus.com/dms/region:dms+ap-southeast-1/",
-   "status": 200,
-   "scriptCount": 28,
-   "apiCount": 15,
-   "linkCount": 1
-  },
-  {
-   "url": "https://console.byteplus.com/dns-suite",
-   "finalUrl": "https://console.byteplus.com/dns-suite",
-   "status": 200,
-   "scriptCount": 57,
-   "apiCount": 72,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/domain-service/domain",
-   "finalUrl": "https://console.byteplus.com/domain-service/domain",
-   "status": 200,
-   "scriptCount": 43,
-   "apiCount": 49,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/ebs",
-   "finalUrl": "https://console.byteplus.com/ebs/region:ebs+ap-southeast-1/",
-   "status": 200,
-   "scriptCount": 43,
-   "apiCount": 18,
-   "linkCount": 25
-  },
-  {
-   "url": "https://console.byteplus.com/ecs",
-   "finalUrl": "https://console.byteplus.com/ecs/region:ecs+ap-southeast-1/dashboard",
-   "status": 200,
-   "scriptCount": 86,
-   "apiCount": 48,
-   "linkCount": 27
-  },
-  {
-   "url": "https://console.byteplus.com/eip",
-   "finalUrl": "https://console.byteplus.com/eip/region:eip+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 69,
-   "apiCount": 93,
-   "linkCount": 40
-  },
-  {
-   "url": "https://console.byteplus.com/eip/cbwps",
-   "finalUrl": "https://console.byteplus.com/eip/region:eip+ap-southeast-1/cbwps",
-   "status": 200,
-   "scriptCount": 77,
-   "apiCount": 98,
-   "linkCount": 40
-  },
-  {
-   "url": "https://console.byteplus.com/emr",
-   "finalUrl": "https://console.byteplus.com/emr/region:emr_fe+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 66,
-   "apiCount": 75,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/es",
-   "finalUrl": "https://res.gcloudcache.com/bp-fe/console-db/volc-db-es/skeletons/es-v2-list.3c274029.skeleton.html",
-   "status": 200,
-   "scriptCount": 356,
-   "apiCount": 44,
-   "linkCount": 10
-  },
-  {
-   "url": "https://console.byteplus.com/filenas",
-   "finalUrl": "https://console.byteplus.com/filenas/region:FileNAS+ap-southeast-1/",
-   "status": 200,
-   "scriptCount": 32,
-   "apiCount": 40,
-   "linkCount": 5
-  },
-  {
-   "url": "https://console.byteplus.com/firewall",
-   "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=fw_center",
-   "status": 200,
-   "scriptCount": 40,
-   "apiCount": 31,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/flink",
-   "finalUrl": "https://console.byteplus.com/flink/region:flink+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 54,
-   "apiCount": 42,
-   "linkCount": 1
-  },
-  {
-   "url": "https://console.byteplus.com/ga",
-   "finalUrl": "https://console.byteplus.com/ga",
-   "status": 200,
-   "scriptCount": 38,
-   "apiCount": 54,
-   "linkCount": 1
-  },
-  {
-   "url": "https://console.byteplus.com/iam",
-   "finalUrl": "https://console.byteplus.com/iam",
-   "status": 200,
-   "scriptCount": 56,
-   "apiCount": 42,
-   "linkCount": 6
-  },
-  {
-   "url": "https://console.byteplus.com/kafka",
-   "finalUrl": "https://console.byteplus.com/kafka/region:kafka+ap-southeast-1/",
-   "status": 200,
-   "scriptCount": 16,
-   "apiCount": 13,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/kms",
-   "finalUrl": "https://console.byteplus.com/kms/region:kms+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 33,
-   "apiCount": 41,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/live",
-   "finalUrl": "https://console.byteplus.com/live",
-   "status": 200,
-   "scriptCount": 39,
-   "apiCount": 49,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/livesaas",
-   "finalUrl": "https://console.byteplus.com/livesaas",
-   "status": 200,
-   "scriptCount": 39,
-   "apiCount": 47,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/milvus",
-   "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=milvus",
-   "status": 200,
-   "scriptCount": 37,
-   "apiCount": 17,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/ml-platform",
-   "finalUrl": "https://console.byteplus.com/ml-platform/region:ml-platform+ap-southeast-1/dashboard",
-   "status": 200,
-   "scriptCount": 127,
-   "apiCount": 41,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/mongodb",
-   "finalUrl": "https://console.byteplus.com/mongodb/region:mongodb+ap-southeast-1/",
-   "status": 200,
-   "scriptCount": 33,
-   "apiCount": 12,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/mse",
-   "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=mse",
-   "status": 200,
-   "scriptCount": 52,
-   "apiCount": 28,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/nat",
-   "finalUrl": "https://console.byteplus.com/nat/region:nat+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 14,
-   "apiCount": 71,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/ndr",
-   "finalUrl": "https://console.byteplus.com/ndr",
-   "status": 200,
-   "scriptCount": 50,
-   "apiCount": 28,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/nlb",
-   "finalUrl": "https://console.byteplus.com/nlb/region:nlb+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 69,
-   "apiCount": 85,
-   "linkCount": 12
-  },
-  {
-   "url": "https://console.byteplus.com/observe",
-   "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=apmplus_server",
-   "status": 200,
-   "scriptCount": 33,
-   "apiCount": 44,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/observe/apmplus-client/",
-   "finalUrl": "https://console.byteplus.com/observe/apmplus-client/region:apmplus-client+ap-southeast-1/console/overview",
-   "status": 200,
-   "scriptCount": 51,
-   "apiCount": 61,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/observe/cloud-monitor",
-   "finalUrl": "https://console.byteplus.com/observe/cloud-monitor",
-   "status": 200,
-   "scriptCount": 51,
-   "apiCount": 60,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/observe/prometheus",
-   "finalUrl": "https://console.byteplus.com/observe/prometheus/region:prometheus+ap-southeast-1/",
-   "status": 200,
-   "scriptCount": 49,
-   "apiCount": 48,
-   "linkCount": 1
-  },
-  {
-   "url": "https://console.byteplus.com/omni-shield/llm-shield/region:llm-shield+ap-southeast-1/overview",
-   "finalUrl": "https://console.byteplus.com/omni-shield/llm-shield/region:llm-shield+ap-southeast-1/overview",
-   "status": 200,
-   "scriptCount": 51,
-   "apiCount": 61,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/organization",
-   "finalUrl": "https://console.byteplus.com/organization",
-   "status": 200,
-   "scriptCount": 37,
-   "apiCount": 47,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/pfs",
-   "finalUrl": "https://console.byteplus.com/pfs/region:pfs+ap-southeast-1/",
-   "status": 200,
-   "scriptCount": 35,
-   "apiCount": 42,
-   "linkCount": 5
-  },
-  {
-   "url": "https://console.byteplus.com/pl",
-   "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=privatelink",
-   "status": 200,
-   "scriptCount": 30,
-   "apiCount": 64,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/rabbitmq",
-   "finalUrl": "https://console.byteplus.com/rabbitmq/region:rabbitmq+ap-southeast-1/",
-   "status": 200,
-   "scriptCount": 25,
-   "apiCount": 10,
-   "linkCount": 2
-  },
-  {
-   "url": "https://console.byteplus.com/redis",
-   "finalUrl": "https://res.gcloudcache.com/bp-fe/console-db/bp-db-throne/skeletons/redis/redis-list.skeleton.html",
-   "status": 200,
-   "scriptCount": 151,
-   "apiCount": 124,
-   "linkCount": 40
-  },
-  {
-   "url": "https://console.byteplus.com/resourcemanager",
-   "finalUrl": "https://console.byteplus.com/resourcemanager/resource_center",
-   "status": 200,
-   "scriptCount": 43,
-   "apiCount": 43,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/rtc",
-   "finalUrl": "https://console.byteplus.com/rtc",
-   "status": 200,
-   "scriptCount": 115,
-   "apiCount": 50,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/sealsuite",
-   "finalUrl": "https://console.byteplus.com/sealsuite",
-   "status": 200,
-   "scriptCount": 33,
-   "apiCount": 43,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/search-infinity",
-   "finalUrl": "https://console.byteplus.com/search-infinity",
-   "status": 200,
-   "scriptCount": 36,
-   "apiCount": 39,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/security-center",
-   "finalUrl": "https://console.byteplus.com/security-center",
-   "status": 200,
-   "scriptCount": 35,
-   "apiCount": 40,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/sms",
-   "finalUrl": "https://console.byteplus.com/sms",
-   "status": 200,
-   "scriptCount": 58,
-   "apiCount": 46,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/tls",
-   "finalUrl": "https://console.byteplus.com/tls/region:tls+ap-southeast-1/",
-   "status": 200,
-   "scriptCount": 82,
-   "apiCount": 43,
-   "linkCount": 17
-  },
-  {
-   "url": "https://console.byteplus.com/tos",
-   "finalUrl": "https://console.byteplus.com/common-buy/TOS%7C%7C7291580783171539244",
-   "status": 200,
-   "scriptCount": 28,
-   "apiCount": 20,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/tr",
-   "finalUrl": "https://console.byteplus.com/tr/region:tr+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 30,
-   "apiCount": 66,
-   "linkCount": 5
-  },
-  {
-   "url": "https://console.byteplus.com/veapig",
-   "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=apig",
-   "status": 200,
-   "scriptCount": 47,
-   "apiCount": 31,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/vefaas",
-   "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=vefaas",
-   "status": 200,
-   "scriptCount": 54,
-   "apiCount": 32,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/vikingdb",
-   "finalUrl": "https://console.byteplus.com/vikingdb/region:vikingdb+ap-southeast-1/home",
-   "status": 200,
-   "scriptCount": 37,
-   "apiCount": 39,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/vke",
-   "finalUrl": "https://console.byteplus.com/vke/region:vke+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 50,
-   "apiCount": 19,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/vodpaas",
-   "finalUrl": "https://console.byteplus.com/vodpaas/region:vodpaas+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 35,
-   "apiCount": 27,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/voice",
-   "finalUrl": "https://console.byteplus.com/voice",
-   "status": 200,
-   "scriptCount": 23,
-   "apiCount": 34,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/vpc",
-   "finalUrl": "https://console.byteplus.com/vpc/region:vpc+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 68,
-   "apiCount": 82,
-   "linkCount": 39
-  },
-  {
-   "url": "https://console.byteplus.com/vpn",
-   "finalUrl": "https://console.byteplus.com/vpn/region:vpn+ap-southeast-1",
-   "status": 200,
-   "scriptCount": 49,
-   "apiCount": 60,
-   "linkCount": 41
-  },
-  {
-   "url": "https://console.byteplus.com/waf/overview",
-   "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=waf",
-   "status": 200,
-   "scriptCount": 124,
-   "apiCount": 38,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/finance",
-   "finalUrl": "https://console.byteplus.com/finance",
-   "status": 200,
-   "scriptCount": 53,
-   "apiCount": 65,
-   "linkCount": 1
-  },
-  {
-   "url": "https://console.byteplus.com/user",
-   "finalUrl": "https://console.byteplus.com/user",
-   "status": 200,
-   "scriptCount": 42,
-   "apiCount": 59,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/beian",
-   "finalUrl": "https://console.byteplus.com/beian",
-   "status": 404,
-   "scriptCount": 31,
-   "apiCount": 39,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/message",
-   "finalUrl": "https://console.byteplus.com/message",
-   "status": 200,
-   "scriptCount": 30,
-   "apiCount": 40,
-   "linkCount": 0
-  },
-  {
-   "url": "https://console.byteplus.com/workorder/list/",
-   "finalUrl": "https://console.byteplus.com/workorder/list/",
-   "status": 200,
-   "scriptCount": 34,
-   "apiCount": 44,
-   "linkCount": 6
-  }
- ],
- "javascript": [
-  {
-   "file": "iam-main.js",
-   "route": "/iam",
-   "dangerouslySetInnerHTML": 0
-  },
-  {
-   "file": "iam-5771.js",
-   "route": "/iam",
-   "dangerouslySetInnerHTML": 1,
-   "note": "i18n span renderer, static translation"
-  },
-  {
-   "file": "usermono.js",
-   "route": "/iam",
-   "note": "TEA AB SDK yn listener, weak origin, fixed script sink"
-  },
-  {
-   "file": "slardar.js",
-   "route": "/iam",
-   "note": "telemetry listener"
-  },
-  {
-   "file": "bdms.js",
-   "route": "/iam",
-   "note": "exact-origin bridge listener"
-  },
-  {
-   "file": "rt-main.js",
-   "route": "/iam",
-   "note": "runtime"
-  },
-  {
-   "file": "1548.*.js",
-   "route": "/iam",
-   "note": "vendor"
-  },
-  {
-   "file": "Basics.*.js",
-   "route": "/iam",
-   "note": "profile basics chunk"
-  }
- ],
- "flows": [
-  {
-   "id": "iam-postmessage-yn",
-   "source": "message",
-   "sink": "script src",
-   "verdict": "not exploitable",
-   "report": "result/client-side/console.byteplus.com/iam/route-report.md"
-  },
-  {
-   "id": "iam-profile-render",
-   "source": "API DisplayName/Description",
-   "sink": "React text",
-   "verdict": "not vulnerable"
-  },
-  {
-   "id": "iam-attach-role-reflect",
-   "source": "ServiceName query",
-   "sink": "page render",
-   "verdict": "not reflected"
-  }
- ],
- "endpoints": [
-  {
-   "method": "GET",
-   "path": "/api/common/plat_growth/im/im-settings",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 55
-  },
-  {
-   "method": "GET",
-   "path": "/api/financial/const/getCashierTccConfig",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "GET",
-   "path": "/api/financial/const/getExpenseConfigForFE",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/DDoS/{region}/2020-12-16/ListRegion",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/DDoS/{region}/2020-12-16/QueryAttackType",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/DDoS/{region}/2020-12-16/QueryIPList",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/DDoS/{region}/2020-12-16/QueryIPType",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/ESCloud/DescribeKernelMajorVersions/2023-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/account_management/{region}/2018-01-01/GetApplication",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/account_verify/{region}/2018-01-01/GetProfileInfo",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 3
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/account_verify/{region}/2018-01-01/GetRawProfileInfo",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/account_verify/{region}/2018-01-01/ListProfileCountry",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/alb/{region}/2020-04-01/DescribeLoadBalancers",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/alb/{region}/2020-04-01/InnerGetAccountFeatures",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/alb/{region}/2020-04-01/InnerGetAccountQuota",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill/{region}/2020-01-01/CheckPaymentQualification",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill/{region}/2020-01-01/CountCoupon",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill/{region}/2020-01-01/GetBcDiscountPriceAuth",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill/{region}/2020-01-01/GetCurrency",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill/{region}/2020-01-01/GetQuotaAcctInfo",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill/{region}/2020-01-01/QueryCreditProtocolDetail",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill/{region}/2022-01-01/ListMonthlyBillOpen",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill_volcano_engine/{region}/2020-01-01/CheckPaymentQualification",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill_volcano_engine/{region}/2020-01-01/GetAccountGrayStatus",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill_volcano_engine/{region}/2020-01-01/GetGreyInfo",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill_volcano_engine/{region}/2020-01-01/GetPublishedTemplateAgreementDefine",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill_volcano_engine/{region}/2020-01-01/IsServiceOpened",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill_volcano_engine/{region}/2022-01-01/GetBillingAddress",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill_volcano_engine/{region}/2022-01-01/GetCountryAreaCfg",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 3
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill_volcano_engine/{region}/2022-01-01/GetCountryAreaCfgByAccountID",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bill_volcano_engine/{region}/2022-01-01/GetTaxID",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 3
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bytehouse_ce/{region}/2024-10-01/AuthorizationStatus",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bytehouse_ce/{region}/2024-10-01/Features",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bytehouse_ce/{region}/2024-10-01/GetVcloudUser",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/bytehouse_ce/{region}/2024-10-01/ListFeatures",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/cloudidentity/{region}/2023-01-01/GetInstanceQuota",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/config/{region}/2025-01-01/DescribeConfigurationRecorders",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/config/{region}/2025-01-01/ListSupportedResourceTypes",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/cv_console/2025-09-16/AppBanner",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/cv_console/2025-09-16/AppModelList",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/dns/{region}/2018-08-01/ListAccountPreorder",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/dns/{region}/2018-08-01/ProductSpec",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/domain_service/{region}/2021-06-01/ListDomains",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/domain_service/{region}/2021-06-01/Overview",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/emr/ListAdmMdClusterDefaultSettings/2021-09-15/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/emr_olap/GetInstanceSupport/2023-04-30/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/emr_serverless/ConsolePermission/2024-03-25/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/emr_serverless/GetFunctionPermissions/2024-03-25/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/flink/GetGMCSAccountProductIsInit/2022-06-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/fw_center/{region}/2021-09-06/CheckAuthorized",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/ga/{region}/2022-03-01/GetVerifyStatus",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/iam/CheckServiceLinkedRole/2018-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/iam/ListRoles/2018-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/iam/{region}/2018-01-01/CheckServiceLinkedRole",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 3
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/iam/{region}/2018-01-01/GetRole",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/iam/{region}/2018-01-01/GetServiceLinkedRoleTemplate",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 10
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/iam/{region}/2018-01-01/ListRoles",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/iam/{region}/2018-01-01/ListUsers",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/iam/{region}/2021-08-01/ListProjects",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/kms/{region}/2021-02-18/DescribeKeyrings",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/livesaas/{region}/2019-04-25/GetAccount",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/livesaas/{region}/2019-10-10/GetAccountConfig",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/livesaas/{region}/2019-10-10/GetConsolePolling",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/livesaas/{region}/2023-08-01/GetQuickExperience",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/livesaas/{region}/2026-01-01/ContentReviewConfig",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/livesaas/{region}/2026-01-01/LiveAiReviewConfig",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/organization/{region}/2022-01-01/DescribeOrganization",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 3
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/organization/{region}/2022-01-01/ListDelegatedServicesForAccount",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/organization/{region}/2022-01-01/ListOrganizationalUnits",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/organization/{region}/2022-01-01/ListOrganizationalUnitsForParent",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/organization/{region}/2022-01-01/ListTrustedServiceStatus",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/origin_defence/{region}/2022-01-01/ListRegionV2",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/resourcecenter/{region}/2023-06-01/DescribeRegions",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/resourcecenter/{region}/2023-06-01/GetResourceCenterStatus",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/resourcecenter/{region}/2023-06-01/ListResourceMetas",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/resourcecenter/{region}/2023-06-01/ListResourceTypes",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/rtc/2018-01-01/DescribeApps",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/sealsuite/{region}/2025-04-29/GetAccountInfo",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/sealsuite/{region}/2025-04-29/GetBestPractices",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/sealsuite/{region}/2025-04-29/GetFAQ",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/vod/{region}/2023-01-01/GetTradeConfiguration",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/top/vod/{region}/2023-01-01/GetVodBasicTradeConfig",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/v2/top/ecs/ecs/InnerGetResourcePermissions/2020-04-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/v2/top/iam/iam/CheckServiceLinkedRole/2018-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/v2/top/live/live/DescribeBilling/2023-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/v2/top/live/live/DescribeService/2023-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/v2/top/volcSMS/volcSMS/GetSubAccountList/2021-01-11",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/v2/top/volcSMS/volcSMS/GetTotalSendCountStat/2021-06-01",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/v2/top/volcSMS/volcSMS/ListAllSmsProduct/2021-01-11",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/v2/top/vpc/vpc/DescribeAccountWhiteList/2020-04-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/vke/checkAuth",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "GET",
-   "path": "/api/vke/envInfo",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/common/plat_growth/im/visitor-sign",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 52
-  },
-  {
-   "method": "POST",
-   "path": "/api/cp/graphql/",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/financial/const/getCommonBuyConfig",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/financial/payment/FetchStoredPaymentMethods",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "POST",
-   "path": "/api/financial/qualification/GetWhitelistShortTermProducts",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 54
-  },
-  {
-   "method": "POST",
-   "path": "/api/financial/trade/GetPublishedTemplateByPro",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/financial/trade/HasArrearsAlert",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 54
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/62c250b5308aad061597615a/DescribeNatGatewaysMix",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/631708fdffa7a90498132c00/DescribeVpcsMix",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/631708fdffa7a90498132c00/GetEipTccConfig",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/6336514b9acc8004a222ef15/DescribeDirectConnectConnectionsMix",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/63526f366b53c9048d4aab61/cenRestfulRequest",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/63526f366b53c9048d4aab61/getCenRegionMap",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/6364c68a95680b04dbb2fc46/DescribeLoadBalancersMix",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/6364c74495680b04dbb2fdea/DescribeVpnGatewaysMix",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/638d9c61d0379c03d33d60ef/DescribeVpcEndpointsMix",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/639ae2b7e4afa3047a03a08d/DescribeRegionsMix",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 8
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/639ae2b7e4afa3047a03a08d/DescribeZonesMix",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 8
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/639ae2b7e4afa3047a03a08d/GetPrefetchTcc",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 11
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/639ae2b7e4afa3047a03a08d/getAccountInfo",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 8
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/639ae2b7e4afa3047a03a08d/getWhiteList",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 10
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/639ae2b7e4afa3047a03a08d/requestLogPlatform",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/639ae2b7e4afa3047a03a08d/restfulRequest",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 11
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/64e34027a7da3f0539025e9c/DescribeTransitRouterRegionsMix",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/64e34027a7da3f0539025e9c/restfulRequest",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/65ace54cc5afd7038d3cec6c/getSwitches",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 3
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/66694f177fa7e30379bfa608/DescribeBandwidthPackagesMix",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/network_fe/core/66694f177fa7e30379bfa608/DescribeEipAddressesMix",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/passport/account/getUser",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/AdvDefence/{region}/2021-06-15/ListAssets",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/CDN/{region}/2021-03-01/DescribeCdnWhitelist",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/CDN/{region}/2021-03-01/IsServiceActive",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/DDoS/{region}/2020-12-08/GetAlarm",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ESCloud/DescribeInstances/2023-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ESCloud/DescribeNodeAvailableSpecsV2/2023-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ESCloud/DescribeZones/2023-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ESCloud/ListEsCertExpiryInfos/2023-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/FileNAS/DescribeFileSystemOverview/2022-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/RabbitMQ/DescribeInstances/2022-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/Redis/DescribeAccountCapability/2020-12-07/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/account_management/{region}/2018-01-01/DescribeAccountSecurityContact",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/account_management/{region}/2018-01-01/GetAccountActionSecurity",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/account_management/{region}/2018-01-01/GetAccountLoginSecurity",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 54
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/account_verify/{region}/2018-01-01/GetRawProfileInfo",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/aidap/DescribeAccountUsage/2025-10-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/aidap/DescribeWorkspaceOverview/2025-10-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/aidap/ListWorkspaceUsageTop/2025-10-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/apmplus/{region}/2023-01-12/BaseUserContext",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/apmplus/{region}/2023-01-12/UserInfo",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/apmplus_server/{region}/2024-07-30/GetCheckAccount",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/apmplus_server/{region}/2024-07-30/GetCheckAccountStatus",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/apmplus_server/{region}/2024-07-30/GetObserveMenu",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 4
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/apmplus_server/{region}/2024-07-30/GetObserveRegionList",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 4
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/apmplus_server/{region}/2024-07-30/GetUserInfo",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/apmplus_server/{region}/2024-07-30/ListObserveFeature",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 4
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/apmplus_server/{region}/2026-01-01/ListWorkspaces",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ark/{region}/2024-01-01/GetAccountInfo",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ark/{region}/2024-01-01/GetAutoSetFreeLimit",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ark/{region}/2024-01-01/GetInferenceUsage",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ark/{region}/2024-01-01/GetModelChargeItem",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ark/{region}/2024-01-01/GetRawApiKey",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ark/{region}/2024-01-01/ListApiKeys",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ark/{region}/2024-01-01/ListDataCollectionPermissions",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ark/{region}/2024-01-01/ListFunctionAllowedItems",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ark/{region}/2024-01-01/QueryModelPrice",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ask_echo/{region}/2026-01-01/ListAPIKeys",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ask_echo/{region}/2026-01-01/ListBots",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/bill/2020-01-01/GetBalanceFromTradeBalance",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/bill/{region}/2020-01-01/GetBalanceFromTradeBalance",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/bill/{region}/2020-01-01/ListAccountFinancialRole",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/bill/{region}/2020-01-01/ListCostAnalysisTrend",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/bytehouse//0000-00-00/FeatureFlagPublicV1UserConfig",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/certificate_service/{region}/2024-10-01/CertificateSummarizeInstance",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/cloud_trail/{region}/2018-01-01/DescribeTrails",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/cloud_trail/{region}/2021-06-01/LookupEvents",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/cloudidentity/{region}/2023-01-01/GetIdentitySourceBindingInfo",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/cloudidentity/{region}/2023-01-01/GetServiceStatus",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/cloudidentity/{region}/2023-01-01/ListApplications",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/cloudmonitor/{region}/2018-01-01/ListPresetAlertTemplates",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/cloudmonitor/{region}/2025-12-01/ListMonitorTypes",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 4
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/consolemessage/{region}/2024-05-01/GetInMailUnreadCount",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 54
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/consolemessage/{region}/2024-05-01/ListInMail",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 49
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/consolemessage/{region}/2024-05-01/ListPrimeMsgType",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/content_customization/{region}/2026-01-01/GetTrialRemainingPoint",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/content_customization/{region}/2026-01-01/ListSearchPostPaidStatus",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/controller/GetFrontVersion/2018-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 2
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/cr/{region}/2021-03-03/GetSubscription",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/cr/{region}/2022-05-12/GetAccountConfigInner",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/cv_console/2025-09-16/AppApps",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/dbw/DescribeAllFeatures/2018-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/dbw/DescribeRole/2018-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/dms/ListMigrateTask/2018-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/dms/ListMigrateTask/2018-01-01/ap-southeast-3",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/dms/ListMigrateTask/2018-01-01/cn-beijing",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/dms/ListMigrateTask/2018-01-01/cn-guangzhou",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/dms/ListMigrateTask/2018-01-01/cn-hongkong",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/dms/ListMigrateTask/2018-01-01/cn-shanghai",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/dms/ListRegion/2018-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/dts/DescribeDataSourceType/2022-10-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/dts/DescribeTransmissionTasks/2022-10-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/dts/GetFeatures/2018-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/emr/GetAccountRealNameStatus/2023-08-15/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/emr/GetBucketsDataProtection/2023-08-15/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/emr/GetClusterMaintenanceOperationStatistics/2023-08-15/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/emr/ListClusterPatrols/2023-08-15/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/emr/ListClusters/2023-08-15/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/emr/ListFaultProcesses/2023-08-15/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/emr/ListVirtualClusters/2024-06-13/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/emr/ValidateProductPolicy/2024-06-13/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/emr_serverless/CheckServiceWhiteList/2024-03-25/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/emr_serverless/ListClusters/2024-03-25/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/fw_center/{region}/2021-09-06/GetAssumeRoleResult",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/fw_center/{region}/2021-09-06/GetUserFeature",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ga/{region}/2022-03-01/CheckAccountIsNewV2",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/iam/{region}/2018-01-01/CheckServiceLinkedRole",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 13
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/iam/{region}/2021-08-01/ListProjects",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/kms/{region}/2021-02-18/CheckSMServiceStatus",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/kms/{region}/2021-02-18/DescribeKmsInstances",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/kms/{region}/2021-02-18/DescribeSecretInstances",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/livesaas/{region}/2023-08-01/GetBillingAbilityInfo",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/llmshield/{region}/2025-08-31/GetUiDynamicConfig",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/llmshield/{region}/2025-08-31/ListCombos",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/llmshield/{region}/2025-08-31/ListInstances",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/llmshield/{region}/2025-08-31/ListRegions",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/milvus/DescribeAvailableSpecV2/2023-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/milvus/DescribeAvailableVersion/2023-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/milvus/DescribeInstances/2023-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/milvus/DescribeZones/2023-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ml_platform/{region}/2021-10-01/CheckPolicy",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ml_platform/{region}/2021-10-01/GetMLAccountInfo",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ml_platform/{region}/2021-10-01/ListFlavorsV2",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ml_platform/{region}/2021-10-01/ListUsers",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/nta/{region}/2021-09-27/ntavolcaccountcheck",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/organization/{region}/2022-01-01/ListAccounts",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/origin_defence/{region}/2022-01-01/GetAgentAvailable",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/resourcecenter/{region}/2023-06-01/GetResourceCounts",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/resourcecenter/{region}/2023-06-01/SearchResources",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/seccenter/{region}/2024-05-08/GetTenantStatus",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/speech_saas_prod/{region}/2023-11-07/FirstOrCreateMegaTTS",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/speech_saas_prod/{region}/2025-05-20/CheckProjectNeedMigrate",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/speech_saas_prod/{region}/2025-05-20/DescribeAccountTags",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/speech_saas_prod/{region}/2025-05-20/DescribeVolcengineAccountTags",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/speech_saas_prod/{region}/2025-05-20/GetConsoleVisibility",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/speech_saas_prod/{region}/2025-05-20/GetErrorReasonSolutionConfig",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/speech_saas_prod/{region}/2025-05-20/GetFrontendConfig",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/speech_saas_prod/{region}/2025-05-20/GetProductCenterStruct",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/speech_saas_prod/{region}/2025-05-20/ListApplications",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/speech_saas_prod/{region}/2025-05-20/ListProducts",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/speech_saas_prod/{region}/2025-05-20/ListServiceTypes",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/speech_saas_prod/{region}/2025-05-20/ListSpeakerLanguages",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/storage_ebs/DescribeAccountZones/2020-04-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/storage_ebs/DescribeVolumeType/2020-04-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/storage_ebs/InnerDescribeCopySnapshotCapabilities/2020-04-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/storage_ebs/InnerDescribeEnabledFeatures/2020-04-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ticket/{region}/2021-01-01/GetTicketCount",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ticket/{region}/2021-01-01/GetTicketCountForUser",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 54
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/ticket/{region}/2021-01-01/ListTicket",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/tos/GetAccount/2018-01-01/cn-beijing",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/tos/ListRegionInfosV2/2018-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 3
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/vefaas/{region}/2021-03-03/CheckAccessPermission",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/vepfs/DescribeFileSystemOverview/2022-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/vepfs/DescribeZones/2022-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/vikingdb/{region}/2025-05-26/IsVikingdbOpenedBp",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/vmp/{region}/2021-03-03/GetSubscription",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/vod/{region}/2023-07-01/ListRegions",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/vod/{region}/2023-07-01/ListUserWhiteListItem",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/waf/byteplus-global/2023-12-25/GetExtendAvailable",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/waf/byteplus-global/2023-12-25/GetRegularRegion",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/waf/byteplus-global/2023-12-25/GetVulAIExtendAvailable",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/waf/byteplus-global/2023-12-25/GetWhatNews",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/waf/byteplus-global/2023-12-25/ListAssets",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/waf/byteplus-global/2023-12-25/ListBotAgentAvailable",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/waf/byteplus-global/2023-12-25/ListEnableRegions",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/waf/byteplus-global/2023-12-25/ListWafCombos",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/waf/byteplus-global/2023-12-25/ListWafInstances",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/waf/byteplus-global/2023-12-25/TLSMigrationList",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/v2/batch/iam",
-   "auth": "B",
-   "variants": [
-    "ListUsers-accountid",
-    "UpdateUser-mass-assignment"
-   ],
-   "status": "not-vulnerable"
-  },
-  {
-   "method": "POST",
-   "path": "/api/v2/top/aisearch/aisearch/GetBillingOrder/2025-03-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/v2/top/aisearch/aisearch/GetEnable4VikingUnit/2025-03-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/v2/top/ark/ark/ListSubscribeTrade/2024-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/v2/top/arkclawx/arkclawx/DescribeArkClawInstances/2026-03-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/v2/top/arkclawx/arkclawx/DescribeFeatureGates/2026-03-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/v2/top/bill/bill/GetBalanceFromTradeBalance/2020-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/v2/top/live/live/DescribeServiceManageConfig/2023-01-01/ap-southeast-1",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/vke/getTags",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/vke/graphql",
-   "auth": "A",
-   "variants": [],
-   "status": "seen",
-   "routes": 1
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/account_verify/ap-southeast-1/2018-01-01/UpdateProfile",
-   "auth": "A",
-   "variants": [
-    "mass-assignment"
-   ],
-   "status": "unresolved"
-  },
-  {
-   "method": "POST",
-   "path": "/api/top/account_verify/ap-southeast-1/2018-01-01/CompleteProfile",
-   "auth": "A",
-   "variants": [
-    "mass-assignment"
-   ],
-   "status": "unresolved"
-  }
- ],
- "listeners": [
-  {
-   "route": "/iam",
-   "handler": "yn (TEA AB SDK)",
-   "originCheck": "substring indexOf",
-   "verdict": "weak but no exploitable sink"
-  },
-  {
-   "route": "/iam",
-   "handler": "readMessage",
-   "originCheck": "exact",
-   "verdict": "not vulnerable"
-  },
-  {
-   "route": "/iam",
-   "handler": "workorder_count",
-   "originCheck": "exact",
-   "verdict": "not vulnerable"
-  },
-  {
-   "route": "/iam",
-   "handler": "slardar",
-   "originCheck": "n/a",
-   "verdict": "low impact"
-  },
-  {
-   "route": "/iam",
-   "handler": "tinet",
-   "originCheck": "n/a",
-   "verdict": "low impact"
-  },
-  {
-   "route": "/iam",
-   "handler": "misc (3)",
-   "originCheck": "n/a",
-   "verdict": "no security sink"
-  }
- ],
- "crawl": {
-  "routes": 85,
-  "uniqueApiEndpoints": 278,
-  "source": "/tmp/bp2/crawl.json",
-  "account": "A",
-  "date": "2026-10-29"
- },
- "server_side_tests": [
-  {
-   "group": "org/cloudidentity",
-   "verdict": "not vulnerable",
-   "ledger": [
-    "20",
-    "21"
-   ]
-  },
-  {
-   "group": "bill/payment/profile",
-   "verdict": "not vulnerable",
-   "ledger": [
-    "22",
-    "23",
-    "26",
-    "27"
-   ]
-  },
-  {
-   "group": "cors",
-   "verdict": "not exploitable (fixed ACAO http://console.byteplus.com)",
-   "ledger": [
-    "24"
-   ]
-  },
-  {
-   "group": "csrf",
-   "verdict": "enforced for all content types",
-   "ledger": [
-    "25"
-   ]
-  },
-  {
-   "group": "ark/kms",
-   "verdict": "no data (missing project/id), no cross-tenant",
-   "ledger": [
-    "28"
-   ]
-  }
- ]
+  "targets": [
+    "https://console.byteplus.com/"
+  ],
+  "routes": [
+    {
+      "url": "https://console.byteplus.com/dts",
+      "finalUrl": "https://console.byteplus.com/dts/region:dts+ap-southeast-1/",
+      "status": 200,
+      "scriptCount": 211,
+      "apiCount": 45,
+      "linkCount": 5
+    },
+    {
+      "url": "https://console.byteplus.com/datarangers",
+      "finalUrl": "https://console.byteplus.com/datarangers",
+      "status": 200,
+      "scriptCount": 30,
+      "apiCount": 42,
+      "linkCount": 6,
+      "client_tested": true,
+      "client_report": "result/client-side/console.byteplus.com/datarangers/route-report.md",
+      "notes": "client-side static pass 2026-10-29T08:57Z."
+    },
+    {
+      "url": "https://console.byteplus.com/datatester",
+      "finalUrl": "https://console.byteplus.com/datatester",
+      "status": 200,
+      "scriptCount": 49,
+      "apiCount": 47,
+      "linkCount": 0,
+      "client_tested": true,
+      "client_report": "result/client-side/console.byteplus.com/datatester/route-report.md"
+    },
+    {
+      "url": "https://console.byteplus.com/ark",
+      "finalUrl": "https://console.byteplus.com/ark/region:ap-southeast-1/overview",
+      "status": 200,
+      "scriptCount": 60,
+      "apiCount": 45,
+      "linkCount": 6
+    },
+    {
+      "url": "https://console.byteplus.com/ai",
+      "finalUrl": "https://console.byteplus.com/ai",
+      "status": 200,
+      "scriptCount": 28,
+      "apiCount": 23,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/alb",
+      "finalUrl": "https://console.byteplus.com/alb/region:alb+cn-beijing",
+      "status": 200,
+      "scriptCount": 76,
+      "apiCount": 48,
+      "linkCount": 11
+    },
+    {
+      "url": "https://console.byteplus.com/arkclaw",
+      "finalUrl": "https://console.byteplus.com/arkclaw",
+      "status": 200,
+      "scriptCount": 138,
+      "apiCount": 47,
+      "linkCount": 1
+    },
+    {
+      "url": "https://console.byteplus.com/as",
+      "finalUrl": "https://console.byteplus.com/as/region:as+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 64,
+      "apiCount": 15,
+      "linkCount": 7
+    },
+    {
+      "url": "https://console.byteplus.com/bytehouse-ce",
+      "finalUrl": "https://console.byteplus.com/bytehouse-ce/region:bytehouse-ce+ap-southeast-1/data_object/databases",
+      "status": 200,
+      "scriptCount": 37,
+      "apiCount": 18,
+      "linkCount": 7
+    },
+    {
+      "url": "https://console.byteplus.com/cen",
+      "finalUrl": "https://console.byteplus.com/cen",
+      "status": 200,
+      "scriptCount": 47,
+      "apiCount": 52,
+      "linkCount": 6
+    },
+    {
+      "url": "https://console.byteplus.com/db",
+      "finalUrl": "https://res.gcloudcache.com/bp-fe/console-db/bp-db-throne/skeletons/mysql/rds-mysql-list.skeleton.html",
+      "status": 200,
+      "scriptCount": 21,
+      "apiCount": 14,
+      "linkCount": 40
+    },
+    {
+      "url": "https://console.byteplus.com/dbw",
+      "finalUrl": "https://console.byteplus.com/dbw/region:dbw+ap-southeast-1/",
+      "status": 200,
+      "scriptCount": 108,
+      "apiCount": 40,
+      "linkCount": 17
+    },
+    {
+      "url": "https://console.byteplus.com/dc",
+      "finalUrl": "https://console.byteplus.com/dc/region:dc+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 63,
+      "apiCount": 82,
+      "linkCount": 12
+    },
+    {
+      "url": "https://console.byteplus.com/aidap/",
+      "finalUrl": "https://console.byteplus.com/aidap/region:aidap+ap-southeast-1/",
+      "status": 200,
+      "scriptCount": 27,
+      "apiCount": 46,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/aisearch",
+      "finalUrl": "https://console.byteplus.com/aisearch/region:aisearch+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 67,
+      "apiCount": 50,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/bp-ask-echo/my-agent",
+      "finalUrl": "https://console.byteplus.com/bp-ask-echo/my-agent",
+      "status": 200,
+      "scriptCount": 38,
+      "apiCount": 42,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/bytehouse",
+      "finalUrl": "https://console.byteplus.com/bytehouse/region:bytehouse+ap-southeast-1/database",
+      "status": 200,
+      "scriptCount": 36,
+      "apiCount": 13,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/cdn",
+      "finalUrl": "https://console.byteplus.com/cdn",
+      "status": 200,
+      "scriptCount": 36,
+      "apiCount": 44,
+      "linkCount": 1
+    },
+    {
+      "url": "https://console.byteplus.com/certificate-center",
+      "finalUrl": "https://console.byteplus.com/certificate-center",
+      "status": 200,
+      "scriptCount": 48,
+      "apiCount": 73,
+      "linkCount": 1
+    },
+    {
+      "url": "https://console.byteplus.com/clb",
+      "finalUrl": "https://console.byteplus.com/clb/region:clb+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 72,
+      "apiCount": 89,
+      "linkCount": 12
+    },
+    {
+      "url": "https://console.byteplus.com/cloudidentity",
+      "finalUrl": "https://console.byteplus.com/cloudidentity/region:ap-southeast-1",
+      "status": 200,
+      "scriptCount": 21,
+      "apiCount": 15,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/cloudtrail",
+      "finalUrl": "https://console.byteplus.com/cloudtrail",
+      "status": 200,
+      "scriptCount": 32,
+      "apiCount": 37,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/config",
+      "finalUrl": "https://console.byteplus.com/config",
+      "status": 200,
+      "scriptCount": 30,
+      "apiCount": 46,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/context-search",
+      "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=ctxsearch",
+      "status": 200,
+      "scriptCount": 302,
+      "apiCount": 12,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/cp",
+      "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=cp",
+      "status": 200,
+      "scriptCount": 63,
+      "apiCount": 34,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/cr",
+      "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=cr",
+      "status": 200,
+      "scriptCount": 52,
+      "apiCount": 46,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/ddos-protection",
+      "finalUrl": "https://console.byteplus.com/ddos-protection/region:ddos-bp+ap-southeast-1/overview",
+      "status": 200,
+      "scriptCount": 37,
+      "apiCount": 45,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/dms",
+      "finalUrl": "https://console.byteplus.com/dms/region:dms+ap-southeast-1/",
+      "status": 200,
+      "scriptCount": 28,
+      "apiCount": 15,
+      "linkCount": 1
+    },
+    {
+      "url": "https://console.byteplus.com/dns-suite",
+      "finalUrl": "https://console.byteplus.com/dns-suite",
+      "status": 200,
+      "scriptCount": 57,
+      "apiCount": 72,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/domain-service/domain",
+      "finalUrl": "https://console.byteplus.com/domain-service/domain",
+      "status": 200,
+      "scriptCount": 43,
+      "apiCount": 49,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/ebs",
+      "finalUrl": "https://console.byteplus.com/ebs/region:ebs+ap-southeast-1/",
+      "status": 200,
+      "scriptCount": 43,
+      "apiCount": 18,
+      "linkCount": 25
+    },
+    {
+      "url": "https://console.byteplus.com/ecs",
+      "finalUrl": "https://console.byteplus.com/ecs/region:ecs+ap-southeast-1/dashboard",
+      "status": 200,
+      "scriptCount": 86,
+      "apiCount": 48,
+      "linkCount": 27
+    },
+    {
+      "url": "https://console.byteplus.com/eip",
+      "finalUrl": "https://console.byteplus.com/eip/region:eip+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 69,
+      "apiCount": 93,
+      "linkCount": 40
+    },
+    {
+      "url": "https://console.byteplus.com/eip/cbwps",
+      "finalUrl": "https://console.byteplus.com/eip/region:eip+ap-southeast-1/cbwps",
+      "status": 200,
+      "scriptCount": 77,
+      "apiCount": 98,
+      "linkCount": 40
+    },
+    {
+      "url": "https://console.byteplus.com/emr",
+      "finalUrl": "https://console.byteplus.com/emr/region:emr_fe+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 66,
+      "apiCount": 75,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/es",
+      "finalUrl": "https://res.gcloudcache.com/bp-fe/console-db/volc-db-es/skeletons/es-v2-list.3c274029.skeleton.html",
+      "status": 200,
+      "scriptCount": 356,
+      "apiCount": 44,
+      "linkCount": 10
+    },
+    {
+      "url": "https://console.byteplus.com/filenas",
+      "finalUrl": "https://console.byteplus.com/filenas/region:FileNAS+ap-southeast-1/",
+      "status": 200,
+      "scriptCount": 32,
+      "apiCount": 40,
+      "linkCount": 5
+    },
+    {
+      "url": "https://console.byteplus.com/firewall",
+      "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=fw_center",
+      "status": 200,
+      "scriptCount": 40,
+      "apiCount": 31,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/flink",
+      "finalUrl": "https://console.byteplus.com/flink/region:flink+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 54,
+      "apiCount": 42,
+      "linkCount": 1
+    },
+    {
+      "url": "https://console.byteplus.com/ga",
+      "finalUrl": "https://console.byteplus.com/ga",
+      "status": 200,
+      "scriptCount": 38,
+      "apiCount": 54,
+      "linkCount": 1
+    },
+    {
+      "url": "https://console.byteplus.com/iam",
+      "finalUrl": "https://console.byteplus.com/iam",
+      "status": 200,
+      "scriptCount": 56,
+      "apiCount": 42,
+      "linkCount": 6
+    },
+    {
+      "url": "https://console.byteplus.com/kafka",
+      "finalUrl": "https://console.byteplus.com/kafka/region:kafka+ap-southeast-1/",
+      "status": 200,
+      "scriptCount": 16,
+      "apiCount": 13,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/kms",
+      "finalUrl": "https://console.byteplus.com/kms/region:kms+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 33,
+      "apiCount": 41,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/live",
+      "finalUrl": "https://console.byteplus.com/live",
+      "status": 200,
+      "scriptCount": 39,
+      "apiCount": 49,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/livesaas",
+      "finalUrl": "https://console.byteplus.com/livesaas",
+      "status": 200,
+      "scriptCount": 39,
+      "apiCount": 47,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/milvus",
+      "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=milvus",
+      "status": 200,
+      "scriptCount": 37,
+      "apiCount": 17,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/ml-platform",
+      "finalUrl": "https://console.byteplus.com/ml-platform/region:ml-platform+ap-southeast-1/dashboard",
+      "status": 200,
+      "scriptCount": 127,
+      "apiCount": 41,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/mongodb",
+      "finalUrl": "https://console.byteplus.com/mongodb/region:mongodb+ap-southeast-1/",
+      "status": 200,
+      "scriptCount": 33,
+      "apiCount": 12,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/mse",
+      "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=mse",
+      "status": 200,
+      "scriptCount": 52,
+      "apiCount": 28,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/nat",
+      "finalUrl": "https://console.byteplus.com/nat/region:nat+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 14,
+      "apiCount": 71,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/ndr",
+      "finalUrl": "https://console.byteplus.com/ndr",
+      "status": 200,
+      "scriptCount": 50,
+      "apiCount": 28,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/nlb",
+      "finalUrl": "https://console.byteplus.com/nlb/region:nlb+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 69,
+      "apiCount": 85,
+      "linkCount": 12
+    },
+    {
+      "url": "https://console.byteplus.com/observe",
+      "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=apmplus_server",
+      "status": 200,
+      "scriptCount": 33,
+      "apiCount": 44,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/observe/apmplus-client/",
+      "finalUrl": "https://console.byteplus.com/observe/apmplus-client/region:apmplus-client+ap-southeast-1/console/overview",
+      "status": 200,
+      "scriptCount": 51,
+      "apiCount": 61,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/observe/cloud-monitor",
+      "finalUrl": "https://console.byteplus.com/observe/cloud-monitor",
+      "status": 200,
+      "scriptCount": 51,
+      "apiCount": 60,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/observe/prometheus",
+      "finalUrl": "https://console.byteplus.com/observe/prometheus/region:prometheus+ap-southeast-1/",
+      "status": 200,
+      "scriptCount": 49,
+      "apiCount": 48,
+      "linkCount": 1
+    },
+    {
+      "url": "https://console.byteplus.com/omni-shield/llm-shield/region:llm-shield+ap-southeast-1/overview",
+      "finalUrl": "https://console.byteplus.com/omni-shield/llm-shield/region:llm-shield+ap-southeast-1/overview",
+      "status": 200,
+      "scriptCount": 51,
+      "apiCount": 61,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/organization",
+      "finalUrl": "https://console.byteplus.com/organization",
+      "status": 200,
+      "scriptCount": 37,
+      "apiCount": 47,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/pfs",
+      "finalUrl": "https://console.byteplus.com/pfs/region:pfs+ap-southeast-1/",
+      "status": 200,
+      "scriptCount": 35,
+      "apiCount": 42,
+      "linkCount": 5
+    },
+    {
+      "url": "https://console.byteplus.com/pl",
+      "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=privatelink",
+      "status": 200,
+      "scriptCount": 30,
+      "apiCount": 64,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/rabbitmq",
+      "finalUrl": "https://console.byteplus.com/rabbitmq/region:rabbitmq+ap-southeast-1/",
+      "status": 200,
+      "scriptCount": 25,
+      "apiCount": 10,
+      "linkCount": 2
+    },
+    {
+      "url": "https://console.byteplus.com/redis",
+      "finalUrl": "https://res.gcloudcache.com/bp-fe/console-db/bp-db-throne/skeletons/redis/redis-list.skeleton.html",
+      "status": 200,
+      "scriptCount": 151,
+      "apiCount": 124,
+      "linkCount": 40
+    },
+    {
+      "url": "https://console.byteplus.com/resourcemanager",
+      "finalUrl": "https://console.byteplus.com/resourcemanager/resource_center",
+      "status": 200,
+      "scriptCount": 43,
+      "apiCount": 43,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/rtc",
+      "finalUrl": "https://console.byteplus.com/rtc",
+      "status": 200,
+      "scriptCount": 115,
+      "apiCount": 50,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/sealsuite",
+      "finalUrl": "https://console.byteplus.com/sealsuite",
+      "status": 200,
+      "scriptCount": 33,
+      "apiCount": 43,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/search-infinity",
+      "finalUrl": "https://console.byteplus.com/search-infinity",
+      "status": 200,
+      "scriptCount": 36,
+      "apiCount": 39,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/security-center",
+      "finalUrl": "https://console.byteplus.com/security-center",
+      "status": 200,
+      "scriptCount": 35,
+      "apiCount": 40,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/sms",
+      "finalUrl": "https://console.byteplus.com/sms",
+      "status": 200,
+      "scriptCount": 58,
+      "apiCount": 46,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/tls",
+      "finalUrl": "https://console.byteplus.com/tls/region:tls+ap-southeast-1/",
+      "status": 200,
+      "scriptCount": 82,
+      "apiCount": 43,
+      "linkCount": 17
+    },
+    {
+      "url": "https://console.byteplus.com/tos",
+      "finalUrl": "https://console.byteplus.com/common-buy/TOS%7C%7C7291580783171539244",
+      "status": 200,
+      "scriptCount": 28,
+      "apiCount": 20,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/tr",
+      "finalUrl": "https://console.byteplus.com/tr/region:tr+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 30,
+      "apiCount": 66,
+      "linkCount": 5
+    },
+    {
+      "url": "https://console.byteplus.com/veapig",
+      "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=apig",
+      "status": 200,
+      "scriptCount": 47,
+      "apiCount": 31,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/vefaas",
+      "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=vefaas",
+      "status": 200,
+      "scriptCount": 54,
+      "apiCount": 32,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/vikingdb",
+      "finalUrl": "https://console.byteplus.com/vikingdb/region:vikingdb+ap-southeast-1/home",
+      "status": 200,
+      "scriptCount": 37,
+      "apiCount": 39,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/vke",
+      "finalUrl": "https://console.byteplus.com/vke/region:vke+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 50,
+      "apiCount": 19,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/vodpaas",
+      "finalUrl": "https://console.byteplus.com/vodpaas/region:vodpaas+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 35,
+      "apiCount": 27,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/voice",
+      "finalUrl": "https://console.byteplus.com/voice",
+      "status": 200,
+      "scriptCount": 23,
+      "apiCount": 34,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/vpc",
+      "finalUrl": "https://console.byteplus.com/vpc/region:vpc+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 68,
+      "apiCount": 82,
+      "linkCount": 39
+    },
+    {
+      "url": "https://console.byteplus.com/vpn",
+      "finalUrl": "https://console.byteplus.com/vpn/region:vpn+ap-southeast-1",
+      "status": 200,
+      "scriptCount": 49,
+      "apiCount": 60,
+      "linkCount": 41
+    },
+    {
+      "url": "https://console.byteplus.com/waf/overview",
+      "finalUrl": "https://console.byteplus.com/iam/service/attach_role/?ServiceName=waf",
+      "status": 200,
+      "scriptCount": 124,
+      "apiCount": 38,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/finance",
+      "finalUrl": "https://console.byteplus.com/finance",
+      "status": 200,
+      "scriptCount": 53,
+      "apiCount": 65,
+      "linkCount": 1
+    },
+    {
+      "url": "https://console.byteplus.com/user",
+      "finalUrl": "https://console.byteplus.com/user",
+      "status": 200,
+      "scriptCount": 42,
+      "apiCount": 59,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/beian",
+      "finalUrl": "https://console.byteplus.com/beian",
+      "status": 404,
+      "scriptCount": 31,
+      "apiCount": 39,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/message",
+      "finalUrl": "https://console.byteplus.com/message",
+      "status": 200,
+      "scriptCount": 30,
+      "apiCount": 40,
+      "linkCount": 0
+    },
+    {
+      "url": "https://console.byteplus.com/workorder/list/",
+      "finalUrl": "https://console.byteplus.com/workorder/list/",
+      "status": 200,
+      "scriptCount": 34,
+      "apiCount": 44,
+      "linkCount": 6
+    }
+  ],
+  "javascript": [
+    {
+      "file": "iam-main.js",
+      "route": "/iam",
+      "dangerouslySetInnerHTML": 0
+    },
+    {
+      "file": "iam-5771.js",
+      "route": "/iam",
+      "dangerouslySetInnerHTML": 1,
+      "note": "i18n span renderer, static translation"
+    },
+    {
+      "file": "usermono.js",
+      "route": "/iam",
+      "note": "TEA AB SDK yn listener, weak origin, fixed script sink"
+    },
+    {
+      "file": "slardar.js",
+      "route": "/iam",
+      "note": "telemetry listener"
+    },
+    {
+      "file": "bdms.js",
+      "route": "/iam",
+      "note": "exact-origin bridge listener"
+    },
+    {
+      "file": "rt-main.js",
+      "route": "/iam",
+      "note": "runtime"
+    },
+    {
+      "file": "1548.*.js",
+      "route": "/iam",
+      "note": "vendor"
+    },
+    {
+      "file": "Basics.*.js",
+      "route": "/iam",
+      "note": "profile basics chunk"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/dp/rangers/rangers/1.0.0.2052/static/umi.61a04b83.js",
+      "sha256": "73ff6bc8101b61a3c64cc23e5ebe7010839a168e87c25c4dca102aaeef0cf8a1",
+      "tested": true,
+      "route": "/datarangers",
+      "evidence": "result/client-side/console.byteplus.com/datarangers/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-platform-runtime/main.e9a0251e.js",
+      "sha256": "880315b661ca2a34e7be56ad5de5b5d5c545d5f9f120fd325727afe7e6cc8269",
+      "tested": true,
+      "route": "/datarangers",
+      "evidence": "result/client-side/console.byteplus.com/datarangers/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus_volcf_navbar/static/js/main.0c63e38ad4.js",
+      "sha256": "e4049b14f297f42f1309cf4df741d247d13910f625b1ac6e21a891050c579524",
+      "tested": true,
+      "route": "/datarangers",
+      "evidence": "result/client-side/console.byteplus.com/datarangers/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus_volcf_navbar/static/js/common.30621f0fec.js",
+      "sha256": "50139482a28a600f86b34a9a0934edb93cb4a5fdcf259ef5b85668a9a72f8f1b",
+      "tested": true,
+      "route": "/datarangers",
+      "evidence": "result/client-side/console.byteplus.com/datarangers/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus_volcf_navbar/static/js/vendors.a1c1247338.js",
+      "sha256": "ca2f8bf7abc1b5cab2171f2ef5a2cdf1a24317bdbf8d5e98d6729a8d92d91477",
+      "tested": true,
+      "route": "/datarangers",
+      "evidence": "result/client-side/console.byteplus.com/datarangers/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/arco_designs.7f78af21.async.js",
+      "sha256": "e3d85003e46755bd3b6b583f9b9605657b5dee3f7b402573be4ceed60a55dfdf",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/preload.js",
+      "sha256": "afd4b00955f0950def43464a1b77ac2e9e3cc07e3fdae2b13aeecccaafe84ada",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/dp_react_component.d6f0884f.async.js",
+      "sha256": "3413725c620549cb1c69d240c894703477c6b63d6f0efbad7a17c3b322af8cc5",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/89593.1852a32b.js",
+      "sha256": "f7886f0caeff514970312c634d1d38c478e03c7e2b8d89ce543ded28c9a5b191",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/61641.0c63d979.js",
+      "sha256": "d9dce9d3fc2fe6721e7c91411f09f0544dceaaec19509eb63f1a96ce90bce42f",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/19362.6387ad3d.js",
+      "sha256": "1ecb6aa0fcb4d3639d010d14d37bd0632aa3cbf28207b56fc368114fab42e0c3",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/58873.975ffab2.js",
+      "sha256": "dd773fb749885de0df49a227ff5084e07dbad509fdbf06de4e477587b1bbc1e2",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/75131.1f65ca18.js",
+      "sha256": "71fb0fb4dfa2ee476b7d61dd796897d5e7c9c83aade60e306fc51d2d6528dc4b",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/libs-ahooks-lodash.5c906fc1.async.js",
+      "sha256": "f21bfb5baf53e2f435fa1997872e056dc46a80b2ab77678034b6c3c8427f78f6",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/85238.03b4d42c.js",
+      "sha256": "deba1e9a1d23ad5410ebed002ce96a2410ad0b9baee3333623f77f6713296d2e",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/main.590222ea.js",
+      "sha256": "fc4732f5594434ec726a89a8c06a0ec5cea4a4742ebf230cc671ed759a43bc04",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/builder-runtime.d573a122.js",
+      "sha256": "8b5c1bd85eba700166b06f0785d2330730fcea845cffade02a92d52108988ba0",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/5057.7330a5f2.js",
+      "sha256": "ab3345b2381d60a73d914db0a91fd63f939caccf992f84f287b440da03a55486",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/56123.74ebfbbf.js",
+      "sha256": "d387ba46957ff5996558c936a3917927d52fbbc32e1966c558fa904427db949e",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/55916.fdbcf6e3.js",
+      "sha256": "bd3256a69b6c95c040f7ccebc6efc6554ba58fe80a0caa3f2d0e34a5ed19dd04",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/69821.0c171f9c.js",
+      "sha256": "304ec42629beea5b9543d3eb22ebd579d7e1c1e3e82ebd4c186cc86c78d6c1c4",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/byteplus-dp/datatester/7454.8b7b620f.js",
+      "sha256": "59b90e0d556f0b67dadc7b3f2a10f4c92000c7ca2f2f83d99952d95ef9e66834",
+      "tested": true,
+      "route": "/datatester",
+      "evidence": "result/client-side/console.byteplus.com/datatester/javascript/manifest.md"
+    }
+  ],
+  "flows": [
+    {
+      "id": "iam-postmessage-yn",
+      "source": "message",
+      "sink": "script src",
+      "verdict": "not exploitable",
+      "report": "result/client-side/console.byteplus.com/iam/route-report.md"
+    },
+    {
+      "id": "iam-profile-render",
+      "source": "API DisplayName/Description",
+      "sink": "React text",
+      "verdict": "not vulnerable"
+    },
+    {
+      "id": "iam-attach-role-reflect",
+      "source": "ServiceName query",
+      "sink": "page render",
+      "verdict": "not reflected"
+    },
+    {
+      "source": "location.search.callback",
+      "sink": "location.href",
+      "file": "umi.61a04b83.js:460535",
+      "status": "not-vulnerable",
+      "evidence": "result/client-side/console.byteplus.com/datarangers/javascript/flows.md",
+      "route": "/datarangers"
+    },
+    {
+      "source": "notification.thumb_content/message_text",
+      "sink": "dangerouslySetInnerHTML",
+      "file": "umi.61a04b83.js:650398,651671",
+      "status": "unresolved",
+      "evidence": "result/client-side/console.byteplus.com/datarangers/javascript/flows.md",
+      "route": "/datarangers"
+    },
+    {
+      "source": "help doc Content",
+      "sink": "docor markdown dangerouslySetInnerHTML",
+      "file": "umi.61a04b83.js:4522115",
+      "status": "not-vulnerable",
+      "evidence": "result/client-side/console.byteplus.com/datarangers/javascript/flows.md",
+      "route": "/datarangers"
+    },
+    {
+      "source": "location.search.mp_info",
+      "sink": "JSON.parse",
+      "file": "umi.61a04b83.js:3277300,4749451",
+      "status": "not-vulnerable",
+      "evidence": "result/client-side/console.byteplus.com/datarangers/javascript/flows.md",
+      "route": "/datarangers"
+    },
+    {
+      "source": "microfrontend registry manifest",
+      "sink": "eval/new Function",
+      "file": "75131.1f65ca18.js:227500",
+      "status": "not-vulnerable",
+      "evidence": "result/client-side/console.byteplus.com/datatester/route-report.md",
+      "route": "/datatester"
+    },
+    {
+      "source": "platform message content",
+      "sink": "dangerouslySetInnerHTML after N.sanitize",
+      "file": "55916.fdbcf6e3.js:846659",
+      "status": "unresolved",
+      "evidence": "result/client-side/console.byteplus.com/datatester/route-report.md",
+      "route": "/datatester"
+    },
+    {
+      "source": "ab_lang query",
+      "sink": "document.cookie",
+      "file": "main.590222ea.js:257010",
+      "status": "not-vulnerable",
+      "evidence": "result/client-side/console.byteplus.com/datatester/route-report.md",
+      "route": "/datatester"
+    }
+  ],
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/api/common/plat_growth/im/im-settings",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 55
+    },
+    {
+      "method": "GET",
+      "path": "/api/financial/const/getCashierTccConfig",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "GET",
+      "path": "/api/financial/const/getExpenseConfigForFE",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/DDoS/{region}/2020-12-16/ListRegion",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/DDoS/{region}/2020-12-16/QueryAttackType",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/DDoS/{region}/2020-12-16/QueryIPList",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/DDoS/{region}/2020-12-16/QueryIPType",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/ESCloud/DescribeKernelMajorVersions/2023-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/account_management/{region}/2018-01-01/GetApplication",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/account_verify/{region}/2018-01-01/GetProfileInfo",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/account_verify/{region}/2018-01-01/GetRawProfileInfo",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/account_verify/{region}/2018-01-01/ListProfileCountry",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/alb/{region}/2020-04-01/DescribeLoadBalancers",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/alb/{region}/2020-04-01/InnerGetAccountFeatures",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/alb/{region}/2020-04-01/InnerGetAccountQuota",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill/{region}/2020-01-01/CheckPaymentQualification",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill/{region}/2020-01-01/CountCoupon",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill/{region}/2020-01-01/GetBcDiscountPriceAuth",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill/{region}/2020-01-01/GetCurrency",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill/{region}/2020-01-01/GetQuotaAcctInfo",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill/{region}/2020-01-01/QueryCreditProtocolDetail",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill/{region}/2022-01-01/ListMonthlyBillOpen",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill_volcano_engine/{region}/2020-01-01/CheckPaymentQualification",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill_volcano_engine/{region}/2020-01-01/GetAccountGrayStatus",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill_volcano_engine/{region}/2020-01-01/GetGreyInfo",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill_volcano_engine/{region}/2020-01-01/GetPublishedTemplateAgreementDefine",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill_volcano_engine/{region}/2020-01-01/IsServiceOpened",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill_volcano_engine/{region}/2022-01-01/GetBillingAddress",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill_volcano_engine/{region}/2022-01-01/GetCountryAreaCfg",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill_volcano_engine/{region}/2022-01-01/GetCountryAreaCfgByAccountID",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bill_volcano_engine/{region}/2022-01-01/GetTaxID",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bytehouse_ce/{region}/2024-10-01/AuthorizationStatus",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bytehouse_ce/{region}/2024-10-01/Features",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bytehouse_ce/{region}/2024-10-01/GetVcloudUser",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/bytehouse_ce/{region}/2024-10-01/ListFeatures",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/cloudidentity/{region}/2023-01-01/GetInstanceQuota",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/config/{region}/2025-01-01/DescribeConfigurationRecorders",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/config/{region}/2025-01-01/ListSupportedResourceTypes",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/cv_console/2025-09-16/AppBanner",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/cv_console/2025-09-16/AppModelList",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/dns/{region}/2018-08-01/ListAccountPreorder",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/dns/{region}/2018-08-01/ProductSpec",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/domain_service/{region}/2021-06-01/ListDomains",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/domain_service/{region}/2021-06-01/Overview",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/emr/ListAdmMdClusterDefaultSettings/2021-09-15/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/emr_olap/GetInstanceSupport/2023-04-30/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/emr_serverless/ConsolePermission/2024-03-25/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/emr_serverless/GetFunctionPermissions/2024-03-25/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/flink/GetGMCSAccountProductIsInit/2022-06-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/fw_center/{region}/2021-09-06/CheckAuthorized",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/ga/{region}/2022-03-01/GetVerifyStatus",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/iam/CheckServiceLinkedRole/2018-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/iam/ListRoles/2018-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/iam/{region}/2018-01-01/CheckServiceLinkedRole",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/iam/{region}/2018-01-01/GetRole",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/iam/{region}/2018-01-01/GetServiceLinkedRoleTemplate",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 10
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/iam/{region}/2018-01-01/ListRoles",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/iam/{region}/2018-01-01/ListUsers",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/iam/{region}/2021-08-01/ListProjects",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/kms/{region}/2021-02-18/DescribeKeyrings",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/livesaas/{region}/2019-04-25/GetAccount",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/livesaas/{region}/2019-10-10/GetAccountConfig",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/livesaas/{region}/2019-10-10/GetConsolePolling",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/livesaas/{region}/2023-08-01/GetQuickExperience",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/livesaas/{region}/2026-01-01/ContentReviewConfig",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/livesaas/{region}/2026-01-01/LiveAiReviewConfig",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/organization/{region}/2022-01-01/DescribeOrganization",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 3
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/organization/{region}/2022-01-01/ListDelegatedServicesForAccount",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/organization/{region}/2022-01-01/ListOrganizationalUnits",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/organization/{region}/2022-01-01/ListOrganizationalUnitsForParent",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/organization/{region}/2022-01-01/ListTrustedServiceStatus",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/origin_defence/{region}/2022-01-01/ListRegionV2",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/resourcecenter/{region}/2023-06-01/DescribeRegions",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/resourcecenter/{region}/2023-06-01/GetResourceCenterStatus",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/resourcecenter/{region}/2023-06-01/ListResourceMetas",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/resourcecenter/{region}/2023-06-01/ListResourceTypes",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/rtc/2018-01-01/DescribeApps",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/sealsuite/{region}/2025-04-29/GetAccountInfo",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/sealsuite/{region}/2025-04-29/GetBestPractices",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/sealsuite/{region}/2025-04-29/GetFAQ",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/vod/{region}/2023-01-01/GetTradeConfiguration",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/vod/{region}/2023-01-01/GetVodBasicTradeConfig",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/top/ecs/ecs/InnerGetResourcePermissions/2020-04-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/top/iam/iam/CheckServiceLinkedRole/2018-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/top/live/live/DescribeBilling/2023-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/top/live/live/DescribeService/2023-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/top/volcSMS/volcSMS/GetSubAccountList/2021-01-11",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/top/volcSMS/volcSMS/GetTotalSendCountStat/2021-06-01",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/top/volcSMS/volcSMS/ListAllSmsProduct/2021-01-11",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/top/vpc/vpc/DescribeAccountWhiteList/2020-04-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/vke/checkAuth",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "GET",
+      "path": "/api/vke/envInfo",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/common/plat_growth/im/visitor-sign",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 52
+    },
+    {
+      "method": "POST",
+      "path": "/api/cp/graphql/",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/financial/const/getCommonBuyConfig",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/financial/payment/FetchStoredPaymentMethods",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "POST",
+      "path": "/api/financial/qualification/GetWhitelistShortTermProducts",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 54
+    },
+    {
+      "method": "POST",
+      "path": "/api/financial/trade/GetPublishedTemplateByPro",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/financial/trade/HasArrearsAlert",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 54
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/62c250b5308aad061597615a/DescribeNatGatewaysMix",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/631708fdffa7a90498132c00/DescribeVpcsMix",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/631708fdffa7a90498132c00/GetEipTccConfig",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/6336514b9acc8004a222ef15/DescribeDirectConnectConnectionsMix",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/63526f366b53c9048d4aab61/cenRestfulRequest",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/63526f366b53c9048d4aab61/getCenRegionMap",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/6364c68a95680b04dbb2fc46/DescribeLoadBalancersMix",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/6364c74495680b04dbb2fdea/DescribeVpnGatewaysMix",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/638d9c61d0379c03d33d60ef/DescribeVpcEndpointsMix",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/639ae2b7e4afa3047a03a08d/DescribeRegionsMix",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 8
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/639ae2b7e4afa3047a03a08d/DescribeZonesMix",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 8
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/639ae2b7e4afa3047a03a08d/GetPrefetchTcc",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 11
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/639ae2b7e4afa3047a03a08d/getAccountInfo",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 8
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/639ae2b7e4afa3047a03a08d/getWhiteList",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 10
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/639ae2b7e4afa3047a03a08d/requestLogPlatform",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/639ae2b7e4afa3047a03a08d/restfulRequest",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 11
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/64e34027a7da3f0539025e9c/DescribeTransitRouterRegionsMix",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/64e34027a7da3f0539025e9c/restfulRequest",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/65ace54cc5afd7038d3cec6c/getSwitches",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 3
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/66694f177fa7e30379bfa608/DescribeBandwidthPackagesMix",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/network_fe/core/66694f177fa7e30379bfa608/DescribeEipAddressesMix",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/passport/account/getUser",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/AdvDefence/{region}/2021-06-15/ListAssets",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/CDN/{region}/2021-03-01/DescribeCdnWhitelist",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/CDN/{region}/2021-03-01/IsServiceActive",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/DDoS/{region}/2020-12-08/GetAlarm",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ESCloud/DescribeInstances/2023-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ESCloud/DescribeNodeAvailableSpecsV2/2023-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ESCloud/DescribeZones/2023-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ESCloud/ListEsCertExpiryInfos/2023-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/FileNAS/DescribeFileSystemOverview/2022-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/RabbitMQ/DescribeInstances/2022-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/Redis/DescribeAccountCapability/2020-12-07/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/account_management/{region}/2018-01-01/DescribeAccountSecurityContact",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/account_management/{region}/2018-01-01/GetAccountActionSecurity",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/account_management/{region}/2018-01-01/GetAccountLoginSecurity",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 54
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/account_verify/{region}/2018-01-01/GetRawProfileInfo",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/aidap/DescribeAccountUsage/2025-10-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/aidap/DescribeWorkspaceOverview/2025-10-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/aidap/ListWorkspaceUsageTop/2025-10-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/apmplus/{region}/2023-01-12/BaseUserContext",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/apmplus/{region}/2023-01-12/UserInfo",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/apmplus_server/{region}/2024-07-30/GetCheckAccount",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/apmplus_server/{region}/2024-07-30/GetCheckAccountStatus",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/apmplus_server/{region}/2024-07-30/GetObserveMenu",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 4
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/apmplus_server/{region}/2024-07-30/GetObserveRegionList",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 4
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/apmplus_server/{region}/2024-07-30/GetUserInfo",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/apmplus_server/{region}/2024-07-30/ListObserveFeature",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 4
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/apmplus_server/{region}/2026-01-01/ListWorkspaces",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ark/{region}/2024-01-01/GetAccountInfo",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ark/{region}/2024-01-01/GetAutoSetFreeLimit",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ark/{region}/2024-01-01/GetInferenceUsage",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ark/{region}/2024-01-01/GetModelChargeItem",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ark/{region}/2024-01-01/GetRawApiKey",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ark/{region}/2024-01-01/ListApiKeys",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ark/{region}/2024-01-01/ListDataCollectionPermissions",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ark/{region}/2024-01-01/ListFunctionAllowedItems",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ark/{region}/2024-01-01/QueryModelPrice",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ask_echo/{region}/2026-01-01/ListAPIKeys",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ask_echo/{region}/2026-01-01/ListBots",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/bill/2020-01-01/GetBalanceFromTradeBalance",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/bill/{region}/2020-01-01/GetBalanceFromTradeBalance",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/bill/{region}/2020-01-01/ListAccountFinancialRole",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/bill/{region}/2020-01-01/ListCostAnalysisTrend",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/bytehouse//0000-00-00/FeatureFlagPublicV1UserConfig",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/certificate_service/{region}/2024-10-01/CertificateSummarizeInstance",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/cloud_trail/{region}/2018-01-01/DescribeTrails",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/cloud_trail/{region}/2021-06-01/LookupEvents",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/cloudidentity/{region}/2023-01-01/GetIdentitySourceBindingInfo",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/cloudidentity/{region}/2023-01-01/GetServiceStatus",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/cloudidentity/{region}/2023-01-01/ListApplications",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/cloudmonitor/{region}/2018-01-01/ListPresetAlertTemplates",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/cloudmonitor/{region}/2025-12-01/ListMonitorTypes",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 4
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/consolemessage/{region}/2024-05-01/GetInMailUnreadCount",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 54
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/consolemessage/{region}/2024-05-01/ListInMail",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 49
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/consolemessage/{region}/2024-05-01/ListPrimeMsgType",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/content_customization/{region}/2026-01-01/GetTrialRemainingPoint",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/content_customization/{region}/2026-01-01/ListSearchPostPaidStatus",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/controller/GetFrontVersion/2018-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 2
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/cr/{region}/2021-03-03/GetSubscription",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/cr/{region}/2022-05-12/GetAccountConfigInner",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/cv_console/2025-09-16/AppApps",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dbw/DescribeAllFeatures/2018-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dbw/DescribeRole/2018-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dms/ListMigrateTask/2018-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dms/ListMigrateTask/2018-01-01/ap-southeast-3",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dms/ListMigrateTask/2018-01-01/cn-beijing",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dms/ListMigrateTask/2018-01-01/cn-guangzhou",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dms/ListMigrateTask/2018-01-01/cn-hongkong",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dms/ListMigrateTask/2018-01-01/cn-shanghai",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dms/ListRegion/2018-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dts/DescribeDataSourceType/2022-10-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dts/DescribeTransmissionTasks/2022-10-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dts/GetFeatures/2018-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/emr/GetAccountRealNameStatus/2023-08-15/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/emr/GetBucketsDataProtection/2023-08-15/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/emr/GetClusterMaintenanceOperationStatistics/2023-08-15/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/emr/ListClusterPatrols/2023-08-15/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/emr/ListClusters/2023-08-15/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/emr/ListFaultProcesses/2023-08-15/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/emr/ListVirtualClusters/2024-06-13/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/emr/ValidateProductPolicy/2024-06-13/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/emr_serverless/CheckServiceWhiteList/2024-03-25/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/emr_serverless/ListClusters/2024-03-25/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/fw_center/{region}/2021-09-06/GetAssumeRoleResult",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/fw_center/{region}/2021-09-06/GetUserFeature",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ga/{region}/2022-03-01/CheckAccountIsNewV2",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/iam/{region}/2018-01-01/CheckServiceLinkedRole",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 13
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/iam/{region}/2021-08-01/ListProjects",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/kms/{region}/2021-02-18/CheckSMServiceStatus",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/kms/{region}/2021-02-18/DescribeKmsInstances",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/kms/{region}/2021-02-18/DescribeSecretInstances",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/livesaas/{region}/2023-08-01/GetBillingAbilityInfo",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/llmshield/{region}/2025-08-31/GetUiDynamicConfig",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/llmshield/{region}/2025-08-31/ListCombos",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/llmshield/{region}/2025-08-31/ListInstances",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/llmshield/{region}/2025-08-31/ListRegions",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/milvus/DescribeAvailableSpecV2/2023-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/milvus/DescribeAvailableVersion/2023-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/milvus/DescribeInstances/2023-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/milvus/DescribeZones/2023-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ml_platform/{region}/2021-10-01/CheckPolicy",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ml_platform/{region}/2021-10-01/GetMLAccountInfo",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ml_platform/{region}/2021-10-01/ListFlavorsV2",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ml_platform/{region}/2021-10-01/ListUsers",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/nta/{region}/2021-09-27/ntavolcaccountcheck",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/organization/{region}/2022-01-01/ListAccounts",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/origin_defence/{region}/2022-01-01/GetAgentAvailable",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/resourcecenter/{region}/2023-06-01/GetResourceCounts",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/resourcecenter/{region}/2023-06-01/SearchResources",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/seccenter/{region}/2024-05-08/GetTenantStatus",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/speech_saas_prod/{region}/2023-11-07/FirstOrCreateMegaTTS",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/speech_saas_prod/{region}/2025-05-20/CheckProjectNeedMigrate",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/speech_saas_prod/{region}/2025-05-20/DescribeAccountTags",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/speech_saas_prod/{region}/2025-05-20/DescribeVolcengineAccountTags",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/speech_saas_prod/{region}/2025-05-20/GetConsoleVisibility",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/speech_saas_prod/{region}/2025-05-20/GetErrorReasonSolutionConfig",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/speech_saas_prod/{region}/2025-05-20/GetFrontendConfig",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/speech_saas_prod/{region}/2025-05-20/GetProductCenterStruct",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/speech_saas_prod/{region}/2025-05-20/ListApplications",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/speech_saas_prod/{region}/2025-05-20/ListProducts",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/speech_saas_prod/{region}/2025-05-20/ListServiceTypes",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/speech_saas_prod/{region}/2025-05-20/ListSpeakerLanguages",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/storage_ebs/DescribeAccountZones/2020-04-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/storage_ebs/DescribeVolumeType/2020-04-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/storage_ebs/InnerDescribeCopySnapshotCapabilities/2020-04-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/storage_ebs/InnerDescribeEnabledFeatures/2020-04-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ticket/{region}/2021-01-01/GetTicketCount",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ticket/{region}/2021-01-01/GetTicketCountForUser",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 54
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ticket/{region}/2021-01-01/ListTicket",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/tos/GetAccount/2018-01-01/cn-beijing",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/tos/ListRegionInfosV2/2018-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 3
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/vefaas/{region}/2021-03-03/CheckAccessPermission",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/vepfs/DescribeFileSystemOverview/2022-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/vepfs/DescribeZones/2022-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/vikingdb/{region}/2025-05-26/IsVikingdbOpenedBp",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/vmp/{region}/2021-03-03/GetSubscription",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/vod/{region}/2023-07-01/ListRegions",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/vod/{region}/2023-07-01/ListUserWhiteListItem",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/waf/byteplus-global/2023-12-25/GetExtendAvailable",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/waf/byteplus-global/2023-12-25/GetRegularRegion",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/waf/byteplus-global/2023-12-25/GetVulAIExtendAvailable",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/waf/byteplus-global/2023-12-25/GetWhatNews",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/waf/byteplus-global/2023-12-25/ListAssets",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/waf/byteplus-global/2023-12-25/ListBotAgentAvailable",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/waf/byteplus-global/2023-12-25/ListEnableRegions",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/waf/byteplus-global/2023-12-25/ListWafCombos",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/waf/byteplus-global/2023-12-25/ListWafInstances",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/waf/byteplus-global/2023-12-25/TLSMigrationList",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/batch/iam",
+      "auth": "B",
+      "variants": [
+        "ListUsers-accountid",
+        "UpdateUser-mass-assignment"
+      ],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/top/aisearch/aisearch/GetBillingOrder/2025-03-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/top/aisearch/aisearch/GetEnable4VikingUnit/2025-03-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/top/ark/ark/ListSubscribeTrade/2024-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/top/arkclawx/arkclawx/DescribeArkClawInstances/2026-03-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/top/arkclawx/arkclawx/DescribeFeatureGates/2026-03-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/top/bill/bill/GetBalanceFromTradeBalance/2020-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/top/live/live/DescribeServiceManageConfig/2023-01-01/ap-southeast-1",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/vke/getTags",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/vke/graphql",
+      "auth": "A",
+      "variants": [],
+      "status": "seen",
+      "routes": 1
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/account_verify/ap-southeast-1/2018-01-01/UpdateProfile",
+      "auth": "A",
+      "variants": [
+        "mass-assignment"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/account_verify/ap-southeast-1/2018-01-01/CompleteProfile",
+      "auth": "A",
+      "variants": [
+        "mass-assignment"
+      ],
+      "status": "unresolved"
+    }
+  ],
+  "listeners": [
+    {
+      "route": "/iam",
+      "handler": "yn (TEA AB SDK)",
+      "originCheck": "substring indexOf",
+      "verdict": "weak but no exploitable sink"
+    },
+    {
+      "route": "/iam",
+      "handler": "readMessage",
+      "originCheck": "exact",
+      "verdict": "not vulnerable"
+    },
+    {
+      "route": "/iam",
+      "handler": "workorder_count",
+      "originCheck": "exact",
+      "verdict": "not vulnerable"
+    },
+    {
+      "route": "/iam",
+      "handler": "slardar",
+      "originCheck": "n/a",
+      "verdict": "low impact"
+    },
+    {
+      "route": "/iam",
+      "handler": "tinet",
+      "originCheck": "n/a",
+      "verdict": "low impact"
+    },
+    {
+      "route": "/iam",
+      "handler": "misc (3)",
+      "originCheck": "n/a",
+      "verdict": "no security sink"
+    }
+  ],
+  "crawl": {
+    "routes": 85,
+    "uniqueApiEndpoints": 278,
+    "source": "/tmp/bp2/crawl.json",
+    "account": "A",
+    "date": "2026-10-29"
+  },
+  "server_side_tests": [
+    {
+      "group": "org/cloudidentity",
+      "verdict": "not vulnerable",
+      "ledger": [
+        "20",
+        "21"
+      ]
+    },
+    {
+      "group": "bill/payment/profile",
+      "verdict": "not vulnerable",
+      "ledger": [
+        "22",
+        "23",
+        "26",
+        "27"
+      ]
+    },
+    {
+      "group": "cors",
+      "verdict": "not exploitable (fixed ACAO http://console.byteplus.com)",
+      "ledger": [
+        "24"
+      ]
+    },
+    {
+      "group": "csrf",
+      "verdict": "enforced for all content types",
+      "ledger": [
+        "25"
+      ]
+    },
+    {
+      "group": "ark/kms",
+      "verdict": "no data (missing project/id), no cross-tenant",
+      "ledger": [
+        "28"
+      ]
+    }
+  ]
 }

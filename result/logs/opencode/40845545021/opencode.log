@@ -1,0 +1,31 @@
+timestamp=2026-10-29T09:17:33.813Z level=INFO run=de20fd3c message="creating instance" directory=/home/runner/work/aaii-aautomattionn/aaii-aautomattionn
+timestamp=2026-10-29T09:17:33.819Z level=INFO run=de20fd3c message=fromDirectory directory=/home/runner/work/aaii-aautomattionn/aaii-aautomattionn
+timestamp=2026-10-29T09:17:33.855Z level=INFO run=de20fd3c message=bootstrapping directory=/home/runner/work/aaii-aautomattionn/aaii-aautomattionn
+timestamp=2026-10-29T09:17:33.863Z level=INFO run=de20fd3c message=loading path=/home/runner/.config/opencode/config.json
+timestamp=2026-10-29T09:17:33.864Z level=INFO run=de20fd3c message=loading path=/home/runner/.config/opencode/opencode.json
+timestamp=2026-10-29T09:17:33.864Z level=INFO run=de20fd3c message=loading path=/home/runner/.config/opencode/opencode.jsonc
+timestamp=2026-10-29T09:17:33.871Z level=INFO run=de20fd3c message=loading path=/home/runner/work/aaii-aautomattionn/aaii-aautomattionn/opencode.json
+timestamp=2026-10-29T09:17:34.001Z level=INFO run=de20fd3c message=loading path=/home/runner/.opencode/opencode.json
+timestamp=2026-10-29T09:17:34.002Z level=INFO run=de20fd3c message=loading path=/home/runner/.opencode/opencode.jsonc
+timestamp=2026-10-29T09:17:34.095Z level=INFO run=de20fd3c message="all LSPs are disabled"
+timestamp=2026-10-29T09:17:34.096Z level=INFO run=de20fd3c message="all formatters are disabled"
+timestamp=2026-10-29T09:17:34.096Z level=INFO run=de20fd3c message=init
+timestamp=2026-10-29T09:17:34.303Z level=INFO run=de20fd3c message=created id=ses_e790cb320ffectH5fYfej8qJ8j slug=playful-moon version=1.19.5 projectID=a5235df6a1cb7957f480a1db11d98cbd49e7d2e9 directory=/home/runner/work/aaii-aautomattionn/aaii-aautomattionn path="" workspaceID=undefined parentID=undefined title="New session - 2026-10-29T09:17:34.303Z" agent=undefined model=undefined metadata=undefined permission="[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]" cost=0 tokens.input=0 tokens.output=0 tokens.reasoning=0 tokens.cache.read=0 tokens.cache.write=0 time.created=1793265454303 time.updated=1793265454303
+timestamp=2026-10-29T09:17:34.313Z level=INFO run=de20fd3c message="event connected"
+timestamp=2026-10-29T09:17:34.387Z level=INFO run=de20fd3c message=loop session.id=ses_e790cb320ffectH5fYfej8qJ8j step=0
+timestamp=2026-10-29T09:17:34.917Z level=INFO run=de20fd3c message=stream providerID=opencode modelID=deepseek-v4.1-flash-free session.id=ses_e790cb320ffectH5fYfej8qJ8j small=true agent=title mode=primary
+timestamp=2026-10-29T09:17:34.925Z level=INFO run=de20fd3c message="llm runtime selected" llm.runtime=ai-sdk llm.provider=opencode llm.model=deepseek-v4.1-flash-free
+timestamp=2026-10-29T09:17:34.966Z level=INFO run=de20fd3c message=initialized
+timestamp=2026-10-29T09:17:35.409Z level=INFO run=de20fd3c message=tracking hash=c82475477f298a33d55a5f14067d3897a86b26ae cwd=/home/runner/work/aaii-aautomattionn/aaii-aautomattionn git=/home/runner/.local/share/opencode/snapshot/a5235df6a1cb7957f480a1db11d98cbd49e7d2e9/9324011a2e7475c2e099352e4236e355c01925cc
+timestamp=2026-10-29T09:17:35.427Z level=INFO run=de20fd3c message="shell tool using shell" shell=/bin/bash
+timestamp=2026-10-29T09:17:36.974Z level=INFO run=de20fd3c message=init count=1
+timestamp=2026-10-29T09:17:37.065Z level=INFO run=de20fd3c message="watcher backend" directory=/home/runner/work/aaii-aautomattionn/aaii-aautomattionn platform=linux backend=inotify
+timestamp=2026-10-29T09:17:37.076Z level=INFO run=de20fd3c message="project copy refresh started" projectID=a5235df6a1cb7957f480a1db11d98cbd49e7d2e9
+timestamp=2026-10-29T09:17:37.622Z level=INFO run=de20fd3c message="project copy refresh done" projectID=a5235df6a1cb7957f480a1db11d98cbd49e7d2e9 updated=[] removed=[]
+timestamp=2026-10-29T09:17:37.629Z level=INFO run=de20fd3c message="booting location services" directory=/home/runner/work/aaii-aautomattionn/aaii-aautomattionn workspaceID=undefined
+timestamp=2026-10-29T09:17:37.635Z level=INFO run=de20fd3c message=process session.id=ses_e790cb320ffectH5fYfej8qJ8j messageID=msg_186f34f3d001yfOvwTWN1k6eNy
+timestamp=2026-10-29T09:17:37.637Z level=INFO run=de20fd3c message=stream providerID=opencode modelID=deepseek-v4.1-flash-free session.id=ses_e790cb320ffectH5fYfej8qJ8j small=false agent=build mode=primary
+timestamp=2026-10-29T09:17:37.639Z level=INFO run=de20fd3c message="llm runtime selected" llm.runtime=ai-sdk llm.provider=opencode llm.model=deepseek-v4.1-flash-free
+timestamp=2026-10-29T09:17:37.785Z level=ERROR run=de20fd3c message="stream error" providerID=opencode modelID=deepseek-v4.1-flash-free session.id=ses_e790cb320ffectH5fYfej8qJ8j small=false agent=build mode=primary error.error="AI_APICallError: Free usage limit reached. Free models work in OpenCode (https://opencode.ai); subscribe to OpenCode Go to keep going: https://opencode.ai/go"
+timestamp=2026-10-29T09:17:41.733Z level=ERROR run=de20fd3c message="stream error" providerID=opencode modelID=deepseek-v4.1-flash-free session.id=ses_e790cb320ffectH5fYfej8qJ8j small=true agent=title mode=primary error.error="AI_RetryError: Failed after 3 attempts. Last error: Free usage limit reached. Free models work in OpenCode (https://opencode.ai); subscribe to OpenCode Go to keep going: https://opencode.ai/go"
+timestamp=2026-10-29T09:18:34.785Z level=INFO run=de20fd3c message=cleanup prune=7.days
