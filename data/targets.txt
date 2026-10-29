@@ -1,1 +1,3 @@
 https://launch.sptpub.com/brand/2599624589818605571/sportsbook/launch?lang=tr&theme=DARK
+
+find and test all routes on launch.sptpub.com
