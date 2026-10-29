@@ -90,16 +90,39 @@ jobs:
           printf '%s\n' "$TARGET_INPUT" > data/targets.txt
           echo "Manual target prepared for this run only."
 
-      - name: Reset previous results
+      - name: Prepare target state and results
         run: |
           set -euo pipefail
-          find result -mindepth 1 -type f ! -name '.gitkeep' -delete
+          mkdir -p result/logs
+          CURRENT_HASH="$(sha256sum data/targets.txt | awk '{print $1}')"
+          PREVIOUS_HASH="$(cat result/logs/targets.sha256 2>/dev/null || true)"
+          if [ -n "$PREVIOUS_HASH" ] && [ "$CURRENT_HASH" = "$PREVIOUS_HASH" ]; then
+            DECISION="preserved"
+            echo "Target unchanged; preserving previous results."
+          else
+            DECISION="reset"
+            echo "Target changed or no prior target state; starting fresh."
+            find result -mindepth 1 -maxdepth 1 ! -name '.gitkeep' -exec rm -rf {} +
+          fi
           mkdir -p result/client-side result/server-side result/findings result/inventory result/logs
-          cat > result/confirmed-vuln.txt <<'EOF'
+          if [ ! -f result/confirmed-vuln.txt ]; then
+            cat > result/confirmed-vuln.txt <<'EOF'
           # Confirmed vulnerabilities only.
           # Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
           # Entry format: see skills/AGENT.md, Section 9.
           EOF
+          fi
+          printf '%s\n' "$CURRENT_HASH" > result/logs/targets.sha256
+          cp data/targets.txt result/logs/targets.used.txt
+          {
+            echo "run_id=${GITHUB_RUN_ID:-local}"
+            echo "event=${GITHUB_EVENT_NAME:-local}"
+            echo "timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "target_hash=$CURRENT_HASH"
+            echo "previous_hash=${PREVIOUS_HASH:-none}"
+            echo "decision=$DECISION"
+            echo "---"
+          } >> result/logs/target-state.txt
 
       - name: Detect notification test
         id: notification_test
@@ -136,6 +159,7 @@ jobs:
         env:
           AGENT_IDLE_TIMEOUT_SECONDS: "900"
           AGENT_MAX_ATTEMPTS: "3"
+          AGENT_MAX_RECOVERIES: "1"
         run: |
           set -euo pipefail
           bash tools/chrome-mcp-start.sh
@@ -153,94 +177,142 @@ jobs:
 
           LOG=result/logs/opencode.log
           mkdir -p result/logs
-          : > "$LOG"
-          tail -n +1 -F "$LOG" &
+          touch "$LOG"
+          {
+            echo
+            echo "===== OPENCODE RUN ${GITHUB_RUN_ID:-local} $(date -u +%Y-%m-%dT%H:%M:%SZ) ====="
+          } >> "$LOG"
+          tail -n 0 -F "$LOG" &
           TAIL_PID=$!
 
           MAX_ATTEMPTS="${AGENT_MAX_ATTEMPTS:-3}"
+          MAX_RECOVERIES="${AGENT_MAX_RECOVERIES:-1}"
+          RECOVERY=0
           ATTEMPT=1
           FINAL_STATUS=0
-          while [ "$ATTEMPT" -le "$MAX_ATTEMPTS" ]; do
-            if [ "$ATTEMPT" -eq 1 ]; then
-              CMD="$BASE_CMD"
-            elif [ "$ATTEMPT" -eq 2 ]; then
-              CMD="$RESUME_CMD"
-            else
-              CMD="$FRESH_CMD"
-            fi
+          WATCHDOG_EXHAUSTED=0
+
+          reinstall_opencode() {
+            REINSTALL_LOG="result/logs/opencode-reinstall-$(date -u +%Y%m%dT%H%M%SZ).log"
             {
-              echo
-              echo "===== AGENT ATTEMPT $ATTEMPT/$MAX_ATTEMPTS ====="
-            } >> "$LOG"
+              echo "time=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+              echo "reason=agent idle watchdog exhausted ${MAX_ATTEMPTS} attempts"
+              echo "home=$HOME"
+            } > "$REINSTALL_LOG"
+            rm -rf "$HOME/.local/share/opencode" "$HOME/.local/state/opencode" "$HOME/.config/opencode" "$HOME/.cache/opencode" "$HOME/.local/bin/opencode" "$HOME/.opencode"
+            curl -fsSL https://opencode.ai/install | bash >> "$REINSTALL_LOG" 2>&1
+            export PATH="$HOME/.opencode/bin:$PATH"
+            "$HOME/.opencode/bin/opencode" --version >> "$REINSTALL_LOG" 2>&1
+          }
 
-            set +e
-            timeout --signal=TERM --kill-after=60 20160 bash -c "$CMD" >>"$LOG" 2>&1 &
-            AGENT_PID=$!
+          while :; do
+            WATCHDOG_EXHAUSTED=0
+            while [ "$ATTEMPT" -le "$MAX_ATTEMPTS" ]; do
+              if [ "$RECOVERY" -gt 0 ]; then
+                CMD="$FRESH_CMD"
+              elif [ "$ATTEMPT" -eq 1 ]; then
+                CMD="$BASE_CMD"
+              elif [ "$ATTEMPT" -eq 2 ]; then
+                CMD="$RESUME_CMD"
+              else
+                CMD="$FRESH_CMD"
+              fi
+              {
+                echo
+                echo "===== AGENT ATTEMPT $ATTEMPT/$MAX_ATTEMPTS (recovery $RECOVERY/$MAX_RECOVERIES) ====="
+              } >> "$LOG"
 
-            LAST_SIZE=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
-            LAST_CHANGE=$(date +%s)
-            WATCHDOG_KILLED=0
-            while kill -0 "$AGENT_PID" 2>/dev/null; do
-              sleep 30
-              SIZE=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
-              NOW=$(date +%s)
-              if [ "$SIZE" -gt "$LAST_SIZE" ]; then
-                LAST_SIZE=$SIZE
-                LAST_CHANGE=$NOW
-              elif [ $((NOW - LAST_CHANGE)) -ge "${AGENT_IDLE_TIMEOUT_SECONDS:-900}" ]; then
-                WATCHDOG_KILLED=1
+              set +e
+              timeout --signal=TERM --kill-after=60 20160 bash -c "$CMD" >>"$LOG" 2>&1 &
+              AGENT_PID=$!
+
+              LAST_SIZE=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
+              LAST_CHANGE=$(date +%s)
+              WATCHDOG_KILLED=0
+              while kill -0 "$AGENT_PID" 2>/dev/null; do
+                sleep 30
+                SIZE=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
+                NOW=$(date +%s)
+                if [ "$SIZE" -gt "$LAST_SIZE" ]; then
+                  LAST_SIZE=$SIZE
+                  LAST_CHANGE=$NOW
+                elif [ $((NOW - LAST_CHANGE)) -ge "${AGENT_IDLE_TIMEOUT_SECONDS:-900}" ]; then
+                  WATCHDOG_KILLED=1
+                  {
+                    echo
+                    echo "WATCHDOG: no agent output for ${AGENT_IDLE_TIMEOUT_SECONDS:-900}s; terminating attempt $ATTEMPT."
+                    echo "WATCHDOG: time=$(date -u +%Y-%m-%dT%H:%M:%SZ) log_bytes=$SIZE"
+                  } >> "$LOG"
+                  pkill -TERM -f '(^|/)[o]pencode run' 2>/dev/null || true
+                  sleep 5
+                  pkill -KILL -f '(^|/)[o]pencode run' 2>/dev/null || true
+                  kill -TERM "$AGENT_PID" 2>/dev/null || true
+                  sleep 2
+                  kill -KILL "$AGENT_PID" 2>/dev/null || true
+                  break
+                fi
+              done
+              wait "$AGENT_PID"
+              STATUS=$?
+              set -e
+
+              if [ "$WATCHDOG_KILLED" -eq 1 ]; then
+                FINAL_STATUS=124
+                if [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ]; then
+                  echo "WATCHDOG: restarting agent (attempt $((ATTEMPT+1))/$MAX_ATTEMPTS)" >> "$LOG"
+                  ATTEMPT=$((ATTEMPT+1))
+                  sleep 5
+                  continue
+                fi
+                echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) attempt=$ATTEMPT status=124 watchdog=true recovery=$RECOVERY" >> result/logs/agent-exit-code.txt
                 {
-                  echo
-                  echo "WATCHDOG: no agent output for ${AGENT_IDLE_TIMEOUT_SECONDS:-900}s; terminating attempt $ATTEMPT."
-                  echo "WATCHDOG: time=$(date -u +%Y-%m-%dT%H:%M:%SZ) log_bytes=$SIZE"
-                } >> "$LOG"
-                pkill -TERM -f '(^|/)[o]pencode run' 2>/dev/null || true
-                sleep 5
-                pkill -KILL -f '(^|/)[o]pencode run' 2>/dev/null || true
-                kill -TERM "$AGENT_PID" 2>/dev/null || true
-                sleep 2
-                kill -KILL "$AGENT_PID" 2>/dev/null || true
+                  echo "watchdog_terminated=true"
+                  echo "watchdog_terminated_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+                  echo "last_log_bytes=$LAST_SIZE"
+                  echo "attempts=$ATTEMPT"
+                  echo "recovery=$RECOVERY"
+                } >> result/logs/agent-watchdog.txt
+                WATCHDOG_EXHAUSTED=1
                 break
               fi
-            done
-            wait "$AGENT_PID"
-            STATUS=$?
-            set -e
 
-            if [ "$WATCHDOG_KILLED" -eq 1 ]; then
-              FINAL_STATUS=124
+              echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) attempt=$ATTEMPT status=$STATUS recovery=$RECOVERY" >> result/logs/agent-exit-code.txt
+              if [ "$STATUS" -eq 0 ]; then
+                FINAL_STATUS=0
+                break
+              fi
+              FINAL_STATUS=$STATUS
               if [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ]; then
-                echo "WATCHDOG: restarting agent (attempt $((ATTEMPT+1))/$MAX_ATTEMPTS)" >> "$LOG"
+                echo "Agent exited with status $STATUS; restarting (attempt $((ATTEMPT+1))/$MAX_ATTEMPTS)" >> "$LOG"
                 ATTEMPT=$((ATTEMPT+1))
                 sleep 5
                 continue
               fi
-              echo "124" > result/logs/agent-exit-code.txt
-              {
-                echo "watchdog_terminated=true"
-                echo "watchdog_terminated_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-                echo "last_log_bytes=$LAST_SIZE"
-                echo "attempts=$ATTEMPT"
-              } > result/logs/agent-watchdog.txt
-              echo "::warning::Agent watchdog terminated all $MAX_ATTEMPTS attempts without log output; partial results were preserved."
-              FINAL_STATUS=0
               break
-            fi
+            done
 
-            echo "$STATUS" > result/logs/agent-exit-code.txt
-            if [ "$STATUS" -eq 0 ]; then
-              FINAL_STATUS=0
-              break
-            fi
-            FINAL_STATUS=$STATUS
-            if [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ]; then
-              echo "Agent exited with status $STATUS; restarting (attempt $((ATTEMPT+1))/$MAX_ATTEMPTS)" >> "$LOG"
-              ATTEMPT=$((ATTEMPT+1))
-              sleep 5
-              continue
+            if [ "$WATCHDOG_EXHAUSTED" -eq 1 ] && [ "$RECOVERY" -lt "$MAX_RECOVERIES" ]; then
+              RECOVERY=$((RECOVERY+1))
+              echo "WATCHDOG: reinstalling OpenCode after exhausted attempts; recovery $RECOVERY/$MAX_RECOVERIES" >> "$LOG"
+              if reinstall_opencode; then
+                echo "OpenCode reinstalled; restarting testing from preserved result/ state." >> "$LOG"
+                ATTEMPT=1
+                FINAL_STATUS=0
+                WATCHDOG_EXHAUSTED=0
+                sleep 5
+                continue
+              fi
+              echo "WATCHDOG: OpenCode reinstall failed." >> "$LOG"
+              FINAL_STATUS=1
+              WATCHDOG_EXHAUSTED=0
             fi
             break
           done
+
+          if [ "$WATCHDOG_EXHAUSTED" -eq 1 ]; then
+            echo "::warning::Agent watchdog exhausted all attempts after OpenCode recovery; partial results were preserved."
+            FINAL_STATUS=0
+          fi
 
           kill "$TAIL_PID" 2>/dev/null || true
           exit "$FINAL_STATUS"
@@ -249,14 +321,16 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
-          mkdir -p result/logs/opencode
-          cp -f /tmp/chrome-mcp.log result/logs/chrome-mcp.log 2>/dev/null || true
+          RUN_LOG_DIR="result/logs/opencode/${GITHUB_RUN_ID:-local}"
+          mkdir -p "$RUN_LOG_DIR"
+          cp -f /tmp/chrome-mcp.log "$RUN_LOG_DIR/chrome-mcp.log" 2>/dev/null || true
           for dir in "$HOME/.local/share/opencode/log" "$HOME/.local/state/opencode/log" "$HOME/.opencode/log"; do
             if [ -d "$dir" ]; then
-              find "$dir" -maxdepth 1 -type f -name '*.log' -size -5M -exec cp -f {} result/logs/opencode/ \; 2>/dev/null || true
+              find "$dir" -maxdepth 1 -type f -name '*.log' -size -5M -exec cp -f {} "$RUN_LOG_DIR/" \; 2>/dev/null || true
             fi
           done
-          find result/logs -maxdepth 2 -type f -printf '%p %s bytes\n' | sort > result/logs/diagnostics-index.txt
+          find result/logs -maxdepth 3 -type f -printf '%p %s bytes\n' | sort > "$RUN_LOG_DIR/diagnostics-index.txt"
+          cp -f "$RUN_LOG_DIR/diagnostics-index.txt" result/logs/diagnostics-index.txt
 
       - name: Finalize confirmed findings
         if: always()

@@ -99,9 +99,11 @@ Directory contracts:
   credentials.
 - **`vulnebleti/`** — Read-only during a run. Use it for vulnerability classes,
   payloads, bypass techniques, and testing ideas. Do not treat notes as proof.
-- **`result/`** — The only directory for run outputs. The CI workflow deletes
-  its contents at the start of every run, so do not rely on previous results.
-  Write progress and evidence early and often.
+- **`result/`** — The only directory for run outputs. The CI workflow preserves
+  it when `data/targets.txt` is unchanged and resets it only when the target
+  input changes. Read `result/logs/target-state.txt`, prior inventory, findings,
+  and logs first, and continue untested work. Write progress and evidence early
+  and often.
 - **`tools/`** — Reusable scripts. The agent may create or repair
   `tools/chrome-mcp-start.sh` on first use. Do not edit `tools/cmd.txt`; that
   file is user-owned and defines the launch command.
@@ -137,6 +139,20 @@ Run these steps in order at the beginning of every session.
    `npx`, `python3`, plus either working `chrome-devtools` MCP tools or a
    Chrome/Chromium binary capable of headless mode. If a required tool is
    missing, write `result/BLOCKED.md` and stop.
+
+### Step 0.5 — Determine Resume State
+
+1. Read `result/logs/target-state.txt` and `result/logs/targets.sha256`.
+2. If the latest decision is not `reset`, this is a continuation. Read
+   `result/SUMMARY.md`, `result/scope.md`, `result/inventory/`,
+   `result/testing-inventory.json`, `result/findings/`, `result/confirmed-vuln.txt`,
+   and the latest logs before testing.
+3. Continue routes and endpoints that are not marked as tested. Do not repeat a
+   completed route, JavaScript file, sink trace, or data-flow scenario.
+4. If the latest decision is `reset`, start from scratch; prior results belong
+   to a different target input.
+5. Never delete or wholesale-overwrite preserved results. Update the inventory,
+   summary, scope, and evidence in place.
 
 ### Step 1 — Chrome DevTools MCP Bootstrap
 
@@ -185,6 +201,7 @@ browser testing can begin.
    - explicit exclusions, auth requirements, route priorities, and rate limits;
    - mode directives such as `TEST_NOTIFICATION=true`.
 2. Restate your understanding in `result/scope.md` under `## User Instructions`.
+   On a continuation, update or append this section without erasing prior scope.
    If the file contains only target entries, the standard skills workflow
    applies. If it also contains notes or instructions, follow the safe,
    authorized instructions while still obeying Sections 2 and 6. Do not start
@@ -228,7 +245,8 @@ Before testing, create and maintain:
 
 Deduplicate by canonical URL, content hash, and complete data flow — never by
 variable name alone. Record every tested item, its status, and the evidence
-location.
+location. On a continuation, load and merge the existing inventory instead of
+starting it over.
 
 ### Step 4 — Client-Side Testing
 
@@ -675,13 +693,17 @@ Deduplication rules:
 - Save progress and evidence continuously. Assume the runner can be terminated
   at any time.
 - The CI watchdog terminates an attempt after 15 minutes without log output and
-  may restart it (up to 3 attempts). Checkpoint findings immediately; partial
-  results are still uploaded and committed.
+  may restart it (up to 3 attempts). If all attempts are watchdog-terminated,
+  CI deletes the OpenCode state/configuration, reinstalls OpenCode, and restarts
+  testing automatically. Checkpoint findings immediately; partial results are
+  preserved, uploaded, and committed.
 - If a tool fails, retry once, then switch to an equivalent safe method or mark
   the affected work **Unresolved**.
 - Do not run unbounded scans, brute force, or high-volume fuzzing.
-- The workflow deletes `result/` at the start of each run. Never depend on
-  files from a previous run.
+- The workflow preserves `result/` when `data/targets.txt` matches the previous
+  target state and resets it when the target input changes. On a continuation,
+  resume from `result/logs/target-state.txt`, the inventory, and prior findings;
+  do not redo already-tested work.
 - Keep the repository clean: no temporary browser profiles, large downloads,
   or real secrets inside the repo. Committed disposable test credentials are
   intentional.
@@ -694,8 +716,8 @@ Deduplication rules:
   debugging, breakpoints, network inspection, and runtime validation.
 - The CI workflow `.github/workflows/ai-automation.yml` installs headless
   Chrome and a fresh OpenCode, starts `tools/chrome-mcp-start.sh` before
-  OpenCode, runs `tools/cmd.txt`, clears previous `result/` files, commits the
-  new results, and uploads a `result/` artifact.
+  OpenCode, runs `tools/cmd.txt`, preserves or resets `result/` based on the
+  target hash, commits the new results, and uploads a `result/` artifact.
 - For manual `workflow_dispatch`, the optional `target` input is written to
   `data/targets.txt` for that run only. Scheduled runs use the committed
   `data/` targets.
