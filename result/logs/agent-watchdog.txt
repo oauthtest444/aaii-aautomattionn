@@ -1,0 +1,4 @@
+watchdog_terminated=true
+watchdog_terminated_at=2026-10-29T05:08:53Z
+last_log_bytes=552579
+attempts=3
