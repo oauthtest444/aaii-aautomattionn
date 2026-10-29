@@ -1,0 +1,8 @@
+# Server-side testing log (continuation 2026-10-29)
+
+2026-10-29T11:15Z endpoint=POST /api/top/bill/ap-singapore-1/2022-01-01/ListMonthlyBillOpen auth=user A variant=PayerID=3001021825 (user B) status=not-vulnerable reason=Returned empty MonthlyBillList; session PayerID 3000823185 returned own bills only. Cross-account PayerID scoped.
+2026-10-29T11:15Z endpoint=POST /api/top/bill/ap-singapore-1/2020-01-01/CountCoupon auth=user B status=not-vulnerable reason=Total=0 (no objects).
+2026-10-29T11:15Z endpoint=POST /api/top/bill/ap-singapore-1/2020-01-01/ListAccountFinancialRole auth=user B status=informational reason=FinancialRoleList=[0].
+2026-10-29T11:18Z endpoint=POST /api/top/consolemessage/ap-singapore-1/2024-05-01/GetInMailInfo auth=user A variant=ID=34886574 (user B's message) status=not-vulnerable reason=BadRequestError "站内信不存在"; message access scoped by session AccountId.
+2026-10-29T11:10Z endpoint=POST /api/top/ticket/ap-southeast-1/2021-01-01/ListTicketConversation|CreateTicketConversation auth=user B variant=TicketID I-2026102917080001 (user A) status=not-vulnerable reason=Cross-account read/write blocked (prior continuation, log preserved).
+2026-10-29T11:10Z endpoint=CreateTicketConversation auth=user A status=not-vulnerable reason=Server-side sanitizer strips on* handlers/javascript: hrefs and iframe srcdoc on write; stored Content inert (prior continuation).

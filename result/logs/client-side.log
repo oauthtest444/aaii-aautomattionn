@@ -1,1 +1,4 @@
 2026-10-29T10:45Z route=https://console.byteplus.com/waf/overview status=unresolved reason=redirected to https://console.byteplus.com/iam/service/attach_role/?ServiceName=waf ; requires creating ServiceRoleForWaf. Not authorized by us.
+2026-10-29T11:11Z route=https://console.byteplus.com/auth/login/ status=confirmed finding=VULN-20261029-001 reason=redirectURI tab-bypass open redirect to https://example.com/ / https://evil.com/ (already-authenticated auto-redirect). javascript: not executed.
+2026-10-29T11:19Z route=https://console.byteplus.com/auth/login/ status=confirmed finding=VULN-20261029-001 variant=redirectURI/%0a/example.com reason=second control character also redirects to https://example.com/ (already-authenticated A).
+2026-10-29T11:19Z route=https://console.byteplus.com/auth/login/ status=not-vulnerable variant=javascript: (plain + java%09script:) reason=HTTP 403 console error page; no JS execution. javascript: escalation excluded.

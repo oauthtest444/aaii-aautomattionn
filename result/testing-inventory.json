@@ -1,8 +1,159 @@
 {
-  "targets": ["https://console.byteplus.com"],
-  "routes": [],
+  "targets": [
+    "https://console.byteplus.com"
+  ],
+  "routes": [
+    {
+      "url": "https://console.byteplus.com/waf/overview",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "Client redirects to /iam/service/attach_role/?ServiceName=waf; test account lacks WAF service role. Authorization is a state change; not performed."
+    },
+    {
+      "url": "https://console.byteplus.com/finance",
+      "status": "tested",
+      "javascript": [
+        "finance app bundles"
+      ],
+      "notes": "Redirects to /finance/overview. Test accounts have $0.00 and no bill/order/invoice objects. PayerID parameter is session-scoped."
+    },
+    {
+      "url": "https://console.byteplus.com/user",
+      "status": "tested",
+      "javascript": [
+        "https://res.gcloudcache.com/bp-fe/console-user-mono/byteplus/static/js/1.0.0.2492/main.4ec0f485.js",
+        "https://res.gcloudcache.com/bp-fe/console-user-mono/byteplus/static/js/1.0.0.2492/async/Basics.bfbeee6d.js"
+      ],
+      "notes": "Profile renders React-escaped text. UpdateAccount is UI-gated by a 7-day name lock; cross-account AccountId tampering not attempted (would rename/lock the disposable test account)."
+    },
+    {
+      "url": "https://console.byteplus.com/beian",
+      "status": "not-vulnerable",
+      "javascript": [],
+      "notes": "Server returns HTTP 404 for the test accounts; route not provisioned."
+    },
+    {
+      "url": "https://console.byteplus.com/message",
+      "status": "tested",
+      "javascript": [
+        "https://res.gcloudcache.com/bp-fe/bp-vconsole-message/static/js/1.0.0.435/main.5bc4931c.js",
+        "https://res.gcloudcache.com/bp-fe/bp-vconsole-message/static/js/1.0.0.435/async/message_innermsg.f9a63668.js",
+        "https://res.gcloudcache.com/bp-fe/bp-vconsole-message/static/js/1.0.0.435/async/853.6ebc1a89.js"
+      ],
+      "notes": "Redirects to /message/innermsg. Detail sanitizes Content with DOMPurify 2.5.9 before putting it into unsandboxed iframe#external-frame srcdoc. GetInMailInfo is scoped by session AccountId. postMessage origin check is strict."
+    },
+    {
+      "url": "https://console.byteplus.com/workorder/list/",
+      "status": "tested",
+      "javascript": [
+        "https://res.gcloudcache.com/bp-fe/workorder-web/static/js/main.7d5d0431.js",
+        "https://res.gcloudcache.com/bp-fe/workorder-web/static/js/609.9d2bee7c.js",
+        "https://res.gcloudcache.com/bp-fe/workorder-web/static/js/499.b80931e8.js"
+      ],
+      "notes": "Ticket Content is server-sanitized on write and rendered via markdown/DOMPurify 2.5.9. Cross-account ticket read/write by user B against user A's ticket is blocked."
+    },
+    {
+      "url": "https://console.byteplus.com/auth/login/",
+      "status": "tested",
+      "javascript": [
+        "https://res.gcloudcache.com/bp-fe/vconsole-auth/byteplus/static/js/1.0.0.2811/main.adbc4e5a.js"
+      ],
+      "notes": "Open redirect via redirectURI control-character bypass; VULN-20261029-001 (excluded from confirmed-vuln per rule 9)."
+    }
+  ],
   "javascript": [],
-  "flows": [],
-  "endpoints": [],
-  "listeners": []
+  "flows": [
+    {
+      "source": "location.search.redirectURI",
+      "sink": "location.assign / post-login navigation",
+      "file": "main.adbc4e5a.js (vconsole-auth 1.0.0.2811)",
+      "status": "confirmed",
+      "evidence": "result/findings/VULN-20261029-001/"
+    },
+    {
+      "source": "GetInMailInfo Result.Content",
+      "sink": "iframe#external-frame srcDoc",
+      "file": "853.6ebc1a89.js (h.A.sanitize)",
+      "status": "not-vulnerable",
+      "evidence": "DOMPurify 2.5.9 sanitizes before srcdoc; template has no user-controlled script."
+    },
+    {
+      "source": "CreateTicketConversation Content",
+      "sink": "ticket conversation HTML render",
+      "file": "609.9d2bee7c.js / 499.b80931e8.js",
+      "status": "not-vulnerable",
+      "evidence": "Server strips on*/javascript:/iframe srcdoc on write; DOMPurify 2.5.9 on render; stored probes inert."
+    }
+  ],
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/passport/login/mixtureLogin",
+      "auth": "public",
+      "variants": [
+        "redirectURI tab-bypass",
+        "redirectURI newline-bypass",
+        "redirectURI javascript: (rejected)"
+      ],
+      "status": "confirmed"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/bill/ap-singapore-1/2022-01-01/ListMonthlyBillOpen",
+      "auth": "user",
+      "variants": [
+        "PayerID own",
+        "PayerID other account"
+      ],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/consolemessage/ap-singapore-1/2024-05-01/GetInMailInfo",
+      "auth": "user",
+      "variants": [
+        "ID own",
+        "ID other account"
+      ],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ticket/ap-southeast-1/2021-01-01/ListTicketConversation",
+      "auth": "user",
+      "variants": [
+        "TicketID own",
+        "TicketID other account"
+      ],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ticket/ap-southeast-1/2021-01-01/CreateTicketConversation",
+      "auth": "user",
+      "variants": [
+        "TicketID other account",
+        "ContentFormat html/markdown",
+        "stored XSS payloads"
+      ],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ticket/ap-southeast-1/2021-01-01/UpdateTicket",
+      "auth": "user",
+      "variants": [
+        "extra mass-assignment fields"
+      ],
+      "status": "not-vulnerable"
+    }
+  ],
+  "listeners": [
+    {
+      "source": "window message",
+      "file": "message app bundles",
+      "status": "not-vulnerable",
+      "notes": "Origin checked against location.protocol + '//' + location.host."
+    }
+  ]
 }
