@@ -1,0 +1,19 @@
+2026-10-29T13:53Z server-side recon start
+2026-10-29T13:55Z api hosts -> 503 {"error":"access blocked"} (bb-rsn: bc); brand -> 403 access blocked
+2026-10-29T13:56Z api-help-beta / help-beta / api-raeth4un-feed / api1-ws -> 403 WAF Request blocked
+2026-10-29T14:04Z static.sptpub.com S3 listing read (spt77-static, first 1000 keys)
+2026-10-29T14:04Z files-immutable-4cbc033nbd3.sptpub.com S3 listing read (spt77-nondynamic-files, 4 prefixes)
+2026-10-29T14:05Z bucket ACL: AllUsers READ + READ_ACP, no WRITE
+2026-10-29T14:06Z help-beta-ingress CNAME -> deleted ELB (NXDOMAIN)
+2026-10-29T14:06Z PUT zero-byte test object via in-scope host -> 403 (no object created)
+2026-10-29T14:12Z server-side application testing closed as Unresolved (edge block)
+=== direct S3 / path matrix log ===
+2026-10-29T14:16Z spt77-static direct S3 ?list-type=2 and ?acl -> 403 (only CloudFront OAI can list)
+2026-10-29T14:16Z bt-app-static-themes direct S3 -> NoSuchBucket (hostname != bucket name)
+2026-10-29T14:18Z DNS CNAME audit: 26 CNAMEs; dangling targets = 1 ELB + 2 CloudFront (NXDOMAIN)
+2026-10-29T14:19Z brand path matrix (30 paths) -> all 403 {"error":"access blocked"}
+2026-10-29T14:20Z market-tooltips 55 JSON downloaded/grepped: no URLs/secrets/tokens
+2026-10-29T14:14Z brand /bt-renderer.min.js -> 302 to startN.sptpub.com; new hosts start,start2,3,5-9,16,26,31-33 + loop added
+2026-10-29T14:14Z startN / -> 503 empty; /bt-renderer.min.js -> 200 fixed geo-403 renderer; no app assets
+2026-10-29T14:15Z start6/start16 CNAME loop.sptpub.com -> 127.0.0.1; connection refused (SSRF-allowlist lead, untestable)
+2026-10-29T14:17Z Wayback CDX: one bt-renderer 302 capture; fetched renderer analyzed (static, no input)

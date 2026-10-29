@@ -1,73 +1,80 @@
-# Evidence — cross-account masked security contact
+# Evidence — public S3 bucket listings
 
-All requests were made from the authenticated account A session
-(`AccountID=3000823185`) against the authorized target origin. No cookies,
-CSRF tokens, or session identifiers are reproduced here.
+Timestamp: 2026-10-29T13:53–14:05Z
 
-## Control: account A own contact
+## 1. static.sptpub.com
 
-```http
-POST /api/workorder/ticket/GetAccountMaskedSecurityContact
-Content-Type: application/json
-
-{}
+Request:
+```
+GET / HTTP/2
+Host: static.sptpub.com
+User-Agent: curl/8.x
 ```
 
-```json
-{
-  "Result": {
-    "SecurityEmail": "a*************@*****************",
-    "SecurityTel": "+31******47048",
-    "EmailVerified": 1,
-    "TelVerified": 1
-  }
-}
+Response (excerpt):
+```
+HTTP/2 200
+content-type: application/xml
+server: AmazonS3
+x-amz-bucket-region: eu-central-1
+x-cache: Hit from cloudfront
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+<Name>spt77-static</Name>
+<Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>true</IsTruncated>
+<Contents><Key>404.html</Key>...
+<Contents><Key>additional_images/background/1811895090055090176.png</Key>...
 ```
 
-## Cross-account: account B contact by AccountID
+First-page keys saved at
+`result/server-side/static.sptpub.com/traffic/bucket-listing-first1000.tsv`
+(all `additional_images/**` plus `404.html`).
 
-```http
-POST /api/workorder/ticket/GetAccountMaskedSecurityContact
-Content-Type: application/json
+## 2. files-immutable-4cbc033nbd3.sptpub.com
 
-{"AccountID":3001021825}
+Request:
+```
+GET / HTTP/2
+Host: files-immutable-4cbc033nbd3.sptpub.com
 ```
 
-```json
-{
-  "Result": {
-    "SecurityEmail": "t***********@********",
-    "SecurityTel": "",
-    "EmailVerified": 1,
-    "TelVerified": 0
-  }
-}
+Response (excerpt):
+```
+HTTP/2 200
+content-type: application/xml
+server: AmazonS3
+
+<ListBucketResult ...><Name>spt77-nondynamic-files</Name>
+<Contents><Key>currencies/</Key>...
+<Contents><Key>flags_by_code/ABW.svg</Key>...
 ```
 
-The same result was returned for the alternate JSON spellings `AccountId` and
-`accountID`, demonstrating that the service accepts a caller-controlled account
-identifier rather than deriving it from the authenticated session.
+Top-level prefixes (read-only list API against the same bucket):
+`currencies/`, `flags_by_code/`, `rocket-league/`, `translations/`.
 
-## Additional observation: user contact lookup oracle
+## 3. Bucket ACL
 
-```http
-POST /api/workorder/ticket/GetUserMaskedSecurityContact
-Content-Type: application/json
-
-{"UserId":3001021825}
+Request:
+```
+GET /?acl HTTP/1.1
+Host: spt77-nondynamic-files.s3.eu-central-1.amazonaws.com
 ```
 
-```json
-{
-  "ResponseMetadata": {
-    "Error": {
-      "Code": "UserSecurityContactNotExist",
-      "Message": "the user security contact not exist"
-    }
-  }
-}
+Response (parsed):
+```
+Owner: b7d6b6d75dc5ae9655cb5424cc2884fb01e9247cb39ae6614fc732f015c4c9e8
+Grant: CanonicalUser owner  FULL_CONTROL
+Grant: Group AllUsers       READ
+Grant: Group AllUsers       READ_ACP
 ```
 
-The endpoint accepts an arbitrary numeric `UserId` and returns a distinguishable
-error when a contact does not exist. The response is masked / non-sensitive and
-is therefore also excluded from notification.
+No `WRITE` grant. `?policy` is `AccessDenied`. No write test was performed.
+
+## 4. Negative control
+
+```
+GET https://static.sptpub.com/%3Cscript%3Ealert(1)%3C/script%3E
+-> 404 application/xml, <Key>&lt;script&gt;alert(1)&lt;/script&gt;</Key>
+```
+Escaped XML, not an HTML execution context.

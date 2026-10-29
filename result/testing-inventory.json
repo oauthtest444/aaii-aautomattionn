@@ -1,293 +1,1781 @@
 {
   "targets": [
-    "https://console.byteplus.com"
+    "sptpub.com"
   ],
   "routes": [
     {
-      "url": "https://console.byteplus.com/waf/overview",
+      "url": "https://1goodbet.sptpub.com/",
       "status": "unresolved",
       "javascript": [],
-      "notes": "Client redirects to /iam/service/attach_role/?ServiceName=waf; test account lacks WAF service role. Authorization is a state change; not performed."
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
     },
     {
-      "url": "https://console.byteplus.com/finance",
-      "status": "tested",
-      "javascript": [
-        "finance app bundles"
-      ],
-      "notes": "Redirects to /finance/overview. Test accounts have $0.00 and no bill/order/invoice objects. PayerID parameter is session-scoped."
-    },
-    {
-      "url": "https://console.byteplus.com/user",
-      "status": "tested",
-      "javascript": [
-        "https://res.gcloudcache.com/bp-fe/console-user-mono/byteplus/static/js/1.0.0.2492/main.4ec0f485.js",
-        "https://res.gcloudcache.com/bp-fe/console-user-mono/byteplus/static/js/1.0.0.2492/async/Basics.bfbeee6d.js"
-      ],
-      "notes": "Profile renders React-escaped text. UpdateAccount is UI-gated by a 7-day name lock; cross-account AccountId tampering not attempted (would rename/lock the disposable test account)."
-    },
-    {
-      "url": "https://console.byteplus.com/beian",
-      "status": "not-vulnerable",
+      "url": "https://777pub.sptpub.com/",
+      "status": "unresolved",
       "javascript": [],
-      "notes": "Server returns HTTP 404 for the test accounts; route not provisioned."
+      "notes": "resolves to 3.171.22.94; dynamic content edge-blocked (403/503) or dead origin"
     },
     {
-      "url": "https://console.byteplus.com/message",
-      "status": "tested",
-      "javascript": [
-        "https://res.gcloudcache.com/bp-fe/bp-vconsole-message/static/js/1.0.0.435/main.5bc4931c.js",
-        "https://res.gcloudcache.com/bp-fe/bp-vconsole-message/static/js/1.0.0.435/async/message_innermsg.f9a63668.js",
-        "https://res.gcloudcache.com/bp-fe/bp-vconsole-message/static/js/1.0.0.435/async/853.6ebc1a89.js"
-      ],
-      "notes": "Redirects to /message/innermsg. Detail sanitizes Content with DOMPurify 2.5.9 before putting it into unsandboxed iframe#external-frame srcdoc. GetInMailInfo is scoped by session AccountId. postMessage origin check is strict."
+      "url": "https://7cw2jpjf.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
     },
     {
-      "url": "https://console.byteplus.com/workorder/list/",
-      "status": "tested",
-      "javascript": [
-        "https://res.gcloudcache.com/bp-fe/workorder-web/static/js/main.7d5d0431.js",
-        "https://res.gcloudcache.com/bp-fe/workorder-web/static/js/609.9d2bee7c.js",
-        "https://res.gcloudcache.com/bp-fe/workorder-web/static/js/499.b80931e8.js"
-      ],
-      "notes": "Ticket Content is server-sanitized on write and rendered via markdown/DOMPurify 2.5.9. Cross-account ticket read/write by user B against user A's ticket is blocked."
+      "url": "https://africa365.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
     },
     {
-      "url": "https://console.byteplus.com/auth/login/",
+      "url": "https://africa3653.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://afun.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 18.160.249.86; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://api-33-sp-4441f852-102.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-33-sp-4441f852-102g.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-33-sp-c7818b61-600.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 54.192.55.100; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://api-33-sp-c7818b61-600y.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-274086d7-1222.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-274086d7-1222o.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-2f5efaf1-1201.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-2f5efaf1-1201s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-3ec8bcf1-624.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-3ec8bcf1-624s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-40081e2b-1182.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-40081e2b-1182q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-4441f852-394.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-4441f852-394s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-5609dac9-1018.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-5609dac9-1018q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-5c71b88a-424.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-5c71b88a-424s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-67bf28e6-796.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-67bf28e6-796q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-8b6b4210-1005.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-8b6b4210-1005q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-8c27ae53-1204.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-8c27ae53-1204s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-ae8d9cb4-384.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-ae8d9cb4-384s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-c34e8269-1333.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-c34e8269-1333c.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-c56617fa-215.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-c56617fa-215s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-c7818b61-600.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 13.249.141.49; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://api-a-c7818b61-600q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-c8bed8a7-889.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-c8bed8a7-889q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-d6f5dd34-1091.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-d6f5dd34-1091q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-d77fddef-607.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-d77fddef-607s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-eda40681-771.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-eda40681-771q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-fe431e7f-394.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-a-fe431e7f-394q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-2f5efaf1-1200.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-5609dac9-1030.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-5609dac9-1030s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-5c71b88a-425.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-5c71b88a-425s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-67bf28e6-771.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-67bf28e6-771q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-8b6b4210-1005.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-8b6b4210-1005q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-8c27ae53-1204.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-8c27ae53-1204s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-ae8d9cb4-380.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-ae8d9cb4-380s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-c34e8269-1332.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-c34e8269-1332q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-c56617fa-216.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-c56617fa-216s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-c7818b61-607.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 13.227.87.48; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://api-g-c7818b61-607q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-c8bed8a7-889.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-c8bed8a7-889q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-ca398234-19.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-ca398234-19q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-d6f5dd34-1091.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-d6f5dd34-1091o.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-d77fddef-638.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-d77fddef-638s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-d9dd3d2c-579.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-d9dd3d2c-579q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-dfe49a3e-679.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-dfe49a3e-679q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-ec28a1a8-1352.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-ec28a1a8-1352q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-eda40681-771.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-eda40681-771s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-fe431e7f-394.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-g-fe431e7f-394q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-274086d7-1223.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-274086d7-12233.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-2da6d122-529.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-2f5efaf1-1202.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-2f5efaf1-1202q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-40081e2b-43.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-40081e2b-43s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-4441f852-103.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-4441f852-103o.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-5609dac9-1143.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-5609dac9-1143q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-60d93927-642.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-60d93927-642s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-8b6b4210-1006.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-8b6b4210-1006q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-957a2c57-1264.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-957a2c57-1264s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-b3f87669-1368.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-b3f87669-1368s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-c34e8269-1333.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "CNAME to deleted CloudFront distribution (target NXDOMAIN); not claimable; VULN-20261029-002"
+    },
+    {
+      "url": "https://api-h-c34e8269-1333s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-c56617fa-490.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-c56617fa-490s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-c7818b61-608.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 18.160.249.2; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://api-h-c7818b61-6089.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-c7818b61-608bd.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-ca398234-563.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-ca398234-563q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-cc7f0c76-1215.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-cc7f0c76-1215q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-d6f5dd34-1091.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "CNAME to deleted CloudFront distribution (target NXDOMAIN); not claimable; VULN-20261029-002"
+    },
+    {
+      "url": "https://api-h-d6f5dd34-1091s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-d77fddef-639.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-d77fddef-639s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-eab80791-1317.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-eab80791-1317q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-ec28a1a8-1368.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-ec28a1a8-1368s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-fe431e7f-394.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-h-fe431e7f-394s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-help-beta-ingress.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "CNAME to deleted classic ELB (target NXDOMAIN); not claimable; VULN-20261029-002"
+    },
+    {
+      "url": "https://api-help-beta.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 3.169.149.10; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://api-i-c7818b61-624.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 3.170.185.98; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://api-i-c7818b61-624a.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-i-dfe49a3e-680.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-3ec8bcf1-624.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-3ec8bcf1-624w.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-8c27ae53-1205.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-8c27ae53-1205q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-ae8d9cb4-381.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-ae8d9cb4-381s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-c7818b61-624.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 18.160.200.65; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://api-j-c7818b61-624q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-c8bed8a7-890.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-c8bed8a7-890q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-ca398234-19.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-ca398234-19q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-dfe49a3e-683.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-dfe49a3e-683o.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-eab80791-1316.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-eab80791-1316q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-ec28a1a8-1407.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-ec28a1a8-1407s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-ef7b41aa-278.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-j-ef7b41aa-278s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-274086d7-1225.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-2da6d122-532.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-2da6d122-532s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-2f5efaf1-1202.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-2f5efaf1-1202q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-3ec8bcf1-625.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-3ec8bcf1-625s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-40081e2b-68.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-40081e2b-68q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-4441f852-116.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-4441f852-116o.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-5609dac9-1033.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-5609dac9-1033q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-5c71b88a-425.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-5c71b88a-425s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-60d93927-643.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-60d93927-643q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-67bf28e6-682.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-67bf28e6-682q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-8b6b4210-1007.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-8b6b4210-1007q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-8c27ae53-1205.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-8c27ae53-1205s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-957a2c57-1174.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-957a2c57-1174s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-9d68fd73-1118.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-9d68fd73-1118s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-ae8d9cb4-383.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-ae8d9cb4-383s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-b3f87669-1370.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-b3f87669-1370q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-c34e8269-1337.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-c34e8269-1337s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-c56617fa-217.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-c56617fa-217s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-c7818b61-623.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 18.154.110.120; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://api-k-c7818b61-623a.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-c7818b61-623bdd.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-c8bed8a7-890.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-c8bed8a7-890q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-ca398234-19.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-ca398234-19q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-cc7f0c76-1215.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-cc7f0c76-1215o.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-d6f5dd34-1094.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-d6f5dd34-1094s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-d77fddef-644.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-d77fddef-644s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-d9dd3d2c-650.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-d9dd3d2c-650q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-dfe49a3e-680.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-dfe49a3e-680q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-eab80791-1318.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-eab80791-1318q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-ec28a1a8-1426.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-ec28a1a8-1426s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-eda40681-812.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-eda40681-812s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-ef7b41aa-262.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-k-ef7b41aa-262q.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-raeth4un-feed.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 3.162.174.16; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://api-raeth4un-feede.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api-y-089t2gyhf4-7756.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 3.170.152.59; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://api-y-089t2gyhf4-7756u.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://api1-ws.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 3.167.183.14; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://api1.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://apostaganha.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 18.160.249.86; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://apostaganha3.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://apuestaroyal.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 13.249.141.4; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://bahsegel.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 3.168.40.123; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://bahsegelc.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://bcgame.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 13.32.164.109; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://bet7k.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://bet7k9.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://betler.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://betstar777.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://casino-x.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 3.168.40.72; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://casino-x5.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://cassinopix.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://cassinopixc.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://dragonclub.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 3.168.40.68; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://dragonclub5.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://dragoncluby.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://files-immutable-4cbc033nbd3.sptpub.com/",
+      "status": "tested",
+      "javascript": [],
+      "notes": "public S3 bucket listing (informational, no sensitive data, no write)"
+    },
+    {
+      "url": "https://files-immutable-4cbc033nbd3bc.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://files-immutable-4cbc033nbd3s.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://help-beta-ingress.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "CNAME to deleted classic ELB (target NXDOMAIN); not claimable; VULN-20261029-002"
+    },
+    {
+      "url": "https://help-beta.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 3.169.149.26; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://help-betag.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://help.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "TCP 80/443 filtered from test network"
+    },
+    {
+      "url": "https://joycasino.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 143.204.204.10; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://roxcasino.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 3.168.40.72; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://static.sptpub.com/",
+      "status": "tested",
+      "javascript": [],
+      "notes": "public S3 bucket listing (informational, no sensitive data, no write)"
+    },
+    {
+      "url": "https://superboss.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 13.226.53.21; dynamic content edge-blocked (403/503) or dead origin"
+    },
+    {
+      "url": "https://tudorbet.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://wiki.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "TCP 80/443 filtered from test network"
+    },
+    {
+      "url": "https://www.1goodbet.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://www.api-help-beta-ingress.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://www.api-help-beta.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://www.betstar777.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://www.dragonclub.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://www.help-beta-ingress.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://www.help-beta.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://www.help.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://www.roxcasino.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://www.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://www.static.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://www.superboss.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://www.wiki.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "passive-source record does not resolve (NXDOMAIN/stale)"
+    },
+    {
+      "url": "https://start.sptpub.com/",
       "status": "tested",
       "javascript": [
-        "https://res.gcloudcache.com/bp-fe/vconsole-auth/byteplus/static/js/1.0.0.2811/main.adbc4e5a.js"
+        "https://start.sptpub.com/bt-renderer.min.js"
       ],
-      "notes": "Open redirect via redirectURI control-character bypass; VULN-20261029-001 (excluded from confirmed-vuln per rule 9)."
+      "notes": "geo-blocked: / -> 503 empty; /bt-renderer.min.js -> 200 static 403-page renderer; no app assets"
+    },
+    {
+      "url": "https://start2.sptpub.com/",
+      "status": "tested",
+      "javascript": [
+        "https://start2.sptpub.com/bt-renderer.min.js"
+      ],
+      "notes": "geo-blocked: / -> 503 empty; /bt-renderer.min.js -> 200 static 403-page renderer; no app assets"
+    },
+    {
+      "url": "https://start3.sptpub.com/",
+      "status": "tested",
+      "javascript": [
+        "https://start3.sptpub.com/bt-renderer.min.js"
+      ],
+      "notes": "geo-blocked: / -> 503 empty; /bt-renderer.min.js -> 200 static 403-page renderer; no app assets"
+    },
+    {
+      "url": "https://start5.sptpub.com/",
+      "status": "tested",
+      "javascript": [
+        "https://start5.sptpub.com/bt-renderer.min.js"
+      ],
+      "notes": "geo-blocked: / -> 503 empty; /bt-renderer.min.js -> 200 static 403-page renderer; no app assets"
+    },
+    {
+      "url": "https://start6.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 127.0.0.1 via loop.sptpub.com; connection refused; potential SSRF allowlist lead (untestable, API edge-blocked)"
+    },
+    {
+      "url": "https://start7.sptpub.com/",
+      "status": "tested",
+      "javascript": [
+        "https://start7.sptpub.com/bt-renderer.min.js"
+      ],
+      "notes": "geo-blocked: / -> 503 empty; /bt-renderer.min.js -> 200 static 403-page renderer; no app assets"
+    },
+    {
+      "url": "https://start8.sptpub.com/",
+      "status": "tested",
+      "javascript": [
+        "https://start8.sptpub.com/bt-renderer.min.js"
+      ],
+      "notes": "geo-blocked: / -> 503 empty; /bt-renderer.min.js -> 200 static 403-page renderer; no app assets"
+    },
+    {
+      "url": "https://start9.sptpub.com/",
+      "status": "tested",
+      "javascript": [
+        "https://start9.sptpub.com/bt-renderer.min.js"
+      ],
+      "notes": "geo-blocked: / -> 503 empty; /bt-renderer.min.js -> 200 static 403-page renderer; no app assets"
+    },
+    {
+      "url": "https://start16.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 127.0.0.1 via loop.sptpub.com; connection refused; potential SSRF allowlist lead (untestable, API edge-blocked)"
+    },
+    {
+      "url": "https://start26.sptpub.com/",
+      "status": "tested",
+      "javascript": [
+        "https://start26.sptpub.com/bt-renderer.min.js"
+      ],
+      "notes": "geo-blocked: / -> 503 empty; /bt-renderer.min.js -> 200 static 403-page renderer; no app assets"
+    },
+    {
+      "url": "https://start31.sptpub.com/",
+      "status": "tested",
+      "javascript": [
+        "https://start31.sptpub.com/bt-renderer.min.js"
+      ],
+      "notes": "geo-blocked: / -> 503 empty; /bt-renderer.min.js -> 200 static 403-page renderer; no app assets"
+    },
+    {
+      "url": "https://start32.sptpub.com/",
+      "status": "tested",
+      "javascript": [
+        "https://start32.sptpub.com/bt-renderer.min.js"
+      ],
+      "notes": "geo-blocked: / -> 503 empty; /bt-renderer.min.js -> 200 static 403-page renderer; no app assets"
+    },
+    {
+      "url": "https://start33.sptpub.com/",
+      "status": "tested",
+      "javascript": [
+        "https://start33.sptpub.com/bt-renderer.min.js"
+      ],
+      "notes": "geo-blocked: / -> 503 empty; /bt-renderer.min.js -> 200 static 403-page renderer; no app assets"
+    },
+    {
+      "url": "https://loop.sptpub.com/",
+      "status": "unresolved",
+      "javascript": [],
+      "notes": "resolves to 127.0.0.1 via loop.sptpub.com; connection refused; potential SSRF allowlist lead (untestable, API edge-blocked)"
+    },
+    {
+      "url": "https://bt-app-static-themes.sptpub.com/",
+      "status": "tested",
+      "javascript": [],
+      "notes": "CloudFront 403 AccessDenied for listing and 20 guessed object paths; origin bucket name unknown"
+    },
+    {
+      "url": "https://gamingarttech.sptpub.com/",
+      "status": "tested",
+      "javascript": [],
+      "notes": "brand/shared host -> start26; CloudFront geo-block"
+    },
+    {
+      "url": "https://tanktech.sptpub.com/",
+      "status": "tested",
+      "javascript": [],
+      "notes": "brand/shared host -> start5; CloudFront geo-block"
+    },
+    {
+      "url": "https://gbg.sptpub.com/",
+      "status": "tested",
+      "javascript": [],
+      "notes": "brand/shared host -> start3; CloudFront geo-block"
+    },
+    {
+      "url": "https://fasw0001.sptpub.com/",
+      "status": "tested",
+      "javascript": [],
+      "notes": "brand/shared host -> start9; CloudFront geo-block"
     }
   ],
-  "javascript": [],
-  "flows": [
+  "javascript": [
     {
-      "source": "location.search.redirectURI",
-      "sink": "location.assign / post-login navigation",
-      "file": "main.adbc4e5a.js (vconsole-auth 1.0.0.2811)",
-      "status": "confirmed",
-      "evidence": "result/findings/VULN-20261029-001/"
-    },
-    {
-      "source": "GetInMailInfo Result.Content",
-      "sink": "iframe#external-frame srcDoc",
-      "file": "853.6ebc1a89.js (h.A.sanitize)",
-      "status": "not-vulnerable",
-      "evidence": "DOMPurify 2.5.9 sanitizes before srcdoc; template has no user-controlled script."
-    },
-    {
-      "source": "CreateTicketConversation Content",
-      "sink": "ticket conversation HTML render",
-      "file": "609.9d2bee7c.js / 499.b80931e8.js",
-      "status": "not-vulnerable",
-      "evidence": "Server strips on*/javascript:/iframe srcdoc on write; DOMPurify 2.5.9 on render; stored probes inert."
+      "url": "https://start5.sptpub.com/bt-renderer.min.js",
+      "sha256": "be3fde216a3f5f68fff0ce311ecc9dff0514e7559e5b95889b432f97903d104c",
+      "tested": true,
+      "notes": "static geo-403 renderer; same hash on all startN hosts; no input/network"
     }
   ],
+  "flows": [],
   "endpoints": [
     {
-      "method": "POST",
-      "path": "/api/passport/login/mixtureLogin",
-      "auth": "public",
+      "method": "GET",
+      "path": "/",
+      "host": "static.sptpub.com",
+      "auth": "none",
       "variants": [
-        "redirectURI tab-bypass",
-        "redirectURI newline-bypass",
-        "redirectURI javascript: (rejected)"
-      ],
-      "status": "confirmed"
-    },
-    {
-      "method": "POST",
-      "path": "/api/top/bill/ap-singapore-1/2022-01-01/ListMonthlyBillOpen",
-      "auth": "user",
-      "variants": [
-        "PayerID own",
-        "PayerID other account"
-      ],
-      "status": "not-vulnerable"
-    },
-    {
-      "method": "POST",
-      "path": "/api/top/consolemessage/ap-singapore-1/2024-05-01/GetInMailInfo",
-      "auth": "user",
-      "variants": [
-        "ID own",
-        "ID other account"
-      ],
-      "status": "not-vulnerable"
-    },
-    {
-      "method": "POST",
-      "path": "/api/top/ticket/ap-southeast-1/2021-01-01/ListTicketConversation",
-      "auth": "user",
-      "variants": [
-        "TicketID own",
-        "TicketID other account"
-      ],
-      "status": "not-vulnerable"
-    },
-    {
-      "method": "POST",
-      "path": "/api/top/ticket/ap-southeast-1/2021-01-01/CreateTicketConversation",
-      "auth": "user",
-      "variants": [
-        "TicketID other account",
-        "ContentFormat html/markdown",
-        "stored XSS payloads"
-      ],
-      "status": "not-vulnerable"
-    },
-    {
-      "method": "POST",
-      "path": "/api/top/ticket/ap-southeast-1/2021-01-01/UpdateTicket",
-      "auth": "user",
-      "variants": [
-        "extra mass-assignment fields"
-      ],
-      "status": "not-vulnerable"
-    },
-    {
-      "method": "POST",
-      "path": "/api/top/ticket/ap-southeast-1/2021-01-01/ListTicketExecutableAction",
-      "auth": "user",
-      "variants": [
-        "TicketID own",
-        "TicketID other account via *ForUser"
-      ],
-      "status": "not-vulnerable"
-    },
-    {
-      "method": "POST",
-      "path": "/api/top/ticket/ap-southeast-1/2021-01-01/HandleTicket",
-      "auth": "user",
-      "variants": [
-        "ActionKey close/confirm on own ticket",
-        "TicketID other account",
-        "HandleTicketForUser cross-account"
+        "S3 ListBucket first page"
       ],
       "status": "not-vulnerable",
-      "notes": "Cross-account calls return Forbidden. Same-account confirm accepted on handling ticket although not advertised; business-logic note only."
-    },
-    {
-      "method": "POST",
-      "path": "/api/top/ticket/ap-southeast-1/2022-01-01/GetPreSignedPostSignature",
-      "auth": "user",
-      "variants": [
-        "FileType text/plain",
-        "FileType text/html"
-      ],
-      "status": "not-vulnerable",
-      "notes": "text/plain and image/png allowed; text/html rejected."
-    },
-    {
-      "method": "POST",
-      "path": "/api/top/ticket/ap-southeast-1/2022-01-01/SaveFile",
-      "auth": "user",
-      "variants": [
-        "FileID own",
-        "FileID other account"
-      ],
-      "status": "not-vulnerable",
-      "notes": "A using B's FileID returned Forbidden."
+      "notes": "Public bucket listing spt77-static; images/404 only; informational, excluded from confirmed-vuln"
     },
     {
       "method": "GET",
-      "path": "/api/top/ticket/ap-southeast-1/2022-01-01/DownloadFile",
-      "auth": "user",
+      "path": "/",
+      "host": "files-immutable-4cbc033nbd3.sptpub.com",
+      "auth": "none",
       "variants": [
-        "FileID own",
-        "FileID other account"
+        "S3 ListBucket"
       ],
       "status": "not-vulnerable",
-      "notes": "Own text/plain served attachment; A using B's FileID returned Forbidden."
-    },
-    {
-      "method": "POST",
-      "path": "/api/workorder/ticket/GetAccountMaskedSecurityContact",
-      "auth": "user",
-      "variants": [
-        "AccountID own",
-        "AccountID other account",
-        "AccountId/accountID casing"
-      ],
-      "status": "confirmed",
-      "notes": "Cross-account masked security contact disclosure; low impact, excluded from notification (VULN-20261029-002)."
-    },
-    {
-      "method": "POST",
-      "path": "/api/workorder/ticket/GetUserMaskedSecurityContact",
-      "auth": "user",
-      "variants": [
-        "arbitrary numeric UserId"
-      ],
-      "status": "not-vulnerable",
-      "notes": "Distinguishable UserSecurityContactNotExist response; masked data only, excluded as informational."
-    },
-    {
-      "method": "POST",
-      "path": "/api/workorder/ticket/Tcc",
-      "auth": "user",
-      "variants": [
-        "empty body"
-      ],
-      "status": "not-vulnerable"
-    },
-    {
-      "method": "POST",
-      "path": "/api/top/ticket/ap-southeast-1/2021-01-01/ListAllFlow",
-      "auth": "user",
-      "variants": [
-        "empty body"
-      ],
-      "status": "not-vulnerable"
-    },
-    {
-      "method": "POST",
-      "path": "/api/workorder/ticket/getWorkorderConsoleConfig",
-      "auth": "user",
-      "variants": [
-        "empty body"
-      ],
-      "status": "not-vulnerable"
+      "notes": "Public bucket listing spt77-nondynamic-files; flags/currencies/translations only; ACL READ+READ_ACP for AllUsers, no WRITE; informational"
     },
     {
       "method": "GET",
-      "path": "/ticket/api/v2/core/GetTicketCreateOperation",
-      "auth": "user",
+      "path": "/",
+      "host": "api-a-c7818b61-600.sptpub.com",
+      "auth": "none",
       "variants": [
-        "empty body"
+        "root",
+        "/health",
+        "/api/v1"
       ],
-      "status": "not-present",
-      "notes": "404 HTML; inactive ticket-engine path referenced by create-page bundle."
+      "status": "unresolved",
+      "notes": "CloudFront returns 503 {\"error\":\"access blocked\"} for all tested paths/headers"
     },
     {
-      "method": "POST",
-      "path": "/ticket/api/v1/query/template",
-      "auth": "user",
+      "method": "GET",
+      "path": "/",
+      "host": "bettilt.sptpub.com",
+      "auth": "none",
       "variants": [
-        "empty body"
+        "root",
+        "/login",
+        "/robots.txt",
+        "/api/"
       ],
-      "status": "not-present",
-      "notes": "404; inactive ticket-engine path."
+      "status": "unresolved",
+      "notes": "CloudFront returns 403 {\"error\":\"access blocked\"} for all tested paths/headers"
     },
     {
-      "method": "POST",
-      "path": "/ticket/api/v1/tag/app/bind/list",
-      "auth": "user",
+      "method": "PUT",
+      "path": "/security-test-<random>-delete-me.txt",
+      "host": "files-immutable-4cbc033nbd3.sptpub.com",
+      "auth": "none",
       "variants": [
-        "empty body"
+        "unauth-write:zero-byte test object"
       ],
-      "status": "not-present",
-      "notes": "404; inactive ticket-engine path."
+      "status": "not-vulnerable",
+      "evidence": "result/server-side/static.sptpub.com/notes.md",
+      "notes": "CloudFront 403; follow-up GET 404; no object created"
+    },
+    {
+      "method": "GET",
+      "path": "/bt-renderer.min.js",
+      "host": "start*.sptpub.com",
+      "auth": "none",
+      "variants": [
+        "static error renderer"
+      ],
+      "status": "not-vulnerable",
+      "notes": "200 text/plain; static class BTRenderer writes fixed 403 HTML; no input"
     }
   ],
-  "listeners": [
-    {
-      "source": "window message",
-      "file": "message app bundles",
-      "status": "not-vulnerable",
-      "notes": "Origin checked against location.protocol + '//' + location.host."
-    }
-  ]
+  "listeners": []
 }

@@ -1,0 +1,10 @@
+2026-10-29T13:52Z client-side phase start
+2026-10-29T13:55Z curl probe: all resolving brand hosts -> CloudFront 403 {"error":"access blocked"}
+2026-10-29T13:57Z Chrome DevTools MCP: https://bettilt.sptpub.com/ -> 403 access blocked (with normal UA emulation)
+2026-10-29T13:58Z Chrome DevTools MCP: https://api-help-beta.sptpub.com/ -> 403 WAF Request blocked
+2026-10-29T14:00Z static.sptpub.com serves S3 ListBucket XML, no HTML/JS app
+2026-10-29T14:02Z no route-related JavaScript available; sources/sinks/listeners cannot be traced
+2026-10-29T14:12Z client-side phase closed as Unresolved
+2026-10-29T14:14Z /bt-renderer.min.js redirect discovered on brand hosts; startN family enumerated
+2026-10-29T14:16Z fetched start5 renderer (3678 B, sha256 be3fde...d104c); identical on all startN; static geo-403 only
+2026-10-29T14:17Z renderer reviewed: fixed innerHTML string, no inputs/network/listeners

@@ -1,0 +1,61 @@
+acebet.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+afun.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+api-a-c7818b61-600.sptpub.com | https:503 srv=CloudFront loc=None ct=application/json
+api-g-c7818b61-607.sptpub.com | https:503 srv=CloudFront loc=None ct=application/json
+api-h-c7818b61-608.sptpub.com | https:503 srv=CloudFront loc=None ct=application/json
+api-help-beta.sptpub.com | https:403 srv=CloudFront loc=None ct=text/html
+api-i-c7818b61-624.sptpub.com | https:503 srv=CloudFront loc=None ct=application/json
+api-j-c7818b61-624.sptpub.com | https:503 srv=CloudFront loc=None ct=application/json
+api-k-c7818b61-623.sptpub.com | https:503 srv=CloudFront loc=None ct=application/json
+api-raeth4un-feed.sptpub.com | https:403 srv=CloudFront loc=None ct=text/html
+apostaganha.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+aprietaygana.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+apuestaroyal.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+bahsegel.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+bangbangcasino.sptpub.com
+beette.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+bet24hs.sptpub.com
+betlivecasino.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+betmaster.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+betmexico.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+betpark.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+betstar777.sptpub.com
+bettilt.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+bingoemcasa.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+blaze.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+bons.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+boomcasino.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+brapix.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+brcrown.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+bt-app-static-themes.sptpub.com | https:403 srv=AmazonS3 loc=None ct=application/xml
+casino-me.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+casino-x.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+casinobet.sptpub.com
+casinosky.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+casinow.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+clashgg.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+clutch.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+coinsgame.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+conquestador.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+crazybet.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+cricketbook.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+cybet.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+dragonclub.sptpub.com | https:err:URLError | http:403 srv=CloudFront loc=None ct=text/html
+fairbet.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+fasw0001.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+files-immutable-4cbc033nbd3.sptpub.com | https:200 srv=AmazonS3 loc=None ct=application/xml
+fortunejack.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+ftimerbet.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+futbet.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+gamingarttech.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+gana777.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+gbg.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+help.sptpub.com | https:err:URLError | http:err:URLError
+mvpgame.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+roxcasino.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+start26.sptpub.com | https:503 srv=CloudFront loc=None ct=None
+static.sptpub.com | https:200 srv=AmazonS3 loc=None ct=application/xml
+superboss.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+tanktech.sptpub.com | https:403 srv=CloudFront loc=None ct=application/json
+tudorbet.sptpub.com
+wiki.sptpub.com | https:err:URLError | http:err:URLError

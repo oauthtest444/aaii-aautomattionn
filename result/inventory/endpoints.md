@@ -1,32 +1,37 @@
 # Endpoint Inventory
 
-| Method | Path | Auth | Variants | Status |
-|---|---|---|---|---|
-| POST | /api/passport/login/mixtureLogin | public | redirectURI (Referer) | Confirmed: server-derived RedirectPath honors `/\t/evil.com/` and `/\n/host` → open redirect (VULN-20261029-001) |
-| POST | /api/top/bill/ap-singapore-1/2022-01-01/ListMonthlyBillOpen | user | `PayerID` (own / other) | Not vulnerable: `PayerID=3001021825` (user B) from user A returned empty; own PayerID returned own bills. Session-scoped. |
-| POST | /api/top/bill/ap-singapore-1/2020-01-01/CountCoupon | user | — | Not vulnerable: `Total: 0` for test accounts. |
-| POST | /api/top/bill/ap-singapore-1/2020-01-01/ListAccountFinancialRole | user | — | Informational: `FinancialRoleList: [0]`. |
-| POST | /api/top/consolemessage/ap-singapore-1/2024-05-01/GetInMailInfo | user | `ID` (own / other) | Not vulnerable: user A requesting B's message `34886574` → `BadRequestError` "站内信不存在"; scoped by session AccountId. |
-| POST | /api/top/consolemessage/ap-singapore-1/2024-05-01/UpdateInMailStatus | user | `ID` (own / other) | Not tested cross-account (no B message ID accepted for A; read scoping implies write scoping). |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ListTicketConversation | user | `TicketID` (own / other) | Not vulnerable: user B reading user A's ticket `I-2026102917080001` blocked. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/CreateTicketConversation | user | `TicketID` (own / other), `ContentFormat` | Not vulnerable: cross-account write blocked; server sanitizes stored Content (strips `on*`, `javascript:` href, iframe srcdoc). |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/CreateTicket | user | create body | Not vulnerable: no cross-tenant field influence observed; no sensitive field persisted. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/UpdateTicket | user | `TicketID`, `NotificationMethods`, extra fields | Not vulnerable: extra fields ignored; only notification methods persisted. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/GetSensitiveConversation | user | `TicketID`, `ConversationID` | Not vulnerable: ownership checked. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ListTicketExecutableAction | user | `TicketID` (own / other) | Own ticket returns `close`/`urge`; `ListTicketExecutableActionForUser` for B's ticket → `Forbidden`. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/HandleTicket | user | `TicketID` (own / other), `ActionKey`, `ActionParams` | Cross-account `Forbidden`; own `close` accepted. `confirm` accepted on a `handling` ticket although not advertised, but only for the caller's own ticket (business-logic note, no cross-tenant impact). |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/HandleTicketForUser | user | B `TicketID`, `ActionKey=close` | `Forbidden`; no cross-account state change. |
-| POST | /api/top/ticket/ap-southeast-1/2022-01-01/GetPreSignedPostSignature | user | `FileType` | `text/plain` and `image/png` allowed; `text/html` rejected (`file type text/html is not allowed`). |
-| POST | /api/top/ticket/ap-southeast-1/2022-01-01/SaveFile | user | `FileID` own / other | Own file returns signed TOS URL; A using B's FileID → `Forbidden`. |
-| GET | /api/top/ticket/ap-southeast-1/2022-01-01/DownloadFile?FileID=… | user | `FileID` own / other | Own text/plain is served as `text/plain` with `Content-Disposition: attachment`; A using B's FileID → `Forbidden`. |
-| POST | /api/workorder/ticket/GetAccountMaskedSecurityContact | user | `AccountID`/`AccountId`/`accountID` own / other | Confirmed cross-account masked-contact BAC; low impact, excluded (`VULN-20261029-002`). |
-| POST | /api/workorder/ticket/GetUserMaskedSecurityContact | user | numeric `UserId` | Informational: arbitrary numeric UserId returns distinguishable `UserSecurityContactNotExist`; masked data only, excluded. |
-| POST | /api/workorder/ticket/Tcc | user | — | Tested; returns ticket tag/config data. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ListAllFlow | user | — | Tested; returns create-page product/flow list. |
-| POST | /api/workorder/ticket/getWorkorderConsoleConfig | user | — | Tested; returns console config/feature flags. |
-| GET | /ticket/api/v2/core/GetTicketCreateOperation | user | empty body | Not present: 404 HTML; inactive ticket-engine path. |
-| POST | /ticket/api/v1/query/template | user | empty body | Not present: 404. |
-| POST | /ticket/api/v1/tag/app/bind/list | user | empty body | Not present: 404. |
+## Reachable
 
-CSRF note: `x-csrf-token` is mandatory and validated. Missing or incorrect token
-returns `InvalidCSRFToken` even when the request body is valid JSON.
+| Method | Host / Path | Auth | Result |
+|---|---|---|---|
+| GET | `https://static.sptpub.com/` | none | 200 S3 `ListBucketResult` for `spt77-static` (first page 1000 keys: `additional_images/...`, `404.html`) |
+| GET | `https://files-immutable-4cbc033nbd3.sptpub.com/` | none | 200 S3 `ListBucketResult` for `spt77-nondynamic-files` (prefixes: `currencies/`, `flags_by_code/`, `rocket-league/`, `translations/`) |
+| GET | `https://files-immutable-4cbc033nbd3.sptpub.com/translations/market-tooltips/en.json` | none | 200 i18n strings; no secrets/URLs found |
+| GET | missing key on either bucket | none | 404 `NoSuchKey` XML; key name XML-escaped (no reflection as HTML) |
+
+| GET | `https://start5.sptpub.com/bt-renderer.min.js` (same on all `startN`) | none | 200 `text/plain`, 3,678 B static `BTRenderer` geo-403 page; no input |
+| GET | `https://start*.sptpub.com/` | none | 503 empty (geo block) |
+| GET | `https://start*.sptpub.com/<any other path>` | none | 503 empty (geo block) |
+| GET | `https://start6.sptpub.com/`, `https://start16.sptpub.com/`, `https://loop.sptpub.com/` | none | connection refused (127.0.0.1) |
+
+## Blocked / unresolved
+
+| Host | Paths tried | Result |
+|---|---|---|
+| `bettilt.sptpub.com`, `blaze.sptpub.com`, `bcgame.sptpub.com`, `joycasino.sptpub.com`, `777pub.sptpub.com`, `superboss.sptpub.com`, `roxcasino.sptpub.com`, `afun.sptpub.com`, `apostaganha.sptpub.com`, `apuestaroyal.sptpub.com`, `bahsegel.sptpub.com`, `casino-x.sptpub.com`, `dragonclub.sptpub.com` | `/`, `/login`, `/en`, `/robots.txt`, `/sitemap.xml`, `/api/`, `/api/v1/`, `/health`, `/.well-known/security.txt` | 403 `{"error":"access blocked"}` (CloudFront function / geo-bot block) |
+| `api-a-c7818b61-600.sptpub.com` and other resolving `api-*` | `/`, `/health`, `/v1/`, `/v2/`, `/api/`, `/api/v1/`, `/graphql`, `/swagger.json`, `/openapi.json`, `/.well-known/openid-configuration`; GET/OPTIONS/POST | 503 `{"error":"access blocked"}`, header `bb-rsn: bc` |
+| `api-help-beta.sptpub.com`, `help-beta.sptpub.com` | `/` | 403 CloudFront "Request blocked" (WAF) |
+| `api-raeth4un-feed.sptpub.com`, `api1-ws.sptpub.com` | `/` | 403 CloudFront "Request blocked" |
+| `static.sptpub.com` | `/<script>alert(1)</script>`, `?x=<script>` | 404 NoSuchKey XML (escaped) / cached bucket listing; no HTML reflection |
+| `api.sptpub.com`, `help.sptpub.com`, `wiki.sptpub.com` | TCP 80/443 | filtered/timeout |
+
+Header/method bypass attempts on blocked hosts (browser UA, Origin/Referer,
+`X-Requested-With`, `Authorization`, cookies, `X-Forwarded-For/Host`,
+`CloudFront-Viewer-Country`) all returned the same block.
+
+## Interpretation
+
+No server-side API could be exercised. Mass assignment, IDOR/BOLA, auth
+boundary, business-logic, SSRF, and injection tests are **Unresolved** for the
+dynamic API surface because the edge returns a static block page before any
+application code or API route is reached.

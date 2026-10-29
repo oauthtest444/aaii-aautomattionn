@@ -1,62 +1,58 @@
-# VULN-20261029-001 — Open redirect via auth `redirectURI` (tab-character bypass)
+# VULN-20261029-001 — Public S3 bucket listings on static CDN hosts
 
-- Status: **Confirmed** (open redirect)
-- Type: Open Redirect (client-side / auth flow)
-- Asset: `https://console.byteplus.com/auth/login/`
-- Severity: Medium
-- Authentication: unauthenticated (pre-login link); automatic for an
-  already-authenticated victim
-- Tested at: 2026-10-29T11:11:00Z
+Status: Confirmed (informational / low impact)
+Type: Information disclosure (misconfiguration)
+Assets:
+- https://static.sptpub.com/ (bucket `spt77-static`)
+- https://files-immutable-4cbc033nbd3.sptpub.com/ (bucket `spt77-nondynamic-files`)
+Authentication: unauthenticated
+Tested at: 2026-10-29T14:04:00Z
 
 ## Summary
 
-The login page accepts a `redirectURI` query parameter and, after a successful
-login (or immediately when the visitor already has a session), navigates the
-top-level document to that value. Absolute URLs, protocol-relative URLs
-(`//host`) and `/\host` are rejected, but a tab character inserted after the
-leading slash (`/%09/evil.com/`) bypasses the same-origin validation. Browsers
-strip the tab while parsing the URL, so `/\t/evil.com/` resolves to
-`https://evil.com/`.
+Both in-scope static hosts serve unauthenticated S3 `ListBucketResult` XML. An
+unauthenticated user can enumerate bucket object keys. For
+`spt77-nondynamic-files` the bucket ACL grants `AllUsers` `READ` and `READ_ACP`.
 
-Impact: an attacker can send a link that, once the victim is logged in (or
-right after they log in), silently takes them from the trusted
-`console.byteplus.com` origin to an attacker-controlled site. This enables
-credible phishing, OAuth/token-harvesting pages reached from a trusted link,
-and generic open-redirect abuse. No JavaScript executes on the target origin,
-so this is not reported as XSS.
-
-## Reproduction
-
-1. While logged in to `console.byteplus.com` (test account B), open
-   `https://console.byteplus.com/auth/login/?redirectURI=%2F%09%2Fevil.com%2F`.
-2. Observe the top-level document become `https://evil.com/` with no prompt.
-3. Alternatively, in a clean browser open
-   `https://console.byteplus.com/auth/login/?redirectURI=%2F%09%2Fexample.com%2F`,
-   log in, and observe navigation to `https://example.com/`.
+No sensitive objects, credentials, personal data, or write permission were
+found. The listed content is public CDN material (country flag SVGs, currency
+icons, i18n tooltips, betting-theme background images). This is a
+defense-in-depth / information-disclosure issue rather than a high-impact
+vulnerability.
 
 ## Evidence
 
-- `evidence/observation.md` — exact URLs, observed final URLs, network
-  requests, and char-code verification.
-- `payloads/redirect-uri.txt` — payloads.
+- `evidence/request-response.md` — exact requests, headers and response excerpts.
+- `result/server-side/static.sptpub.com/traffic/bucket-listing-first1000.tsv`
+- `result/server-side/files-immutable-4cbc033nbd3.sptpub.com/traffic/bucket-prefixes.txt`
+- `result/server-side/files-immutable-4cbc033nbd3.sptpub.com/traffic/key-counts.json`
 
-## Affected code
+Object counts observed: `spt77-static` first page 1000 keys (1000-key page
+limit; `IsTruncated=true`); `spt77-nondynamic-files` 62,424 keys
+(62,365 flags + 55 translation files + 4 misc assets).
 
-`https://res.gcloudcache.com/bp-fe/vconsole-auth/byteplus/static/js/1.0.0.2811/main.adbc4e5a.js`
-- login component reads `redirectURI` (`t.get("redirectURI")`) and the app
-  performs `location.assign(...)` with the resulting destination.
+## Reproduction
+
+1. `curl -sS https://static.sptpub.com/` → HTTP 200, `Content-Type:
+   application/xml`, `ListBucketResult` for `spt77-static`.
+2. `curl -sS https://files-immutable-4cbc033nbd3.sptpub.com/` → HTTP 200,
+   `ListBucketResult` for `spt77-nondynamic-files`.
+3. `curl -sS 'https://spt77-nondynamic-files.s3.eu-central-1.amazonaws.com/?acl'`
+   → `AllUsers` grants `READ` and `READ_ACP` (no `WRITE`).
+
+## Impact
+
+Asset/key enumeration only. No confidentiality, integrity, or availability
+impact demonstrated. No write access was confirmed (ACL has no `WRITE` and no
+write test was performed).
 
 ## Remediation
 
-- Resolve the `redirectURI` server-side with a strict URL parser and require
-  the normalized origin to equal `https://console.byteplus.com`; reject any
-  value containing C0 controls, backslashes, or leading `//`.
-- Prefer an allowlist of relative paths and re-serialize the path instead of
-  echoing the raw input.
-- Do not auto-redirect already-authenticated users from the login page based on
-  an unvalidated query parameter.
+Disable public bucket listing (`s3:ListBucket` for `AllUsers`) while keeping
+object reads via CloudFront/OAI as required. Remove `READ_ACP` from `AllUsers`.
 
-## Notification decision
+## Notification status
 
-`Confirmed-vuln.txt: excluded — Rule 9 excludes plain open redirects; a
-dangerous javascript: URL was not achievable (verified, see evidence).`
+Confirmed-vuln.txt: excluded — low-impact information disclosure, not one of the
+project's targeted high-impact classes (XSS/CSTI/IDOR/BAC/dangerous open
+redirect).
