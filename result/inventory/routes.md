@@ -15,3 +15,33 @@ The only reachable application route on the authorized host is the sportsbook la
 Client-side sub-routes belong to the renderer/sportsbook application served by an
 out-of-scope origin (`gscplus.sptpub.com` -> `start9.sptpub.com`) and are geo-blocked
 from this runner.
+
+## Continuation Probe — 2026-10-29T22:38Z
+
+Re-probed route variants on `launch.sptpub.com` with spaced requests (CloudFront
+rate limit respected). All returned CloudFront `403` (919-byte block page):
+
+- `/brand/2599624589818605571/{casino,live,poker,virtual}/launch`
+- `/brand/2599624589818605571/{sportsbook,casino,launch}`
+- `/brand/2599624589818605571`
+- `/{launch,sportsbook/launch,casino/launch}`
+- `/.well-known/security.txt`, `/security.txt`
+- `/api/v1/brand/...`, `/api/brand/...`, `/api/v1/brands/...`
+- `/graphql`, `/api/graphql`, `/config`, `/config.json`, `/manifest.json`,
+  `/asset-manifest.json`
+- `/brand/.../sportsbook/launch/{config,config.json,manifest.json}`,
+  `/brand/.../sportsbook/{config,launch.json}`
+
+Conclusion unchanged: the only served application route is
+`/brand/{brandId}/sportsbook/launch`. Raw probe output:
+`result/server-side/launch.sptpub.com/traffic/route-probe-continuation.txt` and
+`api-probe-continuation.txt`.
+
+## Continuation Probe 2 — 2026-10-29T22:41Z
+
+41 additional high-value paths (`/admin`, `/login`, `/swagger`, `/openapi.json`,
+`/actuator*`, `/metrics`, `/brands`, `/sports`, `/odds`, `/wallet`, `/auth`,
+`/oauth`, `/callback`, `/redirect`, etc.) all returned CloudFront `403`
+(919-byte block page). `format=json`, `_format=json`, and `output=json` with
+`Accept: application/json` still returned the HTML bootstrap. Raw output:
+`result/server-side/launch.sptpub.com/traffic/route-probe-continuation-2.txt`.

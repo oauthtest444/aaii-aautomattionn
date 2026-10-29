@@ -54,5 +54,37 @@
       "class": "mass-assignment/IDOR/BOLA/BAC/business-logic/SSRF/command-injection/prototype-pollution",
       "reason": "No same-origin API endpoints discovered; sportsbook APIs are on out-of-scope renderer origins and geo-blocked"
     }
+  ],
+  "continuation_probes": [
+    {
+      "date": "2026-10-29T22:38Z",
+      "test": "14 route variants (casino/live/poker/virtual/sportsbook/base/launch/security.txt)",
+      "result": "CloudFront 403",
+      "evidence": "traffic/route-probe-continuation.txt"
+    },
+    {
+      "date": "2026-10-29T22:39Z",
+      "test": "15 API/config/manifest variants",
+      "result": "CloudFront 403",
+      "evidence": "traffic/api-probe-continuation.txt"
+    },
+    {
+      "date": "2026-10-29T22:41Z",
+      "test": "41 common paths (admin/login/swagger/actuator/business)",
+      "result": "CloudFront 403",
+      "evidence": "traffic/route-probe-continuation-2.txt"
+    },
+    {
+      "date": "2026-10-29T22:42Z",
+      "test": "format=json/_format=json/output=json with Accept: application/json",
+      "result": "text/html bootstrap only",
+      "evidence": "logs/server-side.log"
+    },
+    {
+      "date": "2026-10-29T22:39Z",
+      "test": "brand 1234567890123456789 / ...570 renderer config",
+      "result": "same template; demoapi.betby.com renderer out of scope",
+      "evidence": "logs/server-side.log"
+    }
   ]
 }

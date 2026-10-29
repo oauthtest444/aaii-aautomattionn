@@ -18,3 +18,5 @@
 2026-10-29T14:38:30Z checkpoint VULN-20261029-001 written to confirmed-vuln.txt
 2026-10-29T14:39:00Z unvalidated url param -> renderer config only; real renderer geo-blocked -> unresolved
 2026-10-29T14:39:30Z BroadcastChannel token-sync listener reviewed: same-origin only
+2026-10-29T22:37:30Z continuation: inline module hash unchanged; preserved VULN-20261029-001 not re-run (no code change)
+2026-10-29T22:40:00Z continuation: re-verified escaping of operator_page </script> breakout and lang attribute injection -> escaped, not vulnerable

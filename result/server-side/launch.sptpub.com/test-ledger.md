@@ -14,3 +14,16 @@
 No same-origin API endpoint was available for mass-assignment, IDOR/BOLA,
 auth-boundary, business-logic, SSRF, command-injection, or prototype-pollution
 testing. Those classes are marked Unresolved on this host.
+
+## Continuation Probe — 2026-10-29T22:38Z
+
+| Endpoint / Path | Method | Test | Auth | Result | Status | Evidence |
+|---|---|---|---|---|---|---|
+| 14 route variants (`casino/live/poker/virtual/...`) | GET | route discovery | none | CloudFront 403 (919 bytes) | Not served | `traffic/route-probe-continuation.txt` |
+| 15 API/config/manifest variants | GET | API discovery | none | CloudFront 403 (919 bytes) | Not served | `traffic/api-probe-continuation.txt` |
+| brand `1234567890123456789`, `...570` | GET | renderer config | none | same template; renderer `demoapi.betby.com` (out of scope) | Not Vulnerable / informational | `/tmp/b-*.html` (not committed) |
+| launch route | GET | `</script>` breakout via `operator_page` | none | `\u003c` escaped, no direct XSS | Not Vulnerable | logs |
+| launch route | GET | `lang` attribute injection | none | HTML entity escaped | Not Vulnerable | logs |
+
+| 41 common paths (`/admin`, `/login`, `/swagger`, `/actuator*`, `/brands`, `/odds`, `/wallet`, `/auth`, ...) | GET | route discovery | none | CloudFront 403 (919 bytes) | Not served | `traffic/route-probe-continuation-2.txt` |
+| launch route | GET | `format=json` / `Accept: application/json` | none | `text/html` bootstrap only | Not Vulnerable | logs |

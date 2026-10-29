@@ -9,7 +9,7 @@
       "javascript": [
         "inline-module"
       ],
-      "notes": "Only reachable application route; geo-blocked renderer; query params operator_page/deposit_url candidate navigation sink."
+      "notes": "Only reachable application route; geo-blocked renderer; query params operator_page/deposit_url confirmed navigation-sink XSS. Continuation 2026-10-29T22:38Z-22:41Z re-probed 14 route, 15 API/config, and 41 common-path variants: all CloudFront 403."
     }
   ],
   "javascript": [
@@ -69,6 +69,28 @@
       "file": "inline:launch-bootstrap",
       "handler": "BroadcastChannel(token-sync).message",
       "status": "not-vulnerable"
+    }
+  ],
+  "route_probes": [
+    {
+      "path": "/brand/{id}/{casino,live,poker,virtual}/launch",
+      "status": "not-served",
+      "evidence": "result/server-side/launch.sptpub.com/traffic/route-probe-continuation.txt"
+    },
+    {
+      "path": "/{api,graphql,config,manifest,security.txt} variants",
+      "status": "not-served",
+      "evidence": "result/server-side/launch.sptpub.com/traffic/api-probe-continuation.txt"
+    },
+    {
+      "path": "brand 1234567890123456789 / 2599624589818605570",
+      "status": "informational",
+      "evidence": "same template; demoapi.betby.com renderer out of scope"
+    },
+    {
+      "path": "41 common paths (/admin,/login,/swagger,/actuator*,/brands,/odds,/wallet,/auth,...)",
+      "status": "not-served",
+      "evidence": "result/server-side/launch.sptpub.com/traffic/route-probe-continuation-2.txt"
     }
   ]
 }

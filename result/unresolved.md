@@ -33,3 +33,12 @@
 - CloudFront rate-limited the runner after a bounded burst of requests
   (`403`, `bb-rsn: rl-m`). Testing was paused; requests are now spaced and
   minimal. This is an operational limit, not a vulnerability.
+
+## Continuation — 2026-10-29T22:41Z
+
+- Re-confirmed route surface: 70 bounded path/API probes (route variants,
+  API/config/manifest paths, common admin/auth/business paths) all returned
+  CloudFront `403`; only `/brand/{brandId}/sportsbook/launch` is served.
+- Renderer-dependent items remain Unresolved for the same geo-block reason:
+  `url` sink, `token` session fixation/login CSRF, and renderer-side
+  `lang`/`theme` sinks.
