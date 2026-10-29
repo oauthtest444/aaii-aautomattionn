@@ -310,8 +310,8 @@ jobs:
           done
 
           if [ "$WATCHDOG_EXHAUSTED" -eq 1 ]; then
-            echo "::warning::Agent watchdog exhausted all attempts after OpenCode recovery; partial results were preserved."
-            FINAL_STATUS=0
+            echo "::error::Agent watchdog exhausted all attempts after OpenCode recovery; partial results were preserved."
+            FINAL_STATUS=1
           fi
 
           kill "$TAIL_PID" 2>/dev/null || true
