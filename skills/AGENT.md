@@ -331,7 +331,7 @@ testing:
 4. Update the inventory.
 
 Do not defer these writes to the end of the run. The CI watchdog can terminate
-the agent after 15 minutes without output; only written results survive. After
+the agent after 2 minutes without output; only written results survive. After
 checkpointing, continue with the remaining authorized routes. Do not stop after
 the first finding.
 
@@ -692,11 +692,13 @@ Deduplication rules:
 - Never wait for user input. Decide, document, and act.
 - Save progress and evidence continuously. Assume the runner can be terminated
   at any time.
-- The CI watchdog terminates an attempt after 15 minutes without log output and
-  may restart it (up to 3 attempts). If all attempts are watchdog-terminated,
-  CI deletes the OpenCode state/configuration, reinstalls OpenCode, and restarts
-  testing automatically. Checkpoint findings immediately; partial results are
-  preserved, uploaded, and committed.
+- The CI watchdog terminates an attempt after 2 minutes without log output and
+  moves to the next attempt (up to 3 regular attempts). If all regular attempts
+  are watchdog-terminated, CI deletes the OpenCode state/configuration,
+  reinstalls OpenCode, and retries once. If that recovery attempt also produces
+  no output for 2 minutes, CI preserves `result/`, commits it, and dispatches a
+  new workflow run with `resume=true`. Checkpoint findings immediately; partial
+  results are preserved, uploaded, and committed.
 - If a tool fails, retry once, then switch to an equivalent safe method or mark
   the affected work **Unresolved**.
 - Do not run unbounded scans, brute force, or high-volume fuzzing.

@@ -7,11 +7,17 @@ on:
         description: "Optional authorized target URL/domain for this manual run"
         required: false
         type: string
+      resume:
+        description: "Internal: preserve result/ and resume after an automatic restart"
+        required: false
+        default: "false"
+        type: string
   schedule:
     - cron: "0 */6 * * *"
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: ai-bug-bounty-automation
@@ -90,13 +96,27 @@ jobs:
           printf '%s\n' "$TARGET_INPUT" > data/targets.txt
           echo "Manual target prepared for this run only."
 
+      - name: Restore target for resumed run
+        if: github.event_name == 'workflow_dispatch' && inputs.resume == 'true' && inputs.target == ''
+        run: |
+          set -euo pipefail
+          if [ -s result/logs/targets.used.txt ]; then
+            cp result/logs/targets.used.txt data/targets.txt
+            echo "Restored previous target for resumed run."
+          fi
+
       - name: Prepare target state and results
+        env:
+          RESUME_RUN: ${{ inputs.resume }}
         run: |
           set -euo pipefail
           mkdir -p result/logs
           CURRENT_HASH="$(sha256sum data/targets.txt | awk '{print $1}')"
           PREVIOUS_HASH="$(cat result/logs/targets.sha256 2>/dev/null || true)"
-          if [ -n "$PREVIOUS_HASH" ] && [ "$CURRENT_HASH" = "$PREVIOUS_HASH" ]; then
+          if [ "${RESUME_RUN:-}" = "true" ]; then
+            DECISION="preserved"
+            echo "Automatic resume; preserving previous results."
+          elif [ -n "$PREVIOUS_HASH" ] && [ "$CURRENT_HASH" = "$PREVIOUS_HASH" ]; then
             DECISION="preserved"
             echo "Target unchanged; preserving previous results."
           else
@@ -157,7 +177,7 @@ jobs:
         if: steps.notification_test.outputs.test_mode != 'true'
         timeout-minutes: 340
         env:
-          AGENT_IDLE_TIMEOUT_SECONDS: "900"
+          AGENT_IDLE_TIMEOUT_SECONDS: "120"
           AGENT_MAX_ATTEMPTS: "3"
           AGENT_MAX_RECOVERIES: "1"
         run: |
@@ -185,6 +205,8 @@ jobs:
           tail -n 0 -F "$LOG" &
           TAIL_PID=$!
 
+          RESTART_MARKER="${RUNNER_TEMP:-/tmp}/opencode-auto-restart-requested"
+          rm -f "$RESTART_MARKER"
           MAX_ATTEMPTS="${AGENT_MAX_ATTEMPTS:-3}"
           MAX_RECOVERIES="${AGENT_MAX_RECOVERIES:-1}"
           RECOVERY=0
@@ -230,17 +252,17 @@ jobs:
               LAST_CHANGE=$(date +%s)
               WATCHDOG_KILLED=0
               while kill -0 "$AGENT_PID" 2>/dev/null; do
-                sleep 30
+                sleep 10
                 SIZE=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
                 NOW=$(date +%s)
                 if [ "$SIZE" -gt "$LAST_SIZE" ]; then
                   LAST_SIZE=$SIZE
                   LAST_CHANGE=$NOW
-                elif [ $((NOW - LAST_CHANGE)) -ge "${AGENT_IDLE_TIMEOUT_SECONDS:-900}" ]; then
+                elif [ $((NOW - LAST_CHANGE)) -ge "${AGENT_IDLE_TIMEOUT_SECONDS:-120}" ]; then
                   WATCHDOG_KILLED=1
                   {
                     echo
-                    echo "WATCHDOG: no agent output for ${AGENT_IDLE_TIMEOUT_SECONDS:-900}s; terminating attempt $ATTEMPT."
+                    echo "WATCHDOG: no agent output for ${AGENT_IDLE_TIMEOUT_SECONDS:-120}s; terminating attempt $ATTEMPT."
                     echo "WATCHDOG: time=$(date -u +%Y-%m-%dT%H:%M:%SZ) log_bytes=$SIZE"
                   } >> "$LOG"
                   pkill -TERM -f '(^|/)[o]pencode run' 2>/dev/null || true
@@ -272,6 +294,14 @@ jobs:
                   echo "attempts=$ATTEMPT"
                   echo "recovery=$RECOVERY"
                 } >> result/logs/agent-watchdog.txt
+                if [ "$RECOVERY" -gt 0 ]; then
+                  {
+                    echo "time=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+                    echo "reason=no output for ${AGENT_IDLE_TIMEOUT_SECONDS:-120}s after OpenCode reinstall"
+                    echo "run_id=${GITHUB_RUN_ID:-local}"
+                  } > result/logs/auto-restart-requested.txt
+                  printf 'requested\n' > "$RESTART_MARKER"
+                fi
                 WATCHDOG_EXHAUSTED=1
                 break
               fi
@@ -297,6 +327,7 @@ jobs:
               if reinstall_opencode; then
                 echo "OpenCode reinstalled; restarting testing from preserved result/ state." >> "$LOG"
                 ATTEMPT=1
+                MAX_ATTEMPTS=1
                 FINAL_STATUS=0
                 WATCHDOG_EXHAUSTED=0
                 sleep 5
@@ -416,9 +447,10 @@ jobs:
         if: always()
         env:
           TARGET_INPUT: ${{ inputs.target }}
+          RESUME_RUN: ${{ inputs.resume }}
         run: |
           set -euo pipefail
-          if [ -n "${TARGET_INPUT:-}" ]; then
+          if [ -n "${TARGET_INPUT:-}" ] || [ "${RESUME_RUN:-}" = "true" ]; then
             if git ls-files --error-unmatch data/targets.txt >/dev/null 2>&1; then
               git checkout -- data/targets.txt
             else
@@ -428,6 +460,7 @@ jobs:
           rm -f opencode.json
 
       - name: Commit results
+        id: commit_results
         if: always()
         run: |
           set -euo pipefail
@@ -455,6 +488,22 @@ jobs:
           BRANCH="${GITHUB_REF_NAME:-main}"
           git pull --rebase --autostash origin "$BRANCH"
           git push origin "HEAD:$BRANCH"
+
+      - name: Trigger automatic resume run
+        if: always() && steps.commit_results.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          MARKER="${RUNNER_TEMP:-/tmp}/opencode-auto-restart-requested"
+          if [ ! -f "$MARKER" ]; then
+            echo "No automatic restart requested."
+            exit 0
+          fi
+          gh workflow run ai-automation.yml --repo "$GH_REPO" --ref "$BRANCH" -f resume=true
+          echo "Dispatched automatic resume run."
 
       - name: Notify Discord on confirmed findings
         if: always()
