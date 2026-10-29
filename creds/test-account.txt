@@ -1,0 +1,16 @@
+byteplus console test login creds
+
+https://console.byteplus.com/auth/login/
+
+test account a
+
+```
+adoringjepsen1@fearlessmails.com
+Acd3423@#345566
+```
+
+test account b
+```
+testt456
+Acd3423@#345
+```

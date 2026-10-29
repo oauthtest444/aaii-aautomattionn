@@ -1,0 +1,3 @@
+result/logs/.gitkeep 0 bytes
+result/logs/diagnostics-index.txt 0 bytes
+result/logs/opencode/opencode.log 3800 bytes

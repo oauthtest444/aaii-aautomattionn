@@ -1,0 +1,1 @@
+opencode run --model opencode/deepseek-v4.1-flash-free "Read \`skills/AGENT.md\` and follow all instructions exactly."

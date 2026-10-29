@@ -1,0 +1,478 @@
+name: Aaii Buug Bounnty Aautomaationn
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Optional authorized target URL/domain for this manual run"
+        required: false
+        type: string
+  schedule:
+    - cron: "0 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ai-bug-bounty-automation
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+
+    env:
+      CHROME_DEBUG_PORT: "9222"
+      CHROME_PROFILE_DIR: /tmp/chrome-mcp-profile
+      CHROME_LOG_FILE: /tmp/chrome-mcp.log
+      OPENCODE_MODEL: opencode/deepseek-v4.1-flash-free
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Restore cached Chrome package
+        id: chrome-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/chrome-deb
+          key: google-chrome-stable-deb-${{ runner.os }}-v1
+
+      - name: Install headless Chrome
+        run: |
+          set -euo pipefail
+          DEB="$HOME/.cache/chrome-deb/google-chrome-stable_current_amd64.deb"
+          mkdir -p "$(dirname "$DEB")"
+          if [ ! -s "$DEB" ]; then
+            echo "Downloading Chrome package..."
+            curl -fsSL -o "$DEB" https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          else
+            echo "Using cached Chrome package."
+          fi
+          sudo apt-get update -qq
+          if ! sudo apt-get install -y "$DEB"; then
+            echo "Cached package failed; downloading a fresh copy..."
+            rm -f "$DEB"
+            curl -fsSL -o "$DEB" https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo apt-get install -y "$DEB"
+          fi
+          google-chrome-stable --version
+
+      - name: Install OpenCode (fresh each run)
+        run: |
+          set -euo pipefail
+          curl -fsSL https://opencode.ai/install | bash
+          echo "$HOME/.opencode/bin" >> "$GITHUB_PATH"
+          "$HOME/.opencode/bin/opencode" --version
+
+      - name: Verify free model access
+        run: |
+          set -euo pipefail
+          timeout 180 opencode run \
+            --model "$OPENCODE_MODEL" \
+            --dir "$RUNNER_TEMP" \
+            "Reply with exactly OK"
+
+      - name: Prepare optional manual target
+        if: github.event_name == 'workflow_dispatch' && inputs.target != ''
+        env:
+          TARGET_INPUT: ${{ inputs.target }}
+        run: |
+          set -euo pipefail
+          printf '%s\n' "$TARGET_INPUT" > data/targets.txt
+          echo "Manual target prepared for this run only."
+
+      - name: Reset previous results
+        run: |
+          set -euo pipefail
+          find result -mindepth 1 -type f ! -name '.gitkeep' -delete
+          mkdir -p result/client-side result/server-side result/findings result/inventory result/logs
+          cat > result/confirmed-vuln.txt <<'EOF'
+          # Confirmed vulnerabilities only.
+          # Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
+          # Entry format: see skills/AGENT.md, Section 9.
+          EOF
+
+      - name: Detect notification test
+        id: notification_test
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          set -euo pipefail
+          if grep -qiE '^[[:space:]]*(TEST_NOTIFICATION[[:space:]]*[:=][[:space:]]*true|MODE[[:space:]]*[:=][[:space:]]*notification-test)[[:space:]]*$' data/targets.txt 2>/dev/null; then
+            echo "test_mode=true" >> "$GITHUB_OUTPUT"
+            echo "Notification test mode enabled; no target will be tested."
+          else
+            echo "test_mode=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create notification test marker
+        if: steps.notification_test.outputs.test_mode == 'true'
+        run: |
+          set -euo pipefail
+          cat > result/TEST-NOTIFICATION.md <<'EOF'
+          # Automation notification test
+
+          - Status: TEST ONLY
+          - Target tested: none
+          - Confirmed vulnerabilities: none
+          - Purpose: verify the workflow and Discord notification path
+
+          This run intentionally did not test any target and did not create a
+          confirmed vulnerability.
+          EOF
+          echo "Created result/TEST-NOTIFICATION.md"
+
+      - name: Start Chrome MCP and run agent
+        if: steps.notification_test.outputs.test_mode != 'true'
+        timeout-minutes: 340
+        env:
+          AGENT_IDLE_TIMEOUT_SECONDS: "900"
+          AGENT_MAX_ATTEMPTS: "3"
+        run: |
+          set -euo pipefail
+          bash tools/chrome-mcp-start.sh
+
+          BASE_CMD="$(cat tools/cmd.txt)"
+          MODEL="$(awk '{for (i=1;i<=NF;i++) if ($i=="--model") {print $(i+1); exit}}' tools/cmd.txt)"
+          RESUME_PROMPT='The previous attempt stalled. Read skills/AGENT.md and result/ inventory, then continue the authorized scan. Do not repeat completed work. Checkpoint confirmed findings immediately and continue with all remaining routes.'
+          if [ -n "$MODEL" ]; then
+            RESUME_CMD="opencode run --continue --model $MODEL '$RESUME_PROMPT'"
+            FRESH_CMD="opencode run --model $MODEL '$RESUME_PROMPT'"
+          else
+            RESUME_CMD="opencode run --continue '$RESUME_PROMPT'"
+            FRESH_CMD="opencode run '$RESUME_PROMPT'"
+          fi
+
+          LOG=result/logs/opencode.log
+          mkdir -p result/logs
+          : > "$LOG"
+          tail -n +1 -F "$LOG" &
+          TAIL_PID=$!
+
+          MAX_ATTEMPTS="${AGENT_MAX_ATTEMPTS:-3}"
+          ATTEMPT=1
+          FINAL_STATUS=0
+          while [ "$ATTEMPT" -le "$MAX_ATTEMPTS" ]; do
+            if [ "$ATTEMPT" -eq 1 ]; then
+              CMD="$BASE_CMD"
+            elif [ "$ATTEMPT" -eq 2 ]; then
+              CMD="$RESUME_CMD"
+            else
+              CMD="$FRESH_CMD"
+            fi
+            {
+              echo
+              echo "===== AGENT ATTEMPT $ATTEMPT/$MAX_ATTEMPTS ====="
+            } >> "$LOG"
+
+            set +e
+            timeout --signal=TERM --kill-after=60 20160 bash -c "$CMD" >>"$LOG" 2>&1 &
+            AGENT_PID=$!
+
+            LAST_SIZE=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
+            LAST_CHANGE=$(date +%s)
+            WATCHDOG_KILLED=0
+            while kill -0 "$AGENT_PID" 2>/dev/null; do
+              sleep 30
+              SIZE=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
+              NOW=$(date +%s)
+              if [ "$SIZE" -gt "$LAST_SIZE" ]; then
+                LAST_SIZE=$SIZE
+                LAST_CHANGE=$NOW
+              elif [ $((NOW - LAST_CHANGE)) -ge "${AGENT_IDLE_TIMEOUT_SECONDS:-900}" ]; then
+                WATCHDOG_KILLED=1
+                {
+                  echo
+                  echo "WATCHDOG: no agent output for ${AGENT_IDLE_TIMEOUT_SECONDS:-900}s; terminating attempt $ATTEMPT."
+                  echo "WATCHDOG: time=$(date -u +%Y-%m-%dT%H:%M:%SZ) log_bytes=$SIZE"
+                } >> "$LOG"
+                pkill -TERM -f '(^|/)[o]pencode run' 2>/dev/null || true
+                sleep 5
+                pkill -KILL -f '(^|/)[o]pencode run' 2>/dev/null || true
+                kill -TERM "$AGENT_PID" 2>/dev/null || true
+                sleep 2
+                kill -KILL "$AGENT_PID" 2>/dev/null || true
+                break
+              fi
+            done
+            wait "$AGENT_PID"
+            STATUS=$?
+            set -e
+
+            if [ "$WATCHDOG_KILLED" -eq 1 ]; then
+              FINAL_STATUS=124
+              if [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ]; then
+                echo "WATCHDOG: restarting agent (attempt $((ATTEMPT+1))/$MAX_ATTEMPTS)" >> "$LOG"
+                ATTEMPT=$((ATTEMPT+1))
+                sleep 5
+                continue
+              fi
+              echo "124" > result/logs/agent-exit-code.txt
+              {
+                echo "watchdog_terminated=true"
+                echo "watchdog_terminated_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+                echo "last_log_bytes=$LAST_SIZE"
+                echo "attempts=$ATTEMPT"
+              } > result/logs/agent-watchdog.txt
+              echo "::warning::Agent watchdog terminated all $MAX_ATTEMPTS attempts without log output; partial results were preserved."
+              FINAL_STATUS=0
+              break
+            fi
+
+            echo "$STATUS" > result/logs/agent-exit-code.txt
+            if [ "$STATUS" -eq 0 ]; then
+              FINAL_STATUS=0
+              break
+            fi
+            FINAL_STATUS=$STATUS
+            if [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ]; then
+              echo "Agent exited with status $STATUS; restarting (attempt $((ATTEMPT+1))/$MAX_ATTEMPTS)" >> "$LOG"
+              ATTEMPT=$((ATTEMPT+1))
+              sleep 5
+              continue
+            fi
+            break
+          done
+
+          kill "$TAIL_PID" 2>/dev/null || true
+          exit "$FINAL_STATUS"
+
+      - name: Collect runtime diagnostics
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p result/logs/opencode
+          cp -f /tmp/chrome-mcp.log result/logs/chrome-mcp.log 2>/dev/null || true
+          for dir in "$HOME/.local/share/opencode/log" "$HOME/.local/state/opencode/log" "$HOME/.opencode/log"; do
+            if [ -d "$dir" ]; then
+              find "$dir" -maxdepth 1 -type f -name '*.log' -size -5M -exec cp -f {} result/logs/opencode/ \; 2>/dev/null || true
+            fi
+          done
+          find result/logs -maxdepth 2 -type f -printf '%p %s bytes\n' | sort > result/logs/diagnostics-index.txt
+
+      - name: Finalize confirmed findings
+        if: always()
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib
+          import re
+
+          conf = pathlib.Path("result/confirmed-vuln.txt")
+          text = conf.read_text(errors="ignore") if conf.is_file() else ""
+          additions = []
+          warnings = []
+
+          for report in sorted(pathlib.Path("result/findings").glob("*/report.md")):
+              body = report.read_text(errors="ignore")
+              status = re.search(r'(?im)^\s*[-*]?\s*\**Status:?\**\s*Confirmed\b', body)
+              if not status:
+                  continue
+
+              finding_id = report.parent.name
+              severity = re.search(
+                  r'(?im)^\s*[-*]?\s*\**Severity:?\**\s*(Critical|High|Medium)\b',
+                  body,
+              )
+              evidence = report.parent / "evidence"
+              evidence_files = [
+                  path for path in evidence.rglob("*") if path.is_file()
+              ] if evidence.is_dir() else []
+
+              if not evidence_files:
+                  warnings.append(f"{finding_id}: confirmed report has no evidence files")
+              if not severity:
+                  warnings.append(f"{finding_id}: confirmed report has no severity")
+                  continue
+
+              level = severity.group(1)
+              if level not in {"Critical", "High"}:
+                  print(f"Skipping {finding_id}: severity {level}; fallback notifies Critical/High only")
+                  continue
+              if finding_id in text:
+                  continue
+              if not evidence_files:
+                  continue
+
+              title = body.splitlines()[0].lstrip("# ").strip()
+              if title.startswith(finding_id):
+                  title = title[len(finding_id):].lstrip(" —-")
+              additions.append(
+                  f"[{finding_id}] {title}\n"
+                  f"Status: Confirmed\n"
+                  f"Severity: {level}\n"
+                  f"Evidence: {report.parent}/\n"
+              )
+
+          if additions:
+              with conf.open("a", encoding="utf-8") as handle:
+                  handle.write("\n" + "\n".join(additions))
+              print(f"Added {len(additions)} high-severity confirmed finding(s) to confirmed-vuln.txt")
+          else:
+              print("No high-severity confirmed reports needed finalization.")
+
+          if warnings:
+              pathlib.Path("result/logs/checkpoint-validation.txt").write_text(
+                  "\n".join(warnings) + "\n", encoding="utf-8"
+              )
+              for warning in warnings:
+                  print(f"::warning::{warning}")
+          else:
+              print("All confirmed reports have evidence and severity.")
+          PY
+
+      - name: Upload results artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-scan-results-${{ github.run_id }}
+          path: result/
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Clean runtime-only files
+        if: always()
+        env:
+          TARGET_INPUT: ${{ inputs.target }}
+        run: |
+          set -euo pipefail
+          if [ -n "${TARGET_INPUT:-}" ]; then
+            if git ls-files --error-unmatch data/targets.txt >/dev/null 2>&1; then
+              git checkout -- data/targets.txt
+            else
+              rm -f data/targets.txt
+            fi
+          fi
+          rm -f opencode.json
+
+      - name: Commit results
+        if: always()
+        run: |
+          set -euo pipefail
+
+          if [ -n "$(git status --porcelain -- creds/)" ]; then
+            echo "ERROR: creds/ changed; refusing to commit results." >&2
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A result
+
+          if git diff --cached --name-only | grep -q '^creds/'; then
+            echo "ERROR: creds/ would be committed; refusing to commit results." >&2
+            exit 1
+          fi
+
+          if git diff --cached --quiet; then
+            echo "No result changes to commit."
+            exit 0
+          fi
+
+          git commit -m "scan: results $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          BRANCH="${GITHUB_REF_NAME:-main}"
+          git pull --rebase --autostash origin "$BRANCH"
+          git push origin "HEAD:$BRANCH"
+
+      - name: Notify Discord on confirmed findings
+        if: always()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          REPO: ${{ github.repository }}
+          TEST_MODE: ${{ steps.notification_test.outputs.test_mode }}
+        run: |
+          set -euo pipefail
+          if [ -z "${DISCORD_WEBHOOK_URL:-}" ]; then
+            echo "DISCORD_WEBHOOK_URL is not configured; skipping notification."
+            exit 0
+          fi
+          python3 - <<'PY'
+          import json
+          import os
+          import pathlib
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          test_mode = os.environ.get("TEST_MODE") == "true"
+
+          if test_mode:
+              content = (
+                  "**Automation test notification**\n"
+                  "No vulnerability was tested or confirmed. "
+                  "This message only verifies that the Discord notification path works.\n"
+                  f"Repository: {os.environ.get('REPO', '')}\n"
+                  f"Run: {os.environ.get('RUN_URL', '')}"
+              )
+          else:
+              path = pathlib.Path("result/confirmed-vuln.txt")
+              if not path.is_file():
+                  print("No confirmed-vuln.txt; skipping Discord notification.")
+                  raise SystemExit(0)
+
+              entries = [
+                  line.strip()
+                  for line in path.read_text(errors="ignore").splitlines()
+                  if line.strip() and not line.lstrip().startswith("#")
+              ]
+              if not entries:
+                  print("No confirmed findings; skipping Discord notification.")
+                  raise SystemExit(0)
+
+              titled = [
+                  entry for entry in entries
+                  if entry.startswith("[") and "]" in entry
+              ][:10]
+              selected = titled or entries[:5]
+              findings = "\n".join(f"- {entry[:300]}" for entry in selected)
+              content = (
+                  "**Confirmed vulnerability found**\n"
+                  f"Repository: {os.environ.get('REPO', '')}\n"
+                  f"Run: {os.environ.get('RUN_URL', '')}\n"
+                  f"Findings:\n{findings}"
+              )[:1900]
+
+          body = json.dumps({
+              "content": content,
+              "allowed_mentions": {"parse": []},
+          }).encode()
+
+          request = urllib.request.Request(
+              os.environ["DISCORD_WEBHOOK_URL"],
+              data=body,
+              headers={
+                  "Content-Type": "application/json",
+                  "Accept": "application/json",
+                  "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+              },
+              method="POST",
+          )
+
+          try:
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  print(f"Discord notification sent: HTTP {response.status}")
+          except urllib.error.HTTPError as exc:
+              print(f"Discord notification failed: HTTP {exc.code} {exc.reason}")
+              try:
+                  detail = exc.read().decode("utf-8", "replace")[:300]
+                  print(f"Discord response: {detail or '<empty>'}")
+              except Exception:
+                  print("Discord response: <unreadable>")
+              webhook = os.environ.get("DISCORD_WEBHOOK_URL", "")
+              parsed = urllib.parse.urlparse(webhook)
+              print(
+                  f"Webhook host={parsed.hostname} "
+                  f"path_prefix={parsed.path[:14]} length={len(webhook)}"
+              )
+          except Exception as exc:
+              print(f"Discord notification failed: {type(exc).__name__}")
+          PY

@@ -1,0 +1,25 @@
+timestamp=2026-10-29T01:44:14.991Z level=INFO run=e95fab91 message="creating instance" directory=/home/runner/work/_temp
+timestamp=2026-10-29T01:44:14.993Z level=INFO run=e95fab91 message=fromDirectory directory=/home/runner/work/_temp
+timestamp=2026-10-29T01:44:15.005Z level=INFO run=e95fab91 message=bootstrapping directory=/home/runner/work/_temp
+timestamp=2026-10-29T01:44:15.012Z level=INFO run=e95fab91 message=loading path=/home/runner/.config/opencode/config.json
+timestamp=2026-10-29T01:44:15.013Z level=INFO run=e95fab91 message=loading path=/home/runner/.config/opencode/opencode.json
+timestamp=2026-10-29T01:44:15.013Z level=INFO run=e95fab91 message=loading path=/home/runner/.config/opencode/opencode.jsonc
+timestamp=2026-10-29T01:44:15.133Z level=INFO run=e95fab91 message=loading path=/home/runner/.opencode/opencode.json
+timestamp=2026-10-29T01:44:15.134Z level=INFO run=e95fab91 message=loading path=/home/runner/.opencode/opencode.jsonc
+timestamp=2026-10-29T01:44:15.226Z level=INFO run=e95fab91 message="all LSPs are disabled"
+timestamp=2026-10-29T01:44:15.226Z level=INFO run=e95fab91 message="all formatters are disabled"
+timestamp=2026-10-29T01:44:15.226Z level=INFO run=e95fab91 message=init
+timestamp=2026-10-29T01:44:15.396Z level=INFO run=e95fab91 message=created id=ses_e7aabb8dbffe2mVbkkbaGgPiHt slug=curious-mountain version=1.19.5 projectID=global directory=/home/runner/work/_temp path=home/runner/work/_temp workspaceID=undefined parentID=undefined title="New session - 2026-10-29T01:44:15.396Z" agent=undefined model=undefined metadata=undefined permission="[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]" cost=0 tokens.input=0 tokens.output=0 tokens.reasoning=0 tokens.cache.read=0 tokens.cache.write=0 time.created=1793238255396 time.updated=1793238255396
+timestamp=2026-10-29T01:44:15.407Z level=INFO run=e95fab91 message="event connected"
+timestamp=2026-10-29T01:44:15.481Z level=INFO run=e95fab91 message=loop session.id=ses_e7aabb8dbffe2mVbkkbaGgPiHt step=0
+timestamp=2026-10-29T01:44:16.185Z level=INFO run=e95fab91 message="shell tool using shell" shell=/bin/bash
+timestamp=2026-10-29T01:44:16.193Z level=INFO run=e95fab91 message=init count=1
+timestamp=2026-10-29T01:44:16.200Z level=INFO run=e95fab91 message=stream providerID=opencode modelID=deepseek-v4.1-flash-free session.id=ses_e7aabb8dbffe2mVbkkbaGgPiHt small=true agent=title mode=primary
+timestamp=2026-10-29T01:44:16.206Z level=INFO run=e95fab91 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=opencode llm.model=deepseek-v4.1-flash-free
+timestamp=2026-10-29T01:44:16.258Z level=INFO run=e95fab91 message="watcher backend" directory=/home/runner/work/_temp platform=linux backend=inotify
+timestamp=2026-10-29T01:44:16.265Z level=INFO run=e95fab91 message="project copy refresh started" projectID=global
+timestamp=2026-10-29T01:44:16.267Z level=INFO run=e95fab91 message="project copy refresh done" projectID=global updated=[] removed=[]
+timestamp=2026-10-29T01:44:16.298Z level=INFO run=e95fab91 message="booting location services" directory=/home/runner/work/_temp workspaceID=undefined
+timestamp=2026-10-29T01:44:16.513Z level=INFO run=e95fab91 message=process session.id=ses_e7aabb8dbffe2mVbkkbaGgPiHt messageID=msg_185544a3000104AOaEh4L78a9Z
+timestamp=2026-10-29T01:44:16.514Z level=INFO run=e95fab91 message=stream providerID=opencode modelID=deepseek-v4.1-flash-free session.id=ses_e7aabb8dbffe2mVbkkbaGgPiHt small=false agent=build mode=primary
+timestamp=2026-10-29T01:44:16.516Z level=INFO run=e95fab91 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=opencode llm.model=deepseek-v4.1-flash-free
