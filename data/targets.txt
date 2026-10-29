@@ -1,13 +1,1 @@
-Target:
-sptpub.com
-
-First, identify all valid and potentially interesting subdomains and save them in a text file.
-Test each discovered subdomain individually.
-For each subdomain, first discover all UI routes and API endpoints.
-Then, test for both client-side and server-side vulnerabilities.
-Do not ask me any questions. Make reasonable decisions independently, think critically, and provide answers using the mindset of a top bug bounty hunter.
-First, create two test accounts on the target subdomain and save their credentials in a file for testing purposes.
-Try all reasonable approaches. However, if you are still unable to create accounts on the target subdomain, test only unauthenticated endpoints for potential vulnerabilities.
-Approach every question with the mindset of a top bug bounty hunter, focusing on thorough investigation, creative thinking, and practical exploitation within the authorized scope.
-
-Final Goal: Identify valid, impactful, and reportable security vulnerabilities. 
+https://launch.sptpub.com/brand/2599624589818605571/sportsbook/launch?lang=tr&theme=DARK
