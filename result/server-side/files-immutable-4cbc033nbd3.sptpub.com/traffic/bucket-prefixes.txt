@@ -1,5 +1,0 @@
-# fetched via in-scope host https://files-immutable-4cbc033nbd3.sptpub.com/ and S3 list API (read-only)
-currencies/
-flags_by_code/
-rocket-league/
-translations/

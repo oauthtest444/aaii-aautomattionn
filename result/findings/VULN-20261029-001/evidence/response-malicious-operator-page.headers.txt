@@ -1,0 +1,14 @@
+HTTP/2 200 
+content-type: text/html; charset=utf-8
+content-length: 5316
+server: nginx
+date: Thu, 29 Oct 2026 14:35:05 GMT
+access-control-allow-origin: *
+cache-control: no-cache, no-store, must-revalidate
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+x-cache: Miss from cloudfront
+via: 1.1 33b871000011afaf6969997fc8fcc060.cloudfront.net (CloudFront)
+x-amz-cf-pop: SFO5-P3
+alt-svc: h3=":443"; ma=86400
+x-amz-cf-id: sxJhUpopRamjAENYGQ9izXSqEGHeHdb4DVm0MCko8exC1p5T_f5c5g==
+

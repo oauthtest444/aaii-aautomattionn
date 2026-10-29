@@ -1,0 +1,14 @@
+HTTP/2 200 
+content-type: text/html; charset=utf-8
+content-length: 5336
+server: openresty
+date: Thu, 29 Oct 2026 14:34:54 GMT
+access-control-allow-origin: *
+cache-control: no-cache, no-store, must-revalidate
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+x-cache: Miss from cloudfront
+via: 1.1 bc74039edf3185d10496a020f89fe59a.cloudfront.net (CloudFront)
+x-amz-cf-pop: SFO5-P3
+alt-svc: h3=":443"; ma=86400
+x-amz-cf-id: fXHxYsopvMMlp0ftSYP90kcYovli1vG3Iaj7W7DdC6fSdQQHtR59FQ==
+

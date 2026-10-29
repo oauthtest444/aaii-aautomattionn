@@ -1,0 +1,58 @@
+{
+  "host": "launch.sptpub.com",
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/brand/{brandId}/sportsbook/launch",
+      "auth": "none",
+      "tests": [
+        {
+          "name": "query-reflection",
+          "variant": "operator_page/deposit_url",
+          "status": "confirmed-client-side-xss",
+          "evidence": "result/findings/VULN-20261029-001/"
+        },
+        {
+          "name": "param-escaping",
+          "variant": "lang/theme/token/brandId",
+          "status": "not-vulnerable"
+        },
+        {
+          "name": "brand-id-validation",
+          "variant": "numeric vs traversal/SQL-ish",
+          "status": "not-vulnerable"
+        }
+      ]
+    },
+    {
+      "method": "OPTIONS",
+      "path": "/brand/{brandId}/sportsbook/launch",
+      "auth": "none",
+      "tests": [
+        {
+          "name": "cors-preflight",
+          "status": "informational",
+          "notes": "ACAO *, methods GET/POST/OPTIONS/PATCH; no sensitive data or credentials"
+        }
+      ]
+    },
+    {
+      "method": "HEAD/POST/PATCH/PUT/DELETE",
+      "path": "/brand/{brandId}/sportsbook/launch",
+      "auth": "none",
+      "tests": [
+        {
+          "name": "method-handling",
+          "status": "not-vulnerable",
+          "notes": "HEAD 405 Allow GET; other methods CloudFront 403"
+        }
+      ]
+    }
+  ],
+  "not_tested": [
+    {
+      "class": "mass-assignment/IDOR/BOLA/BAC/business-logic/SSRF/command-injection/prototype-pollution",
+      "reason": "No same-origin API endpoints discovered; sportsbook APIs are on out-of-scope renderer origins and geo-blocked"
+    }
+  ]
+}

