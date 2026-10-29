@@ -13,3 +13,12 @@
 | POST | /api/top/ticket/ap-southeast-1/2021-01-01/CreateTicket | user | create body | Not vulnerable: no cross-tenant field influence observed; no sensitive field persisted. |
 | POST | /api/top/ticket/ap-southeast-1/2021-01-01/UpdateTicket | user | `TicketID`, `NotificationMethods`, extra fields | Not vulnerable: extra fields ignored; only notification methods persisted. |
 | POST | /api/top/ticket/ap-southeast-1/2021-01-01/GetSensitiveConversation | user | `TicketID`, `ConversationID` | Not vulnerable: ownership checked. |
+| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ListTicketExecutableAction | user | `TicketID` (own / other) | Own ticket returns `close`/`urge`; `ListTicketExecutableActionForUser` for B's ticket → `Forbidden`. |
+| POST | /api/top/ticket/ap-southeast-1/2021-01-01/HandleTicket | user | `TicketID` (own / other), `ActionKey`, `ActionParams` | Cross-account `Forbidden`; own `close` accepted. `confirm` accepted on a `handling` ticket although not advertised, but only for the caller's own ticket (business-logic note, no cross-tenant impact). |
+| POST | /api/top/ticket/ap-southeast-1/2021-01-01/HandleTicketForUser | user | B `TicketID`, `ActionKey=close` | `Forbidden`; no cross-account state change. |
+| POST | /api/top/ticket/ap-southeast-1/2022-01-01/GetPreSignedPostSignature | user | `FileType` | `text/plain` and `image/png` allowed; `text/html` rejected (`file type text/html is not allowed`). |
+| POST | /api/top/ticket/ap-southeast-1/2022-01-01/SaveFile | user | `FileID` own / other | Own file returns signed TOS URL; A using B's FileID → `Forbidden`. |
+| GET | /api/top/ticket/ap-southeast-1/2022-01-01/DownloadFile?FileID=… | user | `FileID` own / other | Own text/plain is served as `text/plain` with `Content-Disposition: attachment`; A using B's FileID → `Forbidden`. |
+
+CSRF note: `x-csrf-token` is mandatory and validated. Missing or incorrect token
+returns `InvalidCSRFToken` even when the request body is valid JSON.

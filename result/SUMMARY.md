@@ -1,7 +1,7 @@
 # Summary — console.byteplus.com route-list assessment
 
 - Run start: 2026-10-29T10:16:12Z
-- Last update: 2026-10-29T11:22:00Z (~66 minutes elapsed)
+- Last update: 2026-10-29T12:21:00Z (~125 minutes elapsed)
 - Runs: 40856058415 → 40859611597 → 40862670676 (preserved target hash)
 - Agent/model: opencode / opencode/deepseek-v4.1-flash-free
 - Environment: GitHub Actions runner, headless Google Chrome 156 / DevTools MCP
@@ -130,3 +130,20 @@ exclusion statement in the report.
   targets were not authorized.
 - Full upload MIME allow-list: observed HTML/SVG/PDF rejection and text/plain
   acceptance; complete extraction timed out on the minified bundle.
+
+## Workorder Continuation — 2026-10-29T12:10–12:21Z
+
+- Run ID `40870959426`; target hash preserved; no new high-impact finding.
+- Cross-account file access: A `SaveFile`/`DownloadFile` against B-owned FileID
+  `01a18797-49d5-78c4-98df-67933798659e` → `Forbidden`.
+- Cross-account ticket actions: `HandleTicket`,
+  `ListTicketExecutableActionForUser`, and `HandleTicketForUser` against B's
+  ticket → `Forbidden`.
+- Same-account `HandleTicket` accepted `close` and also `confirm` on a
+  `handling` ticket although only `close`/`urge` were advertised. This is a
+  business-logic inconsistency on the caller's own ticket; no cross-tenant
+  impact, so not notification-worthy.
+- CSRF: `x-csrf-token` is required and validated; missing/wrong token returns
+  `InvalidCSRFToken`.
+- Authorization lists remain empty for both A and B, so authorization-object
+  IDOR/BAC remains untestable.

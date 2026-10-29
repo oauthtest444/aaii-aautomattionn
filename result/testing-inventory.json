@@ -146,6 +146,61 @@
         "extra mass-assignment fields"
       ],
       "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ticket/ap-southeast-1/2021-01-01/ListTicketExecutableAction",
+      "auth": "user",
+      "variants": [
+        "TicketID own",
+        "TicketID other account via *ForUser"
+      ],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ticket/ap-southeast-1/2021-01-01/HandleTicket",
+      "auth": "user",
+      "variants": [
+        "ActionKey close/confirm on own ticket",
+        "TicketID other account",
+        "HandleTicketForUser cross-account"
+      ],
+      "status": "not-vulnerable",
+      "notes": "Cross-account calls return Forbidden. Same-account confirm accepted on handling ticket although not advertised; business-logic note only."
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ticket/ap-southeast-1/2022-01-01/GetPreSignedPostSignature",
+      "auth": "user",
+      "variants": [
+        "FileType text/plain",
+        "FileType text/html"
+      ],
+      "status": "not-vulnerable",
+      "notes": "text/plain and image/png allowed; text/html rejected."
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ticket/ap-southeast-1/2022-01-01/SaveFile",
+      "auth": "user",
+      "variants": [
+        "FileID own",
+        "FileID other account"
+      ],
+      "status": "not-vulnerable",
+      "notes": "A using B's FileID returned Forbidden."
+    },
+    {
+      "method": "GET",
+      "path": "/api/top/ticket/ap-southeast-1/2022-01-01/DownloadFile",
+      "auth": "user",
+      "variants": [
+        "FileID own",
+        "FileID other account"
+      ],
+      "status": "not-vulnerable",
+      "notes": "Own text/plain served attachment; A using B's FileID returned Forbidden."
     }
   ],
   "listeners": [
