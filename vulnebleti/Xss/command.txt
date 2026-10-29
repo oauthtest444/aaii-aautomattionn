@@ -1,0 +1,36 @@
+cd /home/kali/Test; curl https://web.archive.org/cdx/search/cdx?url=global.com\&matchType=domain\&fl=original\&collapse=urlkey\&output=text\&filter=statuscode:200 > urls.txt
+
+cat urls.txt | urldedupe | uniq | p1radup -o q-urls.txt
+
+cat q-urls.txt | kxss | tee kxss.txt
+
+nuclei -l q-urls.txt -t /home/kali/Nuclei-Custom-Templates/nuclei-templates/dast/vulnerabilities/xss/ -dast -o xss.txt
+
+### only reflection checker
+cd /home/kali/Tools/chat-gpt-tools/reflection_checker/; source myenv/bin/activate; python /home/kali/Tools/chat-gpt-tools/reflection_checker/only-reflection_checker.py -l urls.txt -o r.txt
+
+cat r.txt | grep -i " - reflection found for "
+
+### xss reflection checker
+cd /home/kali/Tools/chat-gpt-tools/reflection_checker/; source myenv/bin/activate; python /home/kali/Tools/chat-gpt-tools/reflection_checker/reflector.py -l urls.txt -o r.txt
+
+cat r.txt | grep -i " - reflection found for "
+
+cp katana /usr/local/bin/
+
+
+./send_to_burp.sh
+
+python3 -m venv myenv
+source myenv/bin/activate
+pip install requests colorama
+
+### only reflection checker
+
+cd /home/kali/Tools/chat-gpt-tools/reflection_checker/; source myenv/bin/activate; python /home/kali/Tools/chat-gpt-tools/reflection_checker/only-reflection_checker.py -l urls.txt -o r.txt
+
+### xss reflection checker
+
+cd /home/kali/Tools/chat-gpt-tools/reflection_checker/; source myenv/bin/activate; python /home/kali/Tools/chat-gpt-tools/reflection_checker/reflector.py -l urls.txt -o r.txt
+
+javascript:alert(1)

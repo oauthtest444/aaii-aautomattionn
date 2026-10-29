@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>postMessage Monitor • Persistent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; }
+        .log-entry { transition: all 0.2s ease; }
+        .log-entry:hover { transform: translateX(4px); }
+        pre { font-size: 0.85rem; }
+        .message-data { max-height: 420px; overflow-y: auto; }
+        .origin-pill { transition: all 0.2s; }
+        .tree-key { color: #a5b4fc; }
+        .tree-value { color: #86efac; }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen">
+    <div class="max-w-7xl mx-auto p-6">
+        <div class="flex justify-between items-center mb-8 border-b border-gray-800 pb-6">
+            <div>
+                <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                    postMessage Monitor
+                </h1>
+                <p class="text-gray-400 mt-1">Persistent • Cross-origin message analyzer</p>
+            </div>
+            <div class="flex gap-4">
+                <button onclick="clearAllData()" 
+                        class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-xl flex items-center gap-2 font-medium transition">
+                    <i class="fas fa-trash"></i> Clear Everything
+                </button>
+                <button onclick="togglePause()" id="pauseBtn"
+                        class="px-6 py-3 bg-amber-600 hover:bg-amber-700 rounded-xl flex items-center gap-2 font-medium transition">
+                    <i class="fas fa-pause"></i> <span id="pauseText">Pause</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-12 gap-6">
+            <!-- Sidebar -->
+            <div class="col-span-12 lg:col-span-3 space-y-6">
+                <!-- Victim -->
+                <div class="bg-gray-900 rounded-3xl p-6 border border-gray-800">
+                    <h2 class="text-lg font-semibold mb-4">Victim URL</h2>
+                    <input id="victimUrl" type="text" value="https://example.com" 
+                           class="w-full bg-gray-950 border border-gray-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500">
+                    <div class="grid grid-cols-2 gap-3 mt-5">
+                        <button onclick="openIframe()" class="py-3 bg-blue-600 hover:bg-blue-700 rounded-2xl text-sm font-medium">Iframe</button>
+                        <button onclick="openPopup()" class="py-3 bg-purple-600 hover:bg-purple-700 rounded-2xl text-sm font-medium">Popup</button>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="bg-gray-900 rounded-3xl p-6 border border-gray-800">
+                    <h2 class="text-lg font-semibold mb-4">Filters</h2>
+                    
+                    <div class="mb-5">
+                        <label class="text-xs text-gray-400 block mb-1">Allowed Origins</label>
+                        <input id="allowedOrigins" placeholder="comma separated" 
+                               class="w-full bg-gray-950 border border-gray-700 rounded-2xl px-4 py-3 text-sm">
+                    </div>
+
+                    <div>
+                        <label class="text-xs text-gray-400 block mb-1">Block Origin</label>
+                        <div class="flex gap-2">
+                            <input id="blockInput" placeholder="https://..." 
+                                   class="flex-1 bg-gray-950 border border-gray-700 rounded-2xl px-4 py-3 text-sm">
+                            <button onclick="addBlockedOrigin()" 
+                                    class="bg-red-600 hover:bg-red-700 px-6 rounded-2xl">Block</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Origins List -->
+                <div class="bg-gray-900 rounded-3xl p-6 border border-gray-800">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-semibold">Origins</h2>
+                        <button onclick="clearOriginFilter()" 
+                                class="text-xs text-gray-400 hover:text-white">Clear Filter</button>
+                    </div>
+                    <div id="originsList" class="max-h-96 overflow-y-auto space-y-1 text-sm"></div>
+                </div>
+
+                <!-- Blocked -->
+                <div class="bg-gray-900 rounded-3xl p-6 border border-gray-800">
+                    <h2 class="text-lg font-semibold mb-4 text-red-400">Blocked Origins</h2>
+                    <div id="blockedList" class="space-y-2"></div>
+                </div>
+            </div>
+
+            <!-- Main Log -->
+            <div class="col-span-12 lg:col-span-9">
+                <div class="bg-gray-900 rounded-3xl p-6 border border-gray-800 flex flex-col h-full">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <h2 class="text-xl font-semibold">Message Log</h2>
+                            <span id="messageCount" class="bg-emerald-900 text-emerald-300 text-xs px-3 py-1 rounded-full font-mono">0</span>
+                        </div>
+                        <div class="text-xs text-gray-500">Persistent across refreshes • Powered by localStorage</div>
+                    </div>
+                    
+                    <div id="logContainer" class="flex-1 overflow-y-auto space-y-4 pr-3 custom-scroll"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Iframe -->
+    <div id="iframeContainer" class="fixed bottom-8 right-8 hidden w-[440px] h-[420px] bg-gray-900 border border-gray-700 rounded-3xl shadow-2xl overflow-hidden z-50">
+        <div class="bg-gray-800 px-5 py-3 flex justify-between items-center">
+            <span class="font-medium text-sm">Iframe Preview</span>
+            <button onclick="closeIframe()" class="hover:text-red-400"><i class="fas fa-times"></i></button>
+        </div>
+        <iframe id="victimIframe" class="w-full h-[calc(100%-52px)]" sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe>
+    </div>
+
+    <script>
+        let isPaused = false;
+        let messages = JSON.parse(localStorage.getItem('postMessages') || '[]');
+        let blockedOrigins = new Set(JSON.parse(localStorage.getItem('blockedOrigins') || '[]'));
+        let currentOriginFilter = null;
+
+        const tailColors = ['blue', 'purple', 'emerald', 'amber', 'rose'];
+
+        function saveData() {
+            // Keep only last 800 messages
+            if (messages.length > 800) messages = messages.slice(-800);
+            localStorage.setItem('postMessages', JSON.stringify(messages));
+            localStorage.setItem('blockedOrigins', JSON.stringify(Array.from(blockedOrigins)));
+        }
+
+        function formatDate(timestamp) {
+            return new Date(timestamp).toLocaleTimeString('en-US', { 
+                hour12: false, 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit' 
+            });
+        }
+
+        function prettyJSON(data) {
+            if (!data) return "null";
+            if (typeof data === 'string') {
+                try { return JSON.stringify(JSON.parse(data), null, 2); } catch(e) { return data; }
+            }
+            return JSON.stringify(data, null, 2);
+        }
+
+        function renderMessage(msg) {
+            const entry = document.createElement('div');
+            entry.className = `log-entry bg-gray-950 border border-gray-800 rounded-3xl p-6 text-sm`;
+            
+            const source = msg.source || 'Unknown';
+            
+            let html = `
+                <div class="flex justify-between">
+                    <div class="flex items-center gap-3">
+                        <span onclick="filterByOrigin('${msg.origin}')" 
+                              class="cursor-pointer origin-pill px-4 py-1 bg-gray-800 hover:bg-gray-700 rounded-3xl text-xs font-mono">${msg.origin}</span>
+                        <span class="text-xs text-gray-500">${formatDate(msg.timestamp)}</span>
+                    </div>
+                    <span class="text-xs px-3 py-1 bg-violet-950 text-violet-300 rounded-3xl">${source}</span>
+                </div>
+                
+                <div class="mt-5">
+                    <div class="flex justify-between text-xs text-gray-400 mb-2">
+                        <span>DATA</span>
+                        <span class="cursor-pointer hover:text-white" onclick="toggleExpand(this)">[collapse]</span>
+                    </div>
+                    <pre class="message-data bg-black/60 p-5 rounded-2xl text-emerald-200 font-mono whitespace-pre-wrap overflow-auto">${prettyJSON(msg.data)}</pre>
+                </div>
+            `;
+            
+            entry.innerHTML = html;
+            return entry;
+        }
+
+        function toggleExpand(el) {
+            const pre = el.parentElement.nextElementSibling;
+            if (pre.style.maxHeight) {
+                pre.style.maxHeight = null;
+                el.textContent = '[collapse]';
+            } else {
+                pre.style.maxHeight = 'none';
+                el.textContent = '[expand]';
+            }
+        }
+
+        function renderLogs(filteredMessages = null) {
+            const container = document.getElementById('logContainer');
+            container.innerHTML = '';
+            
+            const toRender = filteredMessages || messages;
+            
+            toRender.forEach(msg => {
+                if (currentOriginFilter && msg.origin !== currentOriginFilter) return;
+                if (blockedOrigins.has(msg.origin)) return;
+                container.appendChild(renderMessage(msg));
+            });
+            
+            document.getElementById('messageCount').textContent = toRender.length;
+        }
+
+        function addMessage(event) {
+            if (isPaused) return;
+            if (blockedOrigins.has(event.origin)) return;
+
+            const msg = {
+                timestamp: Date.now(),
+                origin: event.origin || 'null',
+                data: event.data,
+                source: event.source === window.parent ? 'Parent' : 
+                       event.source === window.opener ? 'Opener' : 
+                       'Iframe/Popup'
+            };
+            
+            messages.unshift(msg); // newest first
+            saveData();
+            renderLogs();
+            updateOriginsList();
+        }
+
+        function updateOriginsList() {
+            const container = document.getElementById('originsList');
+            container.innerHTML = '';
+            
+            const originMap = {};
+            messages.forEach(m => {
+                if (!originMap[m.origin]) originMap[m.origin] = 0;
+                originMap[m.origin]++;
+            });
+            
+            Object.keys(originMap).sort().forEach(origin => {
+                const count = originMap[origin];
+                const active = currentOriginFilter === origin;
+                
+                const div = document.createElement('div');
+                div.className = `flex justify-between items-center px-4 py-3 rounded-2xl cursor-pointer hover:bg-gray-800 ${active ? 'bg-violet-900/30 border border-violet-500' : 'bg-gray-950'}`;
+                div.innerHTML = `
+                    <span class="font-mono text-sm">${origin}</span>
+                    <span class="bg-gray-800 text-xs px-3 py-1 rounded-3xl">${count}</span>
+                `;
+                div.onclick = () => filterByOrigin(origin);
+                container.appendChild(div);
+            });
+            
+            if (Object.keys(originMap).length === 0) {
+                container.innerHTML = `<div class="text-gray-500 text-center py-8">No messages yet</div>`;
+            }
+        }
+
+        function filterByOrigin(origin) {
+            currentOriginFilter = origin;
+            renderLogs();
+            updateOriginsList();
+        }
+
+        function clearOriginFilter() {
+            currentOriginFilter = null;
+            renderLogs();
+            updateOriginsList();
+        }
+
+        function addBlockedOrigin() {
+            const input = document.getElementById('blockInput');
+            let origin = input.value.trim();
+            if (!origin) return;
+            
+            if (!origin.startsWith('http')) origin = 'https://' + origin;
+            
+            blockedOrigins.add(origin);
+            saveData();
+            renderBlockedList();
+            renderLogs();
+            updateOriginsList();
+            input.value = '';
+        }
+
+        function removeBlocked(origin) {
+            blockedOrigins.delete(origin);
+            saveData();
+            renderBlockedList();
+            renderLogs();
+            updateOriginsList();
+        }
+
+        function renderBlockedList() {
+            const container = document.getElementById('blockedList');
+            container.innerHTML = '';
+            
+            if (blockedOrigins.size === 0) {
+                container.innerHTML = `<p class="text-gray-500 text-sm">No blocked origins</p>`;
+                return;
+            }
+            
+            blockedOrigins.forEach(origin => {
+                const el = document.createElement('div');
+                el.className = "flex items-center justify-between bg-gray-950 border border-red-900/50 rounded-2xl px-4 py-3";
+                el.innerHTML = `
+                    <span class="font-mono text-red-300 text-sm">${origin}</span>
+                    <button onclick="removeBlocked('${origin}')" class="text-red-400 hover:text-red-500 text-xs font-medium">UNBLOCK</button>
+                `;
+                container.appendChild(el);
+            });
+        }
+
+        function loadSavedData() {
+            renderLogs();
+            renderBlockedList();
+            updateOriginsList();
+        }
+
+        function clearAllData() {
+            if (!confirm("Delete ALL saved messages and blocked origins?")) return;
+            messages = [];
+            blockedOrigins.clear();
+            localStorage.removeItem('postMessages');
+            localStorage.removeItem('blockedOrigins');
+            currentOriginFilter = null;
+            loadSavedData();
+        }
+
+        function togglePause() {
+            isPaused = !isPaused;
+            const btn = document.getElementById('pauseBtn');
+            const text = document.getElementById('pauseText');
+            if (isPaused) {
+                btn.classList.replace('bg-amber-600', 'bg-gray-600');
+                text.textContent = 'Resume';
+            } else {
+                btn.classList.replace('bg-gray-600', 'bg-amber-600');
+                text.textContent = 'Pause';
+            }
+        }
+
+        function openIframe() {
+            const url = document.getElementById('victimUrl').value.trim();
+            if (!url) return alert("Enter URL");
+            document.getElementById('victimIframe').src = url;
+            document.getElementById('iframeContainer').classList.remove('hidden');
+        }
+
+        function closeIframe() {
+            document.getElementById('iframeContainer').classList.add('hidden');
+            document.getElementById('victimIframe').src = '';
+        }
+
+        function openPopup() {
+            const url = document.getElementById('victimUrl').value.trim();
+            if (!url) return alert("Enter URL");
+            window.open(url, '_blank');
+        }
+
+        // Setup
+        window.onload = () => {
+            // Listener
+            window.addEventListener('message', addMessage);
+
+            // Load saved
+            loadSavedData();
+
+            // Demo message
+            setTimeout(() => {
+                if (messages.length === 0) {
+                    messages.push({
+                        timestamp: Date.now(),
+                        origin: window.location.origin,
+                        data: { type: "system", message: "Welcome! This page now persists data using localStorage." },
+                        source: "Self"
+                    });
+                    saveData();
+                    loadSavedData();
+                }
+            }, 600);
+
+            console.log('%cPersistent postMessage Monitor initialized', 'color:#c4b5fd; font-size:13px;');
+        };
+    </script>
+</body>
+</html>

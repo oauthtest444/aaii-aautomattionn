@@ -1,0 +1,411 @@
+I have provided a text file on url `https://www.image2url.com/r2/default/files/1786973836195-4951980a-8d09-469d-811d-102e6e4dce48.txt` containing the route-to-JavaScript-URL mapping collected during manual browsing.
+
+**IMPORTANT:** Treat the contents of `https://www.image2url.com/r2/default/files/1786973836195-4951980a-8d09-469d-811d-102e6e4dce48.txt` as authoritative. Do not require me to paste the route/URL data into the prompt.
+
+## 1. Read the file from url
+
+First, read the entire `https://www.image2url.com/r2/default/files/1786973836195-4951980a-8d09-469d-811d-102e6e4dce48.txt` file.
+
+The route → JavaScript URL relationship in this file is authoritative.
+
+**Do not merge routes together merely because JavaScript files are shared.** Analyze every route independently.
+
+If the same JavaScript URL appears under multiple routes, record that relationship and explain that the file is shared by those routes.
+
+---
+
+## 2. Obtain the JavaScript files
+
+For every JavaScript URL listed in `https://www.image2url.com/r2/default/files/1786973836195-4951980a-8d09-469d-811d-102e6e4dce48.txt`:
+
+1. Fetch/download the JavaScript file.
+2. Deduplicate downloads by URL.
+3. Preserve the mapping between each downloaded JS file and every route that loaded it.
+4. Beautify/de-minify the JavaScript so it can be analyzed.
+5. Do not silently omit a file because it is large, minified, dynamically loaded, or difficult to parse.
+6. If a file cannot be downloaded, clearly report the URL and the reason.
+
+Do not invent JavaScript source code when a file cannot be retrieved.
+
+---
+
+## 3. Required instruction files
+
+Before beginning vulnerability analysis, locate and read these Markdown instruction files if they are provided:
+
+* `dom-xss-sink-tracing-skill.md`
+* `postmessage-global-event-listener-tracing-skill.md`
+
+You **must read and follow their instructions before analyzing the JavaScript**.
+
+If either file is missing or inaccessible, explicitly state that before proceeding.
+
+---
+
+## 4. DOM XSS sink detection
+
+Search the downloaded JavaScript using **only these exact sink regexes**.
+
+Do not substitute, modify, broaden, or add alternative regexes for these four sink searches.
+
+### Sink regex 1
+
+```regex
+(?:window\.)?location\.(?:assign|replace)\s*\(\s*(?![`'"]|\$\{|window\.location\.|location\.|\w+\.href)
+```
+
+### Sink regex 2
+
+```regex
+(?<![\w$.])(?:window\.|document\.|parent\.|top\.|self\.|frames\[\d+\.\])?location(?:\.href)?\s*=\s*(?!=)\s*(?![\w$]+(?:\.[\w$]+)*\.href\b)(?![\w$]+(?:\.[\w$]+)*\.toString\(\))(?![`'"]|`\/|""\.concat|null\b|\{)(?!\(null\s*==[\s\S]*?this\.location[\s\S]*?\.toString\(\))(?!\(0\s*,\s*[\w$]+\.[\w$]+\)\s*\()
+```
+
+### Sink regex 3
+
+```regex
+document\.createElement\((['"])(iframe|object|embed|script)\1\);?
+```
+
+### Sink regex 4
+
+```regex
+(\beval\s*\(\s*(?![`'"])|new\s+Function\s*\(\s*(?![`'"])|document\.write\s*\(|insertAdjacentHTML\s*\()|\.(?:inner|outer)HTML\b\s*=\s*(?!=)(?!\s*(?:[`'"]|null\b|\w+\.(?:inner|outer)HTML))|\.srcdoc\b\s*=\s*(?!=)(?!\s*(?:[`'"]|null\b))
+```
+
+Use the regex exactly as supplied above.
+
+---
+
+## 5. User-controlled URL source detection
+
+Search all downloaded JavaScript using this exact regex:
+
+```regex
+(?<![=!<>])(?:\b[A-Za-z_$][\w$]*\s*=\s*)new\s+(?:URLSearchParams|URL)\s*\(\s*(?:(?:window\.)?location\.(?:search|href|hash|pathname)|document\.(?:URL|URLUnencoded|baseURI))\b
+```
+note: run this regex and trace deeply if it perform on any sensitive action then report that
+
+
+Again, use the regex exactly as supplied.
+
+---
+
+## 6. Source-to-sink tracing
+
+A regex match is **not automatically a vulnerability**.
+
+For every relevant match, manually trace the value through the JavaScript.
+
+Determine:
+
+* Original attacker-controlled source.
+* Variables receiving the value.
+* Functions through which the value passes.
+* Transformations performed on it.
+* URL parsing.
+* Decoding/encoding.
+* Sanitization.
+* Validation.
+* Filtering.
+* Allowlisting/blocklisting.
+* Type conversions.
+* String concatenation.
+* Object/property access.
+* Cross-function propagation.
+* Cross-module propagation where possible.
+* Final security-sensitive sink.
+
+Determine whether attacker-controlled input can actually reach the sink.
+
+Classify every result as:
+
+* **Confirmed vulnerability**
+* **Likely vulnerability / requires additional verification**
+* **Safe / false positive**
+
+Do not report a vulnerability based solely on a regex match.
+
+---
+
+## 7. Additional security analysis
+
+In addition to DOM XSS, investigate the downloaded JavaScript for security-impacting client-side data flows involving:
+
+### CSPT — Client-Side Path Traversal
+
+Check whether attacker-controlled input can influence:
+
+* `POST`
+* `PUT`
+* `PATCH`
+* `DELETE`
+
+request paths.
+
+Determine whether attacker-controlled path components can be injected without appropriate validation, normalization, or restriction.
+
+Trace the complete flow from source to HTTP request.
+
+---
+
+### XSS
+
+Investigate attacker-controlled data reaching:
+
+* HTML injection sinks
+* JavaScript execution sinks
+* URL-based execution contexts
+* DOM manipulation
+* navigation
+* dynamically generated elements
+* event-handler contexts
+* other security-sensitive browser APIs
+
+Do not report generic dangerous APIs unless you can establish an attacker-controlled data flow.
+
+---
+
+### Cookies
+
+Investigate whether attacker-controlled input can influence:
+
+* Cookie names
+* Cookie values
+* Cookie-related APIs
+* Cookie-derived application state
+
+Then determine whether the resulting cookie data reaches a security-sensitive sink.
+
+---
+
+### localStorage / sessionStorage
+
+Investigate whether attacker-controlled input can influence:
+
+* Storage keys
+* Storage values
+* Values retrieved from storage
+
+Then trace those values to XSS, navigation, request, DOM, or other security-sensitive sinks.
+
+---
+
+### URL-based sources
+
+Explicitly analyze data originating from:
+
+* `location.search`
+* `location.href`
+* `location.hash`
+* `location.pathname`
+* `document.URL`
+* `document.URLUnencoded`
+* `document.baseURI`
+* `URLSearchParams`
+* `URL`
+
+Trace these sources throughout the application.
+
+---
+
+### postMessage and global event listeners
+
+Follow all relevant instructions in:
+
+`postmessage-global-event-listener-tracing-skill.md`
+
+Investigate:
+
+* `window.postMessage`
+* `message` event listeners
+* global event listeners
+* `event.data`
+* `event.origin`
+* origin validation
+* message routing
+* message data reaching sensitive sinks
+
+Pay particular attention to cases where `event.origin` is not properly validated or where attacker-controlled `event.data` reaches a security-sensitive operation.
+
+---
+
+## 8. Route isolation
+
+This is extremely important.
+
+The JavaScript URLs were collected by manually visiting each route individually.
+
+Therefore:
+
+**Treat every route → JS URL mapping in `routes-and-js-urls.txt` as authoritative.**
+
+For each finding, identify the route(s) for which the relevant JavaScript was loaded.
+
+If:
+
+```text
+Route A → file.js
+Route B → file.js
+```
+
+then `file.js` is shared by both routes.
+
+Do not claim that it belongs exclusively to Route A.
+
+Likewise, do not assume that a vulnerability found in a shared JavaScript file is reachable from every route unless the relevant execution path is actually available from that route.
+
+Analyze execution/reachability separately where necessary.
+
+---
+
+## 9. Exploitability verification
+
+For each potential vulnerability, determine:
+
+1. Can an attacker control the source?
+2. What exact input is controllable?
+3. Where does the input enter the application?
+4. Can the attacker influence the relevant variable?
+5. Does the value survive validation/sanitization?
+6. Does it reach the security-sensitive sink?
+7. Is the vulnerable code actually executed on the relevant route?
+8. Are there browser/API restrictions?
+9. Are there authentication requirements?
+10. Does exploitation require an attacker-controlled webpage, link, iframe, account, or other capability?
+11. Is user interaction required?
+12. Is exploitation same-origin or cross-origin?
+13. What is the realistic security impact?
+
+Do not overstate impact.
+
+---
+
+## 10. Proof of concept
+
+For confirmed or strongly supported vulnerabilities, provide a minimal proof of concept where it can be safely derived from the code.
+
+The PoC should show:
+
+```text
+Attacker-controlled input
+        ↓
+Source
+        ↓
+Variable/function
+        ↓
+Transformation/validation
+        ↓
+Sink
+        ↓
+Security impact
+```
+
+If a complete PoC cannot be established from the downloaded JavaScript, clearly state what additional runtime verification is required instead of inventing a PoC.
+
+---
+
+## 11. Code references
+
+For every relevant finding, provide as much of the following as possible:
+
+* Route
+* JavaScript URL
+* Local/downloaded filename
+* Function name
+* Source location
+* Sink location
+* Relevant variable names
+* Relevant call chain
+* Line numbers, if available
+* Small relevant code excerpts
+
+Do not dump entire JavaScript files into the report.
+
+---
+
+# Final report
+
+At the end, produce a structured security report.
+
+## Executive Summary
+
+Give:
+
+* Number of routes analyzed
+* Number of unique JavaScript files
+* Number of confirmed vulnerabilities
+* Number of likely vulnerabilities
+* Number of safe/false-positive matches
+* Any files that could not be downloaded or analyzed
+
+## Findings
+
+For every confirmed or likely vulnerability, use:
+
+### [Finding ID] — [Vulnerability Type]
+
+**Severity:**
+**Confidence:**
+**Affected route:**
+**Affected JavaScript file:**
+**JavaScript URL:**
+
+**Source:**
+Describe the attacker-controlled source.
+
+**Sink:**
+Describe the security-sensitive sink.
+
+**Source-to-sink data flow:**
+Provide the complete propagation chain.
+
+**Validation / sanitization:**
+Explain every relevant validation or transformation and why it is or is not sufficient.
+
+**Affected function(s):**
+List the relevant functions.
+
+**Code location:**
+Give line numbers or other precise locations when available.
+
+**Exploitation requirements:**
+Explain the attacker's required capabilities and preconditions.
+
+**Proof of concept:**
+Provide a minimal PoC if safely verifiable.
+
+**Impact:**
+Explain the realistic security impact.
+
+**Assessment:**
+State clearly whether this is:
+
+* Confirmed vulnerability
+* Likely vulnerability requiring additional verification
+* Safe / false positive
+
+---
+
+## Route Coverage Matrix
+
+Finally, provide a table showing:
+
+| Route | JS files analyzed | Sink matches | Source matches | Confirmed findings | Likely findings |
+| ----- | ----------------- | -----------: | -------------: | -----------------: | --------------: |
+
+This table must preserve the original route-to-JS mapping from `routes-and-js-urls.txt`.
+
+## Important rules
+
+* The text file is the authoritative route/URL input.
+* Do not require the user to paste the URLs into the prompt.
+* Do not merge routes incorrectly.
+* Deduplicate identical JS URLs while preserving all route associations.
+* Use the exact three supplied regexes for their respective searches.
+* Do not invent additional regexes for those searches.
+* Do not treat regex matches as vulnerabilities.
+* Perform actual source-to-sink tracing.
+* Read the two skill Markdown files before vulnerability analysis.
+* Distinguish confirmed vulnerabilities from likely issues and false positives.
+* Never invent unavailable source code, line numbers, runtime behavior, or exploitation results.
+* Clearly report anything that could not be verified.

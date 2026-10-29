@@ -1,0 +1,57 @@
+Function-dos
+https://medium.com/@whithat444/list/functiondos-5eff78c06aeb
+
+https://www.youtube.com/watch?v=t8s21AoBFa0&t=5s
+
+https://medium.com/@mahdisalhi0500/how-i-found-the-most-weird-bug-in-the-bug-bounty-field-is-it-really-worth-it-d4b60c0352a8
+
+https://shahjerry33.medium.com/application-level-dos-smoking-with-null-again-364ce16dad74
+
+https://medium.com/@mrxdevil404/scenarios-involving-denial-of-service-dos-attacks-implemented-using-different-techniques-1aa12d1d0cf8
+
+https://medium.com/@mahdisalhi0500/how-i-found-the-most-weird-bug-in-the-bug-bounty-field-is-it-really-worth-it-d4b60c0352a8
+
+https://khoof.medium.com/unexpected-input-lead-to-functionality-confusion-and-p4-easy-bug-ba30013caddd
+
+https://x.com/Masonhck3571/status/1969550823899480576
+
+https://jorianwoltjer.com/blog/p/ctf/intigriti-xss-challenge/0825
+
+Crash
+
+
+A fun NoSQL vuln that caused DOS: I sent a PUT request of {"field":"last_name","value":{"$ne":null}} which persisted and crashed the Teams/Admin UI for all users within the organization LOL #bugbounty #infosec 
+
+Normal request body was:
+
+{"field":"last_name","value":"mason"}
+
+Changed it to:
+
+{"field":"last_name","value":{"$ne":null}}
+
+which caused the backend to store an object instead of a string, so downstream code that expected last_name to be a string caused Teams/Admin UI crashed org-wide.
+
+
+"FeedBaCkTeamplate": "COOL" — there is no whitelist or blacklist of words.
+
+EXMPLE: "FeedBaCkTeamplate":"TEST" "FeedBaCkTeamplate":null "FeedBaCkTeamplate":1 "FeedBaCkTeamplate": ""
+
+"scopes": ["test.read"]
+
+Change 
+
+"type": "comment"
+To 
+type": "test"
+
+Response come 500 Internal Server Error and dos done 
+
+Change title to 
+
+  "title": null
+
+null
+""
+1
+testtt

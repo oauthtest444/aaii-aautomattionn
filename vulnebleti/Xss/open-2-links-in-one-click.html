@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated Chain-Tab Launcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        .btn {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background-color: #e64a19;
+        }
+        .status {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #777;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Automatic Tab Sequencer</h2>
+    <p>Click once to start the automated multi-tab opening chain sequence.</p>
+    <button id="startChainBtn" class="btn">Start Auto Sequence</button>
+    <div id="statusMsg" class="status">Ready...</div>
+</div>
+
+<script>
+// Define the queue of URLs to open sequentially
+const urlQueue = [
+    'https://example.com',
+    'https://evil.com'
+];
+
+document.getElementById('startChainBtn').addEventListener('click', function() {
+    // Clear any residual tracking states
+    localStorage.removeItem('tabIndex');
+    
+    // Store the queue and the initial index in localStorage
+    localStorage.setItem('urlQueue', JSON.stringify(urlQueue));
+    localStorage.setItem('tabIndex', '0');
+    
+    // Trigger the sequence handler
+    processNextTab();
+});
+
+function processNextTab() {
+    const queueData = localStorage.getItem('urlQueue');
+    const indexData = localStorage.getItem('tabIndex');
+    
+    if (!queueData || !indexData) return;
+    
+    const queue = JSON.parse(queueData);
+    let currentIndex = parseInt(indexData, 10);
+    
+    if (currentIndex < queue.length) {
+        const targetUrl = queue[currentIndex];
+        document.getElementById('statusMsg').innerText = `Opening tab ${currentIndex + 1} of ${queue.length}...`;
+        
+        // Open the target URL in a new tab
+        window.open(targetUrl, '_blank');
+        
+        // Advance the state index automatically
+        currentIndex++;
+        localStorage.setItem('tabIndex', currentIndex.toString());
+        
+        // Wait 3 seconds for the previous action to process, then automatically trigger the next
+        setTimeout(processNextTab, 3000);
+    } else {
+        document.getElementById('statusMsg').innerText = "All tabs launched! Redirecting...";
+        
+        // Clean up tracking storage before redirecting
+        localStorage.removeItem('tabIndex');
+        localStorage.removeItem('urlQueue');
+
+        // REDIRECT AUTO WORK HERE: Only opens after all queue items have completed
+        window.open("https://console.byteplus.com/datafinder/", "_top");
+    }
+}
+</script>
+
+</body>
+</html>
