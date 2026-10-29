@@ -1,13 +1,11 @@
 # Session Metadata
 
-- Start time (UTC): 2026-10-29T06:25:00Z
+- Start time (UTC): 2026-10-29T08:16:00Z
 - Repository root: /home/runner/work/aaii-aautomattionn/aaii-aautomattionn
 - Agent/model: opencode / opencode/deepseek-v4.1-flash-free
 - Environment: GitHub Actions runner (linux), headless Chrome
-- Target(s): https://console.byteplus.com/ (URL-list from data/targets.txt)
-- Chrome DevTools MCP: connected (Chrome 156, http://127.0.0.1:9222)
-- Resume state: preserved (target_hash unchanged); prior run watchdog-terminated with no findings/inventory, only scope.md persisted.
-- Tool versions:
-  - opencode: /home/runner/.opencode/bin/opencode
-  - curl/git/node v22.23.4/npx/python3/chrome present
-- Time budget: ~5h35m active testing window; hard job timeout 5h55m
+- Target(s): https://console.byteplus.com/ (URL-list from data/targets.txt, 86 routes)
+- Chrome DevTools MCP: available in-session (chrome-devtools tools)
+- Resume state: preserved (target_hash b5e187... unchanged). Prior attempts (40828990774, earlier) were watchdog-terminated with no persisted inventory/findings; only scope.md + logs survived. Starting route-by-route testing now.
+- Credentials: creds/test-account.txt (account A email, account B username)
+- Time budget: job start 08:15Z, hard timeout ~14:10Z; active window ~5h35m. Checkpoint continuously.
