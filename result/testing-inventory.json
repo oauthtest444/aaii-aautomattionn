@@ -201,6 +201,85 @@
       ],
       "status": "not-vulnerable",
       "notes": "Own text/plain served attachment; A using B's FileID returned Forbidden."
+    },
+    {
+      "method": "POST",
+      "path": "/api/workorder/ticket/GetAccountMaskedSecurityContact",
+      "auth": "user",
+      "variants": [
+        "AccountID own",
+        "AccountID other account",
+        "AccountId/accountID casing"
+      ],
+      "status": "confirmed",
+      "notes": "Cross-account masked security contact disclosure; low impact, excluded from notification (VULN-20261029-002)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/workorder/ticket/GetUserMaskedSecurityContact",
+      "auth": "user",
+      "variants": [
+        "arbitrary numeric UserId"
+      ],
+      "status": "not-vulnerable",
+      "notes": "Distinguishable UserSecurityContactNotExist response; masked data only, excluded as informational."
+    },
+    {
+      "method": "POST",
+      "path": "/api/workorder/ticket/Tcc",
+      "auth": "user",
+      "variants": [
+        "empty body"
+      ],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/ticket/ap-southeast-1/2021-01-01/ListAllFlow",
+      "auth": "user",
+      "variants": [
+        "empty body"
+      ],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/workorder/ticket/getWorkorderConsoleConfig",
+      "auth": "user",
+      "variants": [
+        "empty body"
+      ],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "GET",
+      "path": "/ticket/api/v2/core/GetTicketCreateOperation",
+      "auth": "user",
+      "variants": [
+        "empty body"
+      ],
+      "status": "not-present",
+      "notes": "404 HTML; inactive ticket-engine path referenced by create-page bundle."
+    },
+    {
+      "method": "POST",
+      "path": "/ticket/api/v1/query/template",
+      "auth": "user",
+      "variants": [
+        "empty body"
+      ],
+      "status": "not-present",
+      "notes": "404; inactive ticket-engine path."
+    },
+    {
+      "method": "POST",
+      "path": "/ticket/api/v1/tag/app/bind/list",
+      "auth": "user",
+      "variants": [
+        "empty body"
+      ],
+      "status": "not-present",
+      "notes": "404; inactive ticket-engine path."
     }
   ],
   "listeners": [

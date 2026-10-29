@@ -147,3 +147,20 @@ exclusion statement in the report.
   `InvalidCSRFToken`.
 - Authorization lists remain empty for both A and B, so authorization-object
   IDOR/BAC remains untestable.
+
+## Workorder Continuation — 2026-10-29T12:36–12:41Z
+
+- Run ID `40874496014`; target hash preserved; no new high-impact finding.
+- Re-analyzed the create page after full JS load: `602.cd729511.js`,
+  `759.5cad7c3e.js`, `770.37d57eb6.js`, and `TicketCreate.22cfeac3.js`.
+- The live create page issued only already-tested helper calls:
+  `GetAccountMaskedSecurityContact`, `Tcc`, `ListAllFlow`, and
+  `getWorkorderConsoleConfig`.
+- The inactive ticket-engine paths in `770` returned 404 with empty read-only
+  bodies: `/ticket/api/v2/core/GetTicketCreateOperation`,
+  `/ticket/api/v1/query/template`, and `/ticket/api/v1/tag/app/bind/list`.
+  No tenant/access-party parameters were sent.
+- `CreateTicket` body fields are `FlowID`, `SRTypeId`, `FormContent`,
+  `PlatformFormContent`, `CreateOrigin`, optional `NotificationMethods`, and
+  `CustomerReferURL` (origin-prefixed; SSRF remains untested by rule).
+- No new endpoint or notification-worthy issue found.

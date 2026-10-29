@@ -38,3 +38,22 @@
   returns `InvalidCSRFToken` even with a valid JSON body.
 - 2026-10-29T12:21Z — No new notification-worthy vulnerability in this
   continuation.
+## Run 40874496014 — continuation
+- Start time (UTC): 2026-10-29T12:36:51Z
+- Resume decision: preserved (target hash unchanged)
+- Target: https://console.byteplus.com/workorder/list/
+- Scope: URL-list rooted at /workorder/; same-origin JS/API only
+- MCP: chrome-devtools available (about:blank)
+- 2026-10-29T12:37Z — logged in as account A; `/workorder/list/` loaded and
+  existing ticket APIs responded normally.
+- 2026-10-29T12:38Z — navigated to `/workorder/create`; downloaded and analyzed
+  the create-route chunks `602.cd729511.js`, `770.37d57eb6.js`,
+  `759.5cad7c3e.js`, and `TicketCreate.22cfeac3.js`.
+- 2026-10-29T12:39Z — create UI called only previously tested helper endpoints:
+  `GetAccountMaskedSecurityContact`, `Tcc`, `ListAllFlow`,
+  `getWorkorderConsoleConfig`.
+- 2026-10-29T12:40Z — inactive ticket-engine paths referenced by `770` were
+  probed read-only with empty bodies: `/ticket/api/v2/core/GetTicketCreateOperation`
+  (404 HTML), `/ticket/api/v1/query/template` (404), and
+  `/ticket/api/v1/tag/app/bind/list` (404). No live same-origin surface.
+- 2026-10-29T12:41Z — no new notification-worthy vulnerability; ending run.

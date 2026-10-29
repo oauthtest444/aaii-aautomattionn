@@ -19,6 +19,14 @@
 | POST | /api/top/ticket/ap-southeast-1/2022-01-01/GetPreSignedPostSignature | user | `FileType` | `text/plain` and `image/png` allowed; `text/html` rejected (`file type text/html is not allowed`). |
 | POST | /api/top/ticket/ap-southeast-1/2022-01-01/SaveFile | user | `FileID` own / other | Own file returns signed TOS URL; A using B's FileID → `Forbidden`. |
 | GET | /api/top/ticket/ap-southeast-1/2022-01-01/DownloadFile?FileID=… | user | `FileID` own / other | Own text/plain is served as `text/plain` with `Content-Disposition: attachment`; A using B's FileID → `Forbidden`. |
+| POST | /api/workorder/ticket/GetAccountMaskedSecurityContact | user | `AccountID`/`AccountId`/`accountID` own / other | Confirmed cross-account masked-contact BAC; low impact, excluded (`VULN-20261029-002`). |
+| POST | /api/workorder/ticket/GetUserMaskedSecurityContact | user | numeric `UserId` | Informational: arbitrary numeric UserId returns distinguishable `UserSecurityContactNotExist`; masked data only, excluded. |
+| POST | /api/workorder/ticket/Tcc | user | — | Tested; returns ticket tag/config data. |
+| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ListAllFlow | user | — | Tested; returns create-page product/flow list. |
+| POST | /api/workorder/ticket/getWorkorderConsoleConfig | user | — | Tested; returns console config/feature flags. |
+| GET | /ticket/api/v2/core/GetTicketCreateOperation | user | empty body | Not present: 404 HTML; inactive ticket-engine path. |
+| POST | /ticket/api/v1/query/template | user | empty body | Not present: 404. |
+| POST | /ticket/api/v1/tag/app/bind/list | user | empty body | Not present: 404. |
 
 CSRF note: `x-csrf-token` is mandatory and validated. Missing or incorrect token
 returns `InvalidCSRFToken` even when the request body is valid JSON.
