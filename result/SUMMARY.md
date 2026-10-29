@@ -87,3 +87,46 @@ exclusion statement in the report.
 - `result/confirmed-vuln.txt` contains only high-impact entries (none). ✔
 - Unresolved/out-of-scope items documented (this file). ✔
 - No real-user data or temporary files under `result/`. ✔
+
+---
+
+# Workorder-only Run — 2026-10-29T11:39:08Z
+
+- Target (current `data/targets.txt`): `https://console.byteplus.com/workorder/list/`
+  and same-origin `/workorder/...` sub-routes.
+- Run ID: `40866925694`; accounts A (`3000823185`) and B (`3001021825`).
+- Result: **no notification-worthy vulnerability confirmed.**
+
+## Additional coverage
+
+- `/workorder/authorizationList` — route loads; `ListAuthorization` is empty for
+  account A, so authorization-object IDOR/BAC was not testable.
+- `/workorder/create` — product/flow, form-token, and console-config APIs
+  captured; `GetAccountMaskedSecurityContact` cross-account lookup confirmed.
+- `CreateTicketConversation` accepts arbitrary `Attachment[].Name/Url`; stored
+  URL is rendered through image/download/preview components. The download helper
+  rejects `javascript:`, `vbscript:`, `data:`, and `file:`; no script execution
+  was achieved.
+- New helper endpoints tested: `Tcc`, `getWorkorderConsoleConfig`,
+  `getWotkorderFinanceProduct`, `getFormTokenAndCodeList`,
+  `ListAccountLabelsByKeys`, `GetUserMaskedSecurityContact`.
+
+## Confirmed but Excluded (this run)
+
+- **VULN-20261029-002** — `GetAccountMaskedSecurityContact` trusts a
+  caller-supplied `AccountID`, returning another account's masked security
+  email/phone and verification flags. Low impact; excluded as masked-contact /
+  account-existence disclosure per Section 9.
+  Report: `result/findings/VULN-20261029-002/report.md`.
+- `GetUserMaskedSecurityContact` accepts an arbitrary numeric `UserId` and
+  returns a distinguishable `UserSecurityContactNotExist` response. Masked /
+  informational; excluded.
+
+## Unresolved (this run)
+
+- Authorization-object IDOR: account A has no authorization objects.
+- Support-console rendering: internal agent UI is not reachable.
+- SSRF via `SourceURL` / `CustomerReferURL`: origin-prefixed and internal
+  targets were not authorized.
+- Full upload MIME allow-list: observed HTML/SVG/PDF rejection and text/plain
+  acceptance; complete extraction timed out on the minified bundle.
