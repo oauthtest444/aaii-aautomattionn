@@ -97,9 +97,15 @@ jobs:
           echo "Manual target prepared for this run only."
 
       - name: Restore target for resumed run
-        if: github.event_name == 'workflow_dispatch' && inputs.resume == 'true' && inputs.target == ''
+        if: github.event_name == 'workflow_dispatch' && inputs.resume == 'true'
+        env:
+          TARGET_INPUT: ${{ inputs.target }}
         run: |
           set -euo pipefail
+          if [ -n "${TARGET_INPUT:-}" ]; then
+            echo "Manual target takes precedence over the resumed target."
+            exit 0
+          fi
           if [ -s result/logs/targets.used.txt ]; then
             cp result/logs/targets.used.txt data/targets.txt
             echo "Restored previous target for resumed run."
