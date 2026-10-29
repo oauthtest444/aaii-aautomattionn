@@ -1,38 +1,58 @@
-# Scope and Instructions
+# Scope
 
-## Authorization source
-`data/targets.txt` — URL-list target: top-level routes for `console.byteplus.com`.
-These are the only authorized assets. Same-origin JS/API required to exercise
-those routes is in scope when covered by the program; no other domains,
-subdomains, third-party services, or infrastructure are authorized.
+## User Instructions (from data/targets.txt)
 
-## User instructions (from data/targets.txt)
-- Test all listed top-level routes one by one.
-- For each top-level route: visit it, extract all sub-routes under it, test each
-  sub-route individually for client-side bugs first, then for server-side bugs.
-- Example: under `/dts`, if 5 unique sub-routes exist, visit each one; test each
-  for client-side bugs, then server-side bugs; then move to the next top-level
-  route.
-- Continue until all top-level routes have been fully tested.
-- Effect on plan: route-by-route, client-side then server-side, breadth across
-  all listed routes, depth within each route's discovered sub-routes.
+The target file says:
 
-## In-scope components
-- `https://console.byteplus.com/` and the explicitly listed top-level routes in
-  `data/targets.txt` (86 entries).
-- Same-origin JavaScript, XHR/fetch APIs, and sub-routes discovered while
-  exercising those listed routes.
+> Untested Top-level routes for console.byteplus.com:
+> https://console.byteplus.com/waf/overview
+> https://console.byteplus.com/finance
+> https://console.byteplus.com/user
+> https://console.byteplus.com/beian
+> https://console.byteplus.com/message
+> https://console.byteplus.com/workorder/list/
+>
+> Test all these top-level routes visiting one by one.
+>
+> For client-side testing, visit one top-level route and extract all sub-routes
+> under it. Test each sub-route individually for client-side bugs first, then
+> test for server-side bugs.
 
-## Out of scope
-- Other domains/subdomains, third-party services, CDNs, acquisitions, partner
-  systems, internal networks, cloud metadata, localhost.
-- Real-user data/accounts and destructive or disruptive testing.
+Effect on test plan:
+- These six URLs are the authorized entry points (URL-list target).
+- Visit each top-level route, enumerate sub-routes under it, and test each
+  sub-route for client-side issues first, then server-side.
+- Same-origin JavaScript and API endpoints required to exercise these routes are
+  considered in scope only insofar as they are components of
+  `console.byteplus.com`.
+- No instruction in the target file expands scope beyond
+  `console.byteplus.com`; nothing here waives the safety or evidence rules.
 
-## Program restrictions / assumptions
-- Use only the disposable test accounts in `creds/test-account.txt`.
-- No DoS/load/fuzz/brute force, no real-user access, no destructive writes.
-- Evidence must be practical and reproducible; confirmed findings only.
-- Note: `creds/test-account.txt` lists account A (email) and account B
-  (username `testt456`). Roles/ownership are not stated; determine at login.
-- `TEST_NOTIFICATION=true` / `MODE: notification-test` not present, so normal
-  testing applies.
+## Authorization Source / Assumptions
+
+- Authorization derived solely from `data/targets.txt` in this repository.
+- Target classified as **URL-list** rooted at host `console.byteplus.com`.
+- Only the listed URLs and same-origin components needed to exercise them are
+  in scope.
+
+## In-Scope Components
+
+- `https://console.byteplus.com/` and the six listed routes.
+- Sub-routes discovered under those top-level routes on the same origin.
+- Same-origin JavaScript bundles, source maps, inline scripts, workers, and API
+  endpoints loaded by / used by those routes.
+
+## Explicitly Out-of-Scope
+
+- Any other subdomain of `byteplus.com` (e.g. `www`, `api`, `iam`, regional
+  consoles) unless it is reached as a same-origin component of
+  `console.byteplus.com`.
+- Third-party services, CDNs, analytics, and partner systems.
+- Any asset outside `console.byteplus.com`.
+
+## Program Restrictions
+
+- None stated in `data/` beyond the route list.
+- Standard AGENT.md safety rules apply: no DoS/load/fuzzing, no destructive
+  writes, test-owned data only, no real-user data access.
+- Rate limiting: keep request volume low and human-paced.
