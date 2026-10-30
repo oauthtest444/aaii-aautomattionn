@@ -35,3 +35,21 @@ Status: API key and dataset resources are properly tenant-scoped. Not Vulnerable
 - /assistant/edit (App Lab): requires vefaaS activation (1/6 services inactive); UI auto-created IAM ServerlessApplicationRole; no app created/deployed.
 - /docs/product-overview: no XSS sink; safe link validator.
 - No confirmed vulnerabilities. `result/confirmed-vuln.txt` left with header only.
+
+## 2026-10-30T12:06Z continuation 3 — route table expansion
+- Re-authenticated as account A (3000823185) via /auth/login (session had expired).
+- Extracted 78 route paths from async-main.d0a27388a1.js (hash 0ab8514d...). Previously tested only ~13. New untested high-value routes: /dataset*, /endpoint*, /batchInference*, /finetune*, /customModel*, /eval*, /security*, /projectManagement, /usageTracking, /subscription/*, /pickupVoucher, /tokenCalculator, /tts/*, /experience/share_canvas/:id, /openManagement*, /inferenceFoundry*, /vpc, /model-settings/*.
+- Plan: capture APIs for accessible new routes and test for BOLA / mass assignment / BAC with test accounts A and B.
+
+## 2026-10-30T12:12Z managed-agent OAuth flow (CreateVaultOAuthFlow)
+- RedirectUrl validation is enforced server-side:
+  - https://example.com/ -> `redirect_url origin "https://example.com" is not in allowlist`
+  - https://console.byteplus.com.evil.example/ -> rejected (origin not allowlisted)
+  - https://console.byteplus.com@example.com/ -> rejected (origin resolved to example.com)
+  - https://console.byteplus.com%2eexample.com/ -> `not a valid absolute URL`
+  - javascript:alert(1) and //example.com/ -> `not a valid absolute URL`
+  - fragment URLs -> `redirect_url must not contain fragment`
+  Conclusion: no open redirect / javascript: URL bypass in RedirectUrl.
+- McpServerUrl is not an arbitrary SSRF primitive. With valid RedirectUrl and McpServerUrl pointing at tester-controlled callbacks (webhook.site token, requestcatcher subdomain), the API returned `UpstreamUnavailable: oauth metadata discovery failed ... metadata not found` and the callbacks received no requests. Only built-in MCP providers (Linear/Notion/GitHub etc. listed in the client bundle) are supported; unknown hosts are rejected before any successful metadata fetch.
+- Vault OAuth callback route (`/managed-agents/credentials-vault-oauth/callback`) is static: reads vaultId/credential_id/source from the query string, writes a same-origin localStorage event, shows a success card, closes the window. No backend call and no attacker-controlled sink; low UI spoofing only (already recorded).
+- Status: OAuth flow redirect/SSRF hypotheses falsified. Not Vulnerable.

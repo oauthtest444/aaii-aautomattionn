@@ -10,6 +10,7 @@
     { "url": "/ark/region:ap-southeast-1/tts/podcast", "status": "tested", "notes": "shell only; content in out-of-scope cross-origin iframe; bridge origin/source validated" },
     { "url": "/ark/region:ap-southeast-1/overview", "status": "tested", "notes": "home; account/meta + price calls" },
     { "url": "/ark/region:ap-southeast-1/model", "status": "tested", "notes": "public model catalog" },
+    { "url": "/ark/region:ap-southeast-1/model/detail?Id=<model-name>", "status": "tested", "notes": "Id param; GetClientModelDetailPage {modelName,region}; payload not reflected; no XSS" },
     { "url": "/ark/region:ap-southeast-1/gallery", "status": "tested", "notes": "public curated gallery; no user content" },
     { "url": "/ark/region:ap-southeast-1/application", "status": "tested", "notes": "App Lab reachable; app creation gated on vefaaS activation" },
     { "url": "/ark/region:ap-southeast-1/assistant/edit", "status": "tested-gated", "notes": "editor loads; submit requires activation; auto-created IAM role as UI side effect" },
@@ -29,10 +30,18 @@
     { "name": "estimate-token-count-url-ssrf", "status": "tested", "result": "all tested URLs rejected InvalidParameter.Url; likely signed TOS required; unproven" },
     { "name": "cors-credentialed-cross-site", "status": "tested", "result": "modelark-api reflects Origin but CSRF double-submit blocks; arkbff/top API not exploitable" },
     { "name": "oauth-callback-message-spoof", "status": "tested", "result": "same-origin localStorage/message only -> toast + SPA route; low" },
+    { "name": "vault-oauth-redirect-validation", "status": "tested", "result": "CreateVaultOAuthFlow enforces origin allowlist, absolute URL, no fragment; external/relative/javascript/parser-bypass payloads rejected" },
+    { "name": "vault-mcp-ssrf", "status": "tested", "result": "unknown McpServerUrl -> UpstreamUnavailable metadata not found; tester callbacks received no request; only built-in providers supported" },
+    { "name": "model-detail-id-reflection", "status": "tested", "result": "Id=payload -> model not found; no DOM reflection/XSS" },
     { "name": "app-lab-create", "status": "blocked", "result": "requires vefaaS activation (1/6 services inactive)" },
     { "name": "managed-agent-create", "status": "blocked", "result": "ManagedAgentNotOpen" }
   ],
-  "endpoints": [],
+  "endpoints": [
+    { "action": "GetClientModelDetailPage", "host": "arkbff-ap-southeast1.console.byteplus.com", "method": "POST", "params": ["modelName", "region"], "status": "tested", "notes": "public model detail; no tenant identifier accepted" },
+    { "action": "GetSquareModelFuzzyQuery", "host": "arkbff-ap-southeast1.console.byteplus.com", "method": "POST", "params": ["Size"], "status": "tested", "notes": "public catalog" },
+    { "action": "CreateVaultOAuthFlow", "host": "console.byteplus.com/api/top/ark", "method": "POST", "params": ["VaultId", "DisplayName", "McpServerUrl", "RedirectUrl", "Source", "ClientId", "ClientSecret"], "status": "tested", "notes": "RedirectUrl origin allowlist enforced; McpServerUrl limited to built-in providers" },
+    { "action": "ListOAuthProviders", "host": "console.byteplus.com/api/top/ark", "method": "POST", "params": ["Limit", "PageToken"], "status": "tested", "notes": "exposed but returns no Result for test account" }
+  ],
   "listeners": [
     { "file": "7006.3374811d72.js", "originCheck": true, "status": "safe" },
     { "file": "38767.69bfc8048a.js", "originCheck": false, "status": "vendor SDK / unresolved low" },

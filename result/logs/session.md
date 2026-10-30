@@ -15,3 +15,10 @@
 - Prior attempts: watchdog-terminated with no findings; result/ preserved.
 - MCP verified in-session (list_pages returns about:blank).
 - Plan: continue client-side phase on /ark/* routes, then server-side.
+
+## Continuation 3 — 2026-10-30T12:04Z
+
+- Resume decision: preserved (target hash unchanged).
+- MCP verified in-session (list_pages -> about:blank).
+- Plan: continue from testing-inventory; enumerate remaining /ark/* sub-routes from the webpack route table, then deepen server-side tests on untested routes/endpoints. Do not repeat already-tested flows.
+- 2026-10-30T12:18Z: Closed the managed-agent OAuth flow hypotheses (RedirectUrl origin allowlist + absolute/no-fragment enforced; arbitrary McpServerUrl not fetched -> no SSRF). Verified `/model/detail` uses `Id` and does not reflect/execute payloads (`<img onerror>` canary). No new findings; `result/confirmed-vuln.txt` remains empty. Updated server/client logs, testing-inventory, SUMMARY, unresolved.
