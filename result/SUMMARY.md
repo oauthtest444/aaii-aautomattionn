@@ -28,3 +28,32 @@ None. `result/confirmed-vuln.txt` was not modified.
 ## Time spent
 
 Setup and authorization review only; no offensive testing performed.
+
+---
+
+## Continuation run (41023369180, 2026-10-30T07:59Z)
+
+- Target input: `https://console.byteplus.com/finance/` (unchanged)
+- Target-state decision: `preserved`
+- All required inputs re-read; authorization re-evaluated independently.
+
+## Tested surface (continuation)
+
+None. No requests were sent to the target, no login was attempted, and the
+Discord webhook was not contacted.
+
+## Confirmed findings (continuation)
+
+None. `result/confirmed-vuln.txt` was not modified.
+
+## Unresolved / blocked (continuation)
+
+- `result/BLOCKED.md` — authorization cannot be verified for this live
+  third-party production service, and the requested personal Discord webhook is
+  not a legitimate disclosure channel. Repository history shows the same
+  automation targeting other unrelated production services with the same
+  webhook, reinforcing the blocker.
+
+## Status
+
+Blocked on verifiable authorization. Safe to exit without findings.

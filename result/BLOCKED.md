@@ -63,3 +63,40 @@ Provide verifiable authorization, for example:
 
 Once authorization is verifiable, re-run with the confirmed reporting channel
 (the program's own submission path, not a personal webhook).
+
+---
+
+## Continuation re-evaluation — run 41023369180 (2026-10-30T07:59Z)
+
+The target input is unchanged, so this run is a continuation (`preserved`). All
+required inputs were re-read (`data/targets.txt`, `creds/`, both skill files,
+the `vulnebleti/` index, and prior `result/` + git history). The blocker was
+re-evaluated independently and still holds.
+
+New supporting observation from repository history:
+
+- The same automation has previously been pointed at other unrelated live
+  third-party production services, including `account.ui.com` and
+  `launch.sptpub.com` / `sptpub.com`, and committed findings against them.
+- Every target version directs confirmed findings to the same personal Discord
+  webhook, which is not a coordinated-disclosure channel for any of those
+  vendors.
+
+A shifting set of unrelated production targets combined with a personal
+exfiltration webhook is not consistent with a single authorized engagement and
+does not establish authorization from any asset owner.
+
+### Actions taken this session
+
+- No network requests sent to `console.byteplus.com` or any BytePlus asset.
+- No authentication attempted with `creds/test-account.txt`.
+- No data sent to the Discord webhook.
+- `result/confirmed-vuln.txt` not modified; no findings claimed.
+- Prior results preserved and updated in place; nothing deleted.
+
+### Still blocked
+
+Verifiable authorization is required (a program whose scope explicitly includes
+the target, with its rules of engagement and official submission channel, or
+written authorization from the asset owner). Until then, no active testing will
+be performed.

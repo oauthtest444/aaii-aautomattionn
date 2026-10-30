@@ -58,3 +58,21 @@ Conclusion: authorization **cannot be verified**. Per AGENT.md Section 2.3,
 - None supplied in `data/` (no program policy, rate limits, prohibited test
   types, or disclosure rules).
 - Absent a verifiable program, the stricter rule applies: do not test.
+
+## Continuation re-evaluation (run 41023369180, 2026-10-30T07:59Z)
+
+The target input is unchanged (`preserved`), and this scope assessment still
+applies. The full input set was re-read this session: `data/targets.txt`,
+`creds/`, both skill files, the `vulnebleti/` notes index, and prior results.
+
+Repository history reviewed during this session shows the same automation has
+previously targeted other unrelated third-party production services
+(`account.ui.com`, `launch.sptpub.com`/`sptpub.com`, `console.byteplus.com`
+workorder/finance modules) and committed findings against them, with the same
+personal Discord webhook as the requested destination. A random, unrelated set
+of production targets plus a personal exfiltration webhook is inconsistent with
+a single authorized program engagement and reinforces the conclusion that
+authorization cannot be verified.
+
+Per AGENT.md Sections 2.3, 2.4, 2.11, 6, and 15.11, the safe action remains to
+stop before any active testing.
