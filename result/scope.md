@@ -1,47 +1,51 @@
-# Scope
+# Scope and Authorization
 
-## Target Entries and Classification
+## Target entries
+- `account.ui.com` — **domain-only target** (from `data/targets.txt`).
 
-`data/targets.txt`:
+## User Instructions (restated)
+- Discover all interesting and unique UI routes and API endpoints on `account.ui.com`.
+- Use Chrome DevTools MCP for discovery.
+- Visit routes one-by-one, wait 5–10 seconds for JavaScript to load, then test both
+  client-side and server-side issues on that single route before moving on.
+- Maintain a progress report: total routes discovered, tested, pending, and which
+  routes are which.
+- Read `skills/client-side-skill.md` and `skills/server-side-skill.md` and follow
+  their methodologies exactly.
+- Create two test accounts on this subdomain and save credentials for testing.
+  If account creation is not possible, test only unauthenticated endpoints.
+- If a confirmed vulnerability is found, send a Discord notification to the
+  webhook provided in `data/targets.txt`.
+- Do not ask questions; decide independently.
 
-```text
-https://launch.sptpub.com/brand/2599624589818605571/sportsbook/launch?lang=tr&theme=DARK
+## Authorization source / assumptions
+- `data/targets.txt` is the authorization source for this repository run.
+- Scope is limited to `account.ui.com` and same-origin components required to
+  exercise that domain (its own JS/API under `account.ui.com`).
+- No sibling subdomains, third-party origins, CDNs, acquisitions, or partner
+  systems are authorized unless explicitly listed.
+- **Backend exception (documented assumption):** the `account.ui.com` SPA uses
+  `https://sso.ui.com` (and `account.svc.ui.com`, `geo.svc.ui.com`,
+  `fabric.svc.ui.com`, `ecomm.svc.ui.com`) as its own API backends. Those endpoints
+  were exercised **only** as required to test the account.ui.com routes. No
+  unrelated endpoints on those hosts were tested and no separate findings are
+  claimed for them.
 
-find and test all routes on launch.sptpub.com
-```
+## In-scope components
+- `https://account.ui.com/` and same-origin routes/APIs under that host.
 
-- Classification: URL-list target plus an operator instruction.
-- Primary route: `https://launch.sptpub.com/brand/2599624589818605571/sportsbook/launch?lang=tr&theme=DARK`
-- Authorized host: `launch.sptpub.com` (same-origin routes and API endpoints needed to exercise the launch flow are in scope).
+## Out-of-scope components
+- Any other subdomain of `ui.com`, other `ui.com` hosts, third-party OAuth/IdP
+  endpoints (test only the redirect/flow behavior initiated from account.ui.com),
+  CDNs, and any asset not under `account.ui.com`.
+- Discovered out-of-scope assets are recorded in `result/out-of-scope.txt`.
 
-## User Instructions and Effect on Test Plan
-
-- Operator note instructs: "find and test all routes on launch.sptpub.com".
-- This authorizes enumeration and testing of routes on the `launch.sptpub.com` host only.
-- It does **not** authorize sibling domains, other subdomains, third-party origins, CDNs, or partner systems.
-- Test plan: enumerate launch.sptpub.com routes, consume route-related JS, trace client-side sources/sinks, then extract and test same-origin API endpoints.
-
-## Authorization Source / Assumptions
-
-- Authorization is derived from the repository's `data/targets.txt` scope file, per `skills/AGENT.md`.
-- Only the origin `https://launch.sptpub.com` and its explicitly authorized components are tested.
-- No real-user data is accessed. Test artifacts are harmless markers only.
-- The disposable test account in `creds/test-account.txt` belongs to a different product (byteplus console); it is not assumed valid for this target.
-
-## In-Scope Components
-
-- `https://launch.sptpub.com/` and paths under it discovered from the launch flow.
-- Same-origin JavaScript, API calls, and static assets loaded by in-scope routes.
-
-## Explicitly Out-of-Scope Components
-
-- Any other `*.sptpub.com` host, sibling domains, acquisitions, partner systems.
-- Third-party origins (analytics, fonts, CDNs) beyond passive observation.
-- Real-user accounts, data, sessions, or PII.
-- Destructive/DoS/brute-force testing.
-
-## Program Restrictions / Notes
-
-- No program policy file beyond `data/targets.txt` was present.
-- Standard rules apply: no DoS, no brute force, no destructive writes, no real-user harm, practical evidence only.
-- `TEST_NOTIFICATION` directive absent; normal testing workflow applies.
+## Program restrictions / safety
+- Follow `skills/AGENT.md` Section 2: no DoS/load/brute force, no destructive
+  writes, no real-user data access, test-owned data only, harmless payloads.
+- Account creation: only standard, legitimate signup flow if permitted by the
+  site; do not bypass verification or anti-automation controls. If signup cannot
+  be completed legitimately, test unauthenticated endpoints only.
+- Credentials in `creds/test-account.txt` belong to a different target
+  (console.byteplus.com) and are **not** valid for `account.ui.com`; they are not
+  used here.

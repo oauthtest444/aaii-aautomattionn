@@ -1,7 +1,0 @@
-checkpoint_validation_utc=2026-10-29T14:39:18Z
-confirmed_entries=1
-OK result/findings/VULN-20261029-001/report.md
-OK result/findings/VULN-20261029-001/evidence/runtime-confirmation.json
-OK result/findings/VULN-20261029-001/evidence/runtime-token-theft.json
-OK result/findings/VULN-20261029-001/evidence/runtime-deposit-url-confirmation.json
-OK result/findings/VULN-20261029-001/evidence/xss-token-theft.png
