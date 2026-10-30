@@ -1,6 +1,6 @@
 # Route Testing Progress — account.ui.com
 
-Last updated: 2026-10-30T04:25Z
+Last updated: 2026-10-30T05:10Z
 Target: `account.ui.com` (authorization: `data/targets.txt`)
 Bundle analyzed: `result/client-side/account.ui.com/_global/javascript/index-D5t7M7xo.js`
 (sha256 `ce9950c975a42cac66f5c2ea759d655e96c441d34df6a6b8190b09d60ea1c468`)
@@ -15,7 +15,7 @@ Bundle analyzed: `result/client-side/account.ui.com/_global/javascript/index-D5t
 | Auth-gated routes not testable (blocked) | **18** |
 | Test accounts created | **0 / 2** (reCAPTCHA challenge blocks signup) |
 | Confirmed impactful vulnerabilities | **0** |
-| Low/informational observations | 4 (see `result/findings/observations.md`) |
+| Low/informational observations | 6 (see `result/findings/observations.md`) |
 
 > **Account creation status:** signup is blocked by reCAPTCHA Enterprise.
 > `POST https://sso.ui.com/api/sso/v2/users` returns HTTP 403
@@ -83,7 +83,11 @@ case; **Guard** = confirmed redirect/guard only (authenticated body not testable
 - Open-redirect validation tests (`/switch`, `/login`, `/logout` logic, `DQ`/`MC`/`Wpe`).
 - Reflected/DOM XSS tests on `login_hint`, `idp/login-result` `error`/`description`,
   `suspicious/confirm` `token`, and the `msp/idp/setup-result` params.
-- CORS behavior checks (only `https://account.ui.com` is reflected, with credentials).
+- CORS behavior checks: corrected — `sso.ui.com` and `geo.svc.ui.com` reflect
+  `https://*.ui.com`, `https://*.ubnt.com`, apex `ui.com`, and
+  `https://uic.uidev.tools` with credentials. `account.svc.ui.com` rejects other
+  origins. Unresolved potential only; no attacker-controlled origin or session
+  was available (see `result/findings/observations.md` #7).
 - reCAPTCHA/signup blocking documented; no bypass attempted.
 
 ## What is pending (needs an account)

@@ -22,3 +22,18 @@ discord_notified: no
 notes: unauthenticated testing only; no captcha bypass; open-redirect allowlist verified; no XSS; CORS restricted to https://account.ui.com
 extra_probes: login/email type-confusion (400, no injection); legacy email send (403); login/2fa (401); suspicious/confirm validation (400); verify resend (captcha+devicecheck required); roles/beta (401); ecomm /graphql __typename only (field selection 500); billing v2 (401); fabric msp (401)
 conclusion: no unauthenticated endpoint tested yielded a reportable vuln; authenticated routes remain blocked by reCAPTCHA
+START=2026-10-30T05:04:06Z
+start_utc: 2026-10-30T05:04:06Z
+target: account.ui.com
+agent_model: opencode/deepseek-v4.1-flash-free
+resume: true (target-state decision=preserved, prior run preserved)
+UPDATED=2026-10-30T05:10Z
+routes_discovered: 39 (+ wildcard *)
+routes_fully_tested_unauth: 13
+routes_blocked_auth: 18
+accounts_created: 0 (reCAPTCHA challenge)
+confirmed_vulns: 0
+discord_notified: no
+cors_correction: sso.ui.com and geo.svc.ui.com reflect https://*.ui.com, https://*.ubnt.com, apex ui.com, and https://uic.uidev.tools with credentials; account.svc.ui.com rejects them. Unresolved potential; no attacker-controlled origin/session.
+scope_probes: wildcard DNS lookup for evilaccount.ui.com (resolves to CloudFront, no HTTP test); one 403 header check of uic.uidev.tools (out-of-scope, not expanded). Recorded in result/out-of-scope.txt.
+conclusion: no confirmed reportable vulnerability; authenticated routes remain blocked by reCAPTCHA; CORS trust boundary documented as unresolved.

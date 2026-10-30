@@ -94,10 +94,38 @@ All probes used `Origin: https://account.ui.com` and a normal desktop UA.
 
 ## CORS behavior
 
-- `Access-Control-Allow-Origin` is returned only for `https://account.ui.com`
-  (with `Access-Control-Allow-Credentials: true`).
-- `Origin: https://evil.example` is **not** reflected (no ACAO header).
-- Conclusion: no permissive CORS misconfiguration observed.
+Corrected during the 2026-10-30T05:09Z session. The SSO and geo backends reflect a
+broader set of origins than `https://account.ui.com`:
+
+| Origin sent to `sso.ui.com` / `geo.svc.ui.com` | ACAO reflected | ACAC |
+|---|---|---|
+| `https://account.ui.com` | yes | `true` |
+| `https://evilaccount.ui.com` | yes | `true` |
+| `https://foo.bar.ui.com` | yes | `true` |
+| `https://ui.com` | yes | `true` |
+| `https://foo.ubnt.com` | yes | `true` |
+| `https://uic.uidev.tools` | yes | `true` |
+| `https://foo.uisp.com` | no | — |
+| `http://foo.ui.com` | no (HTTPS required) | — |
+| `https://foo.ui.com:8443` | no (port 443 only) | — |
+| `https://account.ui.com.evil.example` / `https://evilubnt.com` | no | — |
+| `https://foo.ui.com.evil.example` | no | — |
+
+- The accepted pattern is effectively `https://` + `{apex, any subdomain}` of
+  `ui.com` or `ubnt.com`, plus the exact third-party origin
+  `https://uic.uidev.tools`. Credentials are allowed.
+- `account.svc.ui.com` is stricter: `Origin: https://evilaccount.ui.com` returns
+  HTTP 403 `{"code":"CORS_ERROR","message":"Invalid CORS origin"}`.
+- `geo.svc.ui.com/geo` also reflects `https://evilaccount.ui.com` with
+  credentials, but returns only approximate IP geolocation.
+- **Status: Unresolved / not reportable yet.** Exploitation would require an
+  attacker-controlled origin matching one of the accepted patterns. A wildcard
+  DNS record exists (`evilaccount.ui.com` resolves to CloudFront), but resolving
+  is not the same as controlling the content served at that origin. No session or
+  attacker-controlled `*.ui.com` page was available; no test-account could be
+  created.
+- `uic.uidev.tools` is third-party/out-of-scope and was not tested beyond the
+  single CORS probe; recorded in `result/out-of-scope.txt`.
 
 ## Rate limiting / anti-automation
 

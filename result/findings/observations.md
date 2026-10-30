@@ -67,6 +67,34 @@ the next session.
 - `login_hint` is escaped into an `<input value>`; no HTML injection.
 - CSP blocks `eval`; no app-level raw-HTML sinks with user data.
 
+## 7. Broad CORS trust for `*.ui.com` / `*.ubnt.com` on SSO and geo backends
+
+Checked at `2026-10-30T05:08–05:09Z` with harmless `OPTIONS`/`GET` requests.
+`https://sso.ui.com` reflects the request `Origin` in
+`Access-Control-Allow-Origin` and returns
+`Access-Control-Allow-Credentials: true` for:
+
+- apex `https://ui.com`, any `https://*.ui.com` subdomain (including
+  `https://evilaccount.ui.com` and `https://foo.bar.ui.com`);
+- any `https://*.ubnt.com` subdomain;
+- the third-party origin `https://uic.uidev.tools`.
+
+Rejected: `https://*.uisp.com`, plain `http://`, non-443 ports, and lookalike
+hosts such as `https://account.ui.com.evil.example` and `https://evilubnt.com`.
+`https://geo.svc.ui.com/geo` has the same reflection; `https://account.svc.ui.com`
+rejects non-approved origins with HTTP 403 `CORS_ERROR`.
+
+- **Why it is not confirmed:** reading authenticated cross-origin responses
+  requires an attacker-controlled page on an accepted origin. A wildcard DNS
+  record exists (`evilaccount.ui.com` resolves to CloudFront), but DNS resolution
+  does not give an attacker control of the content served there. No test account
+  or session was available to demonstrate data exposure. `uic.uidev.tools` is a
+  third-party origin outside this run's scope.
+- **Status:** Unresolved / potential. If any accepted origin can host
+  attacker-controlled JavaScript (e.g. a subdomain takeover), this would allow
+  credentialed reads of SSO API responses. Do not report without proof of origin
+  control and data exposure.
+
 ## Discord notification
 
 No confirmed impactful vulnerability was found, so no Discord notification was
