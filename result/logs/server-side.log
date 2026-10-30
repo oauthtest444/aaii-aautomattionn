@@ -1,0 +1,11 @@
+2026-10-30T09:32Z account A 3000823185; account B 3001021825 (isolated context acctB)
+2026-10-30T09:32Z created test DS A 2115010182613307397
+2026-10-30T09:32Z DescribeDataSource cross-account A->B: Result{} (no leak)
+2026-10-30T09:33Z ListDataSource Identifier/AccountId/TenantId/OwnerId filters: no cross-account leak
+2026-10-30T09:33Z ModifyDataSource A->B: InternalError/MgrParamInvalid, B unchanged
+2026-10-30T09:33Z DeleteDataSource A->B: Result{}; B re-read confirms object exists (no-op)
+2026-10-30T09:33Z CreateDataSource mass assignment (TenantId/AccountId/Owner/Tags): ignored
+2026-10-30T09:34Z ListMgrCustomerParam: internal tenant whitelist config returned -> DTS-INFO-001 excluded
+2026-10-30T09:34Z CheckDataSourceConnection private/reserved/encoded IPs: blocked
+2026-10-30T09:35Z GetSecurityToken: timeout >18s (unresolved)
+2026-10-30T09:35Z registered-read-action sweep: no other cross-tenant leak (ListAccount/DescribeAllClusters InternalError)
