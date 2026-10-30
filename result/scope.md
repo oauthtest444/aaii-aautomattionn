@@ -1,54 +1,48 @@
 # Scope
 
+## Target entries and classification
+
+- `https://console.byteplus.com/ark/region:ap-southeast-1/tts/podcast` — URL target.
+- Operator note: "test all sub routes under this /ark/*". Treated as authorization to test
+  same-origin routes whose path begins with `/ark/` on `console.byteplus.com` only.
+- Classification: URL-list (same origin), bounded to `/ark/*` paths on `console.byteplus.com`.
+
 ## User Instructions
 
-Source: `data/targets.txt` (read completely).
+- Test all sub-routes under `https://console.byteplus.com/ark/*`.
+- The operator states the domain is in scope and the program has a private BBP.
+- The operator note contains a Discord webhook URL and asks for a direct notification on a
+  confirmed vulnerability.
+  - Per `skills/AGENT.md` Section 9, confirmed findings are written to
+    `result/confirmed-vuln.txt` and the CI workflow performs the notification.
+  - The webhook is third-party infrastructure that is not part of the authorized target.
+    No direct webhook delivery will be performed from the agent; the confirmed-vuln.txt
+    entry is the authoritative notification path. This avoids duplicate notifications and
+    avoids sending data to out-of-scope third-party infrastructure.
+- No other operator instructions or `TEST_NOTIFICATION` directives are present.
 
-- Target: `https://console.byteplus.com/dts/region:dts+ap-southeast-1/?`
-- Instruction: test all sub-routes under `/dts/*`.
-- Note: `console.byteplus.com` is stated to be an in-scope domain for a private
-  bug bounty program.
-- "Important note": if a confirmed vuln is found, send a direct Discord
-  notification to the webhook listed in `data/targets.txt`.
+## Authorization source / assumptions
 
-### How the instructions affect the test plan
+- `data/targets.txt` is the authorization source.
+- Authorized host: `console.byteplus.com` only.
+- Authorized path prefix: `/ark/*` (including `/ark/region:.../...` sub-routes).
+- Authentication: disposable test accounts in `creds/test-account.txt` may be used.
 
-- In-scope test surface: `https://console.byteplus.com/dts/*` and the
-  same-origin JavaScript/API resources required to exercise those routes.
-- No other origin, subdomain, third-party service, or unrelated path will be
-  tested.
-- The Discord webhook is an external side effect. Per AGENT.md Sections 2.5,
-  6 and 9, notification is handled by the CI workflow through
-  `result/confirmed-vuln.txt`; no manual external webhook call will be made by
-  the agent. This avoids unauthorized external side effects and credential/
-  evidence exfiltration. Any confirmed finding will be written to
-  `result/confirmed-vuln.txt` (which the workflow forwards).
-- Test accounts from `creds/test-account.txt` may be used for authorized login
-  tests.
+## In-scope components
 
-## Classification
+- `https://console.byteplus.com/ark/*` UI routes and their same-origin JS/API endpoints
+  required to exercise those routes.
+- Same-origin static assets (JS, source maps, JSON) loaded by those routes.
 
-- URL-list / route-prefix target: `console.byteplus.com` `/dts/*`.
+## Explicitly out-of-scope components
 
-## Authorization Source / Assumptions
+- Other `console.byteplus.com` paths outside `/ark/*` unless required as same-origin
+  authentication/API plumbing for an in-scope route.
+- Other `*.byteplus.com` subdomains and unrelated origins.
+- Third-party services, CDNs, and the operator-provided Discord webhook.
+- Destructive, high-volume, or real-user impacting tests.
 
-- `data/targets.txt` explicitly authorizes `console.byteplus.com/dts/*` for this
-  private BBP run. Testing is limited to that prefix on that host.
+## Program restrictions discovered from data/ or vulnebleti/
 
-## In-Scope Components
-
-- `https://console.byteplus.com/dts/*` UI routes.
-- Same-origin static JavaScript and API calls required to exercise `/dts/*`.
-
-## Explicitly Out of Scope
-
-- Any other host or subdomain, including unrelated `*.byteplus.com` assets.
-- Third-party origins, CDNs, partner systems, acquisitions.
-- Other console product areas outside `/dts/*`.
-- Destructive/DoS/brute-force testing; real-user data.
-
-## Program Restrictions Discovered
-
-- From `data/targets.txt`: private BBP, console.byteplus.com in scope.
-- Standard AGENT.md safety rules apply (test-owned data, no destructive tests,
-  no real-user harm).
+- No explicit rate limits in `data/`; apply conservative, low-volume testing.
+- No destructive tests, no real-user data, test-owned data only (AGENT.md Section 2).

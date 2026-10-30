@@ -1,10 +1,10 @@
 watchdog_terminated=true
-watchdog_terminated_at=2026-10-30T09:28:20Z
-last_log_bytes=460890
+watchdog_terminated_at=2026-10-30T11:25:18Z
+last_log_bytes=389506
 attempts=3
 recovery=0
 watchdog_terminated=true
-watchdog_terminated_at=2026-10-30T09:30:45Z
-last_log_bytes=461237
+watchdog_terminated_at=2026-10-30T11:27:43Z
+last_log_bytes=389853
 attempts=1
 recovery=1

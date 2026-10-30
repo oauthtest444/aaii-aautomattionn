@@ -1,4 +1,0 @@
-2026-10-30T09:35Z client-side: downloaded/analyzed 14 route-loaded DTS chunks (see inventory/javascript.md)
-2026-10-30T09:35Z sinks: no dangerouslySetInnerHTML/innerHTML/insertAdjacentHTML/document.write/eval; no postMessage listeners
-2026-10-30T09:36Z sources: TaskType/location.search form selection, ops-only location.href path builder -> not vulnerable
-2026-10-30T09:36Z client-side phase complete: no finding

@@ -1,9 +1,0 @@
-POST /api/top/dts/ListMgrCustomerParam/2018-01-01/ap-southeast-1 HTTP/1.1
-Host: console.byteplus.com
-Content-Type: application/json; charset=UTF-8
-x-csrf-token: <csrfToken cookie>
-x-storage-request-source: Web
-x-storage-language: en
-x-dts-accept-language: en
-
-{}
