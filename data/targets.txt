@@ -1,5 +1,7 @@
 Target:
-https://console.byteplus.com/finance/
+https://console.byteplus.com/dts/region:dts+ap-southeast-1/?
+
+test all sub routes under this /dts/*
 
 note: this is inscope domain this program have private bbp.
 
