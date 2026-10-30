@@ -1,3 +1,77 @@
-https://launch.sptpub.com/brand/2599624589818605571/sportsbook/launch?lang=tr&theme=DARK
+Target:
+account.ui.com
 
-find and test all routes on launch.sptpub.com
+For this subdomain First discover all intresting and unique UI routes and API endpoints. 
+
+After discovering all interesting UI routes using Chrome MCP, visit each route one by one. Wait 5–10 seconds on each route to ensure that all JavaScript has fully loaded before starting the testing process.
+
+Test both client-side and server-side bugs for each route.
+
+Important: Follow a strict one-by-one testing process:
+
+Visit the first UI route.
+Wait 5–10 seconds for JavaScript to load completely.
+Perform complete client-side and server-side security testing on that single route.
+Document all findings for that route.
+Only after completing all testing and documentation for the current route, move on to the next route.
+Repeat this process until all discovered UI routes have been tested.
+
+Progress Reporting:
+
+Maintain a progress report showing:
+
+Total number of UI routes discovered.
+Number of UI routes fully tested.
+Number of UI routes not yet tested.
+Which routes have been fully tested.
+Which routes are still pending.
+
+This progress report will help agents in other sessions understand exactly what has already been tested and what needs to be tested next, preventing duplicate work.
+
+Testing Guidelines:
+
+Before testing each UI route, read the client-side .md file and server-side .md file. Follow their instructions and testing methodologies exactly.
+
+After fully testing each individual route, create a detailed report containing:
+
+1. Client-Side Findings
+
+Interesting source and sink locations discovered.
+Relevant file paths and line numbers.
+Potential vulnerabilities and their testing status.
+Any confirmed client-side bugs.
+
+2. Server-Side Findings
+
+APIs and endpoints discovered.
+Relevant request and response details.
+APIs tested successfully.
+Potential vulnerabilities and their testing status.
+Any confirmed server-side bugs.
+
+3. Route Completion Status
+
+Route URL.
+Client-side testing status.
+Server-side testing status.
+Findings and observations.
+Final completion status.
+
+Do not mark a route as fully tested until both client-side and server-side testing are complete and the findings have been documented.
+
+Keep the progress report updated after completing every route so that another agent or session can seamlessly continue from where the previous session stopped.
+
+Do not ask me any questions. Make reasonable decisions independently, think critically, and provide answers using the mindset of a top bug bounty hunter.
+First, create two test accounts on this target subdomain and save their credentials in a file for testing purposes.
+Try all reasonable approaches. However, if you are still unable to create accounts on this target subdomain, test only unauthenticated endpoints for potential vulnerabilities.
+Approach every question with the mindset of a top bug bounty hunter, focusing on thorough investigation, creative thinking, and practical exploitation within the authorized scope.
+
+Final Goal: Identify valid, impactful, and reportable security vulnerabilities. 
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
