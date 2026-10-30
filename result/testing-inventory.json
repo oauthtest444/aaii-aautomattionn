@@ -1,8 +1,41 @@
 {
-  "targets": ["https://console.byteplus.com/ark/region:ap-southeast-1/tts/podcast"],
-  "routes": [],
-  "javascript": [],
-  "flows": [],
+  "targets": [
+    "https://console.byteplus.com/ark/region:ap-southeast-1/tts/podcast"
+  ],
+  "accounts": {
+    "A": { "accountId": "3000823185", "role": "root" },
+    "B": { "accountId": "3001021825", "role": "root" }
+  },
+  "routes": [
+    { "url": "/ark/region:ap-southeast-1/tts/podcast", "status": "tested", "notes": "shell only; content in out-of-scope cross-origin iframe; bridge origin/source validated" },
+    { "url": "/ark/region:ap-southeast-1/overview", "status": "tested", "notes": "home; account/meta + price calls" },
+    { "url": "/ark/region:ap-southeast-1/model", "status": "tested", "notes": "public model catalog" },
+    { "url": "/ark/region:ap-southeast-1/gallery", "status": "tested", "notes": "public curated gallery; no user content" },
+    { "url": "/ark/region:ap-southeast-1/application", "status": "tested", "notes": "App Lab reachable; app creation gated on vefaaS activation" },
+    { "url": "/ark/region:ap-southeast-1/assistant/edit", "status": "tested-gated", "notes": "editor loads; submit requires activation; auto-created IAM role as UI side effect" },
+    { "url": "/ark/region:ap-southeast-1/inference", "status": "tested", "notes": "redirects to /overview" },
+    { "url": "/ark/region:ap-southeast-1/managed-agents/quickstart", "status": "tested", "notes": "guest-accessible; creation blocked ManagedAgentNotOpen" },
+    { "url": "/ark/region:ap-southeast-1/managed-agents/agents", "status": "tested", "notes": "empty list; creation gated" },
+    { "url": "/ark/region:ap-southeast-1/managed-agents/credentials-vault", "status": "tested", "notes": "vault CRUD A/B scoping; CreateCredential gated" },
+    { "url": "/ark/region:ap-southeast-1/managed-agents/credentials-vault-oauth/callback", "status": "tested", "notes": "localStorage + SPA navigation only; no backend call; low" },
+    { "url": "/ark/region:ap-southeast-1/docs/product-overview", "status": "tested", "notes": "docs renderer; no XSS sink; trusted CDN content" },
+    { "url": "/ark/region:ap-southeast-1/notfound", "status": "tested", "notes": "B cannot render region UI; APIs still callable" }
+  ],
+  "flows": [
+    { "name": "api-key-tenant-scoping", "status": "tested", "result": "B GetRawApiKey A key -> NotFound.Id; ListApiKeys scoped" },
+    { "name": "api-key-accountid-mass-assignment", "status": "tested", "result": "injected AccountId/AccountID ignored; created key owned by session account; no cross-tenant write" },
+    { "name": "credentials-vault-bola", "status": "tested", "result": "A vault invisible to B (InvalidVault.NotFound); lists scoped" },
+    { "name": "getaccountmeta-accountid-injection", "status": "tested", "result": "500 InternalError (crash, no data leak); not reported" },
+    { "name": "estimate-token-count-url-ssrf", "status": "tested", "result": "all tested URLs rejected InvalidParameter.Url; likely signed TOS required; unproven" },
+    { "name": "cors-credentialed-cross-site", "status": "tested", "result": "modelark-api reflects Origin but CSRF double-submit blocks; arkbff/top API not exploitable" },
+    { "name": "oauth-callback-message-spoof", "status": "tested", "result": "same-origin localStorage/message only -> toast + SPA route; low" },
+    { "name": "app-lab-create", "status": "blocked", "result": "requires vefaaS activation (1/6 services inactive)" },
+    { "name": "managed-agent-create", "status": "blocked", "result": "ManagedAgentNotOpen" }
+  ],
   "endpoints": [],
-  "listeners": []
+  "listeners": [
+    { "file": "7006.3374811d72.js", "originCheck": true, "status": "safe" },
+    { "file": "38767.69bfc8048a.js", "originCheck": false, "status": "vendor SDK / unresolved low" },
+    { "file": "vault.js", "originCheck": true, "status": "same-origin only; low" }
+  ]
 }
