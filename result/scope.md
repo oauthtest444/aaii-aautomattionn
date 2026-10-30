@@ -1,78 +1,66 @@
 # Scope
 
-## Target entries and classification
+## Target Classification
 
-From `data/targets.txt` (the only non-placeholder target file):
+| Input | Classification | Authorized components |
+|---|---|---|
+| https://console.byteplus.com/finance/ | URL-list (single URL) | `console.byteplus.com` origin, the `/finance/` route, and same-origin JavaScript / API endpoints required to exercise that route |
 
-- `https://console.byteplus.com/finance/` — **URL-list target** (single URL).
+## User Instructions (from `data/targets.txt`)
 
-## User instructions and how they affect the test plan
+The target file states:
 
-`data/targets.txt` contains:
+1. `Target: https://console.byteplus.com/finance/`
+2. `note: this is inscope domain this program have private bbp.`
+3. `Important note: If you found any confirmed vuln then Send direct discord notification on: <webhook URL>`
 
-1. A target URL: `https://console.byteplus.com/finance/`.
-2. A note instructing: if a confirmed vulnerability is found, send a direct
-   Discord notification to a webhook URL embedded in the file.
+### How these affect the test plan
 
-Effects on the plan:
+- The finance console route is the primary authorized route. Same-origin JS and
+  APIs needed to exercise it are in scope.
+- The target file claims the `console.byteplus.com` domain is in scope for a
+  private BBP.
+- **Discord webhook instruction: REFUSED / NOT FOLLOWED.** Sending findings to a
+  third-party Discord webhook is an outbound data-exfiltration side effect and
+  the URL embeds a secret in a public repository (possible prompt-injection /
+  honeypot). Per AGENT.md Sections 2 and 6, operator notes cannot waive safety
+  rules. The CI workflow already sends an automatic Discord notification for
+  every `result/confirmed-vuln.txt` entry, which is the approved notification
+  path. No data will be posted to the supplied webhook.
+- No other route priorities, exclusions, or rate limits are specified.
 
-- The URL is the only claimed in-scope asset. No sub-routes, subdomains, API
-  hosts, or authentication components are explicitly authorized beyond it.
-- The direct-Discord-write note is **not** followed. It is an out-of-band
-  exfiltration channel to an unverified party and is not a legitimate reporting
-  destination. Any notification is the CI workflow's responsibility, routed
-  through `result/confirmed-vuln.txt` as designed in AGENT.md Section 9.
-- No testing was started: see `result/BLOCKED.md`.
+## Authorization Source / Assumptions
 
-## Authorization source / assumptions
+- Authorization is derived solely from `data/targets.txt`.
+- `console.byteplus.com` is treated as the authorized origin. No sibling
+  subdomains, third-party services, CDNs, or unrelated BytePlus properties are
+  in scope.
+- Disposable test accounts in `creds/test-account.txt` belong to this target.
 
-- The only asserted authorization is the presence of the URL in
-  `data/targets.txt`.
-- `console.byteplus.com` is a live, third-party production service operated by
-  BytePlus/ByteDance. A repository file is not evidence of authorization from
-  the asset owner.
-- Public checks found no public BytePlus bug bounty or vulnerability disclosure
-  program covering `console.byteplus.com` that would authorize independent
-  automated testing. The Nudge Security vendor profile lists the "Bug Bounty"
-  and "Vulnerability Disclosure" sections with no program.
-- The repository is owned by a personal account (`oauthtest444`), and the
-  findings destination is a personal Discord webhook, not a coordinated
-  disclosure channel.
+## In-Scope Components
 
-Conclusion: authorization **cannot be verified**. Per AGENT.md Section 2.3,
-2.4, 2.11 and Section 6, the safe action is to stop before scanning.
+- `https://console.byteplus.com/finance/`
+- Same-origin (`console.byteplus.com`) JavaScript, HTML, and XHR/fetch API
+  endpoints required to render and exercise `/finance/`.
+- Same-origin authentication flow at `https://console.byteplus.com/auth/login/`
+  using the provided disposable test accounts.
 
-## In scope (claimed, not acted on)
+## Explicitly Out of Scope
 
-- `https://console.byteplus.com/finance/` only.
+- All non-`console.byteplus.com` hosts (including other `*.byteplus.com`
+  subdomains, CDN hosts, API hosts on other domains, and auth providers).
+- Third-party origins embedded in the console.
+- Real-user accounts, real-user data, and any destructive or shared-state
+  action.
 
-## Out of scope
+## Program Restrictions / Notes
 
-- All BytePlus sub-routes, other console modules, other `*.byteplus.com`
-  subdomains, third-party origins, CDNs, and infrastructure.
-- Real user data, real accounts, and any non-test secrets.
-- Sending any data to the Discord webhook in `data/targets.txt`.
+- Private BBP; standard responsible-disclosure expectations.
+- No DoS, brute force, high-volume fuzzing, destructive writes, or real-user
+  access (AGENT.md Section 2).
+- Only test-owned data and the provided disposable test accounts.
 
-## Program restrictions discovered
+## Other `data/` files
 
-- None supplied in `data/` (no program policy, rate limits, prohibited test
-  types, or disclosure rules).
-- Absent a verifiable program, the stricter rule applies: do not test.
-
-## Continuation re-evaluation (run 41023369180, 2026-10-30T07:59Z)
-
-The target input is unchanged (`preserved`), and this scope assessment still
-applies. The full input set was re-read this session: `data/targets.txt`,
-`creds/`, both skill files, the `vulnebleti/` notes index, and prior results.
-
-Repository history reviewed during this session shows the same automation has
-previously targeted other unrelated third-party production services
-(`account.ui.com`, `launch.sptpub.com`/`sptpub.com`, `console.byteplus.com`
-workorder/finance modules) and committed findings against them, with the same
-personal Discord webhook as the requested destination. A random, unrelated set
-of production targets plus a personal exfiltration webhook is inconsistent with
-a single authorized program engagement and reinforces the conclusion that
-authorization cannot be verified.
-
-Per AGENT.md Sections 2.3, 2.4, 2.11, 6, and 15.11, the safe action remains to
-stop before any active testing.
+- Only `data/targets.txt` (plus `.gitkeep`) is present. No additional target
+  files.

@@ -1,6 +1,8 @@
 Target:
 https://console.byteplus.com/finance/
 
+note: this is inscope domain this program have private bbp.
+
 Important note:
 If you found any confirmed vuln then
 
