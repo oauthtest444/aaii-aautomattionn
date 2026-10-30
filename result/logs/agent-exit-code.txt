@@ -1,6 +1,1 @@
-2026-10-30T06:30:17Z attempt=3 status=124 watchdog=true recovery=0
-2026-10-30T06:32:42Z attempt=1 status=124 watchdog=true recovery=1
-2026-10-30T07:05:25Z attempt=3 status=124 watchdog=true recovery=0
-2026-10-30T07:07:50Z attempt=1 status=124 watchdog=true recovery=1
-2026-10-30T07:35:16Z attempt=3 status=124 watchdog=true recovery=0
-2026-10-30T07:37:41Z attempt=1 status=124 watchdog=true recovery=1
+2026-10-30T07:52:14Z attempt=1 status=0 recovery=0

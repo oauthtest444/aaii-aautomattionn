@@ -1,49 +1,60 @@
 # Scope
 
-## User Instructions
+## Target entries and classification
 
-From `data/targets.txt`:
+From `data/targets.txt` (the only non-placeholder target file):
 
-- Target: `https://console.byteplus.com/finance/`
-- Test all sub-routes under `/finance/`.
-- Keep the progress report updated after completing every route so a later
-  session can continue.
-- Do not ask questions; make reasonable decisions independently.
-- First create two test accounts on this target subdomain and save credentials.
-  If account creation is impossible, test only unauthenticated endpoints.
-- If a confirmed vulnerability is found, the operator asked for a direct Discord
-  webhook notification.
-- Hint: "Their have one confirmed valid bug so also find out that."
+- `https://console.byteplus.com/finance/` — **URL-list target** (single URL).
 
-## How the instructions affect the plan
+## User instructions and how they affect the test plan
 
-- Scope is the URL list `https://console.byteplus.com/finance/` plus only its
-  sub-routes and the same-origin authentication components required to reach
-  them (the `/signin/login` flow and its same-origin APIs).
-- `creds/test-account.txt` already provides two BytePlus console test logins;
-  those are used instead of creating new accounts where login succeeds.
-- The direct Discord-write request is not followed. AGENT.md Section 9 and the
-  CI workflow design route confirmed findings through `result/confirmed-vuln.txt`.
-  Sending unverified data to a webhook would violate the evidence rules. This is
-  documented, not actioned.
-- No scope expansion to non-`/finance/` console modules, other byteplus.com
-  subdomains, or third-party origins.
+`data/targets.txt` contains:
+
+1. A target URL: `https://console.byteplus.com/finance/`.
+2. A note instructing: if a confirmed vulnerability is found, send a direct
+   Discord notification to a webhook URL embedded in the file.
+
+Effects on the plan:
+
+- The URL is the only claimed in-scope asset. No sub-routes, subdomains, API
+  hosts, or authentication components are explicitly authorized beyond it.
+- The direct-Discord-write note is **not** followed. It is an out-of-band
+  exfiltration channel to an unverified party and is not a legitimate reporting
+  destination. Any notification is the CI workflow's responsibility, routed
+  through `result/confirmed-vuln.txt` as designed in AGENT.md Section 9.
+- No testing was started: see `result/BLOCKED.md`.
 
 ## Authorization source / assumptions
 
-- `data/targets.txt` is treated as the authorization record for this repository
-  run (AGENT.md Sections 2, 6).
-- Only non-destructive, read-first testing is performed. Test-owned data only.
+- The only asserted authorization is the presence of the URL in
+  `data/targets.txt`.
+- `console.byteplus.com` is a live, third-party production service operated by
+  BytePlus/ByteDance. A repository file is not evidence of authorization from
+  the asset owner.
+- Public checks found no public BytePlus bug bounty or vulnerability disclosure
+  program covering `console.byteplus.com` that would authorize independent
+  automated testing. The Nudge Security vendor profile lists the "Bug Bounty"
+  and "Vulnerability Disclosure" sections with no program.
+- The repository is owned by a personal account (`oauthtest444`), and the
+  findings destination is a personal Discord webhook, not a coordinated
+  disclosure channel.
 
-## In scope
+Conclusion: authorization **cannot be verified**. Per AGENT.md Section 2.3,
+2.4, 2.11 and Section 6, the safe action is to stop before scanning.
 
-- `https://console.byteplus.com/finance/` and its sub-routes.
-- Same-origin login/auth components required to access `/finance/`.
-- Same-origin JavaScript and API endpoints needed to exercise `/finance/`.
+## In scope (claimed, not acted on)
+
+- `https://console.byteplus.com/finance/` only.
 
 ## Out of scope
 
-- Other console modules (e.g. `/iam`, `/user`, `/ark`, `/order`) except where a
-  request is required by the `/finance/` UI itself.
-- Other `*.byteplus.com` subdomains and third-party origins.
-- Real user data / real accounts.
+- All BytePlus sub-routes, other console modules, other `*.byteplus.com`
+  subdomains, third-party origins, CDNs, and infrastructure.
+- Real user data, real accounts, and any non-test secrets.
+- Sending any data to the Discord webhook in `data/targets.txt`.
+
+## Program restrictions discovered
+
+- None supplied in `data/` (no program policy, rate limits, prohibited test
+  types, or disclosure rules).
+- Absent a verifiable program, the stricter rule applies: do not test.

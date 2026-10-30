@@ -1,17 +1,6 @@
 Target:
 https://console.byteplus.com/finance/
 
-Test all sub routes under /finance/
-
-Keep the progress report updated after completing every route so that another agent or session can seamlessly continue from where the previous session stopped.
-
-Do not ask me any questions. Make reasonable decisions independently, think critically, and provide answers using the mindset of a top bug bounty hunter.
-First, create two test accounts on this target subdomain and save their credentials in a file for testing purposes.
-Try all reasonable approaches. However, if you are still unable to create accounts on this target subdomain, test only unauthenticated endpoints for potential vulnerabilities.
-Approach every question with the mindset of a top bug bounty hunter, focusing on thorough investigation, creative thinking, and practical exploitation within the authorized scope.
-
-Final Goal: Identify valid, impactful, and reportable security vulnerabilities. 
-
 Important note:
 If you found any confirmed vuln then
 
@@ -19,5 +8,3 @@ Send direct discord notification on:
 ```
 https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
 ```
-Note:
-Their have one confirmed valid bug so also find out that
