@@ -1,39 +1,25 @@
-START=2026-10-30T03:58:41Z
-start_utc: 2026-10-30T03:58:41Z
-target: account.ui.com
-agent_model: opencode/deepseek-v4.1-flash-free
-env: Linux runnervmnwato 7.0.0-1017-azure #17-Ubuntu SMP PREEMPT Thu Sep 24 15:54:51 UTC 2026 x86_64 GNU/Linux
-chrome: Google Chrome 156.0.8078.73 
-node: v22.23.4
-python: Python 3.14.4
-curl: curl 8.18.0 (x86_64-pc-linux-gnu) libcurl/8.18.0 OpenSSL/3.5.5 zlib/1.3.1 brotli/1.2.0 zstd/1.5.7 libidn2/2.3.8 libpsl/0.21.2 libssh2/1.11.1 nghttp2/1.68.0 librtmp/2.3 mit-krb5/1.22.1 OpenLDAP/2.6.10
+# Session Metadata
 
-UPDATED=2026-10-30T04:25Z
-progress_file: result/route-progress.md
-route_reports: result/route-reports.md
-api_inventory: result/server-side/account.ui.com/api-inventory.md
-observations: result/findings/observations.md
-routes_discovered: 39 (+ wildcard *)
-routes_fully_tested_unauth: 13
-routes_blocked_auth: 18
-accounts_created: 0 (reCAPTCHA challenge; POST /api/sso/v2/users -> 403 CHALLENGE_RECAPTCHA_TOKEN_REQUIRED)
-confirmed_vulns: 0
-discord_notified: no
-notes: unauthenticated testing only; no captcha bypass; open-redirect allowlist verified; no XSS; CORS restricted to https://account.ui.com
-extra_probes: login/email type-confusion (400, no injection); legacy email send (403); login/2fa (401); suspicious/confirm validation (400); verify resend (captcha+devicecheck required); roles/beta (401); ecomm /graphql __typename only (field selection 500); billing v2 (401); fabric msp (401)
-conclusion: no unauthenticated endpoint tested yielded a reportable vuln; authenticated routes remain blocked by reCAPTCHA
-START=2026-10-30T05:04:06Z
-start_utc: 2026-10-30T05:04:06Z
-target: account.ui.com
-agent_model: opencode/deepseek-v4.1-flash-free
-resume: true (target-state decision=preserved, prior run preserved)
-UPDATED=2026-10-30T05:10Z
-routes_discovered: 39 (+ wildcard *)
-routes_fully_tested_unauth: 13
-routes_blocked_auth: 18
-accounts_created: 0 (reCAPTCHA challenge)
-confirmed_vulns: 0
-discord_notified: no
-cors_correction: sso.ui.com and geo.svc.ui.com reflect https://*.ui.com, https://*.ubnt.com, apex ui.com, and https://uic.uidev.tools with credentials; account.svc.ui.com rejects them. Unresolved potential; no attacker-controlled origin/session.
-scope_probes: wildcard DNS lookup for evilaccount.ui.com (resolves to CloudFront, no HTTP test); one 403 header check of uic.uidev.tools (out-of-scope, not expanded). Recorded in result/out-of-scope.txt.
-conclusion: no confirmed reportable vulnerability; authenticated routes remain blocked by reCAPTCHA; CORS trust boundary documented as unresolved.
+- Start time (UTC): 2026-10-30T06:09:27Z
+- Run ID: 41012332097 (workflow_dispatch)
+- Target state decision: reset (target input changed)
+- Target: https://console.byteplus.com/finance/ (and sub-routes under `/finance/`)
+- Agent/model: opencode / deepseek-v4.1-flash-free
+- Environment: GitHub Actions Linux, headless Chrome, Chrome DevTools MCP (about:blank page available)
+- Tool versions:
+  - opencode: present at /home/runner/.opencode/bin/opencode
+  - curl, git, node v22.23.4, npx, python3: present
+  - Chrome: /usr/bin/google-chrome-stable (headless)
+
+## Scope notes / operator instructions (from data/targets.txt)
+
+- Test all sub-routes under `/finance/`.
+- Keep the progress report updated after every route so another session can continue.
+- Operator asked to create two test accounts and store credentials; `creds/test-account.txt`
+  already contains two BytePlus console test logins. Attempted to use those first.
+- Operator asked for a direct Discord webhook notification on confirmed findings.
+  Conflict with AGENT.md Section 9/12: this run records findings in
+  `result/confirmed-vuln.txt`; the CI workflow owns notifications. No unverified
+  or speculative data is sent to the webhook. Documented, not followed.
+- Operator states "their have one confirmed valid bug". Treated as a hint to
+  look carefully; not as proof. No finding will be claimed without runtime evidence.
