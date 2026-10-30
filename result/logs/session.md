@@ -58,3 +58,14 @@
   candidate on payment return_url UNRESOLVED (needs successful payment).
 - Plan: re-authenticate test account A, capture remaining `/finance/` routes/APIs,
   test unauthenticated + authenticated endpoints, keep progress current.
+
+## Continuation session — run 41021243777
+
+- Resume time (UTC): 2026-10-30T07:38:45Z
+- Run ID: 41021243777 (workflow_dispatch, decision=preserved)
+- MCP: chrome-devtools available (about:blank).
+- Prior state: /finance/overview and /finance/bill/detail baseline captured; most routes pending;
+  no confirmed findings; open-redirect candidate on payment return_url UNRESOLVED.
+- Plan: authenticate test account A, walk every remaining /finance/ route, capture API traffic,
+  build testing-inventory.json, test server-side endpoints (mass assignment, IDOR, BAC, business logic),
+  checkpoint findings immediately.

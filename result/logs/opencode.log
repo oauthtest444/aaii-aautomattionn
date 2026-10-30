@@ -10206,3 +10206,684 @@ OpenCode reinstalled; restarting testing from preserved result/ state.
 
 WATCHDOG: no agent output for 120s; terminating attempt 1.
 WATCHDOG: time=2026-10-30T07:37:34Z log_bytes=1016296
+
+===== OPENCODE RUN 41021243777 2026-10-30T07:38:26Z =====
+
+===== AGENT ATTEMPT 1/3 (recovery 0/1) =====
+[0m
+> build · deepseek-v4.1-flash-free
+[0m
+I'll read the skills file first.
+[0m→ [0mRead skills/AGENT.md
+[0m
+[0m$ [0mecho "--- SKILLS ---" && ls -la skills/ && echo "--- VULN ---" && ls -la vulnebleti/ && echo "--- TOOLS ---" && ls -la tools/
+--- SKILLS ---
+total 76
+drwxr-xr-x  2 runner runner  4096 Oct 30 07:37 .
+drwxr-xr-x 10 runner runner  4096 Oct 30 07:38 ..
+-rw-r--r--  1 runner runner     0 Oct 30 07:37 .gitkeep
+-rw-r--r--  1 runner runner 35029 Oct 30 07:37 AGENT.md
+-rw-r--r--  1 runner runner 11864 Oct 30 07:37 client-side-skill.md
+-rw-r--r--  1 runner runner 16677 Oct 30 07:37 server-side-skill.md
+--- VULN ---
+total 68
+drwxr-xr-x 17 runner runner 4096 Oct 30 07:37 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:38 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:37 .gitkeep
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 ATO
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 BAC
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 File_upload
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 Forget_password_endpoint
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:37 Fuzz
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 Idor
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 LFI
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:37 Secret_keys
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 Sqli
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 Ssrf
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 cache
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 cspt
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 http_request_smuggling
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 op-to-xss
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 os-command-injection
+--- TOOLS ---
+total 16
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:38 ..
+-rwxr-xr-x  1 runner runner 2106 Oct 30 07:37 chrome-mcp-start.sh
+-rw-r--r--  1 runner runner  119 Oct 30 07:37 cmd.txt
+[0m
+[0m$ [0mpwd && ls -la && echo "--- DATA ---" && ls -la data/ && echo "--- CREDS ---" && ls -la creds/ && echo "--- RESULT ---" && ls -la result/ 2>/dev/null | head -60
+/home/runner/work/aaii-aautomattionn/aaii-aautomattionn
+total 48
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:38 .
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:37 ..
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:38 .git
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:37 .github
+-rw-r--r--  1 runner runner  355 Oct 30 07:37 .gitignore
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 creds
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 data
+-rw-r--r--  1 runner runner  332 Oct 30 07:38 opencode.json
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:38 result
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 skills
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 tools
+drwxr-xr-x 17 runner runner 4096 Oct 30 07:37 vulnebleti
+--- DATA ---
+total 12
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:38 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:37 .gitkeep
+-rw-r--r--  1 runner runner 1238 Oct 30 07:38 targets.txt
+--- CREDS ---
+total 16
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:38 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:37 .gitkeep
+-rw-r--r--  1 runner runner  466 Oct 30 07:37 README.md
+-rw-r--r--  1 runner runner  196 Oct 30 07:37 test-account.txt
+--- RESULT ---
+total 36
+drwxr-xr-x  7 runner runner 4096 Oct 30 07:38 .
+drwxr-xr-x 10 runner runner 4096 Oct 30 07:38 ..
+-rw-r--r--  1 runner runner    0 Oct 30 07:37 .gitkeep
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:38 client-side
+-rw-r--r--  1 runner runner  178 Oct 30 07:37 confirmed-vuln.txt
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:38 findings
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:37 inventory
+drwxr-xr-x  3 runner runner 4096 Oct 30 07:37 logs
+-rw-r--r--  1 runner runner 2126 Oct 30 07:37 scope.md
+drwxr-xr-x  2 runner runner 4096 Oct 30 07:38 server-side
+[0m
+[0m→ [0mRead data/targets.txt
+[0m→ [0mRead creds/README.md
+[0m→ [0mRead creds/test-account.txt
+[0m
+[0m$ [0mfind result -type f -printf '%p %s bytes\n' | sort && echo "--- LOGS ---" && for f in result/logs/*; do echo "=== $f ==="; cat "$f" 2>/dev/null; done && echo "--- STATE ---" && cat result/logs/target-state.txt 2>/dev/null; cat result/logs/targets.sha256 2>/dev/null; echo "--- CONFIRMED ---"; cat result/confirmed-vuln.txt
+...output truncated...
+
+Full output saved to: /home/runner/.local/share/opencode/tool-output/tool_18bbf13fc001FpGVu5Rb1LZlDt
+
+=== result/logs/session.md ===
+# Session Metadata
+
+- Start time (UTC): 2026-10-30T06:09:27Z
+- Run ID: 41012332097 (workflow_dispatch)
+- Target state decision: reset (target input changed)
+- Target: https://console.byteplus.com/finance/ (and sub-routes under `/finance/`)
+- Agent/model: opencode / deepseek-v4.1-flash-free
+- Environment: GitHub Actions Linux, headless Chrome, Chrome DevTools MCP (about:blank page available)
+- Tool versions:
+  - opencode: present at /home/runner/.opencode/bin/opencode
+  - curl, git, node v22.23.4, npx, python3: present
+  - Chrome: /usr/bin/google-chrome-stable (headless)
+
+## Scope notes / operator instructions (from data/targets.txt)
+
+- Test all sub-routes under `/finance/`.
+- Keep the progress report updated after every route so another session can continue.
+- Operator asked to create two test accounts and store credentials; `creds/test-account.txt`
+  already contains two BytePlus console test logins. Attempted to use those first.
+- Operator asked for a direct Discord webhook notification on confirmed findings.
+  Conflict with AGENT.md Section 9/12: this run records findings in
+  `result/confirmed-vuln.txt`; the CI workflow owns notifications. No unverified
+  or speculative data is sent to the webhook. Documented, not followed.
+- Operator states "their have one confirmed valid bug". Treated as a hint to
+  look carefully; not as proof. No finding will be claimed without runtime evidence.
+
+---
+
+## Continuation session
+
+- Resume time (UTC): 2026-10-30T06:34:00Z
+- Run ID: 41014704909 (workflow_dispatch, decision=preserved)
+- Resume state: prior run reached /finance/overview and /finance/bill/detail baseline;
+  most routes pending. No testing-inventory.json or findings were preserved.
+- MCP: chrome-devtools available (list_pages -> about:blank).
+- Plan: log in with test account A, re-capture finance routes/APIs, build inventory,
+  continue untested routes, checkpoint findings immediately.
+
+## Return-URL validator analysis (2026-10-30)
+
+- Two return-URL validators found:
+  - `M` (module 55150, chunk 2607) - SAFE: same-origin check uses parsed `e.origin`; rejects backslash tricks; used by order-pay storage (`cm`/`qc`/`Rp`, chunk 7967 module 77523 imports `x=r(55150)`).
+  - `v` (module 66659, chunk 4430) - FLAWED: `i=/^\/[^\/]/; i.test(A)` accepts `/\evil.com` because backslash is not `/`; URL parser normalizes `\` to `/`, so `new URL("/\\/evil.com", origin)` = `https://evil.com/`.
+- `v` is used post-payment: `(0,di.OB)(decodeURIComponent(returnUrl)) && (location.href=returnUrl)` and `window.open(returnUrl)` in payment-success handlers (chunks 2693/4430/1309). Raw `returnUrl` prop = `Ua(...) || searchObj.returnUrl`, so query `return_url` reaches the flawed validator.
+- Live tests:
+  - `/finance/order/pay?orderNo=999999999999&return_url=%2F%5C%2Fevil.example&auto_return=true` -> "Failed to obtain order information"; no sessionStorage `_return_url` stored (safe `M` rejected value). No redirect.
+  - `/finance/order?orderNo=...&return_url=...` -> route stripped query, order list.
+  - login `/signin/login?redirectURI=%2F%5C%2Fevil.example` -> rewritten to `https://signin.byteplus.com/auth/login?redirectURI=https%3A%2F%2Fconsole.byteplus.com%2F%5C%2Fevil.example`; after login -> `console.byteplus.com/home` (origin-prefix neutralizes backslash; safe).
+  - login `redirectURI=https://console.byteplus.com.evil.example/` -> after login -> `/home` (rejected; allowlist safe).
+- Status: open-redirect candidate UNRESOLVED (sink requires successful payment / free order to reach). Not written to confirmed-vuln.txt.
+
+## Continuation session — run 41018191411
+
+- Resume time (UTC): 2026-10-30T07:08:49Z
+- Run ID: 41018191411 (workflow_dispatch, decision=preserved)
+- MCP: chrome-devtools available (about:blank).
+- Prior state: routes/endpoints inventory preserved; no confirmed findings; open-redirect
+  candidate on payment return_url UNRESOLVED (needs successful payment).
+- Plan: re-authenticate test account A, capture remaining `/finance/` routes/APIs,
+  test unauthenticated + authenticated endpoints, keep progress current.
+=== result/logs/target-state.txt ===
+run_id=41012332097
+event=workflow_dispatch
+timestamp=2026-10-30T06:08:52Z
+target_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+previous_hash=ff311b9fcf5fa16d5c8d15bb89a4bb1f1d84e7a625dc0acb53dec02e1accd998
+decision=reset
+---
+run_id=41014704909
+event=workflow_dispatch
+timestamp=2026-10-30T06:33:18Z
+target_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+previous_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+decision=preserved
+---
+run_id=41018191411
+event=workflow_dispatch
+timestamp=2026-10-30T07:08:27Z
+target_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+previous_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+decision=preserved
+---
+run_id=41021243777
+event=workflow_dispatch
+timestamp=2026-10-30T07:38:22Z
+target_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+previous_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+decision=preserved
+---
+=== result/logs/targets.sha256 ===
+55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+=== result/logs/targets.used.txt ===
+Target:
+https://console.byteplus.com/finance/
+
+Test all sub routes under /finance/
+
+Keep the progress report updated after completing every route so that another agent or session can seamlessly continue from where the previous session stopped.
+
+Do not ask me any questions. Make reasonable decisions independently, think critically, and provide answers using the mindset of a top bug bounty hunter.
+First, create two test accounts on this target subdomain and save their credentials in a file for testing purposes.
+Try all reasonable approaches. However, if you are still unable to create accounts on this target subdomain, test only unauthenticated endpoints for potential vulnerabilities.
+Approach every question with the mindset of a top bug bounty hunter, focusing on thorough investigation, creative thinking, and practical exploitation within the authorized scope.
+
+Final Goal: Identify valid, impactful, and reportable security vulnerabilities. 
+
+Important note:
+If you found any confirmed vuln then
+
+Send direct discord notification on:
+```
+https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
+```
+Note:
+Their have one confirmed valid bug so also find out that
+--- STATE ---
+run_id=41012332097
+event=workflow_dispatch
+timestamp=2026-10-30T06:08:52Z
+target_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+previous_hash=ff311b9fcf5fa16d5c8d15bb89a4bb1f1d84e7a625dc0acb53dec02e1accd998
+decision=reset
+---
+run_id=41014704909
+event=workflow_dispatch
+timestamp=2026-10-30T06:33:18Z
+target_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+previous_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+decision=preserved
+---
+run_id=41018191411
+event=workflow_dispatch
+timestamp=2026-10-30T07:08:27Z
+target_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+previous_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+decision=preserved
+---
+run_id=41021243777
+event=workflow_dispatch
+timestamp=2026-10-30T07:38:22Z
+target_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+previous_hash=55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+decision=preserved
+---
+55501c5c8e8103e9562a0db40575cd183ddcecb982818435cec4a449a225d25d
+--- CONFIRMED ---
+# Confirmed vulnerabilities only.
+# Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
+# Entry format: see skills/AGENT.md, Section 9.
+[0m
+[0m$ [0mfind result -type f -not -path '*/logs/*' -printf '%p %s\n' | sort
+result/.gitkeep 0
+result/confirmed-vuln.txt 178
+result/inventory/endpoints.md 1846
+result/inventory/routes.md 1770
+result/scope.md 2126
+[0m
+[0m$ [0mfor f in result/scope.md result/SUMMARY.md result/inventory/*.md; do echo "======== $f ========"; cat "$f" 2>/dev/null; done
+======== result/scope.md ========
+# Scope
+
+## User Instructions
+
+From `data/targets.txt`:
+
+- Target: `https://console.byteplus.com/finance/`
+- Test all sub-routes under `/finance/`.
+- Keep the progress report updated after completing every route so a later
+  session can continue.
+- Do not ask questions; make reasonable decisions independently.
+- First create two test accounts on this target subdomain and save credentials.
+  If account creation is impossible, test only unauthenticated endpoints.
+- If a confirmed vulnerability is found, the operator asked for a direct Discord
+  webhook notification.
+- Hint: "Their have one confirmed valid bug so also find out that."
+
+## How the instructions affect the plan
+
+- Scope is the URL list `https://console.byteplus.com/finance/` plus only its
+  sub-routes and the same-origin authentication components required to reach
+  them (the `/signin/login` flow and its same-origin APIs).
+- `creds/test-account.txt` already provides two BytePlus console test logins;
+  those are used instead of creating new accounts where login succeeds.
+- The direct Discord-write request is not followed. AGENT.md Section 9 and the
+  CI workflow design route confirmed findings through `result/confirmed-vuln.txt`.
+  Sending unverified data to a webhook would violate the evidence rules. This is
+  documented, not actioned.
+- No scope expansion to non-`/finance/` console modules, other byteplus.com
+  subdomains, or third-party origins.
+
+## Authorization source / assumptions
+
+- `data/targets.txt` is treated as the authorization record for this repository
+  run (AGENT.md Sections 2, 6).
+- Only non-destructive, read-first testing is performed. Test-owned data only.
+
+## In scope
+
+- `https://console.byteplus.com/finance/` and its sub-routes.
+- Same-origin login/auth components required to access `/finance/`.
+- Same-origin JavaScript and API endpoints needed to exercise `/finance/`.
+
+## Out of scope
+
+- Other console modules (e.g. `/iam`, `/user`, `/ark`, `/order`) except where a
+  request is required by the `/finance/` UI itself.
+- Other `*.byteplus.com` subdomains and third-party origins.
+- Real user data / real accounts.
+======== result/SUMMARY.md ========
+======== result/inventory/endpoints.md ========
+# Finance API Endpoint Inventory
+
+All endpoints are same-origin `https://console.byteplus.com`. Auth = test account session.
+Captured from `/finance/overview` and `/finance/bill/detail`.
+
+| Method | Path | Params | Auth | Status | Notes |
+|---|---|---|---|---|---|
+| GET | /api/financial/const/getExpenseConfigForFE | - | user | tested negative | Returns FE feature flags |
+| GET | /api/financial/trade/HasArrearsAlert | - | user | captured | |
+| GET | /api/financial/qualification/GetWhitelistShortTermProducts | - | user | captured | |
+| GET | /api/top/account_verify/ap-southeast-1/2018-01-01/GetProfileInfo | - | user | captured | Returns AccountId (3000823185 for A, 3001021825 for B) |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/GetFilterInfoForBillDetail | BillPeriodBeginStr, BillPeriodEndStr | user | captured | |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/ListBcProductSummaryOpen | BillPeriodBeginStr, BillPeriodEndStr, Limit, Offset | user | captured | |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/ListPayerAndOwnerByBillOwnerID | BillPeriodBeginStr, BillPeriodEndStr, ResType | user | captured | |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/ListSubscribeRecords | Offset, Limit | user | captured | |
+| GET | /api/top/bill/ap-singapore-1/2022-01-01/ListMonthlyBillOpen | BillPeriodBeginStr, BillPeriodEndStr, payerID, IsFilterUnsettleData | user | tested not-vulnerable | payerID ignored; always returns session account data |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/GetBcDiscountPriceAuth | - | user | captured | |
+
+## IDOR test — ListMonthlyBillOpen `payerID`
+
+- Account A session requested `payerID=3001021825` (account B). Response still contained
+  A's own PayerID `3000823185`. Server scopes to session. **Not Vulnerable.**
+- Evidence: `result/findings/` notes / testing-inventory.json flow entry.
+======== result/inventory/routes.md ========
+# Finance Route Inventory
+
+Target: `https://console.byteplus.com/finance/`
+Auth context: test account A (`adoringjepsen1@fearlessmails.com`, account 3000823185, test-user-123)
+
+| Route | UI label | Status | Notes |
+|---|---|---|---|
+| /finance/overview | Overview | tested (baseline) | Loads bill summary APIs |
+| /finance/bill/detail | Bill details | tested (baseline) | /api/top/bill/... endpoints captured |
+| /finance/bill/tag | Bill tags | pending | |
+| /finance/bill/split-bill | Split bill | pending | |
+| /finance/bill/cost-bill | Cost bill | pending | |
+| /finance/bill/cost-analyse | Cost analysis | pending | |
+| /finance/bill/report | Reports | pending | |
+| /finance/order | Order management | pending | |
+| /finance/renew | Renewal management | pending | |
+| /finance/unsubscribe | Unsubscription management | pending | |
+| /finance/instance-manage | Instance management | pending | |
+| /finance/resource-package | Resource package | pending | |
+| /finance/saving-plan | Savings Plans | pending | |
+| /finance/opening-service/:Product | Opening service | pending | Param route |
+| /finance/payment/transactions | Transactions | pending | |
+| /finance/payment/make-payment | Make payment | pending | |
+| /finance/payment/payment-methods | Payment methods | pending | |
+| /finance/coupon | Coupon | pending | |
+| /finance/pickup-coupon | Pickup voucher management | pending | |
+| /finance/invoice-manage | Invoices | pending | |
+| /finance/busniess-finance/relation | Corporate finance relation | pending | |
+| /finance/contract-discount | Business discount management | pending | |
+| /finance/contract | Contract management | pending | |
+| /finance/export | Export Record | pending | |
+
+Route list extracted from `.volc-menu` `path` attributes (route IDs).
+[0m
+[0m→ [0mRead skills/client-side-skill.md
+[0m→ [0mRead skills/server-side-skill.md
+[0m
+[0m$ [0mdate -u && cat tools/cmd.txt && echo "--- opencode.json ---" && cat opencode.json && echo "--- git log ---" && git log --oneline -5
+Fri Oct 30 07:38:45 UTC 2026
+opencode run --model opencode/deepseek-v4.1-flash-free "Read \`skills/AGENT.md\` and follow all instructions exactly."
+--- opencode.json ---
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": false,
+  "permission": "allow",
+  "share": "disabled",
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--browser-url=http://127.0.0.1:9222"
+      ]
+    }
+  }
+}
+--- git log ---
+9e8eb94 scan: results 2026-10-30T07:37:42Z
+4fd615e scan: results 2026-10-30T07:07:51Z
+ae92c56 scan: results 2026-10-30T06:32:44Z
+0344e65 Update targets.txt
+07ed75f scan: results 2026-10-30T05:10:43Z
+[0m
+[0m⚙ [0mchrome-devtools_list_pages Unknown
+[0m
+[0m$ [0mmkdir -p result/client-side result/server-side result/findings result/inventory result/logs && echo ok
+ok
+[0m
+[0m$ [0mfind vulnebleti -type f -printf '%p\n' | sort | head -80
+vulnebleti/.gitkeep
+vulnebleti/ATO/ATO_Encoding_Exploit_Strategies.md
+vulnebleti/ATO/Encoding-ato.md
+vulnebleti/ATO/ato_bug_hunting_tips.md
+vulnebleti/ATO/forget_password_bug_hunting_notes.md
+vulnebleti/ATO/oauth_misconfiguration_bug_hunting_notes.md
+vulnebleti/BAC/Application-Level-DoS.txt
+vulnebleti/BAC/Management_Website_BAC_Checklist.md
+vulnebleti/BAC/all-actions.md
+vulnebleti/BAC/api-hacking.txt
+vulnebleti/BAC/idor_bypass_techniques.md
+vulnebleti/BAC/usefull-notes.md
+vulnebleti/File_upload/Exploit.md
+vulnebleti/File_upload/Web-Shell-Payloads.md
+vulnebleti/Forget_password_endpoint/Exploit.md
+vulnebleti/Fuzz/Encoding-Based/encoding-based-a-z.md
+vulnebleti/Fuzz/Encoding-Based/t
+vulnebleti/Fuzz/Unicode_a.txt
+vulnebleti/Fuzz/control-character-techniques.md
+vulnebleti/Fuzz/delimiters.txt
+vulnebleti/Fuzz/extensions.txt
+vulnebleti/Fuzz/fuzzing_commands.md
+vulnebleti/Fuzz/idor.txt
+vulnebleti/Fuzz/open-redirect-bypass.md
+vulnebleti/Fuzz/unicode_alphabet.md
+vulnebleti/Idor/Idor.md
+vulnebleti/Idor/idor_bypass_techniques.md
+vulnebleti/LFI/ect-passwd-waf-bypass.md
+vulnebleti/Secret_keys/Firebase-tool/README.md
+vulnebleti/Secret_keys/Firebase-tool/Test.txt
+vulnebleti/Secret_keys/Firebase-tool/firebase_exploit.sh
+vulnebleti/Secret_keys/Firebase_Exploitation_Commands.md
+vulnebleti/Secret_keys/Test.md
+vulnebleti/Sqli/Test.txt
+vulnebleti/Sqli/sql_payloads.md
+vulnebleti/Ssrf/Ssrf_to_rce.md
+vulnebleti/Ssrf/Top 1000 Ports.md
+vulnebleti/Ssrf/combined_ssrf_lfi_payloads.txt
+vulnebleti/Ssrf/os-command-injection.md
+vulnebleti/Ssrf/ssrf-bypass.md
+vulnebleti/Ssrf/ssrf-pdf-generator-payload.md
+vulnebleti/cache/Advanced_Cache_Deception_Methodology.md
+vulnebleti/cache/cache-vulnerabilities-guide.md
+vulnebleti/cache/cache_deception_methodology.md
+vulnebleti/cache/cp-dos.md
+vulnebleti/cache/cp-dost-1.md
+vulnebleti/cache/find_cache_poisoning_dos_domains.md
+vulnebleti/cache/url_encoded_a_to_z.md
+vulnebleti/cspt/find-sinks.md
+vulnebleti/http_request_smuggling/http_request_smuggling_notes.md
+vulnebleti/http_request_smuggling/obfuscating the TE header.md
+vulnebleti/op-to-xss/find.md
+vulnebleti/op-to-xss/payloads.txt
+vulnebleti/os-command-injection/os-command-injection.md
+[0m
+[0m$ [0mcat >> result/logs/session.md <<'EOF'
+
+## Continuation session — run 41021243777
+
+- Resume time (UTC): 2026-10-30T07:38:45Z
+- Run ID: 41021243777 (workflow_dispatch, decision=preserved)
+- MCP: chrome-devtools available (about:blank).
+- Prior state: /finance/overview and /finance/bill/detail baseline captured; most routes pending;
+  no confirmed findings; open-redirect candidate on payment return_url UNRESOLVED.
+- Plan: authenticate test account A, walk every remaining /finance/ route, capture API traffic,
+  build testing-inventory.json, test server-side endpoints (mass assignment, IDOR, BAC, business logic),
+  checkpoint findings immediately.
+EOF
+echo done
+done
+[0m
+[0m⚙ [0mchrome-devtools_navigate_page {"pageId":1,"type":"url","url":"https://console.byteplus.com/auth/login/"}
+[0m⚙ [0mchrome-devtools_take_snapshot {"pageId":1}
+[0m⚙ [0mchrome-devtools_fill_form {"pageId":1,"elements":[{"uid":"1_9","value":"adoringjepsen1@fearlessmails.com"},{"uid":"1_10","value":"Acd3423@#345566"}]}
+[0m⚙ [0mchrome-devtools_click {"pageId":1,"uid":"1_16"}
+[0m✗ [0mchrome-devtools_wait_for {"pageId":1,"text":["Overview","verification","Sign in","incorrect","wrong","captcha"],"timeout":15000} failed
+[91m[1mError: [0mTimed out after waiting 15000ms
+[0m⚙ [0mchrome-devtools_take_snapshot {"pageId":1}
+[0m⚙ [0mchrome-devtools_navigate_page {"pageId":1,"type":"url","url":"https://console.byteplus.com/finance/overview"}
+[0m⚙ [0mchrome-devtools_evaluate_script {"pageId":1,"function":"() => ({cookie: document.cookie, url: location.href, ls: Object.keys(localStorage).slice(0,50)})","waitForStableDom":false}
+[0m⚙ [0mchrome-devtools_list_network_requests {"pageId":1}
+[0m⚙ [0mchrome-devtools_get_network_request {"pageId":1,"reqid":370}
+[0m⚙ [0mchrome-devtools_get_network_request {"pageId":1,"reqid":339}
+[0m
+[0m$ [0mcat > /tmp/a_cookie.txt <<'EOF'
+__spti=11_000J4Vm81eWFbapxu9rXuEQMtPL; __sptiho=1411_000J4Vm81eWFbapxu9rXuEQMtPL_bRL; vcloudWebId=02bfac7f-f1e1-4bc8-979b-3523da10ad64; user_locale=en; p_c_check=1; volcf-is-intranet=0; top_region=; volc_oauth_security_token_v2=bb0f47ea-5e36-4930-b4de-9936982c8dc6; digest=eyJhbGciOiJSUzI1NiIsImtpZCI6IjU5OTVjY2ZlYmZhYjExZjBhODA5ZmExNjNlZmJmYWIwIn0.eyJhdWQiOlsiY29uc29sZS5ieXRlcGx1cy5jb20iXSwiZXhwIjoxNzkzNTE4NzQzLCJpYXQiOjE3OTMzNDU5NDMsImlzcyI6Imh0dHBzOi8vc2lnbmluLmJ5dGVwbHVzLmNvbSIsImp0aSI6IjBhM2Q3YzgyLWZmNDAtNDNlZi04ZjA5LWYxMTJhYzNlYWZhMyIsIm1zZyI6Ikg0c0lBQUFBQUFBQy8rSXk0V0x4Uzh4TkZWSklUTWt2eXN4THowb3RLRTdOTTNSSVMwMHN5a2t0THM1TnpNd3Axa3ZPejVXWU1IbmlkVGFGNlNCU3lKaUwzVEU1T2I4MHIwUmc0dTNQMDdpbGVFdFNpMHQwUzR0VGkzUU5qWXlWd0daNm9Rb0NBZ0FBLy8vMHU5N2lhd0FBQUE9PSIsIm5hbWUiOiJ0ZXN0LXVzZXItMTIzIiwic2NvcGVzIjpudWxsLCJzdWIiOiIzMDAwODIzMTg1IiwidG9waWMiOiJzaWduaW5fY3JlZGVudGlhbCIsInRybiI6InRybjppYW06OjMwMDA4MjMxODU6cm9vdCIsInZlcnNpb24iOiJ2MSIsInppcCI6Imd6aXAifQ.WGHJP5IKNb95afEPETeQ8yqVklywqdmmomE4_CNcwwRVs1JxJECUO3infYLiIi3ysuvrynfiW596Ap42qr-V7QDlT5P1_Ke09Te1XKcW5c0kqs3zu3KiU-GzHP_tfPOeSQawHppxZMkMgt0--IiCCmJaRF5lLiPGn3otJnO2BsXbEPtdAGuK36vMrTpKoFyrWz1wVhhhRybhLZ-abHLvvl7ENy3MzqW2rPIGy2Zhj2fYzL0qTn_RTgKLkJynfypmoAv0WoS0ApLy6ifVsmkeewx8-Y0tqCtMzAjP1fRPUyodcB9z7Ks6XW8HAB56_tgt7DEe3qB3MflssycR0OnbGQ; AccountID=3000823185; userInfo=eyJhbGciOiJSUzI1NiIsImtpZCI6IjU5OTVjY2ZlYmZhYjExZjBhODA5ZmExNjNlZmJmYWIwIn0.eyJhY2NfaSI6MzAwMDgyMzE4NSwiYXVkIjpbImNvbnNvbGUuYnl0ZXBsdXMuY29tIl0sImV4cCI6MTc5NTkzNzk0MywiaSI6ImZhY2VmMDNmZDQzNDExZjFhMzIwMzQzNmFjMTIwMWYzIiwiaWRfbiI6InRlc3QtdXNlci0xMjMiLCJtc2ciOm51bGwsInBpZCI6IjBhM2Q3YzgyLWZmNDAtNDNlZi04ZjA5LWYxMTJhYzNlYWZhMyIsInNzX24iOiJ0ZXN0LXVzZXItMTIzIiwidCI6IkFjY291bnQiLCJ0b3BpYyI6InNpZ25pbl91c2VyX2luZm8iLCJ2ZXJzaW9uIjoidjEiLCJ6aXAiOiIifQ.XlEy0GGxSVGOF2JuoBeFRLg9-YT9u7sz_zs5FdvtjXYExdo5tGaOWAQVSuvg2HFbrudx8NllLpW-WNMI_g2sZoB6KDdxveNkk1leEhmunHJVSSsUOaTyz-k50yWgWQ7sC2v8HAIiSSbW2r-Jw5Xo_8xTJffttEahyM2TiBZfVLuwl6VhiYkFdRu1QsImiNa7yZ4ZO6u9VBcFEIaGG-bsbVM_gS0sg24dsF-Uh9r-_s_bYznM-228-yIE9MaoluKzcI4fBZLNfWP-FvT0MV7xWry14x85NRFaUBN-BeWsHyJHZuBuKzBqu-VRlxLtHzYgbgrviTR88CuKXu9z1BITxg; connect.sid=s%3Abab9fdaa-10a3-43c5-a41e-cb702aa444ba.4yvCJwPXsZ4YJyLW4nZi4P9%2Ftaea1YkDnn%2BIJIyfFQA; csrfToken=5ba05d1b8b24cdbf4eca0d5e7073693c; login_scene=11; bytePlusLoginMethod=pwd; volc-design-locale=en; account_active_time=3000823185_3000823185_1793345951282; finance-hub-sdk-lang=en
+EOF
+echo saved
+saved
+[0m
+[0m⚙ [0mchrome-devtools_navigate_page {"pageId":1,"type":"url","url":"https://console.byteplus.com/finance/bill/detail"}
+[0m⚙ [0mchrome-devtools_list_network_requests {"pageId":1,"resourceTypes":["xhr","fetch"]}
+[0m⚙ [0mchrome-devtools_navigate_page {"pageId":1,"type":"url","url":"https://console.byteplus.com/finance/order"}
+[0m⚙ [0mchrome-devtools_list_network_requests {"pageId":1,"resourceTypes":["xhr","fetch"]}
+[0m⚙ [0mchrome-devtools_take_snapshot {"pageId":1}
+[0m⚙ [0mchrome-devtools_list_network_requests {"pageId":1}
+[0m
+[0m$ [0mcd /tmp
+H=(-H "Cookie: $(cat /tmp/a_cookie.txt)" -H "x-csrf-token: 5ba05d1b8b24cdbf4eca0d5e7073693c" -H "accept: application/json" -H "referer: https://console.byteplus.com/finance/order")
+for id in 3000823185 3001021825; do
+  echo "=== GetTaxID $id ==="
+  curl -sS --max-time 20 "${H[@]}" "https://console.byteplus.com/api/top/bill_volcano_engine/ap-singapore-1/2022-01-01/GetTaxID?AccountID=$id" ; echo
+  echo "=== CheckPaymentQualification $id ==="
+  curl -sS --max-time 20 "${H[@]}" "https://console.byteplus.com/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/CheckPaymentQualification?AccountID=$id&SubjectNo=1065" ; echo
+  echo "=== GetCountryAreaCfgByAccountID $id ==="
+  curl -sS --max-time 20 "${H[@]}" "https://console.byteplus.com/api/top/bill_volcano_engine/ap-singapore-1/2022-01-01/GetCountryAreaCfgByAccountID?AccountID=$id" ; echo
+done
+=== GetTaxID 3000823185 ===
+{"ResponseMetadata":{"RequestId":"202610300740178F1D5A32D087FB46A2C2","Action":"GetTaxID","Version":"2022-01-01","Service":"bill_volcano_engine","Region":"ap-singapore-1"},"Result":{"AccountID":3000823185,"TaxID":"","TaxInfoExt":null,"CountryArea":""}}
+=== CheckPaymentQualification 3000823185 ===
+{"ResponseMetadata":{"RequestId":"20261030074017DC271300A7E82E479ACB","Action":"CheckPaymentQualification","Version":"2020-01-01","Service":"bill_volcano_engine","Region":"ap-southeast-1"},"Result":{"AccountID":3000823185,"SubjectNo":"1065","QualificationStatus":1,"PaymentMethod":0,"BaseResp":{"StatusMessage":"","StatusCode":0,"HTTPStatusCode":0,"ErrorCode":""}}}
+=== GetCountryAreaCfgByAccountID 3000823185 ===
+{"ResponseMetadata":{"RequestId":"202610300740188F1D5A32D087FB46A2C3","Action":"GetCountryAreaCfgByAccountID","Version":"2022-01-01","Service":"bill_volcano_engine","Region":"ap-singapore-1"},"Result":{"CanBindCard":true,"CanEditTaxID":true,"CountryArea":"NL","PersonalTaxVerificationRule":"Rule001","TaxExample":"NL123456789B12","TaxIDShowName":"VAT/TIN Number","TaxVerificationRule":"Rule001"}}
+=== GetTaxID 3001021825 ===
+{"ResponseMetadata":{"RequestId":"20261030074019FD550519FC643447E6ED","Action":"GetTaxID","Version":"2022-01-01","Service":"bill_volcano_engine","Region":"ap-singapore-1"},"Result":{"AccountID":3000823185,"TaxID":"","TaxInfoExt":null,"CountryArea":""}}
+=== CheckPaymentQualification 3001021825 ===
+{"ResponseMetadata":{"RequestId":"202610300740193B94AEF5F5C11646B334","Action":"CheckPaymentQualification","Version":"2020-01-01","Service":"bill_volcano_engine","Region":"ap-southeast-1"},"Result":{"AccountID":3000823185,"SubjectNo":"1065","QualificationStatus":1,"PaymentMethod":0,"BaseResp":{"StatusMessage":"","StatusCode":0,"HTTPStatusCode":0,"ErrorCode":""}}}
+=== GetCountryAreaCfgByAccountID 3001021825 ===
+{"ResponseMetadata":{"RequestId":"20261030074020CF5C5477F434E5B30B76","Action":"GetCountryAreaCfgByAccountID","Version":"2022-01-01","Service":"bill_volcano_engine","Region":"ap-singapore-1"},"Result":{"CanBindCard":true,"CanEditTaxID":true,"CountryArea":"NL","PersonalTaxVerificationRule":"Rule001","TaxExample":"NL123456789B12","TaxIDShowName":"VAT/TIN Number","TaxVerificationRule":"Rule001"}}
+[0m
+[0m$ [0mmkdir -p /tmp/finjs && cd /tmp/finjs
+# Download finance byteplus main + all async chunks referenced
+base="https://res.gcloudcache.com/bp-fe/finance/byteplus/static/js/1.0.1.2888"
+for f in builder-runtime.560c29dc.js lib-arco.a851f0fb.js lib-axios.6f7aa17e.js lib-polyfill.33a79dd3.js lib-react.5cffffbe.js lib-router.344a8bb5.js 2388.6a141900.js main.def4a3cd.js; do
+  curl -sS --max-time 30 -o "$f" "$base/$f" || true
+done
+echo "downloaded main set"
+ls -la | head
+downloaded main set
+total 5324
+drwxr-xr-x  2 runner runner    4096 Oct 30 07:40 .
+drwxrwxrwt 26 root   root      4096 Oct 30 07:40 ..
+-rw-r--r--  1 runner runner 2172284 Oct 30 07:40 2388.6a141900.js
+-rw-r--r--  1 runner runner    8292 Oct 30 07:40 builder-runtime.560c29dc.js
+-rw-r--r--  1 runner runner 2539157 Oct 30 07:40 lib-arco.a851f0fb.js
+-rw-r--r--  1 runner runner  130212 Oct 30 07:40 lib-axios.6f7aa17e.js
+-rw-r--r--  1 runner runner  268206 Oct 30 07:40 lib-polyfill.33a79dd3.js
+-rw-r--r--  1 runner runner  140038 Oct 30 07:40 lib-react.5cffffbe.js
+-rw-r--r--  1 runner runner   30662 Oct 30 07:40 lib-router.344a8bb5.js
+[0m
+[0m$ [0mcd /tmp/finjs && ls -la main.def4a3cd.js 2>&1; curl -sSI --max-time 20 "https://res.gcloudcache.com/bp-fe/finance/byteplus/static/js/1.0.1.2888/main.def4a3cd.js" | head -5
+# download async chunks seen in order route
+base="https://res.gcloudcache.com/bp-fe/finance/byteplus/static/js/1.0.1.2888/async"
+for f in 4098.716b8f44.js 8747.4948729a.js 6220.16230cb5.js 9991.0556f6e9.js 522.879a1d9a.js 8225.75cf8750.js 5684.1452bf10.js 6837.a9a53f8d.js 6644.f6097e57.js 6360.a50ffe18.js 2091.85da35cf.js 9082.93cb9a02.js 5319.79027d9b.js 672.d29fdcee.js 8610.6d654621.js 6400.4fe4d6a4.js 2177.7348793b.js 9020.89128083.js 2607.b1e59f16.js 8171.d0176c33.js 4430.a89ed579.js 4477.da03c655.js 4447.13c9c588.js 8642.6f9ee33b.js 4263.345c5b47.js 3028.07d966da.js 2734.08399878.js 8850.410555bd.js; do
+  curl -sS --max-time 30 -o "a_$f" "$base/$f" || true
+done
+ls a_* | wc -l; du -sh .
+-rw-r--r-- 1 runner runner 136565 Oct 30 07:40 main.def4a3cd.js
+HTTP/2 200 
+content-type: application/javascript
+etag: "2b108e4a2009094483fe7272e0cacebd"
+last-modified: Fri, 30 Oct 2026 06:37:40 GMT
+server: TosServer
+28
+10M	.
+[0m
+[0m$ [0mcd /tmp/finjs && rg -o --no-filename '/api/[A-Za-z0-9_./{}$-]+' . 2>/dev/null | sort -u | head -200
+(no output)
+[0m
+[0m$ [0mcd /tmp/finjs && rg -l 'ListOrder|bill_volcano_engine|GetTaxID|CheckPaymentQualification|account_verify|/api' . | sort -u
+echo "---matches---"
+rg -o --no-filename '.{60}(ListOrder|GetTaxID|CheckPaymentQualification|GetCountryAreaCfgByAccountID).{80}' . | head -40
+/bin/bash: line 1: rg: command not found
+---matches---
+/bin/bash: line 3: rg: command not found
+[0m
+[0m✗ [0mGrep "ListOrder|bill_volcano_engine|GetTaxID|CheckPaymentQualification|GetCountryAreaCfgByAccountID" failed[90m in /tmp/finjs[0m
+[91m[1mError: [0mRipgrep JSON record exceeded 65536 bytes
+[0m
+[0m$ [0mcd /tmp/finjs && for f in *.js; do
+  if grep -q 'ListOrder\|bill_volcano_engine\|GetTaxID\|CheckPaymentQualification\|GetCountryAreaCfgByAccountID' "$f"; then
+    echo "### $f"
+    grep -o '.\{0,80\}\(ListOrder\|bill_volcano_engine\|GetTaxID\|CheckPaymentQualification\|GetCountryAreaCfgByAccountID\).\{0,100\}' "$f" | head -20
+  fi
+done
+### a_2734.08399878.js
+ocale")||"en";return{ListAvailablePickupVouchers:(n,t)=>(0,o.L4)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2022-01-01/ListAvailablePickupVouchers",data:n,withCredentials:!0,signal:null==t?voi
+t.messageError)||s.od})),PreVerificationForOrder:(n,t)=>(0,o.L4)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2022-01-01/PreVerificationForOrder",data:n,withCredentials:!0,headers:{"x-language":
+null==t?void 0:t.messageError)||s.Gr}),CommonBuy:(n,t)=>(0,o.L4)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/CommonBuy",data:n,withCredentials:!0,headers:{"x-language":e}},{requestOr
+ll==t?void 0:t.messageError)||s.Gr}),CommonBuyV2:(n,t)=>(0,o.L4)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2022-01-01/CommonBuy",data:n,withCredentials:!0,headers:{"x-language":e}},{requestOr
+geError)||s.Gr}),GetPublishedTemplateAgreementDefine:n=>(0,o.nu)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/GetPublishedTemplateAgreementDefine",params:n,withCredentials:!0,headers:
+}},{requestOrigin:v,messageError:s.od}),ListInstance:e=>(0,o.nu)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/ListInstance",params:e,withCredentials:!0},{requestOrigin:v,messageError:
+s.od}),ListProduct:n=>(0,o.nu)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/ListProduct",params:n,withCredentials:!0,headers:{"x-language":e}},{reque
+stOrigin:v,messageError:s.od}),ListRegion:n=>(0,o.nu)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/ListRegion",params:n,withCredentials:!0,headers:{"x-language":e}},{reques
+messageError:s.od}),ListProductDisplaySettingForUser:n=>(0,o.nu)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/ListProductDisplaySettingForUser",params:n,withCredentials:!0,headers:{"x
+estOrigin:v,messageError:s.od}),AsyncCreateOrder:(n,t)=>(0,o.L4)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/AsyncCreateOrder",data:new URLSearchParams(n),withCredentials:!0,headers:
+null==t?void 0:t.messageError)||s.Gr}),CreatePay:(n,t)=>(0,o.L4)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2022-01-01/CreatePay",data:new URLSearchParams(n),withCredentials:!0,headers:{"Conte
+id 0:t.messageError)||s.od}),ListProductOrderDetails:n=>(0,o.nu)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2022-01-01/ListProductOrderDetails",params:n,withCredentials:!0,headers:{"x-language
+n:v,throwBizError:!1,messageError:x}),CloseOrder:(n,t)=>(0,o.L4)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/CloseOrder",data:new URLSearchParams(n),withCredentials:!0,headers:{"Cont
+ssageError)||s.od}),ListRenewSettingsAndPreCheck:(n,t)=>(0,o.L4)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/ListRenewSettingsAndPreCheck",data:n,withCredentials:!0,headers:{"x-langu
+messageError)||s.od}),ListInstanceConfigTimeline:(n,t)=>(0,o.L4)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/ListInstanceConfigTimeline",data:n,withCredentials:!0,headers:{"x-languag
+t.messageError)||s.od}),RenewInstanceForRenewBuy:(n,t)=>(0,o.L4)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/RenewInstance",data:new URLSearchParams(n),withCredentials:!0,headers:{"C
+.messageError)||s.Gr}),GetRenewBuyRenewInstances:(n,t)=>(0,o.L4)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/GetRenewBuyRenewInstances",data:n,withCredentials:!0,headers:{"x-language
+ 0:t.messageError)||s.od}),GetRenewSupportConfig:(n,t)=>(0,o.L4)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/GetRenewSupportConfig",data:new URLSearchParams(n),withCredentials:!0,hea
+messageError)||s.od}),CalculateRenewTimeAndPrice:(n,t)=>(0,o.L4)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/CalculateRenewTimeAndPrice",data:new URLSearchParams(n),withCredentials:!
+l==t?void 0:t.messageError)||s.od}),ListUnPaidOrders:n=>(0,o.L4)({url:"/api/top/bill_volcano_engine/ap-southeast-1/2022-01-01/ListUnPaidOrders",data:n,withCredentials:!0,headers:{"x-language":e}},{re
+### a_3028.07d966da.js
+ Error(t.Error.Message);return a},f=({site:e,env:t})=>{const a=((e,t)=>(0,l.i)("bill_volcano_engine",{GetTaxID:{},GetCountryAreaCfg:{},GetCountryAreaCfgByAccountID:{messageError:()=>{}},EditTaxID:{}}
+,function*({countryArea:e}){return yield a.GetCountryAreaCfg({CountryArea:e})}),GetCountryAreaCfgByAccountID:()=>p(null,null,function*(){return yield a.GetCountryAreaCfgByAccountID({})}),getTaxId:e=>p(null,[e
+],function*({accountId:e}){return yield a.GetTaxID(e?{AccountID:e}:{})}),validateTaxId:e=>p(null,[e],function*({countryArea:e,value:t}){return yield r
+countId}),l=Boolean(null==(t=null==o?void 0:o.TaxID)?void 0:t.trim()),s=yield n.GetCountryAreaCfgByAccountID();null==a||a(s);return{hasTaxID:l,taxId:o,CanEditTaxID:null==(r=null==s?void 0:s.CanEditTaxID)||r,c
+### a_4447.13c9c588.js
+038),r=t(56566),i=t(78188);const l=(e,n,t,l)=>{const s=(0,i.LP)(e,l),u=(0,o.i)("bill_volcano_engine",{QueryPayWithMethod:{},QueryPay:{method:"post",isJson:!0},Pay:{method:"post",isJson:!0,messageErro
+TradeBalance:{method:"post",isJson:!0},OnlineRecharge:{method:"post",isJson:!0},CheckPaymentQualification:{}},{Version:"2020-01-01",region:"ap-southeast-1",method:"get",isJson:!1,reportErrorToSlardar:!0,re
+axiosOptions:{headers:{"x-language":a.A.get("user_locale")||"en"}}}),d=(0,o.i)("bill_volcano_engine",{Pay:{method:"post",isJson:!0,messageError:n=>(0,r.SK)(n,e)},QueryPayWithMethod:{method:"post",isJ
+TradeBalance:{method:"post",isJson:!0},OnlineRecharge:{method:"post",isJson:!0},CheckPaymentQualification:{},ApplyExclusiveBankAccount:{method:"post"},GetExclusiveBankAccount:{Version:"2020-01-01"},QueryVe
+nst d=(e,n)=>{const[t,d]=(0,u.useState)(),{site:c}=(0,l.a)(),v=((e,n)=>(0,o.i)("bill_volcano_engine",{GetCountryAreaCfg:{Version:"2022-01-01",messageError:r.ge}},{Version:"2020-01-01",region:"ap-sout
+### a_8642.6f9ee33b.js
+n="buy-credits-modal-selected-amount",Dn=(e,n,t,r)=>{const a=qe(e,r),s=(0,y.i)("bill_volcano_engine",{QueryPayWithMethod:{},QueryPay:{method:"post",isJson:!0},Pay:{method:"post",isJson:!0,messageErro
+TradeBalance:{method:"post",isJson:!0},OnlineRecharge:{method:"post",isJson:!0},CheckPaymentQualification:{}},{Version:"2020-01-01",region:"ap-southeast-1",method:"get",isJson:!1,reportErrorToSlardar:!0,re
+axiosOptions:{headers:{"x-language":c.A.get("user_locale")||"en"}}}),l=(0,y.i)("bill_volcano_engine",{Pay:{method:"post",isJson:!0,messageError:n=>(e=>{var n,t,r,a,s,l,c,d,u,p,m,f,h,g,b,y,x,v,w,C,_,D
+TradeBalance:{method:"post",isJson:!0},OnlineRecharge:{method:"post",isJson:!0},CheckPaymentQualification:{},ApplyExclusiveBankAccount:{method:"post"},GetExclusiveBankAccount:{Version:"2020-01-01"},QueryVe
+0,messageError:sn,throwBizError:!0}))(o,r,i):void 0,A=!1!==n?((e,n,t)=>(0,y.i)("bill_volcano_engine",{GetCountryAreaCfg:{Version:"2022-01-01",messageError:sn}},{Version:"2020-01-01",region:"ap-southe
+{getBillingSummary:()=>ue(null,null,function*(){const[n,t]=yield Promise.all([s.CheckPaymentQualification({AccountID:e,SubjectNo:a}),ue(null,null,function*(){if(!e||!l)return;const n=yield l.GetRawProfileI
+### a_8850.410555bd.js
+d 0:e.OrderType)&&(e.OrderTypes=e.OrderType,delete e.OrderType);const r=yield t.ListOrderV2(F(F({},e),n));if((0,f.Ay)(r,!1))return r;const{List:o=[],Total:i}=r,a=[];return o.forEach(({Produ
+### main.def4a3cd.js
+void 0:n.message)}else c.A.error(e instanceof Error?e.message:"")};t.A=(0,a.i)("bill_volcano_engine",{ListOptionForTransfer:{messageError:u},ListInstanceForTransfer:{},GetRenewSupportConfig:{method:"
+method:"post",isJson:!0},CreateOrder:{method:"post"},CloseOrder:{method:"post"},ListOrder:{},ListOrderV2:{Version:"2022-01-01",Action:"ListOrder"},SearchPurchasedProductInfos:{},GetProductO
+",isJson:!0},ListBudgetInfo:{method:"post",isJson:!0},GetAccountCurrencyList:{},ListOrderChannel:{},ListOrderChannelV2:{Action:"ListOrderChannel",Version:"2022-01-01"},ListUnPaidOrders:{Ver
+:!0,messageError:u},ListPickupVouchers:{method:"post",isJson:!0,messageError:u},CheckPaymentQualification:{},ChangeCredits:{method:"post",isJson:!0,Version:"2020-01-01"},GetAccountExpirationAlert:{},SetAcc
+pdateAddress:{method:"post"},DeleteAddress:{method:"post"},GetInvoiceAccount:{},CheckPaymentQualification:{},UpdateBalanceAlert:{method:"post"},ListBalanceTransactionForPage:{},ChargeBalance:{method:"post"
+n(0,ce.A)().w(function(e){for(;;)switch(e.p=e.n){case 0:return e.p=0,e.n=1,_e.A.GetTaxID({});case 1:return t=e.v,n=t.TaxInfoExt,e.a(2,n||{});case 2:return e.p=2,r=e.v,console.error("\u83b7
+(e,t,n){"use strict";var r=n(96001),o=n(9556),a=n(7038),i=n(13256);t.A=(0,o.i)("bill_volcano_engine",{DownloadBP:{},GetInvoiceBP:{},GetRefundInvoiceBP:{},GetTaxID:{Version:"2022-01-01"},ListEmailForA
+[0m
+[0m$ [0mcd /tmp/finjs && grep -oh 'url:"/api/[^"]*"' *.js | sed 's/url:"//; s/"$//' | sort -u
+/api/auth/logout
+/api/common/ticket/getTemplate?
+/api/common/ticket/submitTicket
+/api/common/zendesk/getToken
+/api/expense/const/getAllTccConfig
+/api/expense/const/getMultilingualMetaAll
+/api/expense/trade/top/CreateProtocolSignedRecord
+/api/financial/const/getAllTccConfig
+/api/financial/trade/CreateProtocolSignedRecord
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/AsyncCreateOrder
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/CalculateRenewTimeAndPrice
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/CloseOrder
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/CommonBuy
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/GetPublishedTemplateAgreementDefine
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/GetRenewBuyRenewInstances
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/GetRenewSupportConfig
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/ListInstance
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/ListInstanceConfigTimeline
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/ListPreOrder
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/ListProduct
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/ListProductDisplaySettingForUser
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/ListRegion
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/ListRenewSettingsAndPreCheck
+/api/top/bill_volcano_engine/ap-southeast-1/2020-01-01/RenewInstance
+/api/top/bill_volcano_engine/ap-southeast-1/2022-01-01/CommonBuy
+/api/top/bill_volcano_engine/ap-southeast-1/2022-01-01/CreatePay
+/api/top/bill_volcano_engine/ap-southeast-1/2022-01-01/ListAvailablePickupVouchers
+/api/top/bill_volcano_engine/ap-southeast-1/2022-01-01/ListProductOrderDetails
+/api/top/bill_volcano_engine/ap-southeast-1/2022-01-01/ListUnPaidOrders
+/api/top/bill_volcano_engine/ap-southeast-1/2022-01-01/PreVerificationForOrder
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/AsyncCreateOrder
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/CalculateRenewTimeAndPrice
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/CloseOrder
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/CommonBuy
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/GetPublishedTemplateAgreementDefine
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/GetRenewBuyRenewInstances
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/GetRenewSupportConfig
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/ListInstance
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/ListInstanceConfigTimeline
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/ListPreOrder
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/ListProduct
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/ListProductDisplaySettingForUser
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/ListRegion
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/ListRenewSettingsAndPreCheck
+/api/top/bill_volcano_engine/cn-north-1/2020-01-01/RenewInstance
+/api/top/bill_volcano_engine/cn-north-1/2022-01-01/CommonBuy
+/api/top/bill_volcano_engine/cn-north-1/2022-01-01/CreatePay
+/api/top/bill_volcano_engine/cn-north-1/2022-01-01/ListAvailablePickupVouchers
+/api/top/bill_volcano_engine/cn-north-1/2022-01-01/ListProductOrderDetails
+/api/top/bill_volcano_engine/cn-north-1/2022-01-01/ListUnPaidOrders
+/api/top/bill_volcano_engine/cn-north-1/2022-01-01/PreVerificationForOrder
+/api/top_sts/
+[0m
