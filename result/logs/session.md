@@ -48,3 +48,13 @@
   - login `/signin/login?redirectURI=%2F%5C%2Fevil.example` -> rewritten to `https://signin.byteplus.com/auth/login?redirectURI=https%3A%2F%2Fconsole.byteplus.com%2F%5C%2Fevil.example`; after login -> `console.byteplus.com/home` (origin-prefix neutralizes backslash; safe).
   - login `redirectURI=https://console.byteplus.com.evil.example/` -> after login -> `/home` (rejected; allowlist safe).
 - Status: open-redirect candidate UNRESOLVED (sink requires successful payment / free order to reach). Not written to confirmed-vuln.txt.
+
+## Continuation session — run 41018191411
+
+- Resume time (UTC): 2026-10-30T07:08:49Z
+- Run ID: 41018191411 (workflow_dispatch, decision=preserved)
+- MCP: chrome-devtools available (about:blank).
+- Prior state: routes/endpoints inventory preserved; no confirmed findings; open-redirect
+  candidate on payment return_url UNRESOLVED (needs successful payment).
+- Plan: re-authenticate test account A, capture remaining `/finance/` routes/APIs,
+  test unauthenticated + authenticated endpoints, keep progress current.
