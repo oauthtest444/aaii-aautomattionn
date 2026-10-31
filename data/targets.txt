@@ -1,7 +1,7 @@
 Target:
-https://console.byteplus.com/ark/region:ap-southeast-1/tts/podcast?
+https://console.byteplus.com/workorder/list/
 
-test all sub routes under this /ark/*
+test all sub routes under this /workorder/*
 
 note: this is inscope domain this program have private bbp.
 
