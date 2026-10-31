@@ -8,11 +8,19 @@ Find valid, reportable client-side bugs. This file is for automation.
   top hunter, answer yourself, then act.
 - **Main goal:** a reportable bug — attacker-controlled source → application
   code → sensitive sink/action, with missing protection and practical impact.
-- **Test one route at a time.**
+- **Test one top-level route at a time, then one sub-route at a time.**
+- **Server-side testing must finish for the current top-level route before
+  client-side testing begins.**
+- **Wait 5–10 seconds after navigation** before collecting sub-routes or
+  inspecting JavaScript.
 - **Only unique JS lines and complete flows.** No duplicate testing.
-- **Only search/scan JS related to the current UI route.**
+- **Only search/scan JS related to the current sub-route.**
+- **Use the exact source/sink regexes below without modification.**
+- **Do not save downloaded JavaScript files or raw logs under `result/`.**
 - **Practical evidence only.** Never claim confirmed without execution or
   runtime observation.
+- **Never wait for user input.** If a question appears, the automation sends
+  the required reply and you resume the scan immediately.
 
 ---
 
@@ -22,10 +30,14 @@ The orchestrator supplies:
 
 - **Authorized scope** from `data/`: domain-only targets or an explicit URL
   list, plus any explicitly authorized components.
-- **Route queue** and the current route's canonical URL. Test one route at a
-  time.
+- **Top-level route inventory** at `result/inventory/top-level-routes.md` and
+  **API inventory** at `result/inventory/api-routes.md`.
+- **Route queue** and the current top-level route and sub-route canonical URL.
+  Test one top-level route and one sub-route at a time.
+- **Server-side phase complete** for the current top-level route. Do not begin
+  client-side testing for a route whose server-side work is still pending.
 - **Route-related JavaScript**: URLs, inline scripts, dynamic chunks, workers,
-  and source maps loaded or executed by the route.
+  and source maps loaded or executed by the current sub-route.
 - **Credentials** from `creds/` when the route requires authentication, plus
   the account's role and ownership context.
 - **Vulnerability knowledge** from `vulnebleti/` relevant to the technology,
@@ -50,25 +62,45 @@ Validate inputs before testing:
 
 - Headless Chrome is running and the `chrome-devtools` MCP server is connected.
 - The target route is reachable and authorized.
-- The route-related JavaScript can be inspected or downloaded.
+- The route-related JavaScript can be inspected in Chrome DevTools.
 - A local Python HTTP server can be started for HTML PoCs.
 - The current session has enough time remaining to finish the route and write
   evidence. Do not start a long trace with less than ~45 minutes left.
 
 ---
 
-## Per-Route Flow
+## Per-Top-Level Route Flow
 
+1. Select the first top-level route with status `pending`.
+2. Mark it `progress` in `result/inventory/top-level-routes.md`.
+3. Open it with Chrome DevTools MCP.
+4. Wait 5–10 seconds for dynamic JavaScript to load.
+5. Discover unique sub-routes under the top-level route and record each as
+   `pending`.
+6. Finish the server-side testing for the top-level route using
+   `skills/server-side-skill.md`.
+7. For each sub-route, one at a time:
+   - mark the sub-route `progress`;
+   - open it and wait 5–10 seconds;
+   - inspect only JavaScript loaded or executed by that sub-route;
+   - run the exact source/sink regexes below;
+   - trace every unique flow;
+   - test unique listeners;
+   - confirm or dismiss candidates with runtime evidence;
+   - write the concise route report;
+   - mark the sub-route `completed`.
+8. After each sub-route, set the parent to `progress` if any sub-route remains
+   `pending` or `progress`; otherwise set it to `completed`.
+9. Move to the next top-level route only after the current one is `completed`.
 
-1. **Phase 1 — Source discovery and full tracing.**
-2. **Phase 2 — Sink discovery and full tracing.**
-3. **Phase 3 — postMessage listener testing.**
-4. **Phase 4 — Practical confirmation, self-trigger, escalation.**
-5. Save results, update tested state, move to the next route.
+**Route-related JS:** scripts loaded/executed by the current sub-route, inline
+scripts, dynamic imports/chunks, workers, and specific dependencies needed for
+a trace. Do not scan unrelated files or save the JavaScript itself.
 
-**Route-related JS:** scripts loaded/executed by this route, inline scripts,
-dynamic imports/chunks, workers, and specific dependencies needed for a trace.
-Do not scan unrelated files.
+Each sub-route report must include: exact route URL, source-regex match count,
+sink-regex match count, matched sources and sinks, what each match does,
+interesting source-to-sink relationships, potential real vulnerabilities, and
+the concise testing result/status.
 
 ---
 
@@ -199,6 +231,29 @@ Never claim "100% XSS" without practical JavaScript execution.
 
 ---
 
+## Per-Sub-Route Report
+
+Keep `route-report.md` short and evidence-focused:
+
+```markdown
+# /top-1/sub-route
+
+Status: completed
+
+- Source regex match count: N
+- Sink regex match count: N
+- Matched sources: `file.js:line` — parameter/transport
+- Matched sinks: `file.js:line` — sink and data flow
+- Interesting relationships: source → transform → sink
+- Potential real vulnerability: concise result
+- Evidence: runtime observation / request / DOM state
+- Limitation: WAF / CSP / auth / none
+```
+
+Use the exact regexes above. Do not modify, replace, or generalize them.
+`vulnebleti/javascript-usefull-search-regexes.md` contains the same patterns
+after the data copy; use the patterns above as authoritative.
+
 ## Evidence Requirements
 
 For every candidate, save evidence that proves the complete flow:
@@ -225,26 +280,23 @@ Write only under `result/`. Do not invent output locations.
 
 ```text
 result/client-side/<host>/<route-slug>/
-├── javascript/
-│   ├── manifest.md          # URL, content hash, loaded-by route, timestamp
-│   └── snippets/            # Only the relevant sanitized code excerpts
-├── sources.md               # Unique sources and transports
-├── sinks.md                 # Unique sinks and file:line references
-├── flows.md                 # Source -> sink traces and status
-├── listeners.md             # postMessage listeners and validation result
-└── route-report.md          # Tests performed, evidence, status, next steps
+└── route-report.md          # Match counts, sources, sinks, flows, result, status
 ```
+
+Do not save downloaded JavaScript, full bundles, source maps, screenshots for
+every route, raw logs, or temporary browser files under `result/`. Reference the
+JavaScript URL and relevant `file:line` in the report instead.
 
 Also update:
 
-- `result/inventory/routes.md`
-- `result/inventory/javascript.md`
-- `result/inventory/sinks.md`
-- `result/inventory/listeners.md`
-- `result/testing-inventory.json` (routes, javascript, flows, listeners)
-- `result/logs/client-side.log`
-- `result/unresolved.md`
+- `result/inventory/top-level-routes.md` (exact statuses: `pending`, `progress`,
+  `completed`)
+- `result/inventory/javascript.md` (URL, SHA-256, and tested flag only)
+- `result/inventory/endpoints.md` only when client-side work discovers a new API
+- `result/inventory/api-routes.md` when a new endpoint is found
+- `result/testing-inventory.json` (compact route/flow/listener dedupe state)
 - `result/SUMMARY.md`
+- `result/unresolved.md` only when needed for unresolved items
 
 For each confirmed finding, create:
 

@@ -23,3 +23,13 @@ npm-debug.log*
 # OS/editor noise
 .DS_Store
 Thumbs.db
+
+# Runtime-only result artifacts
+result/logs/*.log
+result/logs/opencode/
+result/logs/agent-exit-code.txt
+result/logs/agent-watchdog.txt
+result/logs/diagnostics-index.txt
+result/logs/session.md
+result/client-side/**/javascript/
+result/**/traffic/

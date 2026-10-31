@@ -8,13 +8,21 @@ Find valid, reportable server-side bugs. This file is for automation.
   APIs. Ask yourself as a top hunter, answer yourself, then act.
 - **Main goal:** on every visited URL, extract all server-side API routes from
   network traffic and JavaScript, understand their valid parameters, then test
-  every route for all server-side bug classes.
-- **Primary focus:** mass assignment on create/edit/update endpoints, and
-  guessing valid parameters for those endpoints.
-  Test unique endpoint/method/variant combinations only. No duplicate testing.
+  every route for all applicable server-side bug classes.
+- **Work one top-level route at a time.** Complete server-side testing for that
+  route before client-side testing begins.
+- **Maintain `result/inventory/api-routes.md` continuously.** Use only the
+  statuses `pending`, `progress`, and `completed`.
+- **Primary focus:** mass assignment on create/edit/update/delete endpoints,
+  hidden parameter discovery, and protected properties.
+- Test unique endpoint/method/variant combinations only. Do not retest the same
+  endpoint across sub-routes of the same top-level route unless the auth
+  context, parameters, or code hash genuinely differ.
 - Use test-owned data only. No real users.
 - Practical evidence only. A `200`, an accepted extra field, or a generic error
   is not a vulnerability by itself.
+- **Never save raw traffic, downloaded JavaScript, or operational logs under
+  `result/`.** Keep only concise reports, inventories, and confirmed evidence.
 
 ---
 
@@ -24,19 +32,23 @@ The orchestrator supplies:
 
 - **Authorized scope** from `data/`: domain-only targets or an explicit URL
   list, plus any explicitly authorized components.
-- **Visited-URL / route queue** and the current route's canonical URL.
+- **Top-level route inventory** at `result/inventory/top-level-routes.md` and
+  **API inventory** at `result/inventory/api-routes.md`.
+- **Visited-URL / route queue**, the current top-level route, and its current
+  sub-route. Test one at a time.
 - **Captured network traffic** for the route and safe UI actions: method, full
-  URL, query, body, headers, auth context, and response shape.
+  URL, query, body, headers, auth context, and response shape. Summarize it in
+  the API inventory; do not save raw captures under `result/`.
 - **Route-related JavaScript**: API call sites, wrappers, endpoint constants,
   GraphQL/tRPC/OpenAPI definitions, source maps, and types needed to resolve a
-  request.
+  request. Do not save downloaded JavaScript.
 - **Credentials** from `creds/`, including available roles and ownership
   contexts. Test-account secrets are intentionally public; never expose
   real-user secrets.
 - **Vulnerability knowledge** from `vulnebleti/` relevant to the endpoint,
   framework, or bug class.
-- **Prior API ledger** from `result/inventory/endpoints.md` and
-  `result/testing-inventory.json`.
+- **Prior API ledger** from `result/inventory/api-routes.md`,
+  `result/inventory/endpoints.md`, and `result/testing-inventory.json`.
 - **Chrome DevTools MCP** for traffic capture, plus `curl`/HTTP tooling for
   controlled requests.
 - **Time budget** and current elapsed time.
@@ -63,17 +75,27 @@ Validate inputs before testing:
 
 ---
 
-## Per-Visited-URL Flow
+## Per-Top-Level-Route Flow
 
-1. Open the current visited URL with Chrome DevTools MCP.
-2. Capture every API request caused by the route and normal UI interactions.
-3. Read route-related JavaScript and extract each API route with its method,
-   query, body, path IDs, and valid parameters.
-4. Build a deduplicated API inventory.
-5. Test every endpoint for all server-side bug classes.
-6. Verify impact, record the result, move to the next endpoint/route.
-7. If a test needs unavailable access/state, mark **Unresolved** and continue.
-   Do not stop to ask.
+1. Select the first top-level route marked `pending`.
+2. Mark it `progress` in `result/inventory/top-level-routes.md`.
+3. Open the top-level route and each sub-route with Chrome DevTools MCP.
+4. Wait 5–10 seconds for dynamic JavaScript and API calls.
+5. Extract every unique API endpoint from network traffic and route-related
+   JavaScript: method, path, query/body parameters, path IDs, auth context, and
+   response shape.
+6. Add each unique endpoint to `result/inventory/api-routes.md` as `pending`.
+7. Mark the current endpoint `progress` and test it for every applicable
+   server-side bug class.
+8. Verify impact, record the result, and mark the endpoint `completed` (or
+   document unresolved tests in its summary).
+9. A genuinely new endpoint under another sub-route must be added and tested;
+   an endpoint already tested under the same top-level route is not retested
+   without a new auth context, parameter, or code hash.
+10. After all endpoints are complete, move to client-side testing for this
+    top-level route.
+11. If a test needs unavailable access/state, mark it **Unresolved** in the
+    report and continue. Do not stop to ask.
 
 **Route-related JS:** scripts loaded/executed by the route, inline scripts,
 dynamic chunks/imports, workers, source maps, and helpers needed to resolve the
@@ -299,21 +321,22 @@ Write only under `result/`. Do not invent output locations.
 
 ```text
 result/server-side/<host>/
-├── api-inventory.md        # Method, path, params, auth, response shape
-├── test-ledger.md          # Endpoint/method/variant tests and statuses
-├── test-ledger.json        # Machine-readable ledger
-├── traffic/                # Request/response captures (test secrets allowed)
-└── notes.md                # Endpoint-specific observations
+└── route-report.md         # Concise API coverage and result summary
 ```
+
+Do not save raw traffic, request/response dumps, downloaded JavaScript,
+screenshots for every endpoint, or operational logs under `result/`. Put exact
+evidence only in a confirmed finding under `result/findings/`.
 
 Also update:
 
-- `result/inventory/endpoints.md`
-- `result/inventory/routes.md` when new authorized routes are discovered
-- `result/testing-inventory.json` (endpoints section)
-- `result/logs/server-side.log`
-- `result/unresolved.md`
+- `result/inventory/api-routes.md` (exact statuses: `pending`, `progress`,
+  `completed`)
+- `result/inventory/endpoints.md` only for compact endpoint details
+- `result/inventory/top-level-routes.md` when new authorized routes are found
+- `result/testing-inventory.json` (compact endpoint dedupe state)
 - `result/SUMMARY.md`
+- `result/unresolved.md` only for unresolved items
 
 For each confirmed finding, create:
 
@@ -381,32 +404,71 @@ Answer yourself and act.
 - Only extract APIs from the current visited URL's route-related traffic/JS.
 - Do not scan unrelated endpoints, origins, or assets.
 - Follow helper code only to resolve the specific API call.
-- Keep a test ledger: endpoint, method, bug class, auth context, baseline, test,
-  result, evidence, duplicate status.
+- Keep a compact ledger: endpoint, method, bug class, auth context, baseline,
+  test, result, evidence, duplicate status.
 - Stay on the authorized target with available test accounts.
 - Use the output locations defined in the Outputs section; do not invent new
   paths.
 
 ---
 
-## Automation Checklist
+## Server-Side Security Testing Checklist
+
+Apply every applicable item to each unique endpoint. Mark an item not applicable
+only when the endpoint's behavior makes it impossible.
 
 ```text
-[ ] Open visited URL and capture API traffic
-[ ] Capture API requests from the route and safe UI actions
-[ ] Inventory route-related JavaScript
-[ ] Extract API routes, methods, params, bodies, and IDs
-[ ] Derive/guess valid parameters from JS, responses, docs, errors
-[ ] Build deduplicated API inventory
-[ ] Mass assignment: create endpoints, one sensitive field at a time
-[ ] Mass assignment: edit/update endpoints, re-read persisted state
-[ ] IDOR/BOLA: read → edit → delete with test-owned objects
-[ ] Auth/role/tenant boundary tests
-[ ] Business logic and entitlement tests
-[ ] SSRF / command injection / prototype pollution where relevant
-[ ] Input validation, canonicalization, path variants
-[ ] Verify impact, assign status, record ledger
-[ ] Move to the next endpoint/route
+[ ] IDOR / BOLA across accounts, objects, and ownership boundaries
+[ ] PII leakage in responses, errors, exports, logs, and related endpoints
+[ ] Broken access control (horizontal and vertical)
+[ ] Business logic and workflow/state manipulation
+[ ] Mass assignment on create, edit, update, and delete
+[ ] Protected properties: role, owner, tenant, permissions, status, plan,
+    credits, price, verification, lifecycle, and identity
+[ ] Recreate-deleted-object flows through create/upsert endpoints
+[ ] Hidden parameter discovery and bounded body/query fuzzing
+[ ] Server-side prototype pollution and merge/update pollution
+[ ] Protected APIs across related authorized subdomains, including unexpected
+    HTTP 200 responses
+[ ] Other interesting, sensitive, internal-looking, or undocumented endpoints
+[ ] Authentication and authorization boundary differences
+[ ] Tenant/org isolation and cross-tenant object access
+[ ] Persisted-state verification after every write
+```
+
+## Advanced Server-Side Methodology
+
+Go beyond the checklist. Act like a zero-day researcher:
+
+- Understand the application architecture: frontend/backend split, API gateway,
+  auth service, tenant model, object ownership, and data flow.
+- Ask continuously: **How could this security control be bypassed?**
+- Try alternative HTTP methods, content types, encodings, parameter names,
+  auth contexts, API versions, and related endpoints.
+- Compare UI restrictions with direct API behavior.
+- Look for endpoints that return more data than the UI displays.
+- Test batch, bulk, import, export, search, GraphQL, WebSocket, and async/job
+  endpoints when they are part of the current authorized surface.
+- Inspect hidden fields, server-managed fields, create/update/delete asymmetry,
+  and re-create flows.
+- Prioritize high-impact findings: cross-account access, cross-tenant access,
+  privilege escalation, PII exposure, payment/credit manipulation, and
+  authorization bypass.
+- Stay inside the authorized scope. Creative testing never permits real-user
+  harm or destructive actions.
+
+For each endpoint, keep a compact result in `route-report.md` or the API
+inventory:
+
+```text
+Endpoint:
+Method:
+Auth context:
+Tested classes:
+Baseline:
+Result:
+Status: Confirmed | Unresolved | Not Vulnerable | Out of Scope
+Evidence: result/findings/... or concise observation
 ```
 
 ---
@@ -416,8 +478,9 @@ Answer yourself and act.
 - **Never ask the user anything.** Decide and act.
 - **Extract every server-side API route from the visited URL.**
 - **Understand the JavaScript before testing.**
-- **Test all api route for all in-scope server-side bugs.**
-- **Prioritize mass assignment on create/edit/update endpoints.**
+- **Test every API route for all applicable in-scope server-side bugs.**
+- **Prioritize mass assignment on create/edit/update/delete endpoints and
+  protected properties.**
 - **Guess valid parameters from JS, responses, docs, errors, and conventions.**
 - **Use test-owned data only; no real users or destructive tests.**
 - **No findings from status codes, extra fields, or errors alone.**

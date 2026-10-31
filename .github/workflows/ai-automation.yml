@@ -72,20 +72,31 @@ jobs:
           fi
           google-chrome-stable --version
 
-      - name: Install OpenCode (fresh each run)
+      - name: Install OpenCode
         run: |
           set -euo pipefail
-          curl -fsSL https://opencode.ai/install | bash
+          curl -fsSL --connect-timeout 10 --max-time 300 https://opencode.ai/install | bash
           echo "$HOME/.opencode/bin" >> "$GITHUB_PATH"
           "$HOME/.opencode/bin/opencode" --version
 
-      - name: Verify free model access
+      - name: Check free model access
         run: |
           set -euo pipefail
-          timeout 180 opencode run \
+          LOG_DIR="${RUNNER_TEMP:-/tmp}/opencode-logs"
+          mkdir -p "$LOG_DIR"
+          set +e
+          timeout 60 opencode run \
             --model "$OPENCODE_MODEL" \
             --dir "$RUNNER_TEMP" \
-            "Reply with exactly OK"
+            "Reply with exactly OK" > "$LOG_DIR/access-check.log" 2>&1
+          STATUS=$?
+          set -e
+          if [ "$STATUS" -ne 0 ]; then
+            echo "::warning::OpenCode access check did not complete; the agent will attempt recovery."
+            if grep -qaiE 'free usage limit reached|usage limit reached' "$LOG_DIR/access-check.log"; then
+              echo "::warning::OpenCode free usage limit was reached. This is a server-side account limit; local cleanup cannot reset it."
+            fi
+          fi
 
       - name: Prepare optional manual target
         if: github.event_name == 'workflow_dispatch' && inputs.target != ''
@@ -135,7 +146,7 @@ jobs:
             cat > result/confirmed-vuln.txt <<'EOF'
           # Confirmed vulnerabilities only.
           # Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
-          # Entry format: see skills/AGENT.md, Section 9.
+          # Entry format: see skills/AGENT.md, Section 11.
           EOF
           fi
           printf '%s\n' "$CURRENT_HASH" > result/logs/targets.sha256
@@ -183,171 +194,324 @@ jobs:
         if: steps.notification_test.outputs.test_mode != 'true'
         timeout-minutes: 340
         env:
-          AGENT_IDLE_TIMEOUT_SECONDS: "120"
+          AGENT_IDLE_TIMEOUT_SECONDS: "30"
           AGENT_MAX_ATTEMPTS: "3"
           AGENT_MAX_RECOVERIES: "1"
         run: |
           set -euo pipefail
           bash tools/chrome-mcp-start.sh
 
+          AGENT_LOG_DIR="${RUNNER_TEMP:-/tmp}/opencode-logs"
+          mkdir -p "$AGENT_LOG_DIR"
+          LOG="$AGENT_LOG_DIR/opencode.log"
+          : > "$LOG"
+          tail -n 0 -F "$LOG" &
+          TAIL_PID=$!
+
           BASE_CMD="$(cat tools/cmd.txt)"
           MODEL="$(awk '{for (i=1;i<=NF;i++) if ($i=="--model") {print $(i+1); exit}}' tools/cmd.txt)"
-          RESUME_PROMPT='The previous attempt stalled. Read skills/AGENT.md and result/ inventory, then continue the authorized scan. Do not repeat completed work. Checkpoint confirmed findings immediately and continue with all remaining routes.'
+          RESUME_PROMPT='The previous attempt stalled or exited before completion. Read skills/AGENT.md and only result/inventory/top-level-routes.md, result/inventory/api-routes.md, result/inventory/subdomains.md, and result/SUMMARY.md. Resume the authorized scan from unfinished pending or progress work. Do not repeat completed work. Do not ask questions. Checkpoint confirmed findings immediately and continue until SCAN_COMPLETE is written.'
+          QUESTION_RESPONSE='I am using you in an automated workflow, so do not ask me questions or wait for my response. Think like an experienced bug bounty hunter. Independently investigate the application, determine what needs to be done, make reasonable decisions, and continue the security testing. Do not stop. Start or resume the scan.'
           if [ -n "$MODEL" ]; then
             RESUME_CMD="opencode run --continue --model $MODEL '$RESUME_PROMPT'"
             FRESH_CMD="opencode run --model $MODEL '$RESUME_PROMPT'"
+            QUESTION_CMD="opencode run --continue --model $MODEL '$QUESTION_RESPONSE'"
           else
             RESUME_CMD="opencode run --continue '$RESUME_PROMPT'"
             FRESH_CMD="opencode run '$RESUME_PROMPT'"
+            QUESTION_CMD="opencode run --continue '$QUESTION_RESPONSE'"
           fi
-
-          LOG=result/logs/opencode.log
-          mkdir -p result/logs
-          touch "$LOG"
-          {
-            echo
-            echo "===== OPENCODE RUN ${GITHUB_RUN_ID:-local} $(date -u +%Y-%m-%dT%H:%M:%SZ) ====="
-          } >> "$LOG"
-          tail -n 0 -F "$LOG" &
-          TAIL_PID=$!
 
           RESTART_MARKER="${RUNNER_TEMP:-/tmp}/opencode-auto-restart-requested"
           rm -f "$RESTART_MARKER"
           MAX_ATTEMPTS="${AGENT_MAX_ATTEMPTS:-3}"
           MAX_RECOVERIES="${AGENT_MAX_RECOVERIES:-1}"
+          IDLE_TIMEOUT="${AGENT_IDLE_TIMEOUT_SECONDS:-30}"
           RECOVERY=0
           ATTEMPT=1
           FINAL_STATUS=0
-          WATCHDOG_EXHAUSTED=0
+          COMPLETED=0
+          QUOTA_EXHAUSTED=0
+          QUESTION_RESPONSE_SENT=0
+          RUN_START_SIZE=0
+          RUN_LAST_SIZE=0
+          RUN_STATUS=0
+          WATCHDOG_KILLED=0
+          QUESTION_PATTERN='(please (provide|confirm|clarify|choose|select|tell me)|could you (please )?(provide|confirm|clarify)|can you (please )?(provide|confirm|clarify)|do you want me to|would you like me to|should i (proceed|continue|test|scan)|which (route|target|subdomain|endpoint|should i)|need (your|more) (input|information|clarification|approval)|waiting for (your|user) (response|input|confirmation)|let me know (what|which|if|how)|i need you to (provide|confirm|clarify))'
+
+          capture_since() {
+            local start="$1"
+            local size
+            size=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
+            if [ "$size" -gt "$start" ]; then
+              tail -c +$((start + 1)) "$LOG" > "$AGENT_LOG_DIR/last-attempt-output.txt" || true
+            else
+              : > "$AGENT_LOG_DIR/last-attempt-output.txt"
+            fi
+          }
+
+          quota_exhausted() {
+            local source
+            for source in "$LOG" "$AGENT_LOG_DIR/access-check.log" "$HOME/.local/share/opencode/log" "$HOME/.local/state/opencode/log" "$HOME/.opencode/log"; do
+              [ -e "$source" ] || continue
+              if [ -d "$source" ]; then
+                if grep -RaiE 'free usage limit reached|usage limit reached' "$source" >/dev/null 2>&1; then
+                  return 0
+                fi
+              elif grep -aiE 'free usage limit reached|usage limit reached' "$source" >/dev/null 2>&1; then
+                return 0
+              fi
+            done
+            return 1
+          }
+
+          scan_complete() {
+            local file
+            [ -s result/SCAN_COMPLETE ] || return 1
+            grep -qE '^status=completed$' result/SCAN_COMPLETE || return 1
+            for file in result/inventory/top-level-routes.md result/inventory/api-routes.md; do
+              [ -s "$file" ] || return 1
+              if grep -Eiq '(^[[:space:]]*(\*\*)?Status:?(\*\*)?[[:space:]]*(pending|progress)([[:space:]]|$))|(\|[[:space:]]*(pending|progress)[[:space:]]*\|)' "$file"; then
+                return 1
+              fi
+            done
+            if [ -s result/inventory/subdomains.md ] && grep -Eiq '(^[[:space:]]*(\*\*)?Status:?(\*\*)?[[:space:]]*(pending|progress)([[:space:]]|$))|(\|[[:space:]]*(pending|progress)[[:space:]]*\|)' result/inventory/subdomains.md; then
+              return 1
+            fi
+            return 0
+          }
+
+          run_agent() {
+            local cmd="$1"
+            local pid
+            local last_size
+            local last_change
+            local now
+            local size
+            RUN_START_SIZE=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
+            last_size=$RUN_START_SIZE
+            last_change=$(date +%s)
+            WATCHDOG_KILLED=0
+            set +e
+            timeout --signal=TERM --kill-after=30 20160 bash -c "$cmd" >>"$LOG" 2>&1 &
+            pid=$!
+            while kill -0 "$pid" 2>/dev/null; do
+              if [ ! -e "/proc/$pid" ] || [ "$(awk '{print $3}' "/proc/$pid/stat" 2>/dev/null)" = "Z" ]; then
+                break
+              fi
+              sleep 5
+              if [ ! -e "/proc/$pid" ] || [ "$(awk '{print $3}' "/proc/$pid/stat" 2>/dev/null)" = "Z" ]; then
+                break
+              fi
+              size=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
+              now=$(date +%s)
+              if [ "$size" -gt "$last_size" ]; then
+                last_size=$size
+                last_change=$now
+              elif [ $((now - last_change)) -ge "$IDLE_TIMEOUT" ]; then
+                WATCHDOG_KILLED=1
+                {
+                  echo
+                  echo "WATCHDOG: no agent output for ${IDLE_TIMEOUT}s; terminating attempt $ATTEMPT."
+                  echo "WATCHDOG: time=$(date -u +%Y-%m-%dT%H:%M:%SZ) log_bytes=$size"
+                } >> "$LOG"
+                pkill -TERM -f '(^|/)[o]pencode run' 2>/dev/null || true
+                sleep 5
+                pkill -KILL -f '(^|/)[o]pencode run' 2>/dev/null || true
+                kill -TERM "$pid" 2>/dev/null || true
+                sleep 2
+                kill -KILL "$pid" 2>/dev/null || true
+                break
+              fi
+            done
+            wait "$pid"
+            RUN_STATUS=$?
+            set -e
+            RUN_LAST_SIZE=$last_size
+            return 0
+          }
 
           reinstall_opencode() {
-            REINSTALL_LOG="result/logs/opencode-reinstall-$(date -u +%Y%m%dT%H%M%SZ).log"
+            local log
+            local path
+            local uninstall_status=0
+            local probe_status=0
+            log="$AGENT_LOG_DIR/opencode-reinstall-$(date -u +%Y%m%dT%H%M%SZ).log"
             {
               echo "time=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-              echo "reason=agent idle watchdog exhausted ${MAX_ATTEMPTS} attempts"
+              echo "reason=agent did not complete after attempts"
               echo "home=$HOME"
-            } > "$REINSTALL_LOG"
-            rm -rf "$HOME/.local/share/opencode" "$HOME/.local/state/opencode" "$HOME/.config/opencode" "$HOME/.cache/opencode" "$HOME/.local/bin/opencode" "$HOME/.opencode"
-            curl -fsSL https://opencode.ai/install | bash >> "$REINSTALL_LOG" 2>&1
+              echo "install_before=$(timeout 10 "$HOME/.opencode/bin/opencode" --version 2>&1 || true)"
+              echo "paths_before:"
+              timeout 10 "$HOME/.opencode/bin/opencode" debug paths 2>&1 || true
+            } > "$log"
+            if [ -x "$HOME/.opencode/bin/opencode" ]; then
+              timeout 120 "$HOME/.opencode/bin/opencode" uninstall --force >> "$log" 2>&1 || uninstall_status=$?
+            elif command -v opencode >/dev/null 2>&1; then
+              timeout 120 opencode uninstall --force >> "$log" 2>&1 || uninstall_status=$?
+            fi
+            echo "uninstall_status=$uninstall_status" >> "$log"
+            for path in "$HOME/.opencode/bin/opencode" "$HOME/.config/opencode" "$HOME/.local/share/opencode" "$HOME/.local/state/opencode" "$HOME/.cache/opencode" "$HOME/.local/bin/opencode"; do
+              if [ -e "$path" ]; then
+                echo "leftover_after_uninstall=$path" >> "$log"
+              fi
+            done
+            if [ -e "$HOME/.opencode/bin/opencode" ]; then
+              echo "ERROR: uninstall left the OpenCode binary behind" >> "$log"
+              return 1
+            fi
+            if ! curl -fsSL --connect-timeout 10 --max-time 300 https://opencode.ai/install | bash >> "$log" 2>&1; then
+              echo "ERROR: OpenCode installer failed" >> "$log"
+              return 1
+            fi
             export PATH="$HOME/.opencode/bin:$PATH"
-            "$HOME/.opencode/bin/opencode" --version >> "$REINSTALL_LOG" 2>&1
+            hash -r
+            echo "install_after=$(timeout 10 "$HOME/.opencode/bin/opencode" --version 2>&1 || true)" >> "$log"
+            echo "paths_after:" >> "$log"
+            timeout 10 "$HOME/.opencode/bin/opencode" debug paths >> "$log" 2>&1 || true
+            set +e
+            timeout 60 "$HOME/.opencode/bin/opencode" run \
+              --model "$OPENCODE_MODEL" \
+              --dir "$RUNNER_TEMP" \
+              "Reply with exactly OK" >> "$log" 2>&1
+            probe_status=$?
+            set -e
+            echo "fresh_install_probe_status=$probe_status" >> "$log"
+            return 0
           }
 
           while :; do
-            WATCHDOG_EXHAUSTED=0
             while [ "$ATTEMPT" -le "$MAX_ATTEMPTS" ]; do
               if [ "$RECOVERY" -gt 0 ]; then
                 CMD="$FRESH_CMD"
               elif [ "$ATTEMPT" -eq 1 ]; then
                 CMD="$BASE_CMD"
-              elif [ "$ATTEMPT" -eq 2 ]; then
-                CMD="$RESUME_CMD"
               else
-                CMD="$FRESH_CMD"
+                CMD="$RESUME_CMD"
               fi
               {
                 echo
                 echo "===== AGENT ATTEMPT $ATTEMPT/$MAX_ATTEMPTS (recovery $RECOVERY/$MAX_RECOVERIES) ====="
               } >> "$LOG"
 
-              set +e
-              timeout --signal=TERM --kill-after=60 20160 bash -c "$CMD" >>"$LOG" 2>&1 &
-              AGENT_PID=$!
+              run_agent "$CMD"
+              STATUS=$RUN_STATUS
+              capture_since "$RUN_START_SIZE"
 
-              LAST_SIZE=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
-              LAST_CHANGE=$(date +%s)
-              WATCHDOG_KILLED=0
-              while kill -0 "$AGENT_PID" 2>/dev/null; do
-                sleep 10
-                SIZE=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
-                NOW=$(date +%s)
-                if [ "$SIZE" -gt "$LAST_SIZE" ]; then
-                  LAST_SIZE=$SIZE
-                  LAST_CHANGE=$NOW
-                elif [ $((NOW - LAST_CHANGE)) -ge "${AGENT_IDLE_TIMEOUT_SECONDS:-120}" ]; then
-                  WATCHDOG_KILLED=1
-                  {
-                    echo
-                    echo "WATCHDOG: no agent output for ${AGENT_IDLE_TIMEOUT_SECONDS:-120}s; terminating attempt $ATTEMPT."
-                    echo "WATCHDOG: time=$(date -u +%Y-%m-%dT%H:%M:%SZ) log_bytes=$SIZE"
-                  } >> "$LOG"
-                  pkill -TERM -f '(^|/)[o]pencode run' 2>/dev/null || true
-                  sleep 5
-                  pkill -KILL -f '(^|/)[o]pencode run' 2>/dev/null || true
-                  kill -TERM "$AGENT_PID" 2>/dev/null || true
-                  sleep 2
-                  kill -KILL "$AGENT_PID" 2>/dev/null || true
+              if quota_exhausted; then
+                QUOTA_EXHAUSTED=1
+                FINAL_STATUS=1
+                echo "QUOTA: OpenCode free usage limit reached; recovery cannot reset server-side quota." >> "$LOG"
+                break
+              fi
+
+              if [ "$QUESTION_RESPONSE_SENT" -eq 0 ] && grep -qaiE "$QUESTION_PATTERN" "$AGENT_LOG_DIR/last-attempt-output.txt"; then
+                QUESTION_RESPONSE_SENT=1
+                {
+                  echo
+                  echo "QUESTION: agent output matched a clarification pattern; sending the automated continuation response."
+                } >> "$LOG"
+                printf '%s\n' "$QUESTION_RESPONSE" >> "$LOG"
+                sleep 2
+                run_agent "$QUESTION_CMD"
+                STATUS=$RUN_STATUS
+                capture_since "$RUN_START_SIZE"
+                if quota_exhausted; then
+                  QUOTA_EXHAUSTED=1
+                  FINAL_STATUS=1
+                  echo "QUOTA: OpenCode free usage limit reached after the automated clarification response." >> "$LOG"
                   break
                 fi
-              done
-              wait "$AGENT_PID"
-              STATUS=$?
-              set -e
+              fi
 
               if [ "$WATCHDOG_KILLED" -eq 1 ]; then
                 FINAL_STATUS=124
-                if [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ]; then
-                  echo "WATCHDOG: restarting agent (attempt $((ATTEMPT+1))/$MAX_ATTEMPTS)" >> "$LOG"
-                  ATTEMPT=$((ATTEMPT+1))
-                  sleep 5
-                  continue
-                fi
-                echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) attempt=$ATTEMPT status=124 watchdog=true recovery=$RECOVERY" >> result/logs/agent-exit-code.txt
                 {
                   echo "watchdog_terminated=true"
                   echo "watchdog_terminated_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-                  echo "last_log_bytes=$LAST_SIZE"
+                  echo "last_log_bytes=$RUN_LAST_SIZE"
                   echo "attempts=$ATTEMPT"
                   echo "recovery=$RECOVERY"
-                } >> result/logs/agent-watchdog.txt
-                if [ "$RECOVERY" -gt 0 ]; then
-                  {
-                    echo "time=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-                    echo "reason=no output for ${AGENT_IDLE_TIMEOUT_SECONDS:-120}s after OpenCode reinstall"
-                    echo "run_id=${GITHUB_RUN_ID:-local}"
-                  } > result/logs/auto-restart-requested.txt
-                  printf 'requested\n' > "$RESTART_MARKER"
+                } >> "$AGENT_LOG_DIR/agent-watchdog.txt"
+                if [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ]; then
+                  echo "WATCHDOG: restarting agent (attempt $((ATTEMPT + 1))/$MAX_ATTEMPTS)" >> "$LOG"
+                  ATTEMPT=$((ATTEMPT + 1))
+                  sleep 5
+                  continue
                 fi
-                WATCHDOG_EXHAUSTED=1
                 break
               fi
 
-              echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) attempt=$ATTEMPT status=$STATUS recovery=$RECOVERY" >> result/logs/agent-exit-code.txt
-              if [ "$STATUS" -eq 0 ]; then
+              if [ "$STATUS" -eq 0 ] && scan_complete; then
+                COMPLETED=1
                 FINAL_STATUS=0
+                echo "COMPLETE: SCAN_COMPLETE and terminal inventory statuses verified." >> "$LOG"
                 break
               fi
-              FINAL_STATUS=$STATUS
+
+              if [ "$STATUS" -eq 0 ]; then
+                FINAL_STATUS=1
+                echo "INCOMPLETE: agent exited 0 without a valid SCAN_COMPLETE marker or with pending/progress inventory items." >> "$LOG"
+              else
+                FINAL_STATUS=$STATUS
+                echo "Agent exited with status $STATUS." >> "$LOG"
+              fi
+
               if [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ]; then
-                echo "Agent exited with status $STATUS; restarting (attempt $((ATTEMPT+1))/$MAX_ATTEMPTS)" >> "$LOG"
-                ATTEMPT=$((ATTEMPT+1))
+                echo "Restarting agent (attempt $((ATTEMPT + 1))/$MAX_ATTEMPTS)" >> "$LOG"
+                ATTEMPT=$((ATTEMPT + 1))
                 sleep 5
                 continue
               fi
               break
             done
 
-            if [ "$WATCHDOG_EXHAUSTED" -eq 1 ] && [ "$RECOVERY" -lt "$MAX_RECOVERIES" ]; then
-              RECOVERY=$((RECOVERY+1))
-              echo "WATCHDOG: reinstalling OpenCode after exhausted attempts; recovery $RECOVERY/$MAX_RECOVERIES" >> "$LOG"
+            if [ "$COMPLETED" -eq 1 ] || [ "$QUOTA_EXHAUSTED" -eq 1 ]; then
+              break
+            fi
+
+            if [ "$RECOVERY" -lt "$MAX_RECOVERIES" ]; then
+              RECOVERY=$((RECOVERY + 1))
+              echo "RECOVERY: performing supported OpenCode uninstall and fresh install ($RECOVERY/$MAX_RECOVERIES)." >> "$LOG"
               if reinstall_opencode; then
-                echo "OpenCode reinstalled; restarting testing from preserved result/ state." >> "$LOG"
+                echo "RECOVERY: fresh OpenCode installation complete; retrying testing from preserved result/ state." >> "$LOG"
                 ATTEMPT=1
                 MAX_ATTEMPTS=1
                 FINAL_STATUS=0
-                WATCHDOG_EXHAUSTED=0
                 sleep 5
                 continue
               fi
-              echo "WATCHDOG: OpenCode reinstall failed." >> "$LOG"
+              echo "RECOVERY: supported OpenCode reinstall failed." >> "$LOG"
               FINAL_STATUS=1
-              WATCHDOG_EXHAUSTED=0
+            fi
+
+            if [ "$QUOTA_EXHAUSTED" -eq 0 ]; then
+              printf 'requested\n' > "$RESTART_MARKER"
+              {
+                echo "time=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+                echo "reason=no agent completion after retries and recovery"
+                echo "run_id=${GITHUB_RUN_ID:-local}"
+              } > "$AGENT_LOG_DIR/auto-restart.txt"
             fi
             break
           done
 
-          if [ "$WATCHDOG_EXHAUSTED" -eq 1 ]; then
-            echo "::error::Agent watchdog exhausted all attempts after OpenCode recovery; partial results were preserved."
+          if [ "$QUOTA_EXHAUSTED" -eq 1 ]; then
+            cat > result/BLOCKED.md <<'EOF'
+          # Scan blocked: OpenCode free usage limit
+
+          OpenCode reported that the free usage limit was reached.
+
+          - This is a server-side/account quota, not a local installation defect.
+          - Deleting local files or reinstalling OpenCode cannot reset the quota.
+          - No completion marker was written and no scan success is claimed.
+          - Partial results, if any, were preserved.
+          EOF
+            echo "::error::OpenCode free usage limit reached. Reinstall/local cleanup cannot reset server-side quota; scan not completed."
+            FINAL_STATUS=1
+          elif [ "$COMPLETED" -ne 1 ]; then
+            printf 'requested\n' > "$RESTART_MARKER"
+            echo "::error::Agent did not complete the authorized scan; an automatic resume run was requested."
             FINAL_STATUS=1
           fi
 
@@ -358,16 +522,24 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
-          RUN_LOG_DIR="result/logs/opencode/${GITHUB_RUN_ID:-local}"
-          mkdir -p "$RUN_LOG_DIR"
-          cp -f /tmp/chrome-mcp.log "$RUN_LOG_DIR/chrome-mcp.log" 2>/dev/null || true
+          LOG_DIR="${RUNNER_TEMP:-/tmp}/opencode-logs"
+          mkdir -p "$LOG_DIR"
+          cp -f /tmp/chrome-mcp.log "$LOG_DIR/chrome-mcp.log" 2>/dev/null || true
           for dir in "$HOME/.local/share/opencode/log" "$HOME/.local/state/opencode/log" "$HOME/.opencode/log"; do
             if [ -d "$dir" ]; then
-              find "$dir" -maxdepth 1 -type f -name '*.log' -size -5M -exec cp -f {} "$RUN_LOG_DIR/" \; 2>/dev/null || true
+              find "$dir" -maxdepth 1 -type f -name '*.log' -size -5M -exec cp -f {} "$LOG_DIR/" \; 2>/dev/null || true
             fi
           done
-          find result/logs -maxdepth 3 -type f -printf '%p %s bytes\n' | sort > "$RUN_LOG_DIR/diagnostics-index.txt"
-          cp -f "$RUN_LOG_DIR/diagnostics-index.txt" result/logs/diagnostics-index.txt
+          find "$LOG_DIR" -maxdepth 2 -type f -printf '%f %s bytes\n' | sort > "$LOG_DIR/diagnostics-index.txt"
+
+      - name: Upload automation logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: automation-logs-${{ github.run_id }}
+          path: ${{ runner.temp }}/opencode-logs/
+          if-no-files-found: warn
+          retention-days: 14
 
       - name: Finalize confirmed findings
         if: always()
@@ -431,7 +603,7 @@ jobs:
               print("No high-severity confirmed reports needed finalization.")
 
           if warnings:
-              pathlib.Path("result/logs/checkpoint-validation.txt").write_text(
+              pathlib.Path("result/inventory/checkpoint-validation.txt").write_text(
                   "\n".join(warnings) + "\n", encoding="utf-8"
               )
               for warning in warnings:
@@ -470,26 +642,21 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
-
           if [ -n "$(git status --porcelain -- creds/)" ]; then
             echo "ERROR: creds/ changed; refusing to commit results." >&2
             exit 1
           fi
-
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A result
-
           if git diff --cached --name-only | grep -q '^creds/'; then
             echo "ERROR: creds/ would be committed; refusing to commit results." >&2
             exit 1
           fi
-
           if git diff --cached --quiet; then
             echo "No result changes to commit."
             exit 0
           fi
-
           git commit -m "scan: results $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
           BRANCH="${GITHUB_REF_NAME:-main}"
           git pull --rebase --autostash origin "$BRANCH"
@@ -528,6 +695,7 @@ jobs:
           import json
           import os
           import pathlib
+          import re
           import urllib.error
           import urllib.parse
           import urllib.request
@@ -548,26 +716,35 @@ jobs:
                   print("No confirmed-vuln.txt; skipping Discord notification.")
                   raise SystemExit(0)
 
-              entries = [
-                  line.strip()
-                  for line in path.read_text(errors="ignore").splitlines()
-                  if line.strip() and not line.lstrip().startswith("#")
-              ]
-              if not entries:
+              text = path.read_text(errors="ignore")
+              blocks = []
+              for block in re.split(r"\n\s*\n", text):
+                  lines = [line for line in block.splitlines() if line.strip()]
+                  if not lines or lines[0].lstrip().startswith("#"):
+                      continue
+                  if not any(re.match(r"(?i)^\s*(\*\*)?Status:?\s*Confirmed\b", line) for line in lines):
+                      continue
+                  blocks.append(lines)
+
+              if not blocks:
                   print("No confirmed findings; skipping Discord notification.")
                   raise SystemExit(0)
 
-              titled = [
-                  entry for entry in entries
-                  if entry.startswith("[") and "]" in entry
-              ][:10]
-              selected = titled or entries[:5]
-              findings = "\n".join(f"- {entry[:300]}" for entry in selected)
+              selected = []
+              for lines in blocks[:3]:
+                  title = lines[0][:240]
+                  asset = next((line for line in lines if re.match(r"(?i)^\s*(\*\*)?Asset:", line)), "")
+                  kind = next((line for line in lines if re.match(r"(?i)^\s*(\*\*)?Type:", line)), "")
+                  severity = next((line for line in lines if re.match(r"(?i)^\s*(\*\*)?Severity:", line)), "")
+                  evidence = next((line for line in lines if re.match(r"(?i)^\s*(\*\*)?Evidence:", line)), "")
+                  summary = "\n".join(part for part in (title, asset, kind, severity, evidence) if part)
+                  selected.append(summary)
+              findings = "\n\n".join(selected)
               content = (
                   "**Confirmed vulnerability found**\n"
                   f"Repository: {os.environ.get('REPO', '')}\n"
                   f"Run: {os.environ.get('RUN_URL', '')}\n"
-                  f"Findings:\n{findings}"
+                  f"{findings}"
               )[:1900]
 
           body = json.dumps({
