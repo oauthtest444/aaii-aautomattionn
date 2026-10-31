@@ -1,3 +1,0 @@
-# Confirmed vulnerabilities only.
-# Do not add speculative issues, status codes, reflected strings, or accepted-but-inert fields.
-# Entry format: see skills/AGENT.md, Section 11.
