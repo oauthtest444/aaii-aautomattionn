@@ -6,6 +6,7 @@
 - Asset: `https://console.byteplus.com/datafinder/api/v1/projects/{project_id}/common_settings`
 - Auth context: authenticated console user; two independent test accounts (A: 3000823185, B: 3001021825)
 - Discovered: 2026-10-31
+- Re-verified: 2026-10-31T21:44:56Z (both directions, live browser session)
 
 ## Summary
 

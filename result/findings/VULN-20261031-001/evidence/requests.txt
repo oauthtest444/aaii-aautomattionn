@@ -29,3 +29,18 @@ Response: HTTP 200
 
 Account A project: 2111833 (org 2100230837)
 Account B project: 218463 (org 26172)
+
+--- Re-verification 2026-10-31T21:44:56Z (live, browser fetch) ---
+A (3000823185) -> B project 218463:
+GET /datafinder/api/v1/projects/218463/common_settings?options=custom_multilang,custom_color
+Response: HTTP 200
+{"code":200,"message":"success","data":{"custom_color":0,"custom_multilang":{"status":0}}}
+Control: GET /datafinder/api/v1/projects/218463/dashboards/level_list -> HTTP 200
+{"code":403001,"message":"Access denied, please check if you were authorized to this project"}
+
+B (3001021825) -> A project 2111833:
+GET /datafinder/api/v1/projects/2111833/common_settings?options=custom_multilang,custom_color
+Response: HTTP 200
+{"code":200,"message":"success","data":{"custom_color":0,"custom_multilang":{"status":0}}}
+Control: GET /datafinder/api/v1/projects/2111833/dashboards/level_list -> HTTP 200
+{"code":403001,"message":"Access denied, please check if you were authorized to this project"}

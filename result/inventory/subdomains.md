@@ -4,7 +4,7 @@ Target: console.byteplus.com
 
 | Subdomain | Status | Summary |
 |---|---|---|
-| console.byteplus.com | progress | Authorized target host; top-level routes being tested. |
+| console.byteplus.com | completed | Authorized target host; all 5 top-level routes completed. |
 
 ## Notes
 

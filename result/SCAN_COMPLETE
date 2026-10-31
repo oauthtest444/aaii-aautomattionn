@@ -1,0 +1,9 @@
+status=completed
+timestamp=2026-10-31T21:45:14Z
+target=https://console.byteplus.com
+top_level_routes_total=5
+top_level_routes_completed=5
+api_routes_total=48
+api_routes_completed=48
+subdomains_total=1
+subdomains_completed=1
