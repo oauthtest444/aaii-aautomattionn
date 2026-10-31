@@ -8,7 +8,5 @@ note: this is inscope domain this program have private bbp.
 Important note:
 If you found any confirmed vuln then
 
-Send direct discord notification on:
-```
-https://discord.com/api/webhooks/1565069909266927626/PFr7RwwOdMGwjT2U26NhAPBHoTWD4X0boLyBciSfQNkFHTnKD_J9TSP394nto45RFz-v
-```
+Send a direct Discord notification using the repository's configured
+DISCORD_WEBHOOK_URL secret.
