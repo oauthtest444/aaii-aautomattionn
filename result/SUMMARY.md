@@ -1,45 +1,56 @@
 # Scan Summary
 
-- Target: https://console.byteplus.com/ark/region:ap-southeast-1/tts/podcast?
-- Scope: all sub-routes under /ark/* on console.byteplus.com only (private BBP, per data/targets.txt)
-- Authorization source: data/targets.txt
-- Test accounts: creds/test-account.txt (2 disposable accounts, A and B)
-- Status: completed
-- Completed at: 2026-10-31T08:52:28Z
+- Target: https://console.byteplus.com/workorder/list/
+- Scope source: `data/targets.txt` (private BBP; explicit `/workorder/*` sub-routes)
+- Authorization note: only `console.byteplus.com/workorder/*` was tested; no related subdomain testing was performed.
+- Auth context: test accounts only — A `3000823185`, B `3001021825`
+- Started: 2026-10-31T10:09:03Z
+- Completed: 2026-10-31T10:30:04Z
 
 ## Coverage
 
-- Top-level routes: 2 total, 2 completed (`/ark/` and the podcast route).
-- Sub-routes: 20 inventoried (12 under `/ark/`, 8 `console-embedded` routes
-  documented Out of Scope).
-- API routes: 15 inventoried, all completed or documented Out of Scope.
-- Subdomains: 6 inventoried, all completed or documented Out of Scope.
-- Client-side: source/sink regex analysis on 34 deduplicated `/ark/*` bundles,
-  postMessage listeners reviewed, no confirmed source→sensitive-sink path.
-- Server-side: cross-account IDOR/tenant-override attempts on
-  `/api/top/ark/ap-southeast-1/2024-01-01/*` with two isolated accounts.
+| Sub-route | Status | Result |
+|---|---|---|
+| /workorder/list/ | completed | Caller-scoped ticket reads; hidden account overrides ignored; postMessage listener exact-origin and read-only. |
+| /workorder/list/detail | completed | Cross-account ticket/conversation/file operations denied; mass assignment ignored; stored HTML sanitized server-side; no XSS. |
+| /workorder/create | completed | Ownership/state fields ignored; upload ownership enforced; no client-side sink. |
+| /workorder/authorizationList | completed | Caller-scoped, empty; diagnostic write/list paths unresolved (backend errors/no records). |
 
 ## Findings
 
-- Confirmed vulnerabilities: none. `result/confirmed-vuln.txt` is empty.
+**No high-impact vulnerability was confirmed.**
 
-## Not Vulnerable (tested)
+### OBS-20261031-001 — low-impact cross-account masked contact
 
-- `GetRawApiKey` cross-account Id (`301420` from A) → `NotFound.Id`.
-- `ListApiKeys`, `GetInferenceUsage`, `GetAutoSetFreeLimit`,
-  `ListDataCollectionPermissions`, `GetAccountInfo`, `GetModelChargeItem`,
-  `QueryModelPrice` — tenant identifiers ignored or unsupported; only caller
-  data returned.
-- No DOM XSS, open redirect, or postMessage-driven action on the authorized
-  origin.
+- `POST /api/workorder/ticket/GetAccountMaskedSecurityContact` accepts an arbitrary `AccountID` and returns another account's masked security email, masked telephone, and verification flags, plus an `AccountNotExist` oracle.
+- Confirmed bidirectionally between A and B using test accounts.
+- Impact is limited to masked PII (first email character, masked domain, country code + last 5 phone digits) and account/verification state. It does not meet the high-impact reporting bar, so it is **not** in `result/confirmed-vuln.txt` and did **not** trigger a Discord notification.
+- Details: `result/unresolved.md`.
 
-## Unresolved / Out of Scope
+## Client-side testing
 
-- `/api/tag/tag_resources_bff` and `/api/tag/untag_resources_bff` return 404 on
-  `console.byteplus.com`; the tag API is hosted on the BFF subdomain (Out of
-  Scope). Cross-account tagging could not be verified in scope.
-- `modelark-api.console.byteplus.com/ark/bff`,
-  `arkbff-ap-southeast1.console.byteplus.com`, the
-  `/api/v1/ark_volc_console_proxy` proxy, and all
-  `console-embedded.byteplus.com/voice/new/*` routes were not tested: distinct
-  subdomains/embedded origin not explicitly authorized by `data/targets.txt`.
+- Exact source/sink regexes were run against the route bundles; counts and matched flows are in `result/client-side/console.byteplus.com/<route>/route-report.md`.
+- Stored conversation HTML is sanitized at write time: `onerror`, `ontoggle`, `onfocus`, `javascript:` hrefs, and disallowed tags are stripped.
+- Markdown conversation content drops `javascript:` hrefs and strips raw HTML event handlers.
+- `<svg onload>` probes were blocked by the WAF (HTTP 403).
+- Confidential conversation content is masked in list responses and sanitized when revealed through `GetSensitiveConversation`.
+- Conversation attachment URLs are stored verbatim, but the client download handler rejects dangerous schemes and image preview uses `<img>` only; a stored `javascript:` attachment URL did not execute on click.
+- Attachment `FileID` from another account is normalized to `Url:""`; no cross-account file URL is returned.
+- No JavaScript execution, self-XSS, DOM XSS, stored XSS, or open redirect was confirmed.
+
+## Unresolved
+
+- `ListTicketFlow` cross-user `SessionID` IDOR (no second valid session created).
+- Diagnostic authorization endpoints (`InternalError`/`BadRequest`, no records).
+- Authorization approve/terminate write paths (no records).
+- `ConversationSensitiveWordDetection` and AI form helper endpoints (not exercised).
+
+## Artifacts
+
+- `result/inventory/top-level-routes.md`
+- `result/inventory/api-routes.md`
+- `result/inventory/javascript.md`
+- `result/testing-inventory.json`
+- `result/unresolved.md`
+- `result/client-side/console.byteplus.com/`
+- `result/confirmed-vuln.txt` (no high-impact entries)
