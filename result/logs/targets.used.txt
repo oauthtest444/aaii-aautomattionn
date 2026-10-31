@@ -1,7 +1,11 @@
 Target:
-https://console.byteplus.com/workorder/list/
+https://console.byteplus.com/datarangers
+https://console.byteplus.com/datatester
+https://console.byteplus.com/ark
+https://console.byteplus.com/ai
+https://console.byteplus.com/alb
 
-test all sub routes under this /workorder/*
+test all sub routes under these routes
 
 also test releted others subdomains and endpoints if you find any interesting in testing 
 

@@ -1,55 +1,52 @@
 # API Route Inventory
 
-Base: `https://console.byteplus.com`
-Auth: A = `adoringjepsen1@fearlessmails.com` / AccountID `3000823185`; B = `testt456` / AccountID `3001021825`.
-
-| Method | Path | Parent | Auth | Status | Summary |
+| Method | Path | Parent Top-Level Route | Auth | Status | Summary |
 |---|---|---|---|---|---|
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ListTicket | /workorder/list/ | A, B | completed | Caller-scoped. Hidden `AccountID` (number/string), `AccountIDs`, `AccountIDList`, `Owner`, `TenantID`, `AccountId`, `SubmitterID`, `TicketIDs`, `SearchKey` are ignored. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ListTicketForUser | /workorder/list/ | A | completed | Caller-account tickets only. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/GetTicketCount | /workorder/list/ | A | completed | Own counts; `AccountID`/`AccountIDs` ignored. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/GetTicketCountForUser | /workorder/list/ | A | completed | Own counts; `AccountID` ignored. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/GetTicket | /workorder/list/detail | A, B | completed | Cross-account `TicketID` returns `Forbidden`. ID variants (`%00`, spaces, case, `..`, arrays, null, numbers) fail. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/GetTicketForUser | /workorder/list/detail | A | completed | Cross-account `TicketID` returns `Forbidden`. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ListTicketConversation | /workorder/list/detail | A, B | completed | Cross-account `TicketID` returns `Forbidden`. Own HTML/markdown content is server-sanitized at write time. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ListTicketConversationForUser | /workorder/list/detail | A | completed | Cross-account `TicketID` returns `Forbidden`. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/GetSensitiveConversation | /workorder/list/detail | A, B | completed | Cross-account ConversationID/TicketID combinations fail (`NotFound`/`ResourceNotFound`); own pair returns content. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ListTicketExecutableAction | /workorder/list/detail | A | completed | Cross-account `TicketID` returns `Forbidden`. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/GetTicketReviewTemplate | /workorder/list/detail | A | completed | Cross-account `TicketID` returns `Forbidden`. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/UpdateTicket | /workorder/list/detail | A | completed | Cross-account `TicketID` returns `Forbidden`. `AccountID`, `SubmitterID`, `TicketState`, `HandleStatus`, `Status`, `NeedReview`, `ReviewStatus`, `SubProductID`, `FlowName` are ignored; only `NotificationMethods` updates. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/HandleTicket | /workorder/list/detail | A | completed | Cross-account/invalid action returns `Forbidden`/`Unauthorized`. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ReviewTicket | /workorder/list/detail | A | completed | Cross-account `TicketID` returns `Forbidden`. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/CreateTicket | /workorder/create | A | completed | Creates only under caller. `AccountID`, `SubmitterID`, `SubmitterEmail`, `TicketState`, `HandleStatus`, `Status`, `NeedReview`, `ReviewStatus`, `ConfirmedTime`, `FinishedTime` are ignored. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ListAllFlow | /workorder/create | A | completed | Public issue-type catalog. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ListTicketFlow | /workorder/create | A | unresolved | Session/AI-bound (`SessionID`, `IntelligentTaskID`). Cross-user SessionID IDOR not tested because no second valid session was created. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ListConsoleSubProduct | /workorder/create | A | completed | Public product catalog. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/CreateTicketConversation | /workorder/list/detail | A, B | completed | Own ticket writes allowed; cross-account `TicketID` returns `Forbidden`. Server sanitizes stored HTML (`onerror`, `ontoggle`, `onfocus`, `javascript:` stripped; disallowed tags removed). Attachment `Url` is stored verbatim, but the client download handler rejects `javascript:`/`vbscript:`/`data:`/`file:` and image preview is `<img>` only; click test caused no execution. B-owned `FileID` is normalized to `Url:""`. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/CreateTicketConversationForUser | /workorder/list/detail | A | completed | Cross-account `TicketID` returns `Forbidden`. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/CommentTicket | /workorder/list/detail | A | completed | Cross-account `TicketID` returns `Forbidden`. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/CommentTicketForUser | /workorder/list/detail | A | completed | Cross-account `TicketID` returns `Forbidden`. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/ConversationSensitiveWordDetection | /workorder/list/detail | A | unresolved | Not exercised; requires conversation content and only returns sensitive-word matches. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/GetFieldsRecommendation | /workorder/create | A | unresolved | AI/form helper; no cross-account data path identified. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/GetQuestionDescription | /workorder/create | A | unresolved | AI/form helper; not exercised. |
-| GET | /api/top/iam/ap-southeast-1/2018-01-01/ListRoles | /workorder/list/detail | A, B | completed | Empty for both test accounts. |
-| GET | /api/top/iam/ap-southeast-1/2018-01-01/ListUsers | /workorder/list/detail | A, B | completed | Empty for both test accounts; no IAM user IDs to test `GetUserMaskedSecurityContact`. |
-| GET | /api/workorder/ticket/getWorkorderConsoleConfig | /workorder/create | A | completed | Public console config; no user data. |
-| POST | /api/workorder/ticket/getFormTokenAndCodeList | /workorder/create | A | completed | Field code/token mapping; no cross-account data. |
-| POST | /api/workorder/ticket/GetAccountMaskedSecurityContact | /workorder/create | A, B | completed | **Cross-account IDOR confirmed:** arbitrary `AccountID` returns masked security email/phone and verification flags; account-existence oracle (`AccountNotExist`). Masked data only; low impact, not high-impact bar. |
-| POST | /api/workorder/ticket/GetUserMaskedSecurityContact | /workorder/create | A, B | completed | Requires `UserId`; no IAM users exist; `UserSecurityContactNotExist`. |
-| GET | /api/workorder/ticket/Tcc | /workorder/list/ | A | completed | Returns tag/config map (empty for test accounts). |
-| POST | /api/workorder/ticket/ListAccountLabelsByKeys | /workorder/create | A | completed | Returns labels for caller-supplied label keys; no account data. |
-| GET | /api/workorder/ticket/getWotkorderFinanceProduct | /workorder/create | A | completed | Finance-only product catalog; not applicable to test accounts. |
-| POST | /api/top/authorization/ap-southeast-1/2021-01-01/ListAuthorization | /workorder/authorizationList | A | completed | Caller-scoped; empty. `AccountID` rejected as invalid parameter. |
-| POST | /api/top/authorization/ap-southeast-1/2021-01-01/ListAuthorizationForUser | /workorder/authorizationList | A | completed | Caller-scoped; empty. `AccountID` rejected as invalid parameter. |
-| POST | /api/top/authorization/ap-southeast-1/2021-01-01/ListDiagnosticAuthorization | /workorder/authorizationList | A | unresolved | `InternalError` without params, `BadRequest` with `AccountID`; no data returned. |
-| POST | /api/top/authorization/ap-southeast-1/2021-01-01/ApproveAuthorization | /workorder/authorizationList | A | unresolved | No authorization records available to exercise. |
-| POST | /api/top/authorization/ap-southeast-1/2021-01-01/TerminateAuthorization | /workorder/authorizationList | A | unresolved | No authorization records available to exercise. |
-| POST | /api/top/authorization/ap-southeast-1/2021-01-01/ApproveDiagnosticAuthorization | /workorder/authorizationList | A | unresolved | No records; backend errors. |
-| POST | /api/top/authorization/ap-southeast-1/2021-01-01/TerminateDiagnosticAuthorization | /workorder/authorizationList | A | unresolved | No records; backend errors. |
-| POST | /api/top/authorization/ap-southeast-1/2021-01-01/RejectDiagnosticAuthorization | /workorder/authorizationList | A | unresolved | No records; backend errors. |
-| POST | /api/top/ticket/2022-01-01/UploadFile | /workorder/create | A | completed | Raw upload works; file ownership enforced. |
-| POST | /api/top/ticket/2022-01-01/GetPreSignedPostSignature | /workorder/create | A, B | completed | Server issues FileID + scoped TOS signature; client-supplied `FileID`/`Key` not honored; `FileType` allowlist. |
-| POST | /api/top/ticket/2022-01-01/SaveFile | /workorder/create | A, B | completed | B cannot `SaveFile` A's FileID (`Forbidden`); owner succeeds. |
-| GET | /api/top/ticket/2022-01-01/DownloadFile?FileID=... | /workorder/create | A, B | completed | Owner can download; B downloading A's FileID returns `Forbidden`. |
-| POST | /api/top/ticket/2022-01-01/GetPreSignedDownloadURL | /workorder/create | A | completed | Not a real operation (`InvalidActionOrVersion`) for ticket service; 404 on workorder/common paths. |
-| POST | /api/top/ticket/ap-southeast-1/2021-01-01/GetPreSignedDownloadURL | /workorder/create | A | completed | `InvalidActionOrVersion`. |
+| GET | /datarangers/api/config | /datarangers | session | pending |  |
+| GET | /datarangers/api/org/list | /datarangers | session | pending |  |
+| GET | /datarangers/api/org/{org_id}/get | /datarangers | session | completed | Cross-tenant: 400 "集团不存在" for foreign org. |
+| GET | /datarangers/api/org/{org_id}/user/get | /datarangers | session | completed | Org-scoped, foreign org rejected. |
+| GET | /datarangers/api/org/{org_id}/user/features | /datarangers | session | completed | Org-scoped, foreign org rejected. |
+| GET | /datarangers/api/org/{org_id}/app/list | /datarangers | session | completed | Org-scoped, foreign org rejected. |
+| GET | /datarangers/api/org/{org_id}/role/list | /datarangers | session | completed | Org-scoped, foreign org rejected. |
+| GET | /datarangers/api/user/notification | /datarangers | session | pending |  |
+| GET | /datarangers/api/guest/product/version | /datarangers | session | pending |  |
+| GET | /datarangers/api/contract_status?project_id= | /datarangers | session | pending |  |
+| GET | /datarangers/api/user/surveys/1 | /datarangers | session | pending |  |
+| GET | /datafinder/api/v1/users/current | /datarangers | session | pending |  |
+| GET | /datafinder/api/v1/project?project_id= | /datarangers | session | completed | Foreign project: 403001. |
+| GET | /datafinder/api/v1/init | /datarangers | session | pending |  |
+| GET | /datafinder/api/v1/projects/{project_id}/common_settings | /datarangers | session | completed | IDOR (low): no project authz, both directions; only benign config returned. |
+| GET | /datafinder/api/v1/projects/{project_id}/session_replay/status | /datarangers | session | completed | Foreign project: 403001 access denied. |
+| GET | /datafinder/api/v1/projects/{project_id}/functions | /datarangers | session | completed | Foreign project: 403001 access denied. |
+| GET | /datafinder/api/v1/projects/{project_id}/view/config | /datarangers | session | pending |  |
+| GET | /datafinder/api/v1/projects/{project_id}/scenarios/label/config | /datarangers | session | pending |  |
+| GET | /datafinder/api/v1/projects/{project_id}/roles | /datarangers | session | pending |  |
+| GET | /datafinder/api/v1/projects/{project_id}/dashboards/level_list | /datarangers | session | pending |  |
+| GET | /datafinder/api/v1/projects/{project_id}/ai/gc/config | /datarangers | session | pending |  |
+| GET | /datafinder/api/v1/projects/{project_id}/ai/gc/agent/list | /datarangers | session | pending |  |
+| GET | /datafinder/api/v1/projects/{project_id}/ai/gc/support_skills | /datarangers | session | pending |  |
+| GET | /datafinder/api/v1/current_org?project_id= | /datarangers | session | pending |  |
+| GET | /datafinder/api/v2/org/{org_id}/data_export/statistics | /datarangers | session | pending |  |
+| GET | /datatester/api/v2/user_info | /datatester | session | completed | A org has no DataTester contract (404); B works. |
+| GET | /datatester/api/v2/dry_run_init | /datatester | session | completed |  |
+| GET | /datatester/api/v2/org_list | /datatester | session | completed | Returns only caller's orgs/apps. |
+| GET | /datatester/api/v2/current_app_info?app_id= | /datatester | session | completed | Foreign app id yields org_id 0, no data leak. |
+| GET | /datatester/api/v2/function_control_info?app_id= | /datatester | session | completed | Foreign app id: no leak / default flags. |
+| GET | /datatester/access/api/v3/app/list?org_id= | /datatester | session | completed | Foreign org: code 302 access denied. |
+| GET | /datatester/permission/api/v3/orgs/{org_id}/user_info | /datatester | session | completed | Foreign org: 400 "no contract". |
+| GET | /datatester/experiment/api/v3/app/{app_id}/experiment | /datatester | session | completed | Foreign app: 301 project not accessible. |
+| GET | /datatester/experiment-template/api/v2/apps/{app_id}/templates | /datatester | session | completed | Foreign app: 301. |
+| GET | /datatester/metric/api/v3/apps/{app_id}/metric-groups | /datatester | session | completed | Foreign app: 301. |
+| POST | /api/top/ark/ap-southeast-1/2024-01-01/ListApiKeys | /ark | session | completed | Account-scoped; only caller's keys. |
+| POST | /api/top/ark/ap-southeast-1/2024-01-01/GetRawApiKey | /ark | session | completed | Account-scoped; foreign key Id returns NotFound. |
+| POST | /api/top/ark/ap-southeast-1/2024-01-01/ListVaults | /ark | session | completed | Account-scoped; only caller's vaults. |
+| POST | /api/top/ark/ap-southeast-1/2024-01-01/GetVault | /ark | session | completed | Foreign vault: InvalidVault.NotFound. |
+| POST | /api/top/ark/ap-southeast-1/2024-01-01/ListCredentials | /ark | session | completed | No creds in test vaults; no leak observed. |
+| POST | /api/top/ark/ap-southeast-1/2024-01-01/ListAgents | /ark | session | completed | Account-scoped; empty. |
+| POST | /api/top/ark/ap-southeast-1/2024-01-01/ListOAuthProviders | /ark | session | completed | Public provider catalog. |
+| POST | /api/top/ark/ap-southeast-1/2024-01-01/CreateCredential | /ark | session | completed | Blocked: managed agent not activated. |
+| POST | /api/top/cv_console/2025-09-16/AppApps | /ai | session | completed | Returns caller's apps only (A 100051380, B 100047641). |
+| GET | /api/top/alb/ap-southeast-1/2020-04-01/DescribeLoadBalancers | /alb | session | completed | No ALB resources in either test account. |
+| GET | /api/top/alb/ap-southeast-1/2020-04-01/InnerGetAccountFeatures | /alb | session | completed | Account-scoped. |
+| GET | /api/top/alb/ap-southeast-1/2020-04-01/InnerGetAccountQuota | /alb | session | completed | Account-scoped. |

