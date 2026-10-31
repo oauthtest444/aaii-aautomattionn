@@ -94,7 +94,7 @@ jobs:
           if [ "$STATUS" -ne 0 ]; then
             echo "::warning::OpenCode access check did not complete; the agent will attempt recovery."
             if grep -qaiE 'free usage limit reached|usage limit reached' "$LOG_DIR/access-check.log"; then
-              echo "::warning::OpenCode free usage limit was reached. This is a server-side account limit; local cleanup cannot reset it."
+              echo "::warning::OpenCode free usage limit was reached. This is a server-side account limit; npm reinstall may not restore it."
             fi
           fi
 
@@ -142,6 +142,29 @@ jobs:
             find result -mindepth 1 -maxdepth 1 ! -name '.gitkeep' -exec rm -rf {} +
           fi
           mkdir -p result/client-side result/server-side result/findings result/inventory result/logs
+          rm -f result/BLOCKED.md
+          TARGET_URL="$(grep -Eo 'https?://[^[:space:]`]+' data/targets.txt | head -1 || true)"
+          if [ ! -s result/inventory/top-level-routes.md ]; then
+            {
+              echo "# Top-Level Route Inventory"
+              echo
+              echo "Target: ${TARGET_URL:-unknown}"
+              echo
+              echo "| Top-Level Route | Status | Sub-Routes | Summary |"
+              echo "|---|---|---|---|"
+              if [ -n "$TARGET_URL" ]; then
+                printf '| %s | pending | 0 | Seeded by workflow; agent must test. |\n' "$TARGET_URL"
+              fi
+            } > result/inventory/top-level-routes.md
+          fi
+          if [ ! -s result/inventory/api-routes.md ]; then
+            cat > result/inventory/api-routes.md <<'EOF'
+          # API Route Inventory
+
+          | Method | Path | Parent Top-Level Route | Auth | Status | Summary |
+          |---|---|---|---|---|---|
+          EOF
+          fi
           if [ ! -f result/confirmed-vuln.txt ]; then
             cat > result/confirmed-vuln.txt <<'EOF'
           # Confirmed vulnerabilities only.
@@ -197,6 +220,9 @@ jobs:
           AGENT_IDLE_TIMEOUT_SECONDS: "30"
           AGENT_MAX_ATTEMPTS: "3"
           AGENT_MAX_RECOVERIES: "1"
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
         run: |
           set -euo pipefail
           bash tools/chrome-mcp-start.sh
@@ -223,7 +249,8 @@ jobs:
           fi
 
           RESTART_MARKER="${RUNNER_TEMP:-/tmp}/opencode-auto-restart-requested"
-          rm -f "$RESTART_MARKER"
+          DISPATCHED_MARKER="${RUNNER_TEMP:-/tmp}/opencode-auto-restart-dispatched"
+          rm -f "$RESTART_MARKER" "$DISPATCHED_MARKER"
           MAX_ATTEMPTS="${AGENT_MAX_ATTEMPTS:-3}"
           MAX_RECOVERIES="${AGENT_MAX_RECOVERIES:-1}"
           IDLE_TIMEOUT="${AGENT_IDLE_TIMEOUT_SECONDS:-30}"
@@ -232,6 +259,7 @@ jobs:
           FINAL_STATUS=0
           COMPLETED=0
           QUOTA_EXHAUSTED=0
+          QUOTA_RECOVERY=0
           QUESTION_RESPONSE_SENT=0
           RUN_START_SIZE=0
           RUN_LAST_SIZE=0
@@ -275,11 +303,32 @@ jobs:
                 return 1
               fi
             done
+            grep -Eiq '(^|[|[:space:]])completed([|[:space:]]|$)' result/inventory/top-level-routes.md || return 1
             if [ -s result/inventory/subdomains.md ] && grep -Eiq '(^[[:space:]]*(\*\*)?Status:?(\*\*)?[[:space:]]*(pending|progress)([[:space:]]|$))|(\|[[:space:]]*(pending|progress)[[:space:]]*\|)' result/inventory/subdomains.md; then
               return 1
             fi
             return 0
           }
+
+          request_restart() {
+            [ -f "$DISPATCHED_MARKER" ] && return 0
+            [ -n "${GITHUB_ACTIONS:-}" ] || return 0
+            [ -n "${GH_REPO:-}" ] && [ -n "${BRANCH:-}" ] || return 0
+            command -v gh >/dev/null 2>&1 || return 0
+            if timeout 30 gh workflow run ai-automation.yml --repo "$GH_REPO" --ref "$BRANCH" -f resume=true >> "$LOG" 2>&1; then
+              printf 'dispatched\n' > "$DISPATCHED_MARKER"
+              echo "RESTART: dispatched a fresh workflow run." >> "$LOG"
+            else
+              echo "RESTART: immediate dispatch failed; the final trigger will retry." >> "$LOG"
+            fi
+          }
+
+          if scan_complete; then
+            COMPLETED=1
+            echo "COMPLETE: a valid SCAN_COMPLETE marker already exists; skipping agent."
+            kill "$TAIL_PID" 2>/dev/null || true
+            exit 0
+          fi
 
           run_agent() {
             local cmd="$1"
@@ -321,6 +370,7 @@ jobs:
                 kill -TERM "$pid" 2>/dev/null || true
                 sleep 2
                 kill -KILL "$pid" 2>/dev/null || true
+                request_restart
                 break
               fi
             done
@@ -380,6 +430,35 @@ jobs:
             return 0
           }
 
+          reinstall_opencode_npm() {
+            local log
+            local npm_bin
+            local install_status=0
+            log="$AGENT_LOG_DIR/opencode-npm-reinstall-$(date -u +%Y%m%dT%H%M%SZ).log"
+            {
+              echo "time=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+              echo "reason=OpenCode free usage limit reached"
+              echo "command=npm uninstall -g opencode-ai"
+            } > "$log"
+            set +e
+            timeout 300 npm uninstall -g opencode-ai >> "$log" 2>&1
+            echo "command=npm install -g opencode-ai" >> "$log"
+            timeout 300 npm install -g opencode-ai >> "$log" 2>&1
+            install_status=$?
+            set -e
+            npm_bin="$(npm prefix -g 2>/dev/null || true)/bin"
+            export PATH="$npm_bin:$HOME/.opencode/bin:$PATH"
+            hash -r
+            echo "install_status=$install_status" >> "$log"
+            echo "npm_bin=$npm_bin" >> "$log"
+            echo "opencode_path=$(command -v opencode 2>/dev/null || true)" >> "$log"
+            if [ "$install_status" -ne 0 ] || ! command -v opencode >/dev/null 2>&1; then
+              return 1
+            fi
+            timeout 10 opencode --version >> "$log" 2>&1 || return 1
+            return 0
+          }
+
           while :; do
             while [ "$ATTEMPT" -le "$MAX_ATTEMPTS" ]; do
               if [ "$RECOVERY" -gt 0 ]; then
@@ -399,9 +478,22 @@ jobs:
               capture_since "$RUN_START_SIZE"
 
               if quota_exhausted; then
+                if [ "$QUOTA_RECOVERY" -eq 0 ]; then
+                  QUOTA_RECOVERY=1
+                  echo "QUOTA: OpenCode free usage limit reached; running npm uninstall/install and retrying once." >> "$LOG"
+                  if reinstall_opencode_npm; then
+                    echo "QUOTA: fresh npm installation complete; retrying once." >> "$LOG"
+                    ATTEMPT=1
+                    MAX_ATTEMPTS=1
+                    FINAL_STATUS=0
+                    continue
+                  fi
+                  echo "QUOTA: npm reinstall failed." >> "$LOG"
+                fi
                 QUOTA_EXHAUSTED=1
                 FINAL_STATUS=1
-                echo "QUOTA: OpenCode free usage limit reached; recovery cannot reset server-side quota." >> "$LOG"
+                echo "QUOTA: free usage limit still present after fresh npm installation; requesting a new run." >> "$LOG"
+                request_restart
                 break
               fi
 
@@ -412,14 +504,26 @@ jobs:
                   echo "QUESTION: agent output matched a clarification pattern; sending the automated continuation response."
                 } >> "$LOG"
                 printf '%s\n' "$QUESTION_RESPONSE" >> "$LOG"
-                sleep 2
                 run_agent "$QUESTION_CMD"
                 STATUS=$RUN_STATUS
                 capture_since "$RUN_START_SIZE"
                 if quota_exhausted; then
+                  if [ "$QUOTA_RECOVERY" -eq 0 ]; then
+                    QUOTA_RECOVERY=1
+                    echo "QUOTA: free usage limit reached after the automated clarification response; running npm uninstall/install and retrying once." >> "$LOG"
+                    if reinstall_opencode_npm; then
+                      echo "QUOTA: fresh npm installation complete; retrying once." >> "$LOG"
+                      ATTEMPT=1
+                      MAX_ATTEMPTS=1
+                      FINAL_STATUS=0
+                      continue
+                    fi
+                    echo "QUOTA: npm reinstall failed." >> "$LOG"
+                  fi
                   QUOTA_EXHAUSTED=1
                   FINAL_STATUS=1
-                  echo "QUOTA: OpenCode free usage limit reached after the automated clarification response." >> "$LOG"
+                  echo "QUOTA: free usage limit still present after fresh npm installation; requesting a new run." >> "$LOG"
+                  request_restart
                   break
                 fi
               fi
@@ -436,7 +540,7 @@ jobs:
                 if [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ]; then
                   echo "WATCHDOG: restarting agent (attempt $((ATTEMPT + 1))/$MAX_ATTEMPTS)" >> "$LOG"
                   ATTEMPT=$((ATTEMPT + 1))
-                  sleep 5
+                  sleep 1
                   continue
                 fi
                 break
@@ -460,7 +564,7 @@ jobs:
               if [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ]; then
                 echo "Restarting agent (attempt $((ATTEMPT + 1))/$MAX_ATTEMPTS)" >> "$LOG"
                 ATTEMPT=$((ATTEMPT + 1))
-                sleep 5
+                sleep 1
                 continue
               fi
               break
@@ -470,7 +574,7 @@ jobs:
               break
             fi
 
-            if [ "$RECOVERY" -lt "$MAX_RECOVERIES" ]; then
+            if [ "$RECOVERY" -lt "$MAX_RECOVERIES" ] && [ "$QUOTA_RECOVERY" -eq 0 ]; then
               RECOVERY=$((RECOVERY + 1))
               echo "RECOVERY: performing supported OpenCode uninstall and fresh install ($RECOVERY/$MAX_RECOVERIES)." >> "$LOG"
               if reinstall_opencode; then
@@ -478,7 +582,7 @@ jobs:
                 ATTEMPT=1
                 MAX_ATTEMPTS=1
                 FINAL_STATUS=0
-                sleep 5
+                sleep 1
                 continue
               fi
               echo "RECOVERY: supported OpenCode reinstall failed." >> "$LOG"
@@ -503,11 +607,11 @@ jobs:
           OpenCode reported that the free usage limit was reached.
 
           - This is a server-side/account quota, not a local installation defect.
-          - Deleting local files or reinstalling OpenCode cannot reset the quota.
+          - A fresh `npm install -g opencode-ai` was attempted and did not restore access.
           - No completion marker was written and no scan success is claimed.
           - Partial results, if any, were preserved.
           EOF
-            echo "::error::OpenCode free usage limit reached. Reinstall/local cleanup cannot reset server-side quota; scan not completed."
+            echo "::error::OpenCode free usage limit reached after npm reinstall; scan not completed and a new run was requested."
             FINAL_STATUS=1
           elif [ "$COMPLETED" -ne 1 ]; then
             printf 'requested\n' > "$RESTART_MARKER"
@@ -671,11 +775,17 @@ jobs:
         run: |
           set -euo pipefail
           MARKER="${RUNNER_TEMP:-/tmp}/opencode-auto-restart-requested"
+          DISPATCHED="${RUNNER_TEMP:-/tmp}/opencode-auto-restart-dispatched"
+          if [ -f "$DISPATCHED" ]; then
+            echo "Automatic resume run was already dispatched."
+            exit 0
+          fi
           if [ ! -f "$MARKER" ]; then
             echo "No automatic restart requested."
             exit 0
           fi
           gh workflow run ai-automation.yml --repo "$GH_REPO" --ref "$BRANCH" -f resume=true
+          printf 'dispatched\n' > "$DISPATCHED"
           echo "Dispatched automatic resume run."
 
       - name: Notify Discord on confirmed findings

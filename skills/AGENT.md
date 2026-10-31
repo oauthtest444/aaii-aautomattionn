@@ -263,14 +263,16 @@ For the first `pending` top-level route:
 
 1. Mark the top-level route `progress`.
 2. Open it with Chrome DevTools MCP.
-3. Wait **5–10 seconds** for the page and dynamic JavaScript to load.
+3. Wait for the route to become usable using MCP readiness, snapshot, and
+   network/DOM events. Do not run a fixed sleep.
 4. Discover unique sub-routes under that top-level route.
 5. Record every sub-route as `pending` under the parent.
 6. Perform server-side testing for this top-level route before client-side
    testing.
 7. Test each sub-route individually with Chrome DevTools MCP.
-8. After each sub-route, wait **5–10 seconds**, inspect only its loaded
-   JavaScript, trace relevant flows, and update its status immediately.
+8. After each sub-route is ready, inspect only its loaded JavaScript, trace
+   relevant flows, and update its status immediately. Do not add a fixed delay;
+   wait only for that route's outstanding JavaScript or API work.
 9. After every sub-route, update the parent:
    - `completed` when every sub-route is completed;
    - `progress` when any sub-route is still pending/progress.
@@ -330,7 +332,8 @@ Follow `skills/client-side-skill.md` exactly.
 
 For each sub-route individually:
 
-1. Wait 5–10 seconds after navigation.
+1. Wait for navigation, DOM, and route-specific network work to finish using
+   MCP readiness checks. Do not sleep for a fixed number of seconds.
 2. Inspect loaded scripts in the Sources tab.
 3. Search the current route's relevant JavaScript with the exact source and
    sink regexes in `skills/client-side-skill.md`. Do not replace, weaken, or

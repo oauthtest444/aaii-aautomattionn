@@ -80,7 +80,8 @@ Validate inputs before testing:
 1. Select the first top-level route marked `pending`.
 2. Mark it `progress` in `result/inventory/top-level-routes.md`.
 3. Open the top-level route and each sub-route with Chrome DevTools MCP.
-4. Wait 5–10 seconds for dynamic JavaScript and API calls.
+4. Wait for the route's dynamic JavaScript and API calls to settle using
+   MCP/network observation; do not use a fixed sleep.
 5. Extract every unique API endpoint from network traffic and route-related
    JavaScript: method, path, query/body parameters, path IDs, auth context, and
    response shape.

@@ -11,8 +11,8 @@ Find valid, reportable client-side bugs. This file is for automation.
 - **Test one top-level route at a time, then one sub-route at a time.**
 - **Server-side testing must finish for the current top-level route before
   client-side testing begins.**
-- **Wait 5–10 seconds after navigation** before collecting sub-routes or
-  inspecting JavaScript.
+- **Wait for navigation/DOM/network readiness using MCP events** before
+  collecting sub-routes or inspecting JavaScript. Never sleep a fixed interval.
 - **Only unique JS lines and complete flows.** No duplicate testing.
 - **Only search/scan JS related to the current sub-route.**
 - **Use the exact source/sink regexes below without modification.**
@@ -74,14 +74,16 @@ Validate inputs before testing:
 1. Select the first top-level route with status `pending`.
 2. Mark it `progress` in `result/inventory/top-level-routes.md`.
 3. Open it with Chrome DevTools MCP.
-4. Wait 5–10 seconds for dynamic JavaScript to load.
+4. Wait for the route's DOM and dynamic network requests to settle using MCP
+   readiness/snapshot/network observation. Do not use a fixed sleep.
 5. Discover unique sub-routes under the top-level route and record each as
    `pending`.
 6. Finish the server-side testing for the top-level route using
    `skills/server-side-skill.md`.
 7. For each sub-route, one at a time:
    - mark the sub-route `progress`;
-   - open it and wait 5–10 seconds;
+   - open it and wait for its DOM/network readiness using MCP; do not use a
+     fixed sleep;
    - inspect only JavaScript loaded or executed by that sub-route;
    - run the exact source/sink regexes below;
    - trace every unique flow;
