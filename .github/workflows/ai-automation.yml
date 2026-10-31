@@ -280,17 +280,9 @@ jobs:
 
           quota_exhausted() {
             local source
-            for source in "$LOG" "$AGENT_LOG_DIR/access-check.log" "$HOME/.local/share/opencode/log" "$HOME/.local/state/opencode/log" "$HOME/.opencode/log"; do
-              [ -e "$source" ] || continue
-              if [ -d "$source" ]; then
-                if grep -RaiE 'free usage limit reached|usage limit reached' "$source" >/dev/null 2>&1; then
-                  return 0
-                fi
-              elif grep -aiE 'free usage limit reached|usage limit reached' "$source" >/dev/null 2>&1; then
-                return 0
-              fi
-            done
-            return 1
+            source="$AGENT_LOG_DIR/last-attempt-output.txt"
+            [ -s "$source" ] || return 1
+            grep -qaiE 'free usage limit reached|usage limit reached' "$source"
           }
 
           scan_complete() {
