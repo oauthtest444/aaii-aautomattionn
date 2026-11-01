@@ -1,9 +1,6 @@
 Target:
-https://console.byteplus.com/datarangers
-https://console.byteplus.com/datatester
-https://console.byteplus.com/ark
-https://console.byteplus.com/ai
-https://console.byteplus.com/alb
+https://console.byteplus.com/finance/overview
+https://console.byteplus.com/workorder/list/
 
 test all sub routes under these routes
 
