@@ -40,6 +40,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Sync latest branch state
+        run: |
+          set -euo pipefail
+          git pull --ff-only origin "${GITHUB_REF_NAME:-main}"
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -83,7 +88,13 @@ jobs:
         run: |
           set -euo pipefail
           LOG_DIR="${RUNNER_TEMP:-/tmp}/opencode-logs"
+          NATIVE_LOG="$HOME/.local/share/opencode/log/opencode.log"
+          ACCESS_NATIVE="$LOG_DIR/access-check-native.log"
+          NATIVE_START=0
           mkdir -p "$LOG_DIR"
+          if [ -f "$NATIVE_LOG" ]; then
+            NATIVE_START=$(stat -c %s "$NATIVE_LOG" 2>/dev/null || echo 0)
+          fi
           set +e
           timeout 60 opencode run \
             --model "$OPENCODE_MODEL" \
@@ -91,11 +102,16 @@ jobs:
             "Reply with exactly OK" </dev/null > "$LOG_DIR/access-check.log" 2>&1
           STATUS=$?
           set -e
+          : > "$ACCESS_NATIVE"
+          if [ -f "$NATIVE_LOG" ]; then
+            tail -c +$((NATIVE_START + 1)) "$NATIVE_LOG" > "$ACCESS_NATIVE" 2>/dev/null || true
+          fi
+          if grep -qaiE 'free usage limit reached|usage limit reached' "$ACCESS_NATIVE" "$LOG_DIR/access-check.log"; then
+            echo "::error::OpenCode free usage limit reached; no model calls can succeed until access is restored."
+            exit 1
+          fi
           if [ "$STATUS" -ne 0 ]; then
             echo "::warning::OpenCode access check did not complete (status=$STATUS); the agent will attempt recovery."
-            if grep -qaiE 'free usage limit reached|usage limit reached' "$LOG_DIR/access-check.log"; then
-              echo "::warning::OpenCode free usage limit was reached. This is a server-side account limit; npm reinstall may not restore it."
-            fi
           fi
 
       - name: Prepare optional manual target
@@ -239,7 +255,11 @@ jobs:
           AGENT_LOG_DIR="${RUNNER_TEMP:-/tmp}/opencode-logs"
           mkdir -p "$AGENT_LOG_DIR"
           LOG="$AGENT_LOG_DIR/opencode.log"
+          NATIVE_LOG="$HOME/.local/share/opencode/log/opencode.log"
+          NATIVE_LAST_OUTPUT="$AGENT_LOG_DIR/last-native-output.txt"
+          NATIVE_START_SIZE=0
           : > "$LOG"
+          : > "$NATIVE_LAST_OUTPUT"
           tail -n 0 -F "$LOG" &
           TAIL_PID=$!
 
@@ -278,12 +298,22 @@ jobs:
 
           capture_since() {
             local start="$1"
+            local native_start="$2"
             local size
+            local native_size
             size=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
             if [ "$size" -gt "$start" ]; then
               tail -c +$((start + 1)) "$LOG" > "$AGENT_LOG_DIR/last-attempt-output.txt" || true
             else
               : > "$AGENT_LOG_DIR/last-attempt-output.txt"
+            fi
+            if [ -f "$NATIVE_LOG" ]; then
+              native_size=$(stat -c %s "$NATIVE_LOG" 2>/dev/null || echo 0)
+              if [ "$native_size" -gt "$native_start" ]; then
+                tail -c +$((native_start + 1)) "$NATIVE_LOG" > "$NATIVE_LAST_OUTPUT" 2>/dev/null || true
+              else
+                : > "$NATIVE_LAST_OUTPUT"
+              fi
             fi
           }
 
@@ -291,7 +321,7 @@ jobs:
             local source
             source="$AGENT_LOG_DIR/last-attempt-output.txt"
             [ -s "$source" ] || return 1
-            grep -qaiE 'free usage limit reached|usage limit reached' "$source"
+            grep -qaiE 'free usage limit reached|usage limit reached' "$source" "$NATIVE_LAST_OUTPUT" 2>/dev/null
           }
 
           scan_complete() {
@@ -340,6 +370,10 @@ jobs:
             local now
             local size
             RUN_START_SIZE=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
+            NATIVE_START_SIZE=0
+            if [ -f "$NATIVE_LOG" ]; then
+              NATIVE_START_SIZE=$(stat -c %s "$NATIVE_LOG" 2>/dev/null || echo 0)
+            fi
             last_size=$RUN_START_SIZE
             last_change=$(date +%s)
             WATCHDOG_KILLED=0
@@ -482,25 +516,12 @@ jobs:
 
               run_agent "$CMD"
               STATUS=$RUN_STATUS
-              capture_since "$RUN_START_SIZE"
+              capture_since "$RUN_START_SIZE" "$NATIVE_START_SIZE"
 
               if quota_exhausted; then
-                if [ "$QUOTA_RECOVERY" -eq 0 ]; then
-                  QUOTA_RECOVERY=1
-                  echo "QUOTA: OpenCode free usage limit reached; running npm uninstall/install and retrying once." >> "$LOG"
-                  if reinstall_opencode_npm; then
-                    echo "QUOTA: fresh npm installation complete; retrying once." >> "$LOG"
-                    ATTEMPT=1
-                    MAX_ATTEMPTS=1
-                    FINAL_STATUS=0
-                    continue
-                  fi
-                  echo "QUOTA: npm reinstall failed." >> "$LOG"
-                fi
                 QUOTA_EXHAUSTED=1
                 FINAL_STATUS=1
-                echo "QUOTA: free usage limit still present after fresh npm installation; requesting a new run." >> "$LOG"
-                request_restart
+                echo "QUOTA: OpenCode free usage limit reached; paid/authenticated access or quota reset is required." >> "$LOG"
                 break
               fi
 
@@ -513,24 +534,11 @@ jobs:
                 printf '%s\n' "$QUESTION_RESPONSE" >> "$LOG"
                 run_agent "$QUESTION_CMD"
                 STATUS=$RUN_STATUS
-                capture_since "$RUN_START_SIZE"
+                capture_since "$RUN_START_SIZE" "$NATIVE_START_SIZE"
                 if quota_exhausted; then
-                  if [ "$QUOTA_RECOVERY" -eq 0 ]; then
-                    QUOTA_RECOVERY=1
-                    echo "QUOTA: free usage limit reached after the automated clarification response; running npm uninstall/install and retrying once." >> "$LOG"
-                    if reinstall_opencode_npm; then
-                      echo "QUOTA: fresh npm installation complete; retrying once." >> "$LOG"
-                      ATTEMPT=1
-                      MAX_ATTEMPTS=1
-                      FINAL_STATUS=0
-                      continue
-                    fi
-                    echo "QUOTA: npm reinstall failed." >> "$LOG"
-                  fi
                   QUOTA_EXHAUSTED=1
                   FINAL_STATUS=1
-                  echo "QUOTA: free usage limit still present after fresh npm installation; requesting a new run." >> "$LOG"
-                  request_restart
+                  echo "QUOTA: OpenCode free usage limit reached; paid/authenticated access or quota reset is required." >> "$LOG"
                   break
                 fi
               fi
@@ -613,12 +621,13 @@ jobs:
 
           OpenCode reported that the free usage limit was reached.
 
-          - This is a server-side/account quota, not a local installation defect.
-          - A fresh `npm install -g opencode-ai` was attempted and did not restore access.
+          - This is a server-side/account or network quota, not a local installation defect.
+          - Reinstalling OpenCode does not restore access; use paid/authenticated access or wait for the quota to reset.
+          - No automatic resume was requested.
           - No completion marker was written and no scan success is claimed.
           - Partial results, if any, were preserved.
           EOF
-            echo "::error::OpenCode free usage limit reached after npm reinstall; scan not completed and a new run was requested."
+            echo "::error::OpenCode free usage limit reached; scan blocked until access is restored."
             FINAL_STATUS=1
           elif [ "$COMPLETED" -ne 1 ]; then
             printf 'requested\n' > "$RESTART_MARKER"
