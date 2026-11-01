@@ -1,11 +1,8 @@
 Target:
-https://console.byteplus.com/datarangers
-https://console.byteplus.com/datatester
-https://console.byteplus.com/ark
-https://console.byteplus.com/ai
-https://console.byteplus.com/alb
+https://console.byteplus.com/finance/overview
+https://console.byteplus.com/workorder/list/
 
-test all sub routes under these routes
+find all sub routes under these top routes and test all those sub routes.
 
 also test releted others subdomains and endpoints if you find any interesting in testing 
 

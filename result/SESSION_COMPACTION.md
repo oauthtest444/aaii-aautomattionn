@@ -55,3 +55,12 @@ completed scan. No new target testing was performed.
   `Scope Unverified` when ambiguous.
 - The related-subdomains note is scope input, not blanket authorization for
   every `byteplus.com` subdomain.
+
+## Workflow closeout
+
+- timestamp: 2026-11-01T06:04:54Z
+- run_id: 41279118674
+- event: workflow_dispatch
+- agent_outcome: failure
+- workflow_status: failure
+- note: Agent-created compaction is authoritative; this closeout records how the run ended.

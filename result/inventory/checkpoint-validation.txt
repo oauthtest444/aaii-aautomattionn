@@ -1,1 +1,0 @@
-VULN-20261031-001: confirmed report has no severity
