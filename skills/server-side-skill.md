@@ -11,6 +11,8 @@ Find valid, reportable server-side bugs. This file is for automation.
   every route for all applicable server-side bug classes.
 - **Work one top-level route at a time.** Complete server-side testing for that
   route before client-side testing begins.
+- **Read `result/SESSION_COMPACTION.md` first and update it immediately with
+  discoveries, tested work, and next steps.**
 - **Maintain `result/inventory/api-routes.md` continuously.** Use only the
   statuses `pending`, `progress`, and `completed`.
 - **Primary focus:** mass assignment on create/edit/update/delete endpoints,
@@ -42,7 +44,8 @@ The orchestrator supplies:
 - **Route-related JavaScript**: API call sites, wrappers, endpoint constants,
   GraphQL/tRPC/OpenAPI definitions, source maps, and types needed to resolve a
   request. Do not save downloaded JavaScript.
-- **Credentials** from `creds/`, including available roles and ownership
+- **Credentials** from `creds/test-account.txt` and the authentication cache at
+  `creds/auth-headers.txt`, including available roles and ownership
   contexts. Test-account secrets are intentionally public; never expose
   real-user secrets.
 - **Vulnerability knowledge** from `vulnebleti/` relevant to the endpoint,
@@ -56,7 +59,9 @@ The orchestrator supplies:
 
 Validate inputs before testing:
 
-- Skip any endpoint outside the authorized scope.
+- Verify authorization before skipping an endpoint or subdomain. A different
+  hostname is not an automatic exclusion; test scope-verified related
+  subdomains rather than dismissing them.
 - Canonicalize the endpoint and deduplicate by method + normalized path +
   meaningful parameter variant + auth context.
 - Confirm the auth context and role for every request.
@@ -337,6 +342,8 @@ Also update:
 - `result/inventory/top-level-routes.md` when new authorized routes are found
 - `result/testing-inventory.json` (compact endpoint dedupe state)
 - `result/SUMMARY.md`
+- `result/SESSION_COMPACTION.md` (discoveries, tested work, next steps, auth
+  status, and scope decisions)
 - `result/unresolved.md` only for unresolved items
 
 For each confirmed finding, create:
@@ -362,7 +369,7 @@ speculative issue to `confirmed-vuln.txt`.
 
 ## Stop Conditions
 
-- The endpoint or asset is outside the authorized scope.
+- The endpoint or asset is verified outside the authorized scope.
 - Testing would affect real users, real data, shared production state, or
   external systems.
 - A required second account, role, or object is unavailable: mark the specific
@@ -468,7 +475,7 @@ Auth context:
 Tested classes:
 Baseline:
 Result:
-Status: Confirmed | Unresolved | Not Vulnerable | Out of Scope
+Status: Confirmed | Unresolved | Not Vulnerable | Scope Unverified | Out of Scope
 Evidence: result/findings/... or concise observation
 ```
 

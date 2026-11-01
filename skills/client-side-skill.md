@@ -9,6 +9,8 @@ Find valid, reportable client-side bugs. This file is for automation.
 - **Main goal:** a reportable bug — attacker-controlled source → application
   code → sensitive sink/action, with missing protection and practical impact.
 - **Test one top-level route at a time, then one sub-route at a time.**
+- **Read `result/SESSION_COMPACTION.md` first and update it immediately with
+  discoveries, tested work, and next steps.**
 - **Server-side testing must finish for the current top-level route before
   client-side testing begins.**
 - **Wait for navigation/DOM/network readiness using MCP events** before
@@ -38,12 +40,14 @@ The orchestrator supplies:
   client-side testing for a route whose server-side work is still pending.
 - **Route-related JavaScript**: URLs, inline scripts, dynamic chunks, workers,
   and source maps loaded or executed by the current sub-route.
-- **Credentials** from `creds/` when the route requires authentication, plus
-  the account's role and ownership context.
+- **Credentials** from `creds/test-account.txt` and the authentication cache at
+  `creds/auth-headers.txt` when the route requires authentication, plus the
+  account's role and ownership context. Reuse valid cached headers instead of
+  logging in again; refresh the cache if they expire.
 - **Vulnerability knowledge** from `vulnebleti/` relevant to the technology,
   route, or bug class.
-- **Prior testing inventory** from `result/testing-inventory.json` and
-  `result/inventory/`.
+- **Prior testing inventory** from `result/testing-inventory.json`,
+  `result/inventory/`, and `result/SESSION_COMPACTION.md`.
 - **Chrome DevTools MCP tools** for navigation, debugging, and runtime
   validation.
 - **Time budget** and the current elapsed time.
@@ -51,7 +55,9 @@ The orchestrator supplies:
 
 Validate inputs before testing:
 
-- Reject or skip any route outside the authorized scope.
+- Verify authorization for a route/subdomain before skipping it. A different
+  hostname is not an automatic exclusion; do not dismiss related authorized
+  subdomains without a scope decision.
 - Canonicalize the route URL and deduplicate it against the tested inventory.
 - Hash JavaScript bodies and skip identical content already tested.
 - Confirm the auth context and role; never mix accounts silently.
@@ -298,6 +304,8 @@ Also update:
 - `result/inventory/api-routes.md` when a new endpoint is found
 - `result/testing-inventory.json` (compact route/flow/listener dedupe state)
 - `result/SUMMARY.md`
+- `result/SESSION_COMPACTION.md` (discoveries, tested work, next steps, auth
+  status, and scope decisions)
 - `result/unresolved.md` only when needed for unresolved items
 
 For each confirmed finding, create:
@@ -320,7 +328,7 @@ Scope**. Never write speculative issues to `confirmed-vuln.txt`.
 
 ## Stop Conditions
 
-- The route or asset is outside the authorized scope.
+- The route or asset is verified outside the authorized scope.
 - Chrome/MCP remains unavailable after one safe restart attempt. Write
   `result/BLOCKED.md` and mark affected work **Unresolved**.
 - Testing would affect real users, real data, or shared production state.

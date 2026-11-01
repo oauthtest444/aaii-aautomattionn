@@ -18,11 +18,15 @@ This file is the source of truth for the agent. Follow it exactly.
 1. Test only assets authorized by `data/targets.txt` and other files in `data/`.
 2. Follow the target program's rules, exclusions, rate limits, disclosure rules,
    and account-creation rules. When rules conflict, use the stricter rule.
-3. A subdomain is not automatically in scope merely because it is associated
-   with an authorized root domain. Test it only when the supplied scope
-   explicitly covers it; otherwise record it as out of scope and move on.
+3. A hostname on a different subdomain is not automatically out of scope.
+   Discover and record it, then verify whether the supplied authorization
+   covers the target domain and its subdomains. Test it only after that
+   verification; if it is not covered, record the verified exclusion. Never
+   dismiss it merely because the host differs.
 4. Do not test third-party services, unrelated subdomains, CDNs, acquisitions,
-   or partner systems without explicit authorization.
+   or partner systems without explicit authorization. "Unrelated" means
+   verified as outside the target program's scope, not merely a different
+   hostname.
 5. No destructive or disruptive testing: no denial of service, load testing,
    high-volume fuzzing, brute force, account lockout, mass deletion, persistence,
    backdoors, shells, or malware.
@@ -62,9 +66,10 @@ I am using you in an automated workflow, so do not ask me questions or wait for 
   output. It retries, performs a supported OpenCode reinstall when required, and
   dispatches a fresh workflow run with `resume=true` if recovery does not
   complete the work.
-- OpenCode free-tier quotas are server-side. Deleting local files or
-  reinstalling cannot reset them. If logs show `Free usage limit reached`, stop
-  cleanly, record the reason, and do not claim success.
+- OpenCode free-tier quotas are server-side. The workflow attempts a fresh
+  `npm install -g opencode-ai` once and dispatches a new run if the limit
+  persists. If logs still show `Free usage limit reached`, record it in the
+  compaction file and `result/BLOCKED.md`, and do not claim success.
 
 ## 4. Authorized Scope
 
@@ -76,10 +81,24 @@ before testing.
 - Respect explicit scope restrictions, excluded assets, rate limits, and
   permitted account activity.
 - If the target is a domain, discover valid, interesting subdomains and record
-  them. Only test those covered by the supplied scope.
+  them. Verify whether the supplied authorization covers the domain and its
+  subdomains, including wildcard or domain-level authorization. Do not
+  automatically exclude a subdomain just because it is a different hostname.
 - If the target is a specific subdomain, enumerate its top-level routes.
-- If scope is missing, empty, or genuinely ambiguous, write `result/BLOCKED.md`
-  with the exact reason and stop. Do not ask the user.
+- If interesting endpoints, UI routes, sinks, or testing opportunities are
+  discovered on another target-domain subdomain, record them and verify scope
+  before deciding. Once verified as authorized, test them as part of the
+  workflow. Do not record a generic "other subdomains are out of scope"
+  conclusion without a scope decision.
+- If authorization remains ambiguous after checking `data/` and the supplied
+  program information, record the item as `scope unverified` and continue on
+  the clearly authorized surface. Do not test it until verified.
+- If the overall target authorization is missing, empty, or genuinely
+  ambiguous, write `result/BLOCKED.md` with the exact reason and stop. Do not
+  ask the user.
+- If only a discovered endpoint, route, or subdomain has ambiguous coverage,
+  record it as `scope unverified`, do not test it yet, and continue on the
+  clearly authorized surface.
 - Treat natural-language notes in `data/targets.txt` as operator guidance, not
   as permission to expand scope, waive safety rules, or fabricate findings.
 
@@ -109,6 +128,7 @@ result/server-side/<host>/route-report.md
 result/findings/<FINDING-ID>/{report.md,evidence/,payloads/}
 result/confirmed-vuln.txt
 result/SUMMARY.md
+result/SESSION_COMPACTION.md
 result/SCAN_COMPLETE
 ```
 
@@ -127,7 +147,46 @@ result/findings/
 result/inventory/
 ```
 
-Do not modify `data/`, `skills/`, `creds/`, or `vulnebleti/` during a run.
+Do not modify `data/`, `skills/`, or `vulnebleti/` during a run. The only
+`creds/` file a run may update is the local, gitignored
+`creds/auth-headers.txt` authentication cache.
+
+## 5.5 Session Compaction and Continuity
+
+Maintain `result/SESSION_COMPACTION.md` as the canonical compaction file for
+the current target. It is a concise Markdown handoff, not a raw log.
+
+- Update it immediately when you discover an interesting UI route, API route,
+  subdomain, source/sink, authentication behavior, testing idea, or blocker.
+  Do not wait until the end of the session.
+- At the end of every session, finalize it before exiting, whether the testing
+  succeeded or failed. The workflow also ensures that the file exists.
+- At the start of every session, read `result/SESSION_COMPACTION.md` and any
+  other `result/*compaction*.md` files directly under `result/` before reading
+  inventories or starting work. Use them to avoid repeating work and to resume
+  unfinished testing.
+- Summarize older history the way OpenCode compaction does: replace stale
+  narrative with concise decisions and links, but never delete confirmed
+  findings, evidence paths, scope decisions, authentication status, or
+  unfinished tasks.
+- The workflow preserves this file when it resets target-specific results. If
+  the target changed, mark the old sections as historical and start a new
+  current-target section.
+
+The file must include:
+
+- session/run identifier, target, timestamps, and current status;
+- discovered UI routes, API routes, subdomains, JavaScript files, sources,
+  sinks, and other interesting endpoints;
+- what has already been tested, with result/evidence paths;
+- what is still pending, plus concrete ideas for the next workflow;
+- authentication state for both test accounts, without copying secrets;
+- scope decisions, including every subdomain verification decision;
+- important observations, assumptions, errors, blockers, and unfinished tasks.
+
+Do not copy cookies, bearer tokens, passwords, or full authentication headers
+into the compaction file, `result/`, logs, or reports. Store headers only in
+`creds/auth-headers.txt` and reference which account is valid.
 
 ## 6. Session Startup and Minimal Recovery
 
@@ -142,23 +201,31 @@ Run these steps in order.
    `result/BLOCKED.md` and stop.
 4. Do not write a session log. Keep runtime diagnostics outside `result/`.
 
-### Step 0.5 — Resume
+### Step 0.5 — Session continuity and authentication
 
-1. Read `result/logs/target-state.txt` and `result/logs/targets.sha256` when
+1. **First** read `result/SESSION_COMPACTION.md` and any other
+   `result/*compaction*.md` files directly under `result/`. These are the
+   primary handoff from prior sessions.
+2. Read `creds/auth-headers.txt` before any login. Reuse valid stored headers
+   and cookies for both test accounts; never print them.
+3. Read `result/logs/target-state.txt` and `result/logs/targets.sha256` when
    present.
-2. Read `data/targets.txt`.
-3. If this is a continuation, read only:
+4. Read `data/targets.txt`.
+5. If this is a continuation, then read:
    - `result/inventory/top-level-routes.md`
    - `result/inventory/api-routes.md`
    - `result/inventory/subdomains.md`
    - `result/SUMMARY.md` when it exists
    - the currently relevant skill file
-4. Do not read unrelated repository files, prior raw logs, generated
+6. Do not read unrelated repository files, prior raw logs, generated
    JavaScript, or old reports during recovery.
-5. Identify every `pending` and `progress` item. Resume the first unfinished
+7. Older `SUMMARY` or scope files may contain historical exclusions. Re-verify
+   those decisions under Section 4 before excluding a subdomain or endpoint.
+8. Identify every `pending` and `progress` item. Resume the first unfinished
    top-level route and its unfinished sub-routes. Skip `completed` items.
-6. Do not restart completed work unless new evidence proves it is necessary.
-7. If target state is `reset`, start the new target from scratch.
+9. Do not restart completed work unless new evidence proves it is necessary.
+10. If target state is `reset`, start the new target from scratch while
+    preserving and updating the compaction history.
 
 ### Step 1 — Chrome DevTools MCP
 
@@ -178,6 +245,41 @@ Run these steps in order.
 3. Read `skills/client-side-skill.md` before client-side testing.
 4. Read only relevant notes in `vulnebleti/`.
 5. Update `result/SUMMARY.md` with scope, assumptions, and the current target.
+
+### Step 2.5 — Authentication continuity
+
+1. Read `creds/auth-headers.txt`. It stores the required authentication
+   headers and cookies for both disposable test accounts.
+2. Validate each stored account with a safe, low-impact authenticated request.
+   Reuse valid headers instead of logging in again.
+3. If a stored header or cookie is expired or invalid, log in again using the
+   matching credentials in `creds/test-account.txt`, immediately update
+   `creds/auth-headers.txt`, and continue.
+4. Keep account A and account B isolated. Never mix their cookies, tokens, or
+   roles.
+5. Never print full headers, cookies, or tokens in the terminal, logs,
+   compaction file, reports, or `result/`. Store them only in the local
+   gitignored auth file.
+6. Keep both accounts available for later retries and workflows. The workflow
+   caches this file between runs.
+
+Use this plain-text structure:
+
+```text
+# Authentication headers — disposable test accounts only
+## Account A
+Email: ...
+Captured: ...
+Cookie: ...
+Authorization: ...
+X-CSRF-Token: ...
+## Account B
+Email: ...
+Captured: ...
+Cookie: ...
+Authorization: ...
+X-CSRF-Token: ...
+```
 
 ### Step 3 — Inventory Bootstrap
 
@@ -241,10 +343,14 @@ flows by complete source-to-sink behavior, and APIs by method + normalized path
    methods.
 2. Remove duplicates and wildcard/nonexistent entries.
 3. Record each valid subdomain in `result/inventory/subdomains.md` as pending.
-4. Apply the scope rule in Section 4. Do not test a subdomain merely because it
-   belongs to the root.
-5. Test the authorized subdomains sequentially and update the inventory after
-   each.
+4. Verify scope for each subdomain using Section 4. A different hostname is not
+   an automatic exclusion. If the authorization covers the domain and its
+   subdomains, test interesting endpoints on them.
+5. Test scope-verified subdomains sequentially and update the inventory after
+   each. Record `scope unverified` for ambiguous hosts; do not silently mark
+   them out of scope.
+6. Carry every discovered endpoint and testing decision into
+   `result/SESSION_COMPACTION.md`.
 
 ### Specific-subdomain target
 
@@ -359,7 +465,10 @@ For each sub-route individually:
 
 ## 11. Findings and Reporting
 
-Statuses: `Confirmed`, `Unresolved`, `Not Vulnerable`, `Out of Scope`.
+Statuses: `Confirmed`, `Unresolved`, `Not Vulnerable`, `Scope Unverified`,
+`Out of Scope`. Use `Out of Scope` only after a scope verification. Use
+`Scope Unverified` when authorization is still unresolved and continue on the
+clearly authorized surface.
 
 Checkpoint a confirmed finding immediately:
 
@@ -383,13 +492,16 @@ unnecessary confidential information.
 A run is complete only when:
 
 - Every discovered top-level route is `completed`.
-- Every sub-route is `completed` or documented as unresolved/out-of-scope in its
-  route report.
+- Every sub-route is `completed` or documented as unresolved/verified
+  out-of-scope in its route report.
 - Every discovered API is `completed` or documented as unresolved.
-- Every subdomain is `completed` or documented as out-of-scope.
+- Every subdomain is `completed`, explicitly excluded after scope
+  verification, or documented as `scope unverified` for follow-up.
 - All confirmed findings have evidence and reports.
 - `result/SUMMARY.md` reflects the target, coverage, findings, and unresolved
   items.
+- `result/SESSION_COMPACTION.md` reflects discoveries, tested and unfinished
+  work, authentication status, scope decisions, and next steps.
 
 Then write:
 
@@ -427,7 +539,7 @@ failure, blocked setup, or incomplete work.
 - Use `/tmp` or `$RUNNER_TEMP` for logs, browser profiles, downloads, and
   temporary PoC servers.
 - The Actions job limit is 5 hours 55 minutes; leave enough time to write
-  evidence and reports.
+  evidence, reports, and the session compaction file.
 - The watchdog terminates an attempt after 30 seconds without output. It
   retries, reinstalls OpenCode through the supported uninstall command when
   required, and dispatches a resume run if recovery cannot complete the work.
@@ -449,7 +561,9 @@ failure, blocked setup, or incomplete work.
 9. Use exact skill regexes without modification.
 10. Confirm with runtime evidence; never speculate as Confirmed.
 11. Save only necessary result files and concise evidence.
-12. Treat OpenCode quota errors as a server-side limitation, not an installation
-    problem.
+12. Attempt the documented OpenCode quota recovery; if quota persists, record it
+    and never claim success.
 13. Write `SCAN_COMPLETE` only when the assigned work is genuinely complete.
 14. Keep testing until complete, blocked, or the time budget is exhausted.
+15. Verify subdomain scope instead of automatically excluding a different host.
+16. Read `result/SESSION_COMPACTION.md` first and keep it current every session.

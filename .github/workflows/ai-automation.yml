@@ -122,6 +122,14 @@ jobs:
             echo "Restored previous target for resumed run."
           fi
 
+      - name: Restore cached test-account auth headers
+        uses: actions/cache/restore@v4
+        with:
+          path: creds/auth-headers.txt
+          key: auth-headers-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            auth-headers-${{ github.ref_name }}-
+
       - name: Prepare target state and results
         env:
           RESUME_RUN: ${{ inputs.resume }}
@@ -139,7 +147,7 @@ jobs:
           else
             DECISION="reset"
             echo "Target changed or no prior target state; starting fresh."
-            find result -mindepth 1 -maxdepth 1 ! -name '.gitkeep' -exec rm -rf {} +
+            find result -mindepth 1 -maxdepth 1 ! -name '.gitkeep' ! -iname '*compaction*.md' -exec rm -rf {} +
           fi
           mkdir -p result/client-side result/server-side result/findings result/inventory result/logs
           rm -f result/BLOCKED.md
@@ -214,6 +222,7 @@ jobs:
           echo "Created result/TEST-NOTIFICATION.md"
 
       - name: Start Chrome MCP and run agent
+        id: agent
         if: steps.notification_test.outputs.test_mode != 'true'
         timeout-minutes: 340
         env:
@@ -236,7 +245,7 @@ jobs:
 
           BASE_CMD="$(cat tools/cmd.txt)"
           MODEL="$(awk '{for (i=1;i<=NF;i++) if ($i=="--model") {print $(i+1); exit}}' tools/cmd.txt)"
-          RESUME_PROMPT='The previous attempt stalled or exited before completion. Read skills/AGENT.md and only result/inventory/top-level-routes.md, result/inventory/api-routes.md, result/inventory/subdomains.md, and result/SUMMARY.md. Resume the authorized scan from unfinished pending or progress work. Do not repeat completed work. Do not ask questions. Checkpoint confirmed findings immediately and continue until SCAN_COMPLETE is written.'
+          RESUME_PROMPT='The previous attempt stalled or exited before completion. Read skills/AGENT.md first, then result/SESSION_COMPACTION.md and any other result/*compaction*.md file, result/inventory/top-level-routes.md, result/inventory/api-routes.md, result/inventory/subdomains.md, result/SUMMARY.md, and creds/auth-headers.txt. Resume the authorized scan from unfinished pending or progress work. Do not repeat completed work. Do not ask questions. Keep result/SESSION_COMPACTION.md updated with findings and next steps. Checkpoint confirmed findings immediately and continue until SCAN_COMPLETE is written.'
           QUESTION_RESPONSE='I am using you in an automated workflow, so do not ask me questions or wait for my response. Think like an experienced bug bounty hunter. Independently investigate the application, determine what needs to be done, make reasonable decisions, and continue the security testing. Do not stop. Start or resume the scan.'
           if [ -n "$MODEL" ]; then
             RESUME_CMD="opencode run --continue --model $MODEL '$RESUME_PROMPT'"
@@ -289,6 +298,7 @@ jobs:
             local file
             [ -s result/SCAN_COMPLETE ] || return 1
             grep -qE '^status=completed$' result/SCAN_COMPLETE || return 1
+            [ -s result/SESSION_COMPACTION.md ] || return 1
             for file in result/inventory/top-level-routes.md result/inventory/api-routes.md; do
               [ -s "$file" ] || return 1
               if grep -Eiq '(^[[:space:]]*(\*\*)?Status:?(\*\*)?[[:space:]]*(pending|progress)([[:space:]]|$))|(\|[[:space:]]*(pending|progress)[[:space:]]*\|)' "$file"; then
@@ -613,6 +623,54 @@ jobs:
 
           kill "$TAIL_PID" 2>/dev/null || true
           exit "$FINAL_STATUS"
+
+      - name: Ensure session compaction
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p result
+          FILE=result/SESSION_COMPACTION.md
+          TARGET="$(grep -Eo 'https?://[^[:space:]`]+' data/targets.txt 2>/dev/null | head -1 || true)"
+          if [ ! -s "$FILE" ]; then
+            cat > "$FILE" <<EOF
+          # Session Compaction
+
+          Status: incomplete
+          Target: ${TARGET:-unknown}
+          Run: ${GITHUB_RUN_ID:-local}
+
+          ## Agent handoff
+
+          The agent did not leave a session compaction before this workflow ended.
+          Review result/BLOCKED.md, result/logs/, and the inventories, then resume
+          from the first pending or progress item.
+
+          ## Next workflow
+
+          - Reconstruct discoveries from inventories and reports.
+          - Check whether creds/auth-headers.txt contains valid account headers.
+          - Continue unfinished routes and record new findings here.
+          EOF
+          fi
+          {
+            echo
+            echo "## Workflow closeout"
+            echo
+            echo "- timestamp: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "- run_id: ${GITHUB_RUN_ID:-local}"
+            echo "- event: ${GITHUB_EVENT_NAME:-local}"
+            echo "- agent_outcome: ${{ steps.agent.outcome }}"
+            echo "- workflow_status: ${{ job.status }}"
+            echo "- note: Agent-created compaction is authoritative; this closeout records how the run ended."
+          } >> "$FILE"
+
+      - name: Save test-account auth headers
+        if: always() && hashFiles('creds/auth-headers.txt') != ''
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: creds/auth-headers.txt
+          key: auth-headers-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Collect runtime diagnostics
         if: always()
