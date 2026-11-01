@@ -88,11 +88,11 @@ jobs:
           timeout 60 opencode run \
             --model "$OPENCODE_MODEL" \
             --dir "$RUNNER_TEMP" \
-            "Reply with exactly OK" > "$LOG_DIR/access-check.log" 2>&1
+            "Reply with exactly OK" </dev/null > "$LOG_DIR/access-check.log" 2>&1
           STATUS=$?
           set -e
           if [ "$STATUS" -ne 0 ]; then
-            echo "::warning::OpenCode access check did not complete; the agent will attempt recovery."
+            echo "::warning::OpenCode access check did not complete (status=$STATUS); the agent will attempt recovery."
             if grep -qaiE 'free usage limit reached|usage limit reached' "$LOG_DIR/access-check.log"; then
               echo "::warning::OpenCode free usage limit was reached. This is a server-side account limit; npm reinstall may not restore it."
             fi
@@ -344,7 +344,7 @@ jobs:
             last_change=$(date +%s)
             WATCHDOG_KILLED=0
             set +e
-            timeout --signal=TERM --kill-after=30 20160 bash -c "$cmd" >>"$LOG" 2>&1 &
+            timeout --signal=TERM --kill-after=30 20160 bash -c "$cmd" </dev/null >>"$LOG" 2>&1 &
             pid=$!
             while kill -0 "$pid" 2>/dev/null; do
               if [ ! -e "/proc/$pid" ] || [ "$(awk '{print $3}' "/proc/$pid/stat" 2>/dev/null)" = "Z" ]; then
@@ -409,7 +409,12 @@ jobs:
               fi
             done
             if [ -e "$HOME/.opencode/bin/opencode" ]; then
-              echo "ERROR: uninstall left the OpenCode binary behind" >> "$log"
+              echo "removing_leftover_binary=$HOME/.opencode/bin/opencode" >> "$log"
+              rm -f "$HOME/.opencode/bin/opencode" || true
+              rmdir "$HOME/.opencode/bin" 2>/dev/null || true
+            fi
+            if [ -e "$HOME/.opencode/bin/opencode" ]; then
+              echo "ERROR: could not remove the OpenCode binary" >> "$log"
               return 1
             fi
             if ! curl -fsSL --connect-timeout 10 --max-time 300 https://opencode.ai/install | bash >> "$log" 2>&1; then
@@ -425,7 +430,7 @@ jobs:
             timeout 60 "$HOME/.opencode/bin/opencode" run \
               --model "$OPENCODE_MODEL" \
               --dir "$RUNNER_TEMP" \
-              "Reply with exactly OK" >> "$log" 2>&1
+              "Reply with exactly OK" </dev/null >> "$log" 2>&1
             probe_status=$?
             set -e
             echo "fresh_install_probe_status=$probe_status" >> "$log"
