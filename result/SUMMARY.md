@@ -3,8 +3,8 @@
 - Target host: console.byteplus.com
 - Authorized routes: /datarangers, /datatester, /ark, /ai, /alb
 - Auth context: test account A (test-user-123, Account ID 3000823185); account B (testt456, Account ID 3001021825) for cross-account tests.
-- Scope note: other byteplus.com subdomains are not explicitly authorized; treated as out of scope per AGENT.md Section 4.
-- Assumptions: the "related subdomains" note does not expand authorization beyond console.byteplus.com.
+- Scope note: `console.byteplus.com` is the authorized host for this completed run. Other `byteplus.com` subdomains are not automatically excluded; verify against program/data scope before testing and record `Scope Unverified` when ambiguous.
+- Assumption: the related-subdomains note is scope input, not blanket authorization for every `byteplus.com` subdomain.
 - Status: completed (2026-10-31T21:44:56Z).
 
 ## Coverage

@@ -8,5 +8,5 @@ Target: console.byteplus.com
 
 ## Notes
 
-- Only `console.byteplus.com` is explicitly authorized by `data/targets.txt`.
-- Other `byteplus.com` subdomains are not automatically in scope per skills/AGENT.md Section 4; recorded as out of scope unless explicitly authorized.
+- Only `console.byteplus.com` was exercised in this completed run.
+- Other `byteplus.com` subdomains are **scope-unverified**, not automatically out of scope. Under current skills/AGENT.md Section 4, verify authorization before testing and record `Scope Unverified` when ambiguous.
