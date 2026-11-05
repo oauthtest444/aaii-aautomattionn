@@ -50,6 +50,23 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Connect VPN
+        env:
+          WIREGUARD_CONFIG: ${{ secrets.WIREGUARD_CONFIG }}
+        run: |
+          set -euo pipefail
+          if [ -z "${WIREGUARD_CONFIG:-}" ]; then
+            echo "WIREGUARD_CONFIG secret not set; using the GitHub runner IP."
+            exit 0
+          fi
+          sudo apt-get update -qq
+          sudo apt-get install -y wireguard-tools resolvconf
+          sudo install -m 600 /dev/null /etc/wireguard/wg0.conf
+          printf '%s\n' "$WIREGUARD_CONFIG" | sudo tee /etc/wireguard/wg0.conf >/dev/null
+          sudo wg-quick up wg0
+          echo "VPN connected."
+          echo "Egress IP: $(curl -fsS --max-time 10 https://api.ipify.org || echo unknown)"
+
       - name: Restore cached Chrome package
         id: chrome-cache
         uses: actions/cache@v4
