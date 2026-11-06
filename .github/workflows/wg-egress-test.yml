@@ -1,0 +1,71 @@
+name: WireGuard Egress Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y wireguard-tools resolvconf curl jq
+
+      - name: Install OpenCode
+        run: |
+          set -euo pipefail
+          curl -fsSL --connect-timeout 10 --max-time 300 https://opencode.ai/install | bash
+          echo "$HOME/.opencode/bin" >> "$GITHUB_PATH"
+          "$HOME/.opencode/bin/opencode" --version
+
+      - name: Test each WireGuard config
+        env:
+          WIREGUARD_CONFIGS_B64: ${{ secrets.WIREGUARD_CONFIGS }}
+          OPENCODE_MODEL: opencode/deepseek-v4.1-flash-free
+        run: |
+          set -euo pipefail
+          if [ -z "${WIREGUARD_CONFIGS_B64:-}" ]; then
+            echo "::error::WIREGUARD_CONFIGS secret is missing"
+            exit 1
+          fi
+          printf '%s' "$WIREGUARD_CONFIGS_B64" | base64 -d > /tmp/configs.json
+          COUNT="$(jq length /tmp/configs.json)"
+          echo "Testing ${COUNT} WireGuard configs"
+          for i in $(seq 0 $((COUNT - 1))); do
+            NAME="$(jq -r ".[$i].name" /tmp/configs.json)"
+            echo "=== ${NAME} ==="
+            jq -r ".[$i].config" /tmp/configs.json > /tmp/wg0.conf
+            sudo install -m 600 /tmp/wg0.conf /etc/wireguard/wg0.conf
+            if ! sudo wg-quick up wg0; then
+              echo "RESULT ${NAME} CONNECT_FAIL"
+              sudo wg-quick down wg0 2>/dev/null || true
+              continue
+            fi
+            EGRESS_IP="$(curl -fsS --max-time 20 https://api.ipify.org || echo unknown)"
+            echo "RESULT ${NAME} EGRESS_IP=${EGRESS_IP}"
+            LOG="/tmp/opencode-${i}.log"
+            set +e
+            timeout 120 opencode run \
+              --model "$OPENCODE_MODEL" \
+              --dir "$RUNNER_TEMP" \
+              "Reply with exactly OK" </dev/null > "$LOG" 2>&1
+            STATUS=$?
+            set -e
+            if grep -qaiE 'free usage limit reached|usage limit reached' "$LOG"; then
+              echo "RESULT ${NAME} QUOTA_FAIL"
+            elif [ "$STATUS" -eq 0 ] && grep -qiE '(^|[^A-Za-z])OK([^A-Za-z]|$)' "$LOG"; then
+              echo "RESULT ${NAME} OK"
+            else
+              echo "RESULT ${NAME} FAIL status=${STATUS}"
+            fi
+            tail -20 "$LOG" | sed 's/^/  /'
+            sudo wg-quick down wg0 2>/dev/null || true
+            sleep 2
+          done
