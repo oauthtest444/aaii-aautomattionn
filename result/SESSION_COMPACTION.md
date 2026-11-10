@@ -1,6 +1,6 @@
 # Session Compaction
 
-Last updated: 2026-11-10T23:32:00Z
+Last updated: 2026-11-10T23:50:00Z
 Target: `https://console.byteplus.com` (current authorized routes: `/finance/overview`, `/workorder/list/`)
 Target hash: `851361f8840b1efe993289fa5efa40d815c25b00e22682335fd394ab32253ba7`
 Status: in progress (new target route set; prior run history below is historical)
@@ -11,11 +11,11 @@ Status: in progress (new target route set; prior run history below is historical
 - Authorized top-level routes: `/finance/overview`, `/workorder/list/`
 - Task: enumerate/test all sub-routes; also verify and test related in-scope
   subdomains/endpoints if interesting.
-- Auth: not yet validated this run; `creds/auth-headers.txt` absent. Test
-  accounts in `creds/test-account.txt`.
+- Auth: `creds/auth-headers.txt` absent at resume. Chrome DevTools MCP confirmed
+  up (Chrome 157, port 9222). Preflight tools all present.
 - Scope: `console.byteplus.com` authorized (private BBP). Other byteplus.com
   subdomains require scope verification before testing.
-- Progress: starting preflight/auth; inventories seeded with the two routes.
+- Progress: resume run started 2026-11-10T23:50Z; logging in as account A.
 - Findings: none yet.
 - Next: authenticate account A/B, open `/finance/overview`, server-side API
   extraction, then client-side; then `/workorder/list/`.
@@ -414,6 +414,15 @@ completed scan. No new target testing was performed.
 
 - timestamp: 2026-11-10T23:43:07Z
 - run_id: 42923198807
+- event: workflow_dispatch
+- agent_outcome: failure
+- workflow_status: failure
+- note: Agent-created compaction is authoritative; this closeout records how the run ended.
+
+## Workflow closeout
+
+- timestamp: 2026-11-10T23:58:23Z
+- run_id: 42925005317
 - event: workflow_dispatch
 - agent_outcome: failure
 - workflow_status: failure
