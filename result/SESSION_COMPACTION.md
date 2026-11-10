@@ -1,9 +1,30 @@
 # Session Compaction
 
-Last updated: 2026-11-01T05:25:00Z
+Last updated: 2026-11-10T23:32:00Z
+Target: `https://console.byteplus.com` (current authorized routes: `/finance/overview`, `/workorder/list/`)
+Target hash: `851361f8840b1efe993289fa5efa40d815c25b00e22682335fd394ab32253ba7`
+Status: in progress (new target route set; prior run history below is historical)
+
+## Current target — 2026-11-10 session
+
+- Target: `https://console.byteplus.com`
+- Authorized top-level routes: `/finance/overview`, `/workorder/list/`
+- Task: enumerate/test all sub-routes; also verify and test related in-scope
+  subdomains/endpoints if interesting.
+- Auth: not yet validated this run; `creds/auth-headers.txt` absent. Test
+  accounts in `creds/test-account.txt`.
+- Scope: `console.byteplus.com` authorized (private BBP). Other byteplus.com
+  subdomains require scope verification before testing.
+- Progress: starting preflight/auth; inventories seeded with the two routes.
+- Findings: none yet.
+- Next: authenticate account A/B, open `/finance/overview`, server-side API
+  extraction, then client-side; then `/workorder/list/`.
+
+## Historical — prior completed run (2026-11-01)
+
 Target: `https://console.byteplus.com` (authorized routes: `/datarangers`, `/datatester`, `/ark`, `/ai`, `/alb`)
 Target hash: `03aef71f1ba65c11c7ba408a0ebd646abc6e8850fd4cf34ff397d9096f808f27`
-Status: completed (`result/SCAN_COMPLETE` exists; no pending required work)
+Status: historical completed (`result/SCAN_COMPLETE` was written for that run)
 
 ## Session summary
 
@@ -384,6 +405,15 @@ completed scan. No new target testing was performed.
 
 - timestamp: 2026-11-10T23:29:31Z
 - run_id: 42921392582
+- event: workflow_dispatch
+- agent_outcome: failure
+- workflow_status: failure
+- note: Agent-created compaction is authoritative; this closeout records how the run ended.
+
+## Workflow closeout
+
+- timestamp: 2026-11-10T23:43:07Z
+- run_id: 42923198807
 - event: workflow_dispatch
 - agent_outcome: failure
 - workflow_status: failure
