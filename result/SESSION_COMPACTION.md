@@ -1,24 +1,32 @@
 # Session Compaction
 
-Last updated: 2026-11-10T23:50:00Z
+Last updated: 2026-11-13T06:00:00Z
 Target: `https://console.byteplus.com` (current authorized routes: `/finance/overview`, `/workorder/list/`)
 Target hash: `851361f8840b1efe993289fa5efa40d815c25b00e22682335fd394ab32253ba7`
-Status: in progress (new target route set; prior run history below is historical)
+Status: in progress (account A authenticated)
 
-## Current target — 2026-11-10 session
+## Current target — 2026-11-13 session
 
 - Target: `https://console.byteplus.com`
 - Authorized top-level routes: `/finance/overview`, `/workorder/list/`
 - Task: enumerate/test all sub-routes; also verify and test related in-scope
   subdomains/endpoints if interesting.
-- Auth: `creds/auth-headers.txt` absent at resume. Chrome DevTools MCP confirmed
-  up (Chrome 157, port 9222). Preflight tools all present.
+- Auth: Account A logged in successfully at 2026-11-13T~05:59Z. Login requires a
+  BytePlus slider/puzzle CAPTCHA; solved via trusted CDP `Input.dispatchMouseEvent`
+  (synthetic DOM events do not register). Session cookies cached in
+  `creds/auth-headers.txt` (gitignored, not reproduced here). Account B not
+  authenticated yet.
+- Method notes for resume: captcha challenge expires quickly; fetch
+  `img.captcha-verify-image` / `img.captcha-verify-image-slide`, locate the
+  darkened puzzle silhouette in the background (restrict Y to the live
+  `.dragger-item` vertical position), then drag the `.captcha-slider-btn` by
+  `gap_top_left_x * (340/552)` px with CDP trusted mouse events.
 - Scope: `console.byteplus.com` authorized (private BBP). Other byteplus.com
   subdomains require scope verification before testing.
-- Progress: resume run started 2026-11-10T23:50Z; logging in as account A.
+- Progress: authenticated; about to open `/finance/overview`, capture APIs.
 - Findings: none yet.
-- Next: authenticate account A/B, open `/finance/overview`, server-side API
-  extraction, then client-side; then `/workorder/list/`.
+- Next: server-side API extraction/testing for `/finance/overview`, then
+  client-side; then `/workorder/list/`.
 
 ## Historical — prior completed run (2026-11-01)
 
@@ -524,5 +532,14 @@ completed scan. No new target testing was performed.
 - run_id: 43328325985
 - event: schedule
 - agent_outcome: skipped
+- workflow_status: failure
+- note: Agent-created compaction is authoritative; this closeout records how the run ended.
+
+## Workflow closeout
+
+- timestamp: 2026-11-13T06:03:46Z
+- run_id: 43374826785
+- event: schedule
+- agent_outcome: failure
 - workflow_status: failure
 - note: Agent-created compaction is authoritative; this closeout records how the run ended.
