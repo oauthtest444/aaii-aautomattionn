@@ -1,51 +1,39 @@
 # Session Compaction
 
-Last updated: 2026-11-13T06:00:00Z
+Last updated: 2026-11-14T06:05:00Z
 Target: `https://console.byteplus.com` (current authorized routes: `/finance/overview`, `/workorder/list/`)
 Target hash: `851361f8840b1efe993289fa5efa40d815c25b00e22682335fd394ab32253ba7`
 Status: in progress (account A authenticated)
 
 ## Current target — 2026-11-14 session
 
-- Target: `https://console.byteplus.com`
+- Run: 43562945032. Target: `https://console.byteplus.com`
 - Authorized top-level routes: `/finance/overview`, `/workorder/list/`
 - Task: enumerate/test all sub-routes; also verify and test related in-scope
   subdomains/endpoints if interesting.
-- Auth: Account A restored in Chrome at 2026-11-14T05:47Z. Fix: clear all
-  byteplus cookies (including Partitioned duplicates from signin), then set
-  non-partitioned cookies for `.byteplus.com` from `creds/auth-headers.txt`.
-  Duplicate Partitioned `digest` cookie (36-char anon) caused NotLogin and
-  request-header-too-large; must delete partitioned copies. Auth confirmed via
-  `GET /api/financial/payment/AddPaymentMethod` returning PIPO param error
-  (authenticated) vs NotLogin (anon). Account B still not authenticated.
+- Auth: Account A restored via CDP at 2026-11-14T05:58Z. Method: delete all
+  `byteplus` cookies in Chrome, then `Network.setCookie` each Account A cookie
+  from `creds/auth-headers.txt` on domain `.byteplus.com` from the page target
+  websocket (browser-level target lacks Network domain). Account B has no
+  cached cookie (empty) - not authenticated.
 - Scope: `console.byteplus.com` authorized (private BBP). Other byteplus.com
   subdomains require scope verification before testing.
-- Progress: `/finance/overview` status=progress. Loading fine, UI captured.
-- API surface observed on /finance/overview (all GET unless noted):
-  - /api/top/account_verify/ap-southeast-1/2018-01-01/GetProfileInfo
-  - /api/top/account_verify/ap-southeast-1/2018-01-01/GetRawProfileInfo (POST)
-  - /api/financial/const/getExpenseConfigForFE
-  - /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/GetAccountGrayStatus
-  - /api/top/bill_volcano_engine/ap-singapore-1/2022-01-01/GetCountryAreaCfg
-  - /api/top/bill/ap-singapore-1/2020-01-01/QueryCreditProtocolDetail?AccountID=3000823185
-  - /api/top/bill/ap-singapore-1/2020-01-01/ListCostAnalysisTrend (POST)
-  - /api/top/bill/ap-singapore-1/2020-01-01/GetBcDiscountPriceAuth
-  - /api/top/bill/ap-singapore-1/2022-01-01/ListMonthlyBillOpen?...PayerID=...
-  - /api/financial/payment/FetchStoredPaymentMethods (POST)
-  - /api/financial/const/getCashierTccConfig
-  - /api/top/account_management/cn-beijing/2018-01-01/GetAccountActionSecurity (POST)
-  - /api/top/bill/ap-singapore-1/2020-01-01/GetBalanceFromTradeBalance (POST)
-  - /api/top/bill/ap-singapore-1/2020-01-01/CountCoupon
-  - /api/top/bill/ap-singapore-1/2020-01-01/GetQuotaAcctInfo
-  - /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/CheckPaymentQualification?AccountID=...&SubjectNo=1065
-  - /api/top/bill/ap-singapore-1/2020-01-01/GetCurrency
-  - /api/financial/payment/AddPaymentMethod (POST)
-- Sub-route candidates from finance JS: /finance/bill/cost-analyse,
-  /finance/account-overview, /finance/invoice-manage, /finance/signup,
-  /finance/overview, /bill/detail, /bill/split-bill, /order.
+- Finance sub-routes discovered (SPA left nav, all under /finance/):
+  overview, bill/detail, bill/cost-analyse, order, renew, unsubscribe,
+  instance-manage, resource-package, saving-plan, coupon, pickup-coupon,
+  invoice-manage, contract-discount, contract, cost, export,
+  payment/transactions, payment/make-payment, payment/payment-methods,
+  busniess-finance/relation.
+- Server-side results so far (account A): AccountID/PayerID/AccountId tampering
+  on GetProfileInfo, GetRawProfileInfo, QueryCreditProtocolDetail,
+  ListMonthlyBillOpen, GetQuotaAcctInfo, GetAccountActionSecurity,
+  GetAccountLoginSecurity is ignored/session-scoped. Not IDOR.
+- Finance API inventory recorded in `result/inventory/api-routes.md`.
 - Findings: none yet.
-- Next: test param tampering (AccountID/PayerID) on bill/account APIs for IDOR;
-  then client-side; then /workorder/list/.
+- Next: per-sub-route API capture + IDOR/BAC/mass-assignment tests; then
+  client-side; then `/workorder/list/` (tickets likely high value).
+- Rate limit observed once: "request speed ... beyond flow control limit" -
+  keep request rate low.
 
 ## Historical — prior completed run (2026-11-01)
 
@@ -604,6 +592,15 @@ completed scan. No new target testing was performed.
 - timestamp: 2026-11-14T05:55:11Z
 - run_id: 43562683142
 - event: schedule
+- agent_outcome: failure
+- workflow_status: failure
+- note: Agent-created compaction is authoritative; this closeout records how the run ended.
+
+## Workflow closeout
+
+- timestamp: 2026-11-14T06:04:08Z
+- run_id: 43562945032
+- event: workflow_dispatch
 - agent_outcome: failure
 - workflow_status: failure
 - note: Agent-created compaction is authoritative; this closeout records how the run ended.
