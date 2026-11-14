@@ -622,3 +622,12 @@ completed scan. No new target testing was performed.
 - agent_outcome: skipped
 - workflow_status: failure
 - note: Agent-created compaction is authoritative; this closeout records how the run ended.
+
+## Workflow closeout
+
+- timestamp: 2026-11-14T22:10:50Z
+- run_id: 43646540569
+- event: schedule
+- agent_outcome: skipped
+- workflow_status: failure
+- note: Agent-created compaction is authoritative; this closeout records how the run ended.
