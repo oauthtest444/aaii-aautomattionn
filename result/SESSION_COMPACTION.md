@@ -82,3 +82,12 @@ Unresolved: Ark managed-agent sub-routes not activated for test accounts.
 - agent_outcome: failure
 - workflow_status: failure
 - note: Agent-created compaction is authoritative; this closeout records how the run ended.
+
+## Workflow closeout
+
+- timestamp: 2026-11-15T05:55:46Z
+- run_id: 43682231405
+- event: workflow_dispatch
+- agent_outcome: skipped
+- workflow_status: failure
+- note: Agent-created compaction is authoritative; this closeout records how the run ended.
