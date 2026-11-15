@@ -90,3 +90,12 @@ managed-agent sub-routes not activated for test accounts.
 - agent_outcome: failure
 - workflow_status: failure
 - note: Agent-created compaction is authoritative; this closeout records how the run ended.
+
+## Workflow closeout
+
+- timestamp: 2026-11-15T14:08:24Z
+- run_id: 43721344482
+- event: workflow_dispatch
+- agent_outcome: failure
+- workflow_status: failure
+- note: Agent-created compaction is authoritative; this closeout records how the run ended.
