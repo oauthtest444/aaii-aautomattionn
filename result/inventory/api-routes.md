@@ -58,5 +58,59 @@ on every endpoint where it was tested; those are recorded as not vulnerable.
 - CSRF: all POST actions require `X-CSRF-Token`; missing header returns
   `InvalidCSRFToken` for JSON, text/plain, and form-encoded bodies. No CSRF bypass.
 - Unauthenticated calls fail (`InvalidCSRFToken` / `NotLogin`); no auth bypass found.
-- Account A cookie digest expired 2026-11-15T06:00:21Z; re-login blocked by bdms
-  slider captcha, so remaining cross-account tests are Unresolved.
+- 2026-11-17: accounts A and B revalidated HTTP 200; cookies re-injected into
+  Chrome via CDP. Cross-account tests below completed with account B against
+  account A identifiers. All were rejected, empty, or session-scoped.
+
+## Finance sub-route APIs (2026-11-17)
+
+| Method | Path | Parent Top-Level Route | Auth | Status | Summary |
+|---|---|---|---|---|---|
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/ListSubscribeRecords | /finance/bill/detail | account A | completed | Empty (no subscriptions). Own scope. |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/GetFilterInfoForBillDetail | /finance/bill/detail | account A/B | completed | B + A PayerID/BillOwnerID returns own empty filter; no cross-account data. |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/ListPayerAndOwnerByBillOwnerID | /finance/bill/detail | account A/B | completed | B + A BillOwnerID returns own empty lists. Not IDOR. |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/ListBcProductSummaryOpen | /finance/bill/detail | account A/B | completed | B + A PayerID/AccountID returns own empty summary. Not IDOR. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2022-01-01/ListOrder | /finance/order | account A/B | completed | Both accounts empty (Total=0). No cross-account data. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/ListSubjectCodeForInstance | /finance/renew | account A | completed | Subject-code metadata only. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/ListRenewSettings | /finance/renew | account A | completed | Empty (Total=0). No account selector accepted. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/ListInvoiceBPV2 | /finance/invoice-manage | account A/B | completed | B + A AccountID/PayerID returns empty invoice list. Not IDOR. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/ListInvoiceMakerInfoBP | /finance/invoice-manage | account A | completed | Own invoice-maker metadata only. |
+| GET | /api/top/account_verify/ap-southeast-1/2018-01-01/ListProfileCountry | /finance/invoice-manage | account A | completed | Country metadata only. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2022-01-01/GetTaxID | /finance/invoice-manage | account B | completed | B + A AccountID returns caller (B) tax ID; session-scoped. Not IDOR. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/ListEmailForAccount | /finance/invoice-manage | account B | completed | B + A AccountID -> RequestInvalid (no invoice authorization). Enforced. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2022-01-01/GetCountryAreaCfgByAccountID | /finance/invoice-manage | account B | completed | Config only; no account data returned. |
+| GET | /api/top/volc_contract_process/ap-singapore-1/2021-01-01/List | /finance/contract | account A/B | completed | B + A AccountID returns empty contract list. Not IDOR. |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/ListBalanceTransactionForPage | /finance/payment/transactions | account A/B | completed | B + A PayerID returns own empty transactions. Not IDOR. |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/ListCoupon | /finance/coupon | account A/B | completed | B + A PayerID/AccountID returns own empty coupons. Not IDOR. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/ResourcePackageListSelector | /finance/resource-package | account A | completed | Selector metadata only. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/ListSavingPlanSelectorConsoleAPI | /finance/saving-plan | account A | completed | Selector metadata only. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/GetSavingAmountSummaryConsoleAPI | /finance/saving-plan | account A | completed | Own empty summary. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/ListSavingPlanConsoleAPI | /finance/saving-plan | account A | completed | Own empty saving plans. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/ListInstanceForConsole | /finance/instance-manage | account A | completed | Own empty instance list. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/GetAccountExpirationAlert | /finance/instance-manage | account A | completed | Own alert config. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/ListInstanceConfigTimeline | /finance/instance-manage | account A | completed | Own empty timeline. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/BatchGetInstanceOpsCapability | /finance/instance-manage | account A | completed | Capability flags for caller's own instance only. |
+| GET | /api/top/consolemessage/ap-singapore-1/2024-05-01/ListSubscribe | /finance/instance-manage | account A | completed | Own subscriptions. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/ListBudget | /finance/cost | account A | completed | Own empty budget list. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/QueryBudgetActiveInfo | /finance/cost | account A | completed | Own empty budget status. |
+| POST | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/ListRedeemCodes | /finance/pickup-coupon | account A | completed | Requires POST body; GET fails. No test voucher data. Unresolved data-dependent. |
+| POST | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/ListPickupVouchers | /finance/pickup-coupon | account A | completed | Requires POST body; GET fails. No test voucher data. Unresolved data-dependent. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/QueryContractDiscountDisclaimer | /finance/contract-discount | account A | completed | Static disclaimer config. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/ContractDiscountTableList | /finance/contract-discount | account A | completed | Own empty discount list. |
+| GET | /api/top/bill_volcano_engine/ap-singapore-1/2020-01-01/QueryContractDiscount | /finance/contract-discount | account A | completed | Own empty discount data. |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/GetServiceSigningRecord | /finance/busniess-finance/relation | account A | completed | Own signing record. |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/QuerySubscribeCostAnalysis | /finance/bill/cost-analyse | account A | completed | Own empty cost analysis. |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/QueryAmortizedCostBillUser | /finance/bill/cost-analyse | account A | completed | Own empty amortized cost. |
+| GET | /api/top/bill/ap-singapore-1/2020-01-01/GetFilterInfoForCostAnalysis | /finance/bill/cost-analyse | account A | completed | Filter metadata only. |
+
+## Workorder and console APIs (2026-11-17)
+
+| Method | Path | Parent Top-Level Route | Auth | Status | Summary |
+|---|---|---|---|---|---|
+| POST | /api/top/authorization/ap-southeast-1/2021-01-01/ListAuthorization | /workorder/authorizationList | account A/B | completed | B + A AccountID -> InvalidParam; UserID ignored -> own empty list. Session-scoped. |
+| GET | /api/top/iam/ap-southeast-1/2018-01-01/ListUsers | /workorder/list/ | account B | completed | CSRF required. B + A AccountID returns B's own 4 users. Not IDOR. |
+| GET | /api/top/iam/ap-southeast-1/2018-01-01/ListRoles | /workorder/list/ | account B | completed | CSRF required. B + A AccountID returns B's own 44 roles. Not IDOR. |
+| POST | /api/top/ticket/ap-southeast-1/2021-01-01/GetTicketCount | /workorder/list/ | account B | completed | B + A AccountID returns B's own tab counts. Not IDOR. |
+| POST | /api/workorder/ticket/GetAccountMaskedSecurityContact | /workorder/create | account B | completed | Caller's own masked security contact only. |
+| GET | /api/workorder/ticket/Tcc | /workorder/create | account A | completed | Workorder console config. |
+| GET | /api/workorder/ticket/getWorkorderConsoleConfig | /workorder/create | account A | completed | Workorder console config. |
