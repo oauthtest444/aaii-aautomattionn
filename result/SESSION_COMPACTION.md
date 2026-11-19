@@ -153,3 +153,12 @@ GetTicketCount, GetAccountMaskedSecurityContact, `/api/workorder/ticket/Tcc`,
 - agent_outcome: skipped
 - workflow_status: failure
 - note: Agent-created compaction is authoritative; this closeout records how the run ended.
+
+## Workflow closeout
+
+- timestamp: 2026-11-19T00:05:31Z
+- run_id: 44425907024
+- event: schedule
+- agent_outcome: skipped
+- workflow_status: failure
+- note: Agent-created compaction is authoritative; this closeout records how the run ended.
